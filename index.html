@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO primario -->
+  <title>Diseñador UX freelance para startups en LATAM | Uxuaria</title>
+  <meta name="description" content="Consultoría UX con más de 15 años de experiencia con startups y productos digitales en Argentina y LATAM. Especialización en fintech y productos construidos con IA. Agendá una llamada gratuita." />
+  <link rel="canonical" href="https://uxuaria.com" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Diseñador UX freelance para startups en LATAM | Uxuaria" />
+  <meta property="og:description" content="Consultoría UX especializada en fintech y productos digitales. Más de 15 años trabajando con startups en Argentina y LATAM." />
+  <meta property="og:url" content="https://uxuaria.com" />
+  <meta property="og:type" content="website" />
+  <!-- [PENDIENTE: og:image — imagen 1200×630 px, ver spec 04-seo-meta.md] -->
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Person", "ProfessionalService"],
+    "name": "Luis Carlos Romero León",
+    "alternateName": "Uxuaria",
+    "jobTitle": "UX Designer freelance",
+    "url": "https://uxuaria.com",
+    "email": "info@uxuaria.com",
+    "areaServed": ["Argentina", "Colombia", "Costa Rica", "Latinoamérica"],
+    "knowsAbout": [
+      "UX Design", "User Research", "Fintech UX", "MVP Discovery",
+      "Auditoría UX", "Design Systems", "IA productos digitales"
+    ],
+    "sameAs": ["https://www.linkedin.com/company/uxuaria/"]
+  }
+  </script>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- H1 SEO: indexado por Google, invisible para el usuario (clip-path, no display:none) -->
+  <h1 class="visually-hidden">
+    Diseñador UX freelance en LATAM · Consultoría UX para startups y productos digitales hechos con IA
+  </h1>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="/" class="navbar__logo" aria-label="Uxuaria, inicio">
+        <span class="logo-text">uxuaria</span>
+      </a>
+
+      <nav class="navbar__nav" aria-label="Navegación principal">
+        <a href="servicios/index.html" class="nav-link">Servicios</a>
+        <a href="#ux-checkup" class="nav-link">UX Checkup</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="#contacto" class="nav-link">Contáctame</a>
+      </nav>
+
+      <a href="mailto:info@uxuaria.com" class="btn btn--primary navbar__cta">Contáctame</a>
+
+      <button class="navbar__hamburger" id="hamburger"
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="servicios/index.html" class="nav-link">Servicios</a>
+      <a href="#ux-checkup" class="nav-link">UX Checkup</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="#contacto" class="nav-link">Contáctame</a>
+      <a href="mailto:info@uxuaria.com" class="btn btn--primary">Contáctame</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO — Retro UI
+    ============================================================ -->
+    <section class="hero">
+
+      <!-- LEFT: brand copy -->
+      <div class="copy">
+        <h2 class="tagline">Dirigimos al usuario hacia donde tu negocio crece </h2>
+        <p class="hero-lead">Diseño experiencias digitales para startups que escalan,
+          con especialización en proyectos construidos con IA.</p>
+        <div class="hero-cta">
+          <a href="https://calendly.com/luisca85/charla-introductoria-clone" target="_blank" rel="noopener" class="btn-primary">▶ Agendá una llamada</a>
+          <a href="#portafolio" class="btn-ghost">Ver proyectos</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: retro-UI art -->
+      <div class="art">
+        <div id="artboard">
+
+          <section class="win" id="w-claude">
+            <div class="tb"><span>CLAUDE.PNG</span><span class="stripes"></span><span class="x">✕</span></div>
+            <div class="wbody">
+              <svg width="190" height="180" viewBox="0 0 40 38" aria-hidden="true"></svg>
+              <span class="cap">SELECT &gt; AI_PARTNER</span>
+            </div>
+          </section>
+
+          <section class="win" id="w-error">
+            <div class="tb"><span>ERROR</span><span class="stripes"></span><span class="x">✕</span></div>
+            <div class="wbody"><span class="msg">IDEAS MISSING</span><span class="retro-btn">OK</span></div>
+          </section>
+
+          <section class="win dark" id="w-brand">
+            <div class="tb"><span>APLICACIÓN</span><span class="stripes"></span><span class="x">✕</span></div>
+            <div class="wbody">
+              <span class="pre">UXUARIA presenta</span>
+              <div class="chunky">UXUA<br/>RIA</div>
+              <p class="tag">DISEÑO QUE EMPODERA TU STARTUP Y LA LLEVA AL SIGUIENTE NIVEL.</p>
+              <div class="row"><span class="retro-btn">▶ EMPEZAR</span><span class="ver">VERSIÓN 3.1</span></div>
+            </div>
+          </section>
+
+          <section class="win" id="w-psd">
+            <div class="tb"><span>UXUARIA.PSD</span><span class="stripes"></span><span class="x">✕</span></div>
+            <div class="work">
+              <div class="tools" id="psd-tools"></div>
+              <div class="canvas"><div class="ruler-t"></div><span class="word">DISEÑO</span></div>
+            </div>
+          </section>
+
+          <section class="win dark" id="w-bsod">
+            <div class="tb"><span>:(</span><span class="stripes"></span><span class="x">✕</span></div>
+            <div class="wbody">
+              <span class="face">:(</span>
+              <p class="lead2">TU CREATIVIDAD ENCONTRÓ UN PROBLEMA Y NECESITA REINICIAR.</p>
+              <div class="qrow">
+                <svg width="72" height="72" viewBox="0 0 13 13" id="qr" aria-hidden="true"></svg>
+                <p class="qmeta">RECOPILANDO<br/>INFO DEL ERROR...<br/>0% COMPLETADO</p>
+              </div>
+              <p class="stop">STOP CODE: IDEAS_NOT_FOUND<br/>FALLO: BURNOUT.SYS</p>
+            </div>
+          </section>
+
+          <section class="win" id="w-gen">
+            <div class="tb"><span>GENERANDO</span><span class="stripes"></span><span class="x">✕</span></div>
+            <div class="wbody">
+              <span class="file">IDEAS.EXE</span>
+              <span class="sub">PROMPTING A LA IA "C:/" A "GENIAL"</span>
+              <div class="pbar" id="pbar"></div>
+              <div class="pct"><span>ALUCINANDO...</span><span>99%</span></div>
+              <div class="foot"><span class="rem">8760 HORAS RESTANTES</span><span class="retro-btn">CANCELAR</span></div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CLIENTS BAR
+    ============================================================ -->
+    <div class="clients-bar" role="region" aria-label="Empresas con las que he trabajado">
+      <p class="clients-bar__label">Empresas con las que he trabajado</p>
+      <div class="clients-bar__track" aria-hidden="true">
+        <!-- Set 1 -->
+        <img src="images/logos/mongepay.png"           alt="" class="clients-bar__logo" loading="lazy">
+        <img src="images/logos/strianno.webp"           alt="" class="clients-bar__logo" loading="lazy">
+        <img src="images/logos/greenify.webp"           alt="" class="clients-bar__logo clients-bar__logo--invert" loading="lazy">
+        <img src="images/logos/poy.svg"                 alt="" class="clients-bar__logo clients-bar__logo--sm" loading="lazy">
+        <img src="images/logos/Personal_logo_2021.png"  alt="" class="clients-bar__logo" loading="lazy">
+        <!-- Set 2 — duplicado para bucle sin cortes -->
+        <img src="images/logos/mongepay.png"           alt="" class="clients-bar__logo" loading="lazy">
+        <img src="images/logos/strianno.webp"           alt="" class="clients-bar__logo" loading="lazy">
+        <img src="images/logos/greenify.webp"           alt="" class="clients-bar__logo clients-bar__logo--invert" loading="lazy">
+        <img src="images/logos/poy.svg"                 alt="" class="clients-bar__logo clients-bar__logo--sm" loading="lazy">
+        <img src="images/logos/Personal_logo_2021.png"  alt="" class="clients-bar__logo" loading="lazy">
+      </div>
+    </div>
+
+    <!-- ============================================================
+         UX VISION STRIP
+    ============================================================ -->
+    <section class="ux-vision" id="ux-vision">
+      <div class="container">
+        <div class="ux-vision__inner">
+
+          <!-- Columna izquierda: texto + CTAs -->
+          <div class="ux-vision__content">
+            <h2 class="ux-vision__tagline">Tu problema de crecimiento<br>es un problema de diseño.</h2>
+            <p class="ux-vision__subtitle">El diseño es una tecnología para la resolución de problemas.</p>
+            <p class="ux-vision__body">Siempre que nos escuches hablar de diseño, en realidad estamos hablando de negocios: de aumentar la memorabilidad de tu producto y de que cada vez más usuarios quieran usarlo.</p>
+            <div class="ux-vision__cta">
+              <a href="servicios/index.html" class="btn btn--primary">
+                Ver servicios
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: stats -->
+          <div class="ux-vision__stats">
+
+            <div class="stat-card">
+              <span class="stat-card__eyebrow">Experiencia</span>
+              <span class="stat-card__number">+15</span>
+              <span class="stat-card__unit">años</span>
+              <p class="stat-card__label">especializándome en productos digitales en LATAM</p>
+            </div>
+
+            <div class="stat-card">
+              <svg class="stat-card__icon" width="48" height="36" viewBox="0 0 16 12" aria-hidden="true">
+                <!-- rim -->
+                <rect x="2" y="0" width="12" height="1" fill="currentColor"/>
+                <!-- full row -->
+                <rect x="0" y="1" width="16" height="1" fill="currentColor"/>
+                <!-- left handle -->
+                <rect x="0" y="2" width="2"  height="3" fill="currentColor"/>
+                <!-- cup body -->
+                <rect x="3" y="2" width="10" height="3" fill="currentColor"/>
+                <!-- right handle -->
+                <rect x="14" y="2" width="2"  height="3" fill="currentColor"/>
+                <!-- cup bottom edge -->
+                <rect x="2" y="5" width="12" height="1" fill="currentColor"/>
+                <!-- narrowing -->
+                <rect x="4" y="6" width="8"  height="1" fill="currentColor"/>
+                <!-- stem -->
+                <rect x="6" y="7" width="4"  height="3" fill="currentColor"/>
+                <!-- base -->
+                <rect x="3" y="10" width="10" height="2" fill="currentColor"/>
+              </svg>
+              <span class="stat-card__eyebrow">Caso de éxito · Monge Pay</span>
+              <span class="stat-card__number">+150K</span>
+              <span class="stat-card__unit">usuarios activos</span>
+              <p class="stat-card__label">en la plataforma fintech más grande de Costa Rica, +300% de crecimiento en 2025</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PORTAFOLIO
+         [PENDIENTE: Farmatouch y Welink sin imagen — agregar cuando estén disponibles]
+    ============================================================ -->
+    <section class="portfolio" id="portafolio">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Proyectos</p>
+          <h2 class="section-title">Casos de diseño</h2>
+          <p class="section-desc">
+            Trabajo real con startups y empresas reales. Desde validar un MVP
+            hasta rediseñar una experiencia que no estaba convirtiendo.
+          </p>
+        </div>
+
+        <div class="portfolio__grid">
+
+          <!-- ── PROYECTO DESTACADO ── fila completa ── -->
+          <article class="project-card--featured">
+            <div class="project-card--featured__media">
+              <div class="featured-carousel" data-carousel>
+                <div class="featured-carousel__track" data-carousel-track>
+                  <div class="featured-carousel__slide">
+                    <img src="images/portfolio/mongepay/mongepay_presentation%201.png"
+                         alt="Monge Pay, presentación de la plataforma de pagos"
+                         loading="eager" />
+                  </div>
+                  <div class="featured-carousel__slide">
+                    <img src="images/portfolio/mongepay/mongepay-desktop.png"
+                         alt="Monge Pay, vista desktop de la plataforma de pagos"
+                         loading="lazy" />
+                  </div>
+                  <div class="featured-carousel__slide">
+                    <img src="images/portfolio/mongepay/mongepay.png"
+                         alt="Monge Pay, pantalla de inicio de la app móvil"
+                         loading="lazy" />
+                  </div>
+                  <div class="featured-carousel__slide">
+                    <img src="images/portfolio/mongepay/mongepay_presentation.png"
+                         alt="Monge Pay, sistema de diseño y componentes"
+                         loading="lazy" />
+                  </div>
+                </div>
+                <button class="featured-carousel__btn featured-carousel__btn--prev"
+                        aria-label="Imagen anterior">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="featured-carousel__btn featured-carousel__btn--next"
+                        aria-label="Siguiente imagen">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="featured-carousel__counter" aria-live="polite" aria-atomic="true">
+                  <span data-carousel-current>1</span>&thinsp;/&thinsp;<span data-carousel-total>4</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card--featured__content">
+
+              <span class="active-work-badge">
+                <span class="badge-dot"></span>
+                Trabajando ahora
+              </span>
+
+              <div class="project-card--featured__tagline-1">
+                DE CERO A +150K USUARIOS: LA PLATAFORMA FINTECH MÁS GRANDE DE COSTA RICA
+              </div>
+
+              <hr class="project-card--featured__divider" />
+
+              <div class="project-card--featured__tagline-2">
+                <span class="project-card--featured__tagline-2-num">+300%</span>
+                <span class="project-card--featured__tagline-2-ctx">crecimiento de usuarios · 2025</span>
+              </div>
+
+              <div class="project-card--featured__footer-row">
+                <div class="project-card--featured__client">
+                  <span class="project-card--featured__client-label">Cliente</span>
+                  <span class="project-card--featured__client-name">Monge Pay</span>
+                </div>
+                <a href="portafolio/monge-pay.html" class="project-card--featured__cta-arrow" aria-label="Ver proyecto Monge Pay">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ── OTROS PROYECTOS ── carrusel ── -->
+          <div class="portfolio__subsection">
+            <h3 class="portfolio__subsection-title">Otros proyectos seleccionados</h3>
+            <div class="portfolio__subsection-actions">
+              <button class="pcarousel-btn pcarousel-btn--prev" data-pcarousel-prev aria-label="Proyecto anterior">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="pcarousel-btn pcarousel-btn--next" data-pcarousel-next aria-label="Siguiente proyecto">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="portfolio-carousel-wrapper">
+            <div class="portfolio-carousel" data-pcarousel>
+
+              <article class="portfolio-carousel__slide">
+                <img src="images/portfolio/disney-telecom/Frame%205567.png"
+                     alt="Disney+ Telecom, flujo de activación de cuenta"
+                     class="portfolio-carousel__slide-bg" loading="lazy" />
+                <div class="portfolio-carousel__slide-overlay"></div>
+                <a href="portafolio/disney-telecom.html" class="portfolio-carousel__slide-arrow" aria-label="Ver proyecto Disney+ Telecom">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <div class="portfolio-carousel__slide-content">
+                  <span class="portfolio-carousel__slide-tag">Telecom · Streaming · In-house · 2023</span>
+                  <p class="portfolio-carousel__slide-stat">DISEÑÉ EL ONBOARDING DE DISNEY+ DESDE ADENTRO DE TELECOM ARGENTINA, PARA QUE MILLONES DE CLIENTES REALMENTE LO USARAN</p>
+                  <h3 class="portfolio-carousel__slide-title">Disney+ · Telecom Argentina</h3>
+                </div>
+              </article>
+
+              <article class="portfolio-carousel__slide">
+                <img src="images/portfolio/Striano/striano.png"
+                     alt="Striano, rediseño completo del sitio web para software factory en USA"
+                     class="portfolio-carousel__slide-bg" loading="lazy" />
+                <div class="portfolio-carousel__slide-overlay"></div>
+                <a href="portafolio/striano.html" class="portfolio-carousel__slide-arrow" aria-label="Ver proyecto Striano">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <div class="portfolio-carousel__slide-content">
+                  <span class="portfolio-carousel__slide-tag">Software Factory · UI/UX · USA · 2022</span>
+                  <p class="portfolio-carousel__slide-stat">DE WORDPRESS BÁSICO A SITIO WEB COMPLETO CON IDENTIDAD PROPIA: 6 PÁGINAS DISEÑADAS PARA EL MERCADO NORTEAMERICANO</p>
+                  <h3 class="portfolio-carousel__slide-title">Striano</h3>
+                </div>
+              </article>
+
+              <article class="portfolio-carousel__slide">
+                <img src="images/portfolio/Welink/1.0%20Home%20-%20desktop%20-%20all%20industrys.png"
+                     alt="WeLink, marketplace europeo rediseñado para 130K visitantes"
+                     class="portfolio-carousel__slide-bg" loading="lazy" />
+                <div class="portfolio-carousel__slide-overlay"></div>
+                <a href="portafolio/we-link.html" class="portfolio-carousel__slide-arrow" aria-label="Ver proyecto WeLink">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <div class="portfolio-carousel__slide-content">
+                  <span class="portfolio-carousel__slide-tag">Marketplace · Two-sided Platform · Europa · 2023</span>
+                  <p class="portfolio-carousel__slide-stat">130.000 VISITANTES, DOS AUDIENCIAS OPUESTAS, UNA SOLA HOMEPAGE: REDISEÑAMOS LA ARQUITECTURA PARA QUE SIRVIERA A LAS DOS</p>
+                  <h3 class="portfolio-carousel__slide-title">WeLink</h3>
+                </div>
+              </article>
+
+              <article class="portfolio-carousel__slide">
+                <img src="images/portfolio/VES/Events-services.png"
+                     alt="VES, plataforma enterprise de eventos virtuales farmacéuticos para 4 marcas"
+                     class="portfolio-carousel__slide-bg" loading="lazy" />
+                <div class="portfolio-carousel__slide-overlay"></div>
+                <a href="portafolio/ves.html" class="portfolio-carousel__slide-arrow" aria-label="Ver proyecto Virtual Event Services">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <div class="portfolio-carousel__slide-content">
+                  <span class="portfolio-carousel__slide-tag">Enterprise · Pharma · Plataforma digital · 2022</span>
+                  <p class="portfolio-carousel__slide-stat">+100 EVENTOS HOSPEDADOS PARA 4 MARCAS FARMACÉUTICAS EN UNA PLATAFORMA QUE DISEÑAMOS DESDE CERO: FLUJOS, ARQUITECTURA Y UI COMPLETA</p>
+                  <h3 class="portfolio-carousel__slide-title">Virtual Event Services</h3>
+                </div>
+              </article>
+
+              <article class="portfolio-carousel__slide">
+                <img src="images/portfolio/Fans.ia/fans-ia.png"
+                     alt="Fans.ai, MVP de red social con IA de traducción para artistas emergentes"
+                     class="portfolio-carousel__slide-bg" loading="lazy" />
+                <div class="portfolio-carousel__slide-overlay"></div>
+                <a href="portafolio/fans-ai.html" class="portfolio-carousel__slide-arrow" aria-label="Ver proyecto Fans.ai">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <div class="portfolio-carousel__slide-content">
+                  <span class="portfolio-carousel__slide-tag">Startup · MVP · Red social · IA · 2023</span>
+                  <p class="portfolio-carousel__slide-stat">¿Y SI TU ARTISTA FAVORITO TE MANDARA UN AUDIO EN TU IDIOMA? DISEÑAMOS EL MVP DE LA RED SOCIAL QUE LO HACÍA POSIBLE</p>
+                  <h3 class="portfolio-carousel__slide-title">Fans.ai</h3>
+                </div>
+              </article>
+
+              <article class="portfolio-carousel__slide">
+                <img src="images/portfolio/greenify/Slide%204_3%20-%207.jpg"
+                     alt="Greenify, auditoría UX de la aplicación"
+                     class="portfolio-carousel__slide-bg" loading="lazy" />
+                <div class="portfolio-carousel__slide-overlay"></div>
+                <a href="portafolio/greenify.html" class="portfolio-carousel__slide-arrow" aria-label="Ver proyecto Greenify">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <div class="portfolio-carousel__slide-content">
+                  <span class="portfolio-carousel__slide-tag">Sustentabilidad · UX Audit · App móvil · 2024</span>
+                  <p class="portfolio-carousel__slide-stat">+40 PROBLEMAS QUE EL EQUIPO NO SABÍA QUE TENÍA, ENCONTRADOS EN UNA SOLA AUDITORÍA</p>
+                  <h3 class="portfolio-carousel__slide-title">Greenify</h3>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         UX CHECKUP (sección nueva — lead-gen mechanic)
+    ============================================================ -->
+    <section class="checkup" id="ux-checkup">
+      <div class="container checkup__inner">
+
+        <div class="checkup__content">
+          <p class="section-eyebrow">UX Checkup</p>
+          <h2 class="checkup__title">
+            ¿Creaste tu app con IA<br />
+            y ahora no sabés cómo seguir?
+          </h2>
+          <p class="checkup__desc">
+            En 48 horas te entrego un diagnóstico concreto de los problemas
+            de experiencia que están frenando tu producto, y una llamada
+            para explicarte cómo resolverlos.
+          </p>
+
+          <ul class="checkup__list">
+            <li>
+              <span class="checkup__check" aria-hidden="true">✓</span>
+              Revisión completa de tu flujo principal con metodologías SDD
+            </li>
+            <li>
+              <span class="checkup__check" aria-hidden="true">✓</span>
+              Documento de hallazgos con prioridades claras
+            </li>
+            <li>
+              <span class="checkup__check" aria-hidden="true">✓</span>
+              Llamada de 30 minutos para revisar los resultados
+            </li>
+            <li>
+              <span class="checkup__check" aria-hidden="true">✓</span>
+              Sin costo · 2 cupos por mes
+            </li>
+          </ul>
+
+          <p class="checkup__scarcity">
+            Solo acepto 2 proyectos por mes para garantizar la calidad del análisis.
+          </p>
+
+          <button id="btn-apply-checkup" class="btn btn--white btn--lg">
+            Aplicar al UX Checkup
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Visual: mock de hallazgos — estilo retro 3.1 dark -->
+        <div class="checkup__visual" aria-hidden="true">
+          <div class="checkup__mock">
+            <div class="checkup__mock-header">
+              <span class="checkup__mock-dot checkup__mock-dot--red"></span>
+              <span class="checkup__mock-dot checkup__mock-dot--yellow"></span>
+              <span class="checkup__mock-dot checkup__mock-dot--green"></span>
+              <span class="checkup__mock-title">UX CHECKUP: HALLAZGOS.PDF</span>
+            </div>
+            <div class="checkup__mock-body">
+              <div class="checkup__mock-line checkup__mock-line--heading"></div>
+              <div class="checkup__mock-issue checkup__mock-issue--critical">
+                <span>🔴</span> Flujo de onboarding tiene 6 pasos innecesarios
+              </div>
+              <div class="checkup__mock-line"></div>
+              <div class="checkup__mock-line checkup__mock-line--short"></div>
+              <div class="checkup__mock-issue checkup__mock-issue--warning">
+                <span>🟡</span> CTA principal no es visible en mobile
+              </div>
+              <div class="checkup__mock-line"></div>
+              <div class="checkup__mock-issue checkup__mock-issue--ok">
+                <span>🟢</span> Jerarquía tipográfica correcta
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIOS
+         Para agregar más testimonios: duplicar un bloque .testimonial-card.
+    ============================================================ -->
+    <section class="testimonials" id="testimonios">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Testimonios</p>
+          <h2 class="section-title">Lo que dicen quienes trabajaron conmigo</h2>
+        </div>
+        <div class="testimonials__grid">
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-card__quote">
+              "Luis aporta un enfoque creativo y orientado a los detalles para cada
+              aspecto del diseño de UX, priorizando constantemente las necesidades
+              del usuario para ofrecer resultados excepcionales."
+            </blockquote>
+            <div class="testimonial-card__author">
+              <div class="author-avatar author-avatar--1">
+                <img src="images/testimonials/flavio-strianese.png"
+                     alt="Flavio Strianese"
+                     loading="lazy" />
+              </div>
+              <div>
+                <p class="author-name">Flavio Strianese</p>
+                <p class="author-role">CEO · Striano</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-card__quote">
+              "Realmente disfrutamos trabajar nuestro diseñador (Luis) y lo
+              recomendaríamos a cualquiera que necesite ayuda con diseño UX/UI."
+            </blockquote>
+            <div class="testimonial-card__author">
+              <div class="author-avatar author-avatar--2"></div>
+              <div>
+                <p class="author-name">Ireland Bender</p>
+                <p class="author-role">Weezie Towels</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-card__quote">
+              "He tenido el placer de trabajar con Luis en varios proyectos y en
+              distintas modalidades. Su habilidad para transformar ideas complejas
+              en interfaces intuitivas y visualmente atractivas fue fundamental en
+              cada proyecto. Su enfoque en el usuario es evidente en cada diseño
+              que crea, siempre buscando soluciones que no solo sean estéticamente
+              agradables, sino también funcionales y fáciles de usar."
+            </blockquote>
+            <div class="testimonial-card__author">
+              <div class="author-avatar author-avatar--3">
+                <img src="images/testimonials/walter-aguilar.png"
+                     alt="Walter Aguilar Barahona"
+                     loading="lazy" />
+              </div>
+              <div>
+                <p class="author-name">Walter Aguilar Barahona</p>
+                <p class="author-role">Director y Consultor · DeOper</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SOBRE MÍ
+    ============================================================ -->
+    <section class="about" id="sobre-mi">
+      <div class="container about__inner">
+        <div class="about__content">
+          <p class="section-eyebrow">Sobre mí</p>
+          <h2 class="about__title">Hola, soy Luis Carlos</h2>
+          <p class="about__text">
+            Soy consultor UX con base en Buenos Aires, Argentina, y más de 15 años
+            de experiencia trabajando con startups y empresas en crecimiento de
+            Argentina y LATAM. Me especializo en productos financieros digitales
+            y en la evaluación de experiencias construidas con IA.
+          </p>
+          <p class="about__text">
+            Trabajo en la intersección entre la investigación de usuarios, el diseño
+            de interfaces y los objetivos de negocio. Mi enfoque es práctico: identifico
+            problemas reales, diseño soluciones validadas y colaboro con equipos de
+            producto y desarrollo para implementarlas.
+          </p>
+          <div class="about__cta">
+            <a href="mailto:info@uxuaria.com" class="btn btn--primary">Hablemos</a>
+            <a href="#portafolio" class="btn btn--outline">Ver proyectos</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA FINAL
+    ============================================================ -->
+    <section class="cta-section" id="contacto">
+      <div class="container cta-section__inner">
+        <div class="cta-section__badge">
+          <span class="badge-dot badge-dot--light"></span>
+          Cupos limitados este trimestre
+        </div>
+        <h2 class="cta-section__title">
+          ¿Tenés un producto que mejorar<br />
+          o una idea que validar?
+        </h2>
+        <p class="cta-section__desc">
+          Escribime y coordinamos una llamada de 30 minutos sin costo.
+          Te cuento cómo puedo ayudarte y si tiene sentido trabajar juntos.
+        </p>
+        <a href="mailto:info@uxuaria.com?subject=Quiero%20trabajar%20con%20Uxuaria&body=Hola%20Luis%2C%0A%0AMe%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios.%0A%0A" class="btn btn--white btn--lg">
+          Escribime a info@uxuaria.com
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       Nota: id="blog" eliminado del footer — era un hack de ancla.
+             El link "Blog" del nav apunta a URL externa [PENDIENTE].
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <div class="footer__brand">
+        <span class="logo-text">uxuaria</span>
+        <p class="footer__tagline">Consultoría UX para productos que crecen en LATAM.</p>
+        <div class="footer__social">
+          <a href="https://www.linkedin.com/company/uxuaria/"
+             target="_blank" rel="noopener"
+             class="social-link" aria-label="LinkedIn de Uxuaria">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M7 10v7M7 7v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 17v-4a2 2 0 014 0v4M12 10v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <!-- [PENDIENTE: agregar ícono de Instagram cuando se confirme el handle] -->
+        </div>
+      </div>
+
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Servicios</h4>
+          <a href="#servicios">User Research</a>
+          <a href="#servicios">MVP & Prototipado</a>
+          <a href="#servicios">UI/UX Design</a>
+          <a href="#servicios">UX Audits</a>
+          <a href="#ux-checkup">UX Checkup</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navegación</h4>
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#portafolio">Proyectos</a>
+          <a href="blog.html">Blog</a>
+          <a href="#contacto">Contáctame</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Contacto</h4>
+          <a href="mailto:info@uxuaria.com">info@uxuaria.com</a>
+          <!-- [PENDIENTE: implementar lógica real del cambio de idioma] -->
+          <a href="#" class="lang-toggle">🌐 Español / English</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2020 – 2026 Uxuaria · Luis Carlos Romero León</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       UX CHECKUP MODAL
+  ============================================================ -->
+  <div id="checkup-modal"
+       class="ckm-overlay"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="ckm-title"
+       aria-hidden="true">
+
+    <div class="ckm-panel" role="document">
+
+      <!-- CLOSE -->
+      <button class="ckm-close" id="ckm-close" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <!-- VIEW 1: INFO -->
+      <div class="ckm-view ckm-view--info" id="ckm-view-info">
+
+        <div class="ckm-badge">
+          <span class="ckm-badge__dot" aria-hidden="true"></span>
+          100% Gratuito · 2 cupos por mes
+        </div>
+
+        <h2 class="ckm-title" id="ckm-title">
+          ¿Construiste tu app con IA?<br />
+          Hay algo que probablemente no está funcionando.
+        </h2>
+
+        <p class="ckm-intro">
+          Herramientas como Cursor, Bolt, Lovable y v0 democratizaron el desarrollo.
+          Podés tener una app funcional en días. El problema es que ninguna de esas
+          herramientas entiende cómo piensan tus usuarios.
+        </p>
+
+        <div class="ckm-block">
+          <p class="ckm-block__label">Qué descubrirás en 48 horas</p>
+          <ul class="ckm-checklist">
+            <li>
+              <span class="ckm-check" aria-hidden="true">✓</span>
+              Qué flujos están generando abandono o confusión
+            </li>
+            <li>
+              <span class="ckm-check" aria-hidden="true">✓</span>
+              Qué decisiones de IA rompieron la experiencia del usuario
+            </li>
+            <li>
+              <span class="ckm-check" aria-hidden="true">✓</span>
+              Qué cambiar primero para impactar la conversión
+            </li>
+            <li>
+              <span class="ckm-check" aria-hidden="true">✓</span>
+              Documento de hallazgos + llamada de 30 min para revisar todo
+            </li>
+          </ul>
+        </div>
+
+        <div class="ckm-block">
+          <p class="ckm-block__label">Quién puede aplicar</p>
+          <ul class="ckm-checklist ckm-checklist--conditions">
+            <li>
+              <span class="ckm-check" aria-hidden="true">✓</span>
+              Tenés un producto ya desarrollado con IA (total o parcialmente)
+            </li>
+            <li>
+              <span class="ckm-check" aria-hidden="true">✓</span>
+              Sos el founder o tenés autonomía para implementar cambios
+            </li>
+            <li>
+              <span class="ckm-check" aria-hidden="true">✓</span>
+              Tu producto tiene usuarios reales o está próximo a lanzar
+            </li>
+          </ul>
+        </div>
+
+        <div class="ckm-scarcity">
+          Solo acepto 2 proyectos por mes para garantizar la calidad del análisis.
+        </div>
+
+        <button class="btn btn--primary btn--lg ckm-cta" id="ckm-open-form">
+          Completar la aplicación
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+      </div><!-- /ckm-view--info -->
+
+      <!-- VIEW 2: TYPEFORM EMBED -->
+      <div class="ckm-view ckm-view--form" id="ckm-view-form" hidden>
+        <div class="ckm-form-header">
+          <p class="ckm-form-header__back">
+            <button class="ckm-back" id="ckm-back" aria-label="Volver">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M10 7H4M6 4l-3 3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Volver
+            </button>
+          </p>
+          <p class="ckm-form-header__label">UX Checkup — Aplicación</p>
+        </div>
+        <!-- Reemplazar el src con la URL embed de tu Typeform -->
+        <iframe
+          id="ckm-typeform"
+          class="ckm-typeform-iframe"
+          src="about:blank"
+          data-src="https://8aqt6k328lv.typeform.com/to/lDjbMOFd"
+          title="Formulario de aplicación al UX Checkup"
+          allow="camera; microphone; autoplay; encrypted-media;"
+          frameborder="0">
+        </iframe>
+      </div><!-- /ckm-view--form -->
+
+    </div><!-- /ckm-panel -->
+  </div><!-- /checkup-modal -->
+
+  <script src="script.js"></script>
+</body>
+</html>

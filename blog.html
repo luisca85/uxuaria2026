@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog sobre UX, IA y producto digital | Uxuaria</title>
+  <meta name="description" content="Artículos de Luis Carlos Romero sobre diseño UX, fintech, IA y producto digital para startups en LATAM." />
+  <link rel="canonical" href="https://uxuaria.com/blog.html" />
+  <meta property="og:title" content="Blog sobre UX, IA y producto digital | Uxuaria" />
+  <meta property="og:description" content="Artículos de Luis Carlos Romero sobre diseño UX, fintech, IA y producto digital para startups en LATAM." />
+  <meta property="og:url" content="https://uxuaria.com/blog.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="/" class="navbar__logo" aria-label="Uxuaria — inicio">
+        <span class="logo-text">uxuaria</span>
+      </a>
+
+            <nav class="navbar__nav" aria-label="Navegación principal">
+        <a href="servicios/index.html" class="nav-link">Servicios</a>
+        <a href="index.html#ux-checkup" class="nav-link">UX Checkup</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="index.html#contacto" class="nav-link">Contáctame</a>
+      </nav>
+
+      <a href="mailto:info@uxuaria.com" class="btn btn--primary navbar__cta">Contáctame</a>
+
+      <button class="navbar__hamburger" id="hamburger"
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="servicios/index.html" class="nav-link">Servicios</a>
+      <a href="index.html#ux-checkup" class="nav-link">UX Checkup</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="index.html#contacto" class="nav-link">Contáctame</a>
+      <a href="mailto:info@uxuaria.com" class="btn btn--primary">Contáctame</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         BLOG HERO
+    ============================================================ -->
+    <section class="blog-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+          <a href="index.html" class="breadcrumb__item">Home</a>
+          <span class="breadcrumb__sep">›</span>
+          <span class="breadcrumb__item breadcrumb__item--current">Blog</span>
+        </nav>
+        <h1 class="blog-hero__title">Ideas sobre UX, IA<br>y producto digital</h1>
+        <p class="blog-hero__desc">Reflexiones y aprendizajes de 15 años diseñando productos en LATAM.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOG LISTING
+    ============================================================ -->
+    <section class="blog-listing">
+      <div class="container">
+
+        <!-- Card destacada — artículo más reciente -->
+        <a href="blog/3-cosas-ux.html" class="blog-card--featured">
+          <div class="blog-card--featured__image">
+            <img src="images/blog/articulo001.png" alt="3 cosas que el diseño UX puede enseñarle a tu negocio" loading="lazy" />
+          </div>
+          <div class="blog-card--featured__content">
+            <span class="blog-card--featured__label">[ ARTÍCULO DESTACADO ]</span>
+            <span class="blog-card__meta">UX · NEGOCIO &nbsp;·&nbsp; 15 mayo, 2025</span>
+            <h2 class="blog-card--featured__title">3 cosas que el diseño UX puede enseñarle a tu negocio (aunque no quieras escucharlas)</h2>
+            <p class="blog-card--featured__excerpt">Tres lecciones directas que el UX puede enseñarle a cualquier negocio: cómo observar el comportamiento real de tus usuarios, simplificar tu producto y empatizar de verdad.</p>
+            <span class="blog-card__read-more">▸ Leer artículo completo</span>
+          </div>
+        </a>
+
+        <!-- Grid de artículos -->
+        <div class="blog-grid">
+
+          <a href="blog/6-preguntas-ux.html" class="blog-card">
+            <div class="blog-card__image">
+              <img src="images/blog/articulo002.png" alt="6 Preguntas y respuestas rápidas para entender el UX" loading="lazy" />
+            </div>
+            <div class="blog-card__body">
+              <span class="blog-card__meta">DISEÑO · UX &nbsp;·&nbsp; 1 enero, 2025</span>
+              <h2 class="blog-card__title">6 Preguntas y respuestas rápidas para entender el UX</h2>
+              <p class="blog-card__excerpt">Sin tecnicismos: qué es el UX, de dónde viene y cómo puede ayudarte a mejorar tu producto o emprendimiento.</p>
+              <span class="blog-card__read-more">▸ Leer más</span>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <div class="footer__brand">
+        <span class="logo-text">uxuaria</span>
+        <p class="footer__tagline">Consultoría UX para productos que crecen en LATAM.</p>
+        <div class="footer__social">
+          <a href="https://www.linkedin.com/company/uxuaria/"
+             target="_blank" rel="noopener"
+             class="social-link" aria-label="LinkedIn de Uxuaria">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M7 10v7M7 7v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 17v-4a2 2 0 014 0v4M12 10v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Servicios</h4>
+          <a href="index.html#servicios">User Research</a>
+          <a href="index.html#servicios">MVP &amp; Prototipado</a>
+          <a href="index.html#servicios">UI/UX Design</a>
+          <a href="index.html#servicios">UX Audits</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navegación</h4>
+          <a href="index.html#sobre-mi">Sobre mí</a>
+          <a href="index.html#portafolio">Proyectos</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#contacto">Contáctame</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Contacto</h4>
+          <a href="mailto:info@uxuaria.com">info@uxuaria.com</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2020 – 2026 Uxuaria · Luis Carlos Romero León</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
