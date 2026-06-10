@@ -3421,3 +3421,29 @@ html {
     border-top: 3px solid var(--color-text);
   }
 }
+
+/* ============================================================
+   ANIMATIONS — Bounce (h1/h2) + Fade in (hero lead)
+============================================================ */
+
+@keyframes bounce {
+  0%   { transform: translateY(-60px); opacity: 0; }
+  50%  { transform: translateY(12px);  opacity: 1; }
+  70%  { transform: translateY(-8px); }
+  85%  { transform: translateY(4px); }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+h1 { animation: bounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: 0.1s; }
+h2 { animation: bounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: 0.25s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-lead {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.7s;
+}

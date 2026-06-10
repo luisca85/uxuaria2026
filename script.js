@@ -369,6 +369,38 @@ document.querySelectorAll('[data-carousel]').forEach(carousel => {
   });
 })();
 
+// --- Animated counters (IntersectionObserver + requestAnimationFrame) ---
+if ('IntersectionObserver' in window) {
+  const animateCounter = (el) => {
+    const target   = parseInt(el.dataset.target, 10);
+    const duration = parseInt(el.dataset.duration || 1800, 10);
+    const prefix   = el.dataset.prefix || '';
+    const suffix   = el.dataset.suffix || '';
+    function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+    el.textContent = prefix + '0' + suffix;
+    const start = performance.now();
+    function step(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      el.textContent = prefix + Math.floor(easeOutQuart(progress) * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else { el.textContent = prefix + target + suffix; el.classList.add('done'); }
+    }
+    requestAnimationFrame(step);
+  };
+
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0 });
+
+  document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+}
+
 // --- Fade-in al hacer scroll (Intersection Observer) ---
 // Solo se activa si IntersectionObserver está disponible (progressive enhancement).
 if ('IntersectionObserver' in window) {
