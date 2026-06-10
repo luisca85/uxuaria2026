@@ -400,6 +400,10 @@ ul { list-style: none; }
 .mobile-menu.open { display: flex; }
 .mobile-menu .nav-link { padding: 12px 16px; font-size: var(--font-size-md); }
 .mobile-menu .btn { margin-top: 8px; width: 100%; justify-content: center; }
+.mobile-menu__cta-row {
+  display: flex; gap: 8px; margin-top: 8px;
+}
+.mobile-menu__cta-row .btn { width: 50%; margin-top: 0; }
 
 /* ===== HERO — RETRO UI ===== */
 :root {
@@ -440,6 +444,17 @@ ul { list-style: none; }
   animation: hero-blink 1s steps(1) infinite;
 }
 @keyframes hero-blink { 50% { opacity: 0; } }
+
+/* H1 visible — semánticamente correcto, visualmente discreto */
+.hero-label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  margin-bottom: -4px;
+}
 
 .tagline {
   font-weight: 700; font-size: clamp(38px,5vw,56px);
@@ -626,11 +641,15 @@ ul { list-style: none; }
   width: auto;
   flex-shrink: 0;
   opacity: 0.75;
-  transition: opacity var(--transition);
+  transition: opacity 0.2s ease;
 }
 
 .clients-bar__logo:hover {
   opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .clients-bar__logo { transition: opacity 0.2s ease; }
 }
 
 /* Greenify: texto negro sobre fondo oscuro — invertir para visibilidad */
@@ -874,6 +893,15 @@ ul { list-style: none; }
   line-height: var(--line-height-snug);
   margin-bottom: 16px;
   color: var(--color-text-inverse);
+}
+
+.checkup__kw-hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: -8px;
 }
 
 .checkup__desc {
