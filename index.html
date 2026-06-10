@@ -92,6 +92,52 @@
 
       <!-- LEFT: brand copy -->
       <div class="copy">
+        <!-- Space Invaders evolution — mobile only -->
+        <div class="hero-aliens" aria-hidden="true">
+          <!-- Alien 1: squid · smallest · negro -->
+          <svg class="alien alien--1" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="0" width="2" height="1"/><rect x="6" y="0" width="2" height="1"/>
+            <rect x="1" y="1" width="8" height="1"/>
+            <rect x="0" y="2" width="10" height="1"/>
+            <rect x="0" y="3" width="2" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="8" y="3" width="2" height="1"/>
+            <rect x="0" y="4" width="10" height="1"/>
+            <rect x="1" y="5" width="3" height="1"/><rect x="6" y="5" width="3" height="1"/>
+            <rect x="0" y="6" width="2" height="1"/><rect x="8" y="6" width="2" height="1"/>
+            <rect x="0" y="7" width="1" height="1"/><rect x="9" y="7" width="1" height="1"/>
+          </svg>
+          <!-- Alien 2: crab · mediano-chico · negro -->
+          <svg class="alien alien--2" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="0" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/>
+            <rect x="0" y="1" width="1" height="1"/><rect x="2" y="1" width="6" height="1"/><rect x="9" y="1" width="1" height="1"/>
+            <rect x="0" y="2" width="10" height="1"/>
+            <rect x="1" y="3" width="2" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="7" y="3" width="2" height="1"/>
+            <rect x="0" y="4" width="10" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="4" y="5" width="2" height="1"/><rect x="8" y="5" width="1" height="1"/>
+            <rect x="0" y="6" width="2" height="1"/><rect x="8" y="6" width="2" height="1"/>
+            <rect x="2" y="7" width="1" height="1"/><rect x="7" y="7" width="1" height="1"/>
+          </svg>
+          <!-- Alien 3: octopus · mediano-grande · lima -->
+          <svg class="alien alien--3" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="0" width="4" height="1"/>
+            <rect x="1" y="1" width="8" height="1"/>
+            <rect x="0" y="2" width="10" height="1"/>
+            <rect x="0" y="3" width="3" height="1"/><rect x="7" y="3" width="3" height="1"/>
+            <rect x="0" y="4" width="10" height="1"/>
+            <rect x="1" y="5" width="2" height="1"/><rect x="4" y="5" width="2" height="1"/><rect x="7" y="5" width="2" height="1"/>
+            <rect x="0" y="6" width="1" height="1"/><rect x="3" y="6" width="4" height="1"/><rect x="9" y="6" width="1" height="1"/>
+            <rect x="1" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/>
+          </svg>
+          <!-- Alien 4: UFO · más grande · lima -->
+          <svg class="alien alien--4" viewBox="0 0 12 7" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="0" width="6" height="1"/>
+            <rect x="1" y="1" width="10" height="1"/>
+            <rect x="0" y="2" width="12" height="1"/>
+            <rect x="0" y="3" width="2" height="1"/><rect x="3" y="3" width="2" height="1"/><rect x="5" y="3" width="2" height="1"/><rect x="7" y="3" width="2" height="1"/><rect x="10" y="3" width="2" height="1"/>
+            <rect x="1" y="4" width="10" height="1"/>
+            <rect x="2" y="5" width="3" height="1"/><rect x="7" y="5" width="3" height="1"/>
+            <rect x="1" y="6" width="2" height="1"/><rect x="9" y="6" width="2" height="1"/>
+          </svg>
+        </div>
         <h2 class="tagline">Dirigimos al usuario hacia donde tu negocio crece </h2>
         <p class="hero-lead">Diseño experiencias digitales para startups que escalan,
           con especialización en proyectos construidos con IA.</p>
@@ -212,8 +258,10 @@
 
             <div class="stat-card">
               <span class="stat-card__eyebrow">Experiencia</span>
-              <span class="stat-card__number">+15</span>
-              <span class="stat-card__unit">años</span>
+              <div class="stat-card__value-row">
+                <span class="stat-card__number">+15</span>
+                <span class="stat-card__unit">años</span>
+              </div>
               <p class="stat-card__label">especializándome en productos digitales en LATAM</p>
             </div>
 
@@ -350,6 +398,13 @@
           <div class="portfolio__subsection">
             <h3 class="portfolio__subsection-title">Otros proyectos seleccionados</h3>
             <div class="portfolio__subsection-actions">
+              <!-- botones movidos al wrapper para poder posicionarlos en mobile -->
+            </div>
+          </div>
+
+          <div class="portfolio-carousel-wrapper">
+            <!-- Botones: en desktop quedan arriba-derecha (absolute), en mobile a los lados a media altura -->
+            <div class="pcarousel-controls">
               <button class="pcarousel-btn pcarousel-btn--prev" data-pcarousel-prev aria-label="Proyecto anterior">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -361,9 +416,6 @@
                 </svg>
               </button>
             </div>
-          </div>
-
-          <div class="portfolio-carousel-wrapper">
             <div class="portfolio-carousel" data-pcarousel>
 
               <article class="portfolio-carousel__slide">

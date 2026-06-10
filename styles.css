@@ -408,6 +408,11 @@ ul { list-style: none; }
   --hbd: 5px;       /* hero border */
 }
 
+/* Space Invaders hero — oculto en desktop, visible solo en mobile */
+.hero-aliens {
+  display: none;
+}
+
 .hero {
   width: 100%;
   max-width: var(--max-w);
@@ -1468,7 +1473,18 @@ ul { list-style: none; }
 /* ===== CARRUSEL DE PROYECTOS SELECCIONADOS ===== */
 .portfolio-carousel-wrapper {
   grid-column: 1 / -1;
-  min-width: 0;      /* permite que el grid item se encoja */
+  min-width: 0;
+  position: relative;
+}
+
+/* Desktop: botones arriba-derecha, reemplazando su posición original */
+.pcarousel-controls {
+  position: absolute;
+  top: -52px;
+  right: 0;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
 }
 
 .portfolio-carousel {
@@ -1949,14 +1965,56 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
+  /* html es el scroll container real en mobile — ambos necesarios */
+  html, body { overflow-x: hidden; }
+
   .navbar__nav, .navbar__cta { display: none; }
   .navbar__hamburger { display: flex; }
 
   .hero { grid-template-columns: 1fr; }
-  .copy { padding-bottom: 48px; }
+  .copy { padding: 80px 0 48px; }
   .art  { display: none; }
 
+  /* Hero text: sin max-width que cause overflow */
+  .tagline   { font-size: 48px; max-width: 100%; }
+  .hero-lead { font-size: 24px; max-width: 100%; }
+
+  /* Space Invaders: escala progresiva, alineados al fondo */
+  .hero-aliens {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 0px;
+  }
+  .hero-aliens .alien { display: block; flex-shrink: 0; }
+  .hero-aliens .alien--1 { width: 28px; fill: #111111; }
+  .hero-aliens .alien--2 { width: 36px; fill: #111111; }
+  .hero-aliens .alien--3 { width: 46px; fill: #C8F135; }
+  .hero-aliens .alien--4 { width: 60px; fill: #C8F135; }
+
   .ux-vision__inner { grid-template-columns: 1fr; gap: 48px; }
+
+  /* Featured portfolio card — mobile */
+  .project-card--featured__tagline-1    { font-size: 24px; padding-bottom: 0; }
+  .project-card--featured__tagline-2    { padding-top: 0; }
+  .project-card--featured__tagline-2-num { font-size: 75px; }
+
+  /* Textos ux-vision */
+  .ux-vision__tagline  { font-size: 48px; }
+  .ux-vision__subtitle { font-size: 24px; line-height: 1.3; }
+  .ux-vision__body     { font-size: 16px; }
+
+  /* Stat cards: número grande + "años" en la misma fila */
+  .stat-card__number { font-size: 64px; }
+  .stat-card__value-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .stat-card__value-row .stat-card__unit {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
 
   .services__grid { grid-template-columns: 1fr; }
   .service-card { padding: 32px 28px; }
@@ -1969,6 +2027,14 @@ ul { list-style: none; }
   .footer__links { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 
   .section-header { margin-bottom: 40px; }
+
+  /* Checkup: botón full-width en mobile */
+  #btn-apply-checkup { width: 100%; justify-content: center; }
+
+  /* CTA section: botón y badge no desbordan en mobile */
+  .cta-section .btn { width: 100%; justify-content: center; white-space: normal; }
+  .cta-section__badge { white-space: normal; text-align: center; }
+  .cta-section__inner { padding: 0 var(--spacing-container); }
 
   .services,
   .checkup,
@@ -3232,14 +3298,14 @@ html {
     padding: 24px 20px;
   }
 
-  /* Número grande: más pequeño en mobile */
+  /* Número grande */
   .project-card--featured__tagline-2-num {
-    font-size: clamp(36px, 9vw, 48px);
+    font-size: 75px;
   }
 
-  /* Tagline texto: prevenir overflow horizontal */
+  /* Tagline texto */
   .project-card--featured__tagline-1 {
-    font-size: 14px;
+    font-size: 24px;
     overflow-wrap: break-word;
     word-break: break-word;
   }
@@ -3252,15 +3318,36 @@ html {
   .portfolio-carousel {
     width: 100%;
     touch-action: pan-x;
+    padding: 0 16px;
   }
   .portfolio-carousel__slide {
-    flex: 0 0 calc(85% - 10px);
+    flex: 0 0 calc(100% - 32px);
+    min-width: 0;
+    aspect-ratio: unset;
+    height: 300px;
+  }
+
+  /* Botones: uno a cada lado, centrados verticalmente sobre los slides */
+  .pcarousel-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 3;
+    padding: 0 4px;
+  }
+  .pcarousel-controls .pcarousel-btn {
+    pointer-events: all;
   }
 }
 
 @media (max-width: 480px) {
   .portfolio-carousel__slide {
-    flex: 0 0 calc(88% - 10px);
+    flex: 0 0 calc(100% - 32px);
     min-width: 0;
   }
 }
