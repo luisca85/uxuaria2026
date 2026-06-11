@@ -1,0 +1,445 @@
+/* ===================================================================
+   UXUARIA — contacto.css
+   Estilos específicos de la página de contacto
+   =================================================================== */
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.contacto-layout {
+  padding: var(--spacing-section) 0;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ===== COLUMNA IZQUIERDA ===== */
+.contacto-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ===== FORMULARIO ===== */
+.contacto-form-block {
+  border: 3px solid var(--color-text);
+  box-shadow: 6px 6px 0 0 var(--color-text);
+  background: var(--color-bg);
+  padding: 40px;
+}
+
+.contacto-form-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -.02em;
+  line-height: var(--line-height-snug);
+  margin-bottom: 8px;
+}
+
+.contacto-form-desc {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin-bottom: 32px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  letter-spacing: .01em;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: var(--font);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 112px;
+  line-height: var(--line-height-normal);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--color-text-light);
+}
+
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  border-color: var(--color-text-muted);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--color-text);
+  box-shadow: 3px 3px 0 0 var(--color-text);
+}
+
+.form-submit {
+  margin-top: 8px;
+  width: 100%;
+  padding: 14px 24px;
+  font-family: var(--font);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: .03em;
+  color: var(--color-bg);
+  background: var(--color-text);
+  border: 2px solid var(--color-text);
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform .1s steps(2), box-shadow .1s steps(2);
+  box-shadow: 4px 4px 0 0 var(--color-highlight);
+}
+
+.form-submit:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--color-highlight);
+}
+
+.form-submit:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--color-highlight);
+}
+
+/* Estado de éxito del formulario */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.form-success.is-visible {
+  display: block;
+}
+
+.form-success__icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.form-success__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 8px;
+}
+
+.form-success__desc {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+}
+
+/* ===== DIVISOR ===== */
+.contacto-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0;
+}
+
+.contacto-divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.contacto-divider__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* ===== BLOQUE CALENDLY ===== */
+.contacto-calendly {
+  border: 3px solid var(--color-text);
+  padding: 32px 40px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.contacto-calendly__icon {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--color-text);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--color-highlight);
+}
+
+.contacto-calendly__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.contacto-calendly__content {
+  flex: 1;
+}
+
+.contacto-calendly__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.contacto-calendly__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+
+.contacto-calendly__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  line-height: var(--line-height-normal);
+}
+
+/* ===== COLUMNA DERECHA ===== */
+.contacto-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 96px;
+}
+
+/* ===== TARJETA DE DATOS ===== */
+.contacto-info-card {
+  border: 3px solid var(--color-text);
+  box-shadow: 6px 6px 0 0 var(--color-text);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.contacto-info-card__header {
+  background: var(--color-text);
+  padding: 20px 24px;
+}
+
+.contacto-info-card__name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-inverse);
+  letter-spacing: -.01em;
+}
+
+.contacto-info-card__role {
+  font-size: var(--font-size-sm);
+  color: var(--color-white-55);
+  margin-top: 2px;
+}
+
+.contacto-info-card__body {
+  padding: 24px;
+}
+
+.contacto-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: .04em;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+}
+
+.contacto-availability__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-status-active);
+  box-shadow: 0 0 0 3px var(--color-status-active-light);
+  flex-shrink: 0;
+}
+
+.contacto-data-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contacto-data-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: color var(--transition);
+}
+
+.contacto-data-item:last-child {
+  border-bottom: none;
+}
+
+a.contacto-data-item:hover .contacto-data-item__label {
+  color: var(--color-text-muted);
+}
+
+a.contacto-data-item:hover .contacto-data-item__value {
+  text-decoration: underline;
+}
+
+.contacto-data-item__icon {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+}
+
+.contacto-data-item__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contacto-data-item__info {
+  flex: 1;
+}
+
+.contacto-data-item__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1px;
+}
+
+.contacto-data-item__value {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+/* ===== TARJETA SERVICIOS ===== */
+.contacto-services-card {
+  border: 1.5px solid var(--color-border);
+  padding: 24px;
+  background: var(--color-surface);
+}
+
+.contacto-services-card__title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.contacto-services-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contacto-services-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contacto-services-list li:last-child {
+  border-bottom: none;
+}
+
+.contacto-services-list__arrow {
+  color: var(--color-highlight);
+  background: var(--color-text);
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .contacto-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contacto-col-right {
+    position: static;
+  }
+
+  .contacto-form-block,
+  .contacto-calendly {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-calendly {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
