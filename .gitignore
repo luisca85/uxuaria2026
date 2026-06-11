@@ -11,8 +11,6 @@ package.json
 package-lock.json
 postcss.config.js
 public/
-robots.txt
-sitemap.xml
 src/
 tailwind.config.ts
 tsconfig.json

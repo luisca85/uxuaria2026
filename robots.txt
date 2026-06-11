@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Bloquear archivos de configuración y assets internos
+Disallow: /.claude/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /docs/
+
+Sitemap: https://uxuaria.com/sitemap.xml
