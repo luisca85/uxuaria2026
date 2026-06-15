@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UX AI Repair · Diagnóstico y propuesta para tu app construida con IA</title>
+  <meta name="description" content="Construiste tu app con Lovable, Cursor, Bolt o v0. Una reunión de 20 minutos y en 48hs tenés un micro reporte con qué está roto, por qué, y una propuesta concreta para resolverlo." />
+  <meta name="robots" content="noindex, nofollow" /><!-- landing de ads: no indexar -->
+
+  <!-- OG para ads -->
+  <meta property="og:title" content="Tu app construida con IA puede verse y funcionar como una app real." />
+  <meta property="og:description" content="Una reunión de 20 minutos. En 48hs, diagnóstico y propuesta concreta. Sin proceso de consultor de semanas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://uxuaria.com/ux-ai-repair" />
+
+  <!-- ============================================================
+       TRACKING (GA4) — descomentar y reemplazar G-XXXXXXXXXX
+       con el Measurement ID real. Los eventos ya están instrumentados
+       en el script del final (cta_click, form_submit).
+  ============================================================ -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <!-- Fuentes — mismas del sitio principal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & TOKENS — espejo de styles.css del sitio principal
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:       #FFFFFF;
+      --color-surface:  #F7F7F5;
+      --color-border:   #E8E8E4;
+      --color-bg-dark:  #0A0A0A;
+      --color-text:         #111111;
+      --color-text-muted:   #666666;
+      --color-text-light:   #999999;
+      --color-text-inverse: #FFFFFF;
+
+      --critical: #d94040;
+      --warning:  #c47a1a;
+      --ok:       #2d7a4f;
+
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-pixel: 'Silkscreen', monospace;
+      --font-chunky: 'Press Start 2P', monospace;
+
+      --hb: #000;       /* hero black — mismo token del hero del sitio */
+      --hc: #F5F5F5;    /* hero cream */
+      --hbd: 5px;       /* hero border */
+
+      --max-w: 1160px;
+      --spacing-container: 24px;
+      --spacing-section: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--spacing-container);
+    }
+
+    /* ============================================================
+       COMPONENTES RETRO — patrones del sitio principal
+    ============================================================ */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-pixel); font-weight: 700; font-size: 13px;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--hb);
+      border: 3px solid var(--hb); padding: 8px 14px;
+      box-shadow: 4px 4px 0 0 var(--hb);
+    }
+    .eyebrow--inverse {
+      color: var(--hc); border-color: var(--hc);
+      box-shadow: 4px 4px 0 0 var(--hc);
+    }
+    .blink {
+      width: 9px; height: 9px; background: currentColor; display: inline-block;
+      animation: hero-blink 1s steps(1) infinite;
+    }
+    @keyframes hero-blink { 50% { opacity: 0; } }
+
+    .btn-primary {
+      font-family: var(--font); font-weight: 700; font-size: 16px;
+      letter-spacing: .2px; background: var(--hb); color: #fff;
+      border: 3px solid var(--hb); padding: 16px 30px;
+      box-shadow: 6px 6px 0 0 var(--hb); cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px;
+      text-decoration: none;
+      transition: transform .12s steps(2), box-shadow .12s steps(2);
+    }
+    .btn-primary:hover { transform: translate(3px,3px); box-shadow: 3px 3px 0 0 var(--hb); color: #fff; }
+    .btn-primary:active { transform: translate(6px,6px); box-shadow: none; }
+
+    .btn-primary--inverse {
+      background: #fff; color: var(--hb); border-color: #fff;
+      box-shadow: 6px 6px 0 0 #fff;
+    }
+    .btn-primary--inverse:hover { color: var(--hb); }
+
+    .btn-ghost {
+      font-family: var(--font); font-weight: 600; font-size: 16px;
+      background: transparent; color: var(--hb); border: 3px solid var(--hb);
+      padding: 16px 26px; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center;
+      transition: background .12s steps(2), color .12s steps(2);
+    }
+    .btn-ghost:hover { background: var(--hb); color: #fff; }
+
+    .btn-retro {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-pixel); font-size: 12px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--color-text); background: transparent;
+      border: 2px solid var(--color-text);
+      box-shadow: 4px 4px 0 0 var(--color-text);
+      padding: 7px 14px; cursor: pointer; white-space: nowrap;
+      transition: transform .12s steps(2), box-shadow .12s steps(2), background .12s steps(2), color .12s steps(2);
+    }
+    .btn-retro:hover {
+      background: var(--color-text); color: var(--color-text-inverse);
+      transform: translate(2px,2px); box-shadow: 2px 2px 0 0 var(--color-text);
+    }
+
+    .specs { display: flex; gap: 10px; flex-wrap: wrap; border-top: 3px solid var(--hb); padding-top: 22px; }
+    .specs span {
+      font-family: var(--font-pixel); font-weight: 700; font-size: 11px;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 7px 12px; border: 2px solid var(--hb);
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      color: var(--color-text);
+      margin-bottom: 16px;
+    }
+
+    /* ---- window shell (Win 3.1) ---- */
+    .win {
+      background: #fff;
+      border: var(--hbd) solid var(--hb);
+      box-shadow: 12px 12px 0 0 var(--hb);
+      display: flex; flex-direction: column;
+    }
+    .win.dark {
+      background: var(--hb); color: var(--hc);
+      box-shadow: 0 0 0 4px var(--hc), 12px 12px 0 0 var(--hb);
+    }
+    .tb {
+      display: flex; align-items: center; gap: 10px; height: 40px;
+      padding: 0 8px 0 12px; border-bottom: var(--hbd) solid var(--hb);
+      background: var(--hb); color: var(--hc);
+      font-family: var(--font-pixel); font-weight: 700;
+      font-size: 13px; letter-spacing: .5px; white-space: nowrap;
+      overflow: hidden;
+    }
+    .stripes {
+      flex: 1 1 auto; height: 16px; align-self: center;
+      background: repeating-linear-gradient(to bottom, var(--hc) 0 2px, transparent 2px 5px);
+      min-width: 20px;
+    }
+    .x {
+      flex: 0 0 auto; width: 22px; height: 22px; border: 3px solid var(--hc);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; background: var(--hb); color: var(--hc);
+      font-family: var(--font-pixel);
+    }
+    .wbody { padding: 20px; flex: 1 1 auto; display: flex; flex-direction: column; }
+
+    .chunky { font-family: var(--font-chunky); line-height: 1.4; text-transform: uppercase; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    .nav {
+      padding: 14px 0;
+      border-bottom: 3px solid var(--hb);
+      background: var(--color-bg);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav__logo {
+      font-family: var(--font-pixel); font-weight: 700; font-size: 14px;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--color-text);
+      white-space: nowrap;
+    }
+    .nav__logo span { color: var(--color-text-light); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero { padding: clamp(64px, 9vw, 110px) 0 clamp(48px, 7vw, 80px); }
+    .hero__inner { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; max-width: 760px; }
+    .hero__title {
+      font-weight: 700;
+      font-size: clamp(38px, 5vw, 56px);
+      line-height: .98; letter-spacing: -.03em;
+    }
+    .hero__title .u { white-space: nowrap; box-shadow: inset 0 -0.14em 0 0 var(--hb); }
+    .hero__lead {
+      font-weight: 400; font-size: clamp(16px, 1.25vw, 20px);
+      line-height: 1.6; color: var(--color-text-muted); max-width: 52ch;
+    }
+    .hero__lead strong { color: var(--color-text); font-weight: 600; }
+    .hero__cta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+    /* ============================================================
+       POR QUÉ IMPORTA (sección oscura · video opcional)
+    ============================================================ */
+    .why {
+      padding: var(--spacing-section) 0;
+      background: var(--color-bg-dark);
+      color: var(--hc);
+    }
+    .why__inner { max-width: 680px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .why__title {
+      font-size: clamp(28px, 4vw, 40px); font-weight: 700;
+      line-height: 1.2; letter-spacing: -.02em; color: #fff;
+    }
+    .why__body { font-size: 16px; color: rgba(255,255,255,.65); line-height: 1.75; text-align: left; }
+    .why__body strong { color: #fff; font-weight: 600; }
+
+    .video-wrapper {
+      width: 100%;
+      border: var(--hbd) solid var(--hc);
+      box-shadow: 10px 10px 0 0 rgba(245,245,245,.25);
+      aspect-ratio: 16 / 9;
+    }
+    .video-wrapper iframe { width: 100%; height: 100%; display: block; border: 0; }
+
+    /* ============================================================
+       SÍNTOMAS
+    ============================================================ */
+    .problem { padding: var(--spacing-section) 0; background: var(--color-surface); border-top: 3px solid var(--hb); }
+    .problem__grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 80px); align-items: start;
+    }
+    .problem__intro { position: sticky; top: 100px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .problem__body { font-size: 16px; color: var(--color-text-muted); line-height: 1.75; }
+
+    .symptoms { display: flex; flex-direction: column; gap: 18px; }
+    .symptom {
+      background: var(--color-bg);
+      border: 3px solid var(--hb);
+      box-shadow: 6px 6px 0 0 var(--hb);
+      padding: 20px 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: transform .12s steps(2), box-shadow .12s steps(2);
+    }
+    .symptom:hover { transform: translate(3px,3px); box-shadow: 3px 3px 0 0 var(--hb); }
+    .symptom__icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+    .symptom__text { font-size: 15px; line-height: 1.6; color: var(--color-text); }
+    .symptom__text strong { display: block; font-weight: 700; margin-bottom: 4px; }
+    .symptom__text span { font-size: 13px; color: var(--color-text-muted); }
+
+    /* ============================================================
+       PROCESO
+    ============================================================ */
+    .process { padding: var(--spacing-section) 0; background: var(--color-bg-dark); color: var(--hc); border-top: 3px solid var(--hb); }
+    .process__inner { max-width: 880px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .process__title { font-size: clamp(28px, 4.5vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; color: #fff; }
+    .process__body { font-size: 16px; color: rgba(255,255,255,.65); line-height: 1.75; max-width: 560px; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-top: 16px; text-align: left; }
+    .step {
+      background: var(--hb);
+      border: 3px solid var(--hc);
+      box-shadow: 6px 6px 0 0 rgba(245,245,245,.3);
+      padding: 26px 22px;
+    }
+    .step__num {
+      font-family: var(--font-pixel); font-weight: 700; font-size: 12px;
+      letter-spacing: 1px; color: var(--hc); opacity: .7; margin-bottom: 12px;
+    }
+    .step__title { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.25; }
+    .step__body { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.65; }
+
+    /* ============================================================
+       MICRO REPORTE — ventana Win 3.1
+    ============================================================ */
+    .report-preview { padding: var(--spacing-section) 0; }
+    .report-preview__inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px); align-items: center;
+    }
+    .report-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .report-copy__body { font-size: 16px; color: var(--color-text-muted); line-height: 1.75; }
+    .report-copy__body strong { color: var(--color-text); font-weight: 600; }
+
+    .report-mock__body { display: flex; flex-direction: column; gap: 12px; font-size: 12px; }
+    .report-mock__client {
+      font-family: var(--font-pixel); color: var(--color-text-muted);
+      font-size: 11px; letter-spacing: .5px;
+    }
+    .report-mock__divider { height: 3px; background: var(--hb); }
+
+    .report-finding {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 12px; border: 2px solid var(--hb);
+    }
+    .report-finding__dot { width: 10px; height: 10px; flex-shrink: 0; margin-top: 4px; border: 2px solid var(--hb); }
+    .report-finding--critical .report-finding__dot { background: var(--critical); }
+    .report-finding--warning  .report-finding__dot { background: var(--warning); }
+    .report-finding--ok       .report-finding__dot { background: var(--ok); }
+    .report-finding__label {
+      font-family: var(--font-pixel); font-size: 10px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .report-finding--critical .report-finding__label { color: var(--critical); }
+    .report-finding--warning  .report-finding__label { color: var(--warning); }
+    .report-finding--ok       .report-finding__label { color: var(--ok); }
+    .report-finding__text { color: var(--color-text-muted); font-size: 12.5px; line-height: 1.55; }
+
+    .report-mock__diagnosis { border: 3px solid var(--hb); background: var(--color-surface); padding: 14px; }
+    .report-mock__diagnosis-label {
+      font-family: var(--font-pixel); font-size: 10px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .report-mock__diagnosis-text { color: var(--color-text-muted); font-size: 12.5px; line-height: 1.55; }
+
+    /* ============================================================
+       SOBRE MÍ
+    ============================================================ */
+    .about { padding: var(--spacing-section) 0; background: var(--color-surface); border-top: 3px solid var(--hb); }
+    .about__inner {
+      display: grid; grid-template-columns: 1fr 2fr;
+      gap: clamp(32px, 5vw, 64px); align-items: start;
+    }
+    .about__photo {
+      aspect-ratio: 3 / 4;
+      background: var(--color-bg);
+      border: var(--hbd) solid var(--hb);
+      box-shadow: 10px 10px 0 0 var(--hb);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-pixel); font-size: 12px; color: var(--color-text-light);
+      /* Reemplazar el <span> por <img src="images/luis.jpg" alt="Luis Carlos Romero" style="width:100%;height:100%;object-fit:cover" /> */
+    }
+    .about__content { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .about__name { font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+    .about__role { font-family: var(--font-pixel); font-size: 12px; color: var(--color-text-muted); letter-spacing: .5px; text-transform: uppercase; }
+    .about__bio { font-size: 16px; color: var(--color-text-muted); line-height: 1.8; }
+    .about__stats { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+    .about__stat {
+      border: 3px solid var(--hb); box-shadow: 4px 4px 0 0 var(--hb);
+      padding: 14px 20px; background: var(--color-bg);
+    }
+    .about__stat-num { font-family: var(--font-chunky); font-size: 18px; color: var(--color-text); line-height: 1; }
+    .about__stat-label { font-family: var(--font-pixel); font-size: 11px; color: var(--color-text-muted); margin-top: 8px; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ============================================================
+       TESTIMONIOS
+    ============================================================ */
+    .testimonials { padding: var(--spacing-section) 0; }
+    .testimonials__header { display: flex; justify-content: center; margin-bottom: 48px; }
+    .testimonials__grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 720px; margin: 0 auto; }
+    .testimonial {
+      background: var(--color-bg);
+      border: 3px solid var(--hb);
+      box-shadow: 6px 6px 0 0 var(--hb);
+      padding: 32px;
+    }
+    .testimonial__quote { font-size: 17px; font-weight: 400; line-height: 1.7; color: var(--color-text); margin-bottom: 20px; }
+    .testimonial__author { font-weight: 700; font-size: 14px; }
+    .testimonial__role { font-family: var(--font-pixel); font-size: 11px; color: var(--color-text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ============================================================
+       FORMULARIO
+    ============================================================ */
+    .form-section { padding: var(--spacing-section) 0; background: var(--color-bg-dark); color: var(--hc); border-top: 3px solid var(--hb); }
+    .form-section__inner { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .form-section__title {
+      font-size: clamp(28px, 5vw, 44px); font-weight: 700;
+      line-height: 1.15; letter-spacing: -.02em; text-align: center; color: #fff;
+    }
+    .form-section__sub { font-size: 15px; color: rgba(255,255,255,.6); text-align: center; line-height: 1.65; margin-bottom: 16px; }
+
+    .form { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+    .form-field { display: flex; flex-direction: column; gap: 8px; }
+    .form-field label {
+      font-family: var(--font-pixel); font-size: 11px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7);
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      background: #fff;
+      border: 3px solid var(--hc);
+      color: var(--color-text);
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 13px 16px;
+      border-radius: 0;
+      outline: none;
+      width: 100%;
+      transition: box-shadow .12s steps(2);
+    }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      box-shadow: 4px 4px 0 0 rgba(245,245,245,.4);
+    }
+    .form-field textarea { resize: vertical; min-height: 100px; }
+
+    .form__submit {
+      font-family: var(--font); font-weight: 700; font-size: 16px;
+      background: #fff; color: var(--hb);
+      border: 3px solid #fff; padding: 16px 30px;
+      box-shadow: 6px 6px 0 0 rgba(245,245,245,.35);
+      cursor: pointer; width: 100%;
+      transition: transform .12s steps(2), box-shadow .12s steps(2);
+      margin-top: 4px;
+    }
+    .form__submit:hover { transform: translate(3px,3px); box-shadow: 3px 3px 0 0 rgba(245,245,245,.35); }
+    .form__submit:active { transform: translate(6px,6px); box-shadow: none; }
+    .form__submit:disabled { cursor: default; transform: none; }
+
+    .form__disclaimer {
+      font-family: var(--font-pixel); font-size: 10px; color: rgba(255,255,255,.4);
+      text-align: center; margin-top: 4px; line-height: 1.6; letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    /* ---- confirmación post submit ---- */
+    .form-success {
+      display: none;
+      width: 100%;
+      border: 3px solid var(--hc);
+      box-shadow: 6px 6px 0 0 rgba(245,245,245,.35);
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .form-success.visible { display: block; }
+    .form-success__title {
+      font-family: var(--font-pixel); font-weight: 700; font-size: 16px;
+      letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 12px;
+    }
+    .form-success__body { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.7; }
+
+    /* ============================================================
+       FINAL CTA
+    ============================================================ */
+    .final-cta { padding: var(--spacing-section) 0; text-align: center; }
+    .final-cta__inner { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .final-cta__title {
+      font-size: clamp(28px, 4.5vw, 48px); font-weight: 700;
+      line-height: 1.15; letter-spacing: -.02em; max-width: 640px;
+    }
+    .final-cta__sub { font-size: 16px; color: var(--color-text-muted); }
+    .final-cta__scarcity {
+      font-family: var(--font-pixel); font-size: 11px; color: var(--color-text-light);
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer { padding: 32px 0; background: var(--color-bg-dark); border-top: 3px solid var(--hb); }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer__brand {
+      font-family: var(--font-pixel); font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.45);
+    }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link { font-size: 13px; color: rgba(255,255,255,.45); }
+    .footer__link:hover { color: #fff; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 760px) {
+      .problem__grid,
+      .report-preview__inner,
+      .about__inner { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .problem__intro { position: static; }
+      .hero__cta { flex-direction: column; align-items: stretch; }
+      .hero__cta .btn-primary, .hero__cta .btn-ghost { justify-content: center; }
+      .nav__logo span { display: none; }
+      .about__photo { max-width: 320px; }
+      .win { box-shadow: 8px 8px 0 0 var(--hb); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blink { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="https://uxuaria.com" class="nav__logo">
+        Uxuaria <span>· UX_AI_REPAIR.EXE</span>
+      </a>
+      <a href="#repair-form" class="btn-retro" data-track="cta_nav">Agendar reunión</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero__inner">
+          <p class="eyebrow"><span class="blink"></span> UX AI Repair</p>
+          <h1 class="hero__title">
+            Tu app construida con IA puede verse y funcionar <span class="u">como una app real.</span>
+          </h1>
+          <p class="hero__lead">
+            Construiste con Lovable, Cursor, Bolt o v0. Tenés algo corriendo.
+            Pero algo no cierra: los usuarios se pierden, la interfaz se ve genérica,
+            o cada feature nuevo rompe algo de lo anterior.<br /><br />
+            <strong>Una reunión de 20 minutos. 48hs después tenés un micro reporte con qué está roto, por qué, y una propuesta concreta para resolverlo.</strong>
+          </p>
+          <div class="hero__cta">
+            <a href="#repair-form" class="btn-primary" data-track="cta_hero">
+              Agendar la reunión inicial
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+              </svg>
+            </a>
+            <a href="#como-funciona" class="btn-ghost" data-track="cta_como_funciona">¿Cómo funciona?</a>
+          </div>
+          <div class="specs">
+            <span>1 REUNIÓN · 20 MIN</span>
+            <span>REPORTE EN 48HS</span>
+            <span>PROPUESTA CONCRETA</span>
+            <span>SIN COMPROMISO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUÉ IMPORTA — sección oscura. -->
+    <section class="why">
+      <div class="container">
+        <div class="why__inner">
+          <p class="eyebrow eyebrow--inverse">Por qué importa</p>
+          <h2 class="why__title">
+            El problema no siempre<br />está donde pensás que está.
+          </h2>
+
+          <!-- ============================================================
+               VIDEO — descomentar cuando esté grabado.
+               Guiones propuestos en: /marketing/08-guion-video.md
+               Reemplazar SRC con el embed de Loom/YouTube/Vimeo.
+          <div class="video-wrapper">
+            <iframe src="https://www.loom.com/embed/XXXXXXXX" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          </div>
+          ============================================================ -->
+
+          <p class="why__body">
+            La mayoría de los founders que vienen a mí creen que tienen un problema
+            de diseño. A veces es eso. Pero muchas veces es un problema de flujo,
+            de jerarquía de información, o de cómo el AI tool generó pantallas
+            sin un criterio real de producto.<br /><br />
+            <strong>El diagnóstico te dice exactamente con qué estás lidiando</strong>, para que
+            no gastes tiempo ni plata arreglando lo que no estaba roto.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SÍNTOMAS -->
+    <section class="problem" id="como-funciona">
+      <div class="container">
+        <div class="problem__grid">
+
+          <div class="problem__intro">
+            <p class="eyebrow">El diagnóstico</p>
+            <h2 class="section-title">
+              ¿Te identificás<br />con algo de esto?
+            </h2>
+            <p class="problem__body">
+              Estos son los problemas más comunes que encuentro en apps
+              construidas con herramientas de AI. No son bugs: son decisiones
+              de diseño que nadie tomó conscientemente.
+            </p>
+          </div>
+
+          <div class="symptoms">
+            <div class="symptom">
+              <span class="symptom__icon">🔴</span>
+              <div class="symptom__text">
+                <strong>El onboarding tiene demasiados pasos</strong>
+                <span>Los usuarios llegan a la pantalla de registro y se van. El AI tool generó un flujo completo, pero nadie validó si era el necesario.</span>
+              </div>
+            </div>
+            <div class="symptom">
+              <span class="symptom__icon">🔴</span>
+              <div class="symptom__text">
+                <strong>La interfaz se ve "genérica"</strong>
+                <span>Funciona, pero no tiene identidad. No parece tuya. Los usuarios no la recuerdan ni confían en ella.</span>
+              </div>
+            </div>
+            <div class="symptom">
+              <span class="symptom__icon">🟡</span>
+              <div class="symptom__text">
+                <strong>El CTA principal no convierte</strong>
+                <span>Hay un botón. La gente lo ve. Pero no lo toca. Puede ser un problema de copy, de jerarquía visual, o de momento del funnel.</span>
+              </div>
+            </div>
+            <div class="symptom">
+              <span class="symptom__icon">🔴</span>
+              <div class="symptom__text">
+                <strong>Cada feature nuevo rompe algo de lo anterior</strong>
+                <span>Querés escalar, pero la IA no respeta las reglas que ya existían. Cada actualización trae incoherencias e inconsistencias nuevas.</span>
+              </div>
+            </div>
+            <div class="symptom">
+              <span class="symptom__icon">🟡</span>
+              <div class="symptom__text">
+                <strong>En mobile algo se rompe</strong>
+                <span>El AI tool diseñó para desktop. Mobile fue una adaptación automática. Y se nota.</span>
+              </div>
+            </div>
+            <div class="symptom">
+              <span class="symptom__icon">🟡</span>
+              <div class="symptom__text">
+                <strong>No sabés si es un problema de UX o de código</strong>
+                <span>Eso es exactamente lo que el diagnóstico responde. Sin adivinanzas.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="process">
+      <div class="container">
+        <div class="process__inner">
+          <p class="eyebrow eyebrow--inverse">El proceso</p>
+          <h2 class="process__title">
+            Una reunión.<br />48 horas. Una propuesta.
+          </h2>
+          <p class="process__body">
+            Sin proceso de consultor de semanas, sin presentaciones eternas.
+            Una reunión corta para entender tu producto, y un reporte
+            con el diagnóstico y el plan para resolverlo.
+          </p>
+          <div class="steps">
+            <div class="step">
+              <p class="step__num">[ 01 ]</p>
+              <h3 class="step__title">Agendás 20 minutos</h3>
+              <p class="step__body">Me contás qué está pasando, qué intentaste, y dónde te duele. No es una llamada de venta: es para entender tu producto.</p>
+            </div>
+            <div class="step">
+              <p class="step__num">[ 02 ]</p>
+              <h3 class="step__title">Revisamos tu producto</h3>
+              <p class="step__body">Analizamos tu flujo principal con metodología de experiencia de usuario real, no una checklist automática. La parte técnica la cubre mi socio.</p>
+            </div>
+            <div class="step">
+              <p class="step__num">[ 03 ]</p>
+              <h3 class="step__title">Recibís reporte + propuesta</h3>
+              <p class="step__body">48hs después de la reunión: hallazgos priorizados, diagnóstico de qué tipo de problema es, y una vía concreta para resolverlo con alcance y precios.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MICRO REPORTE — vista previa -->
+    <section class="report-preview">
+      <div class="container">
+        <div class="report-preview__inner">
+
+          <div class="report-copy">
+            <p class="eyebrow">Lo que recibís</p>
+            <h2 class="section-title">
+              Un micro reporte.<br />No una presentación de 40 slides.
+            </h2>
+            <p class="report-copy__body">
+              Una página. Hallazgos concretos con prioridad clara.
+              Y lo más importante: <strong>un diagnóstico de tipo</strong>. ¿Es un problema de UX,
+              de stack, o de producto?<br /><br />
+              El reporte cierra con <strong>la vía que propongo para resolverlo</strong>: qué incluye,
+              cuánto tarda y cuánto cuesta. Dos modelos posibles: contrato cerrado
+              o acompañamiento mensual. El diagnóstico queda con vos decidas lo que decidas.
+            </p>
+          </div>
+
+          <!-- Mock del reporte — ventana Win 3.1 -->
+          <div class="win">
+            <div class="tb">
+              <span>HALLAZGOS.PDF</span>
+              <span class="stripes"></span>
+              <span class="x">×</span>
+            </div>
+            <div class="wbody report-mock__body">
+              <p class="report-mock__client">APP: [PROYECTO] · FLUJO: ONBOARDING</p>
+              <div class="report-mock__divider"></div>
+
+              <div class="report-finding report-finding--critical">
+                <span class="report-finding__dot"></span>
+                <div>
+                  <p class="report-finding__label">Crítico</p>
+                  <p class="report-finding__text">Onboarding tiene 7 pasos. El usuario abandona en el paso 3. Los pasos 4–7 pueden eliminarse o posponerse post-activación.</p>
+                </div>
+              </div>
+
+              <div class="report-finding report-finding--warning">
+                <span class="report-finding__dot"></span>
+                <div>
+                  <p class="report-finding__label">Warning</p>
+                  <p class="report-finding__text">CTA principal ("Crear cuenta") compite visualmente con el link secundario. Mismo peso, mismo color. La jerarquía no existe.</p>
+                </div>
+              </div>
+
+              <div class="report-finding report-finding--ok">
+                <span class="report-finding__dot"></span>
+                <div>
+                  <p class="report-finding__label">Ok</p>
+                  <p class="report-finding__text">Flujo de error en formulario bien manejado. Mensajes claros, no bloquea el progreso.</p>
+                </div>
+              </div>
+
+              <div class="report-mock__diagnosis">
+                <p class="report-mock__diagnosis-label">Diagnóstico de tipo</p>
+                <p class="report-mock__diagnosis-text">Problema primario de UX (arquitectura de flujo). No es un problema de código. La solución no requiere rediseño completo: requiere reestructura del orden de pantallas.</p>
+              </div>
+
+              <div class="report-mock__diagnosis">
+                <p class="report-mock__diagnosis-label">Vía de resolución propuesta</p>
+                <p class="report-mock__diagnosis-text">Sprint de reestructura del onboarding: 3 semanas, contrato cerrado, con alcance y precio definidos. Alternativa: acompañamiento mensual si preferís mejora continua.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="about">
+      <div class="container">
+        <div class="about__inner">
+
+          <!-- Reemplazar el <span> por <img src="images/luis.jpg" alt="Luis Carlos Romero" style="width:100%;height:100%;object-fit:cover" /> -->
+          <div class="about__photo">
+            <span>FOTO · LUIS</span>
+          </div>
+
+          <div class="about__content">
+            <p class="eyebrow">Quién lo hace</p>
+            <h2 class="about__name">Luis Carlos Romero</h2>
+            <p class="about__role">Consultor UX · Uxuaria · Buenos Aires</p>
+            <p class="about__bio">
+              Trabajo en diseño de experiencia hace más de 15 años, con base en Buenos Aires
+              y clientes en LATAM y USA. Me especializo en productos digitales construidos
+              con herramientas de AI, y en distinguir qué es un problema de UX,
+              qué es un problema de stack, y qué es un problema de producto.<br /><br />
+              En el diagnóstico trabajo junto a un colaborador de 5 años con experiencia
+              en ciberseguridad y desarrollo, para que el diagnóstico cubra toda la pila,
+              no solo la superficie.
+            </p>
+            <div class="about__stats">
+              <div class="about__stat">
+                <p class="about__stat-num">15+</p>
+                <p class="about__stat-label">años en UX</p>
+              </div>
+              <div class="about__stat">
+                <p class="about__stat-num">40+</p>
+                <p class="about__stat-label">productos lanzados</p>
+              </div>
+              <div class="about__stat">
+                <p class="about__stat-num">LATAM</p>
+                <p class="about__stat-label">· USA</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="testimonials__header">
+          <p class="eyebrow">Lo que dicen</p>
+        </div>
+        <div class="testimonials__grid">
+          <div class="testimonial">
+            <p class="testimonial__quote">
+              "Luis aporta un enfoque creativo y orientado a los detalles para cada aspecto del diseño de UX, priorizando constantemente las necesidades del usuario para ofrecer resultados excepcionales."
+            </p>
+            <p class="testimonial__author">Flavio Strianese</p>
+            <p class="testimonial__role">CEO · Strianno</p>
+          </div>
+          <!-- ============================================================
+               TESTIMONIO PENDIENTE — descomentar cuando se confirme
+               el nombre del proyecto de Walter Aguilar.
+          <div class="testimonial">
+            <p class="testimonial__quote">
+              "Trabajar con Luis fue una experiencia transformadora. Su capacidad para entender el negocio y traducirlo en diseño fue clave para que el producto funcionara."
+            </p>
+            <p class="testimonial__author">Walter Aguilar</p>
+            <p class="testimonial__role">Fundador · [proyecto]</p>
+          </div>
+          ============================================================ -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO / AGENDA -->
+    <!-- Cuando exista la agenda (Calendly o similar), opción recomendada:
+         reemplazar este form por el embed del calendario y dejar los campos
+         como preguntas del evento. Mientras tanto, el form pide los datos
+         y la coordinación se hace por email. -->
+    <section class="form-section" id="repair-form">
+      <div class="container">
+        <div class="form-section__inner">
+          <p class="eyebrow eyebrow--inverse">Reunión inicial</p>
+          <h2 class="form-section__title">
+            Tres campos.<br />20 minutos. Una propuesta real.
+          </h2>
+          <p class="form-section__sub">
+            Contame de tu app y coordinamos la reunión. No es una llamada de venta:
+            es para entender tu producto antes de diagnosticarlo.
+          </p>
+
+          <!-- FORMULARIO: reemplazar action con tu endpoint real.
+               Formspree: action="https://formspree.io/f/[tu-id]" method="POST"
+               (el JS de abajo ya hace el POST por fetch si data-endpoint está definido) -->
+          <form class="form" id="checkup-form-el" data-endpoint="" novalidate>
+
+            <div class="form-field">
+              <label for="app-url">URL de tu app o landing</label>
+              <input type="url" id="app-url" name="app_url" placeholder="https://miapp.com" required />
+            </div>
+
+            <div class="form-field">
+              <label for="problema">¿Qué problema percibís?</label>
+              <textarea id="problema" name="problema" placeholder="Ej: los usuarios se van en el onboarding, la app se ve genérica, algo no convierte…" required></textarea>
+            </div>
+
+            <div class="form-field">
+              <label for="etapa">Etapa del producto</label>
+              <select id="etapa" name="etapa" required>
+                <option value="" disabled selected>Seleccioná una opción</option>
+                <option value="pre-launch">Pre-lanzamiento (aún no está en producción)</option>
+                <option value="post-launch">Post-lanzamiento (está en producción, sin usuarios activos)</option>
+                <option value="con-usuarios">Con usuarios activos</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="email">Tu email</label>
+              <input type="email" id="email" name="email" placeholder="vos@empresa.com" required />
+            </div>
+
+            <!-- UTM capture — se completan solos via JS -->
+            <input type="hidden" name="utm_source" id="utm_source" />
+            <input type="hidden" name="utm_medium" id="utm_medium" />
+            <input type="hidden" name="utm_campaign" id="utm_campaign" />
+
+            <button type="submit" class="form__submit">
+              Quiero agendar la reunión →
+            </button>
+
+            <p class="form__disclaimer">
+              Sin compromiso · El diagnóstico queda con vos decidas lo que decidas
+            </p>
+
+          </form>
+
+          <!-- Confirmación post submit -->
+          <div class="form-success" id="form-success" role="status">
+            <p class="form-success__title">Listo. Recibimos tu solicitud.</p>
+            <p class="form-success__body">
+              Te llega un email para coordinar la reunión de 20 minutos.<br />
+              Revisá spam por las dudas, y agregá info@uxuaria.com a tus contactos.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <div class="final-cta__inner">
+          <h2 class="final-cta__title">
+            ¿Cuánto tiempo más vas a estar sin saber qué está frenando tu app?
+          </h2>
+          <p class="final-cta__sub">Agendá 20 minutos. En 48hs tenés la respuesta y el plan.</p>
+          <a href="#repair-form" class="btn-primary" data-track="cta_final">
+            Agendar la reunión inicial
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+          </a>
+          <p class="final-cta__scarcity">Reunión de 20 min · Reporte y propuesta en 48hs</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__brand">Uxuaria · UX_AI_REPAIR.EXE</span>
+      <div class="footer__links">
+        <a href="https://uxuaria.com" class="footer__link">uxuaria.com</a>
+        <a href="mailto:info@uxuaria.com" class="footer__link">info@uxuaria.com</a>
+        <a href="https://linkedin.com/in/luiscarlosromero" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Tracking helper: manda eventos a GA4 si está cargado ----
+    function track(eventName, params) {
+      if (typeof gtag === 'function') { gtag('event', eventName, params || {}); }
+      else if (window.dataLayer) { window.dataLayer.push(Object.assign({ event: eventName }, params || {})); }
+    }
+
+    // CTAs con data-track
+    document.querySelectorAll('[data-track]').forEach(el => {
+      el.addEventListener('click', () => track('cta_click', { cta_id: el.dataset.track }));
+    });
+
+    // ---- UTM capture: completa los hidden fields con los params de la URL ----
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign'].forEach(key => {
+        const field = document.getElementById(key);
+        if (field && params.get(key)) field.value = params.get(key);
+      });
+    })();
+
+    // ---- Form: POST a endpoint si está definido, si no solo confirma ----
+    const form = document.getElementById('checkup-form-el');
+    const successBox = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const btn = form.querySelector('.form__submit');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      const endpoint = form.dataset.endpoint;
+
+      try {
+        if (endpoint) {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (!res.ok) throw new Error('Submit failed');
+        }
+        // TODO: si no hay endpoint configurado, conectar Formspree/Tally
+        // en el atributo data-endpoint del <form>.
+
+        track('form_submit', { form_id: 'repair_meeting' });
+        form.style.display = 'none';
+        successBox.classList.add('visible');
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Quiero agendar la reunión →';
+        alert('Hubo un problema al enviar. Probá de nuevo o escribí a info@uxuaria.com');
+      }
+    });
+
+    // ---- Smooth scroll ----
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
