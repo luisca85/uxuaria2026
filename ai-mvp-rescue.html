@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UX AI Repair · Diagnóstico y propuesta para tu app construida con IA</title>
-  <meta name="description" content="Construiste con Lovable, Cursor, Bolt o v0. La IA no garantiza que tus usuarios se queden — ni que no haya barreras invisibles frenando el crecimiento. Una reunión de 20 minutos. Diagnóstico y propuesta en 48hs." />
+  <meta name="description" content="Construiste tu app con Lovable, Cursor, Bolt o v0. Una reunión de 20 minutos y en 48hs tenés un micro reporte con qué está roto, por qué, y una propuesta concreta para resolverlo." />
   <meta name="robots" content="noindex, nofollow" /><!-- landing de ads: no indexar -->
 
   <!-- OG para ads -->
-  <meta property="og:title" content="La IA construyó tu app. No auditó la experiencia de tus usuarios." />
-  <meta property="og:description" content="Una reunión de 20 minutos. En 48hs, diagnóstico concreto y una propuesta para resolverlo. Sin proceso de consultor de semanas." />
+  <meta property="og:title" content="Tu app construida con IA puede verse y funcionar como una app real." />
+  <meta property="og:description" content="Una reunión de 20 minutos. En 48hs, diagnóstico y propuesta concreta. Sin proceso de consultor de semanas." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://uxuaria.com/ux-ai-repair" />
 
@@ -32,9 +32,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
-
-  <!-- Estilos del sitio principal (navbar, botones, utilidades) -->
-  <link rel="stylesheet" href="styles.css" />
 
   <style>
     /* ============================================================
@@ -522,39 +519,15 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar" id="navbar">
-    <div class="container navbar__inner">
-      <a href="/" class="navbar__logo" aria-label="Uxuaria, inicio">
-        <span class="logo-text">uxuaria</span>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="https://uxuaria.com" class="nav__logo">
+        Uxuaria <span>· UX_AI_REPAIR.EXE</span>
       </a>
-
-      <nav class="navbar__nav" aria-label="Navegación principal">
-        <a href="servicios/index.html" class="nav-link">Servicios</a>
-        <a href="ai-mvp-rescue.html" class="nav-link">AI MVP Rescue</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contacto/index.html" class="nav-link">Contacto</a>
-      </nav>
-
-      <a href="contacto/index.html" class="btn btn--primary navbar__cta">Contáctame</a>
-
-      <button class="navbar__hamburger" id="hamburger"
-              aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="#repair-form" class="btn-retro" data-track="cta_nav">Agendar reunión</a>
     </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <a href="servicios/index.html" class="nav-link">Servicios</a>
-      <a href="ai-mvp-rescue.html" class="nav-link">AI MVP Rescue</a>
-      <a href="blog.html" class="nav-link">Blog</a>
-      <a href="contacto/index.html" class="nav-link">Contacto</a>
-      <div class="mobile-menu__cta-row">
-        <a href="mailto:info@uxuaria.com" class="btn btn--primary">✉ Email</a>
-      </div>
-    </div>
-  </header>
+  </nav>
 
   <main>
 
@@ -564,13 +537,13 @@
         <div class="hero__inner">
           <p class="eyebrow"><span class="blink"></span> UX AI Repair</p>
           <h1 class="hero__title">
-            La IA construyó tu app.</br> Nosotros la rescatamos y hacemos que funcione de verdad.
+            Tu app construida con IA puede verse y funcionar <span class="u">como una app real.</span>
           </h1>
           <p class="hero__lead">
             Construiste con Lovable, Cursor, Bolt o v0. Tenés algo corriendo.
             Pero algo no cierra: los usuarios se pierden, la interfaz se ve genérica,
             o cada feature nuevo rompe algo de lo anterior.<br /><br />
-            <strong>Una reunión de 20 minutos. 48hs después tenés un micro reporte con qué está frenando el crecimiento, por qué, y una propuesta concreta para resolverlo.</strong>
+            <strong>Una reunión de 20 minutos. 48hs después tenés un micro reporte con qué está roto, por qué, y una propuesta concreta para resolverlo.</strong>
           </p>
           <div class="hero__cta">
             <a href="#repair-form" class="btn-primary" data-track="cta_hero">
@@ -581,7 +554,12 @@
             </a>
             <a href="#como-funciona" class="btn-ghost" data-track="cta_como_funciona">¿Cómo funciona?</a>
           </div>
-
+          <div class="specs">
+            <span>1 REUNIÓN · 20 MIN</span>
+            <span>REPORTE EN 48HS</span>
+            <span>PROPUESTA CONCRETA</span>
+            <span>SIN COMPROMISO</span>
+          </div>
         </div>
       </div>
     </section>
@@ -605,18 +583,12 @@
           ============================================================ -->
 
           <p class="why__body">
-            
-  <p style="text-align:center;">
-  La mayoría de los founders que vienen a mí me piden
-  <span style="font-weight:600;font-style:italic;">"pantallas más lindas"</span>,
-  pensando que es lo que le hace falta a su MVP para terminar de convencer.
-  Pero esa intención esconde un último grito de desesperación al ver que nada
-  funciona. Y la conclusión más fácil es: "debe ser el diseño". Y la verdad es
-  que sí lo es. Solo que cuando hablo de diseño, en realidad hablo de tomar
-  buenas decisiones que lleven a cumplirle una promesa al usuario. Esa promesa,
-  ese match entre tu público y tu idea, es lo que estamos buscando.
-</p>
-
+            La mayoría de los founders que vienen a mí creen que tienen un problema
+            de diseño. A veces es eso. Pero muchas veces es un problema de flujo,
+            de jerarquía de información, o de cómo el AI tool generó pantallas
+            sin un criterio real de producto.<br /><br />
+            <strong>El diagnóstico te dice exactamente con qué estás lidiando</strong>, para que
+            no gastes tiempo ni plata arreglando lo que no estaba roto.
           </p>
         </div>
       </div>
@@ -634,7 +606,7 @@
             </h2>
             <p class="problem__body">
               Estos son los problemas más comunes que encuentro en apps
-              construidas con herramientas de AI. Casi siempre son decisiones
+              construidas con herramientas de AI. No son bugs: son decisiones
               de diseño que nadie tomó conscientemente.
             </p>
           </div>
@@ -710,7 +682,7 @@
             <div class="step">
               <p class="step__num">[ 02 ]</p>
               <h3 class="step__title">Revisamos tu producto</h3>
-              <p class="step__body">Analizamos flujo, interfaz, consistencia y experiencia de usuario real. Trabajo junto a un colaborador con experiencia en desarrollo y ciberseguridad para que el diagnóstico cubra toda la pila.</p>
+              <p class="step__body">Analizamos tu flujo principal con metodología de experiencia de usuario real, no una checklist automática. La parte técnica la cubre mi socio.</p>
             </div>
             <div class="step">
               <p class="step__num">[ 03 ]</p>
@@ -730,7 +702,7 @@
           <div class="report-copy">
             <p class="eyebrow">Lo que recibís</p>
             <h2 class="section-title">
-              Una Diagnostico para que sea tu Hoja de ruta
+              Un micro reporte.<br />No una presentación de 40 slides.
             </h2>
             <p class="report-copy__body">
               Una página. Hallazgos concretos con prioridad clara.
@@ -874,7 +846,9 @@
       <div class="container">
         <div class="form-section__inner">
           <p class="eyebrow eyebrow--inverse">Reunión inicial</p>
-        
+          <h2 class="form-section__title">
+            Tres campos.<br />20 minutos. Una propuesta real.
+          </h2>
           <p class="form-section__sub">
             Contame de tu app y coordinamos la reunión. No es una llamada de venta:
             es para entender tu producto antes de diagnosticarlo.
@@ -945,14 +919,14 @@
           <h2 class="final-cta__title">
             ¿Cuánto tiempo más vas a estar sin saber qué está frenando tu app?
           </h2>
-          <p class="final-cta__sub">Agendá 20 minutos. En 48hs tenés el diagnóstico y el plan.</p>
+          <p class="final-cta__sub">Agendá 20 minutos. En 48hs tenés la respuesta y el plan.</p>
           <a href="#repair-form" class="btn-primary" data-track="cta_final">
-            Aplicar al servicio
+            Agendar la reunión inicial
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
             </svg>
           </a>
-          <p class="final-cta__scarcity">2 proyectos por mes · 1 lugar disponible · agosto 2026</p>
+          <p class="final-cta__scarcity">Reunión de 20 min · Reporte y propuesta en 48hs</p>
         </div>
       </div>
     </section>
@@ -1041,8 +1015,6 @@
       });
     });
   </script>
-
-  <script src="script.js"></script>
 
 </body>
 </html>
