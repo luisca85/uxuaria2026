@@ -487,10 +487,20 @@
         comoLlegaste: document.getElementById('como-llegaste').value
       };
 
-      fetch('/api/contacto', {
+      fetch('https://api.web3forms.com/submit', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(data)
+        body:    JSON.stringify({
+          access_key: '7ecf21c6-65f3-4f53-99d0-9d4257a15c6b',
+          subject:    'Nuevo contacto Uxuaria: ' + data.nombre,
+          from_name:  'Formulario Uxuaria',
+          name:       data.nombre,
+          email:      data.email,
+          message:    'Tipo de proyecto: ' + data.tipoProyecto
+                    + '\nEtapa: ' + data.etapa
+                    + '\nCómo llegó: ' + data.comoLlegaste
+                    + '\n\nMensaje:\n' + data.problema
+        })
       })
       .then(function (res) {
         if (!res.ok) throw new Error('Error ' + res.status);
