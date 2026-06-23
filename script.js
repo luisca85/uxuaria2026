@@ -3,92 +3,57 @@
 // Progressive enhancement: el sitio funciona sin este script.
 // ============================================================
 
-// --- Hero retro UI: pixel art + artboard scaling ---
+// --- Parade: pixel characters — fall on load, walk on scroll ---
 (function () {
-  function px(svg, cells, fill) {
-    const ns = 'http://www.w3.org/2000/svg';
-    cells.forEach(c => {
-      const r = document.createElementNS(ns, 'rect');
-      r.setAttribute('x', c[0]); r.setAttribute('y', c[1]);
-      r.setAttribute('width', c[2] || 1); r.setAttribute('height', c[3] || 1);
-      r.setAttribute('fill', c[4] || fill || '#000');
-      svg.appendChild(r);
-    });
+  const stage = document.querySelector('.parade__stage');
+  const chars = stage ? Array.from(stage.querySelectorAll('.parade__char')) : [];
+  if (!stage || !chars.length) return;
+
+  // Cascade fall: each char drops with a staggered delay
+  const FALL_DURATION = 1100;
+  const STAGGER       = 280;
+
+  chars.forEach((char, i) => {
+    setTimeout(() => {
+      char.style.animation = 'char-fall ' + FALL_DURATION + 'ms linear forwards';
+      setTimeout(() => {
+        char.classList.add('fallen');
+        char.style.animation = '';
+      }, FALL_DURATION);
+    }, i * STAGGER);
+  });
+
+  // Enable scroll-walk only after the last char finishes landing
+  const readyAt = (chars.length - 1) * STAGGER + FALL_DURATION + 120;
+  let ready = false;
+  setTimeout(() => { ready = true; }, readyAt);
+
+  // Scroll → translateX on stage
+  let charX      = 0;
+  let lastY      = window.scrollY;
+  let walkTimer  = null;
+  const FACTOR   = 0.35;
+
+  function getMaxX() {
+    const parade = stage.parentElement;
+    return Math.max(0, parade.offsetWidth - stage.offsetWidth - 48);
   }
 
-  // Claude pixel face
-  const claudeSvg = document.querySelector('#w-claude svg');
-  if (claudeSvg) {
-    const B = '#000';
-    px(claudeSvg, [[19,1],[20,1],[19,2],[20,2],[18,4,4,2]], B);
-    px(claudeSvg, [[12,6,16,1],[10,7,2,1],[28,7,2,1],[9,8,1,1],[30,8,1,1],
-      [8,9,1,4],[31,9,1,4],[9,13,1,12],[30,13,1,12],
-      [9,25,1,1],[30,25,1,1],[10,26,2,1],[28,26,2,1],[12,27,16,1]], B);
-    px(claudeSvg, [[12,7,16,1]], B);
-    px(claudeSvg, [[14,13,3,4],[23,13,3,4]], B);
-    px(claudeSvg, [[15,14,1,1],[24,14,1,1]], '#F5F5F5');
-    px(claudeSvg, [[15,20,10,1],[14,19,1,1],[25,19,1,1]], B);
-    px(claudeSvg, [[6,15,2,4],[32,15,2,4]], B);
-    px(claudeSvg, [[34,4],[34,6],[33,5],[35,5],[34,5]], B);
-  }
+  window.addEventListener('scroll', function () {
+    if (!ready) return;
+    const y     = window.scrollY;
+    const delta = y - lastY;
+    lastY = y;
 
-  // QR code
-  const qrSvg = document.getElementById('qr');
-  if (qrSvg) {
-    px(qrSvg, [[0,0,13,13]], '#FFFFFF');
-    function finder(ox, oy) {
-      px(qrSvg, [[ox,oy,5,1],[ox,oy+4,5,1],[ox,oy,1,5],[ox+4,oy,1,5],
-        [ox+1,oy+1,3,3,'#FFFFFF'],[ox+2,oy+2,1,1]], '#000');
-    }
-    finder(0,0); finder(8,0); finder(0,8);
-    px(qrSvg, [[6,1],[7,3],[6,5],[8,6],[10,6],[12,6],[6,7],[1,6],[3,6],[5,7],
-      [7,8],[9,9],[11,8],[12,10],[10,11],[8,12],[6,10],[7,11],[12,12],[9,12],[11,11]], '#000');
-  }
+    charX = Math.min(getMaxX(), Math.max(0, charX + delta * FACTOR));
+    stage.style.transform = 'translateX(' + charX + 'px)';
 
-  // Photoshop tool icons
-  const psdTools = document.getElementById('psd-tools');
-  if (psdTools) {
-    const ns = 'http://www.w3.org/2000/svg';
-    const icons = {
-      cursor:  [[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[2,1],[3,2],[2,3],[4,4],[5,5],[3,4],[3,5]],
-      marquee: [[0,0],[2,0],[4,0],[6,0],[0,2],[6,2],[0,4],[6,4],[0,6],[2,6],[4,6],[6,6]],
-      brush:   [[5,0],[6,0],[4,1],[5,1],[3,2],[4,2],[2,3],[3,3],[1,4],[2,4],[1,5],[0,6],[1,6]],
-      text:    [[0,0,7,1],[3,1,1,5]],
-      zoom:    [[1,0],[2,0],[3,0],[0,1],[4,1],[0,2],[4,2],[1,3],[2,3],[3,3],[4,4],[5,5],[6,6]]
-    };
-    Object.keys(icons).forEach(k => {
-      const t = document.createElement('div'); t.className = 't';
-      const s = document.createElementNS(ns, 'svg');
-      s.setAttribute('width', '26'); s.setAttribute('height', '26');
-      s.setAttribute('viewBox', '0 0 7 7');
-      px(s, icons[k], '#000'); t.appendChild(s); psdTools.appendChild(t);
-    });
-  }
-
-  // Progress bar segments
-  const pbar = document.getElementById('pbar');
-  if (pbar) { for (let i = 0; i < 26; i++) { pbar.appendChild(document.createElement('i')); } }
-
-  // Scale artboard to fit right column
-  function fitArt() {
-    const art = document.querySelector('.hero .art');
-    const ab  = document.getElementById('artboard');
-    if (!art || !ab) return;
-    const w = art.clientWidth, h = art.clientHeight;
-    if (w < 40 || h < 40) return;
-    const k = Math.min(w / 1000, h / 1050) * 0.7;
-    ab.style.transform = 'translate(-50%,-50%) scale(' + k + ')';
-  }
-
-  window.addEventListener('resize', fitArt);
-  fitArt();
-  [0, 60, 160, 400, 900].forEach(t => setTimeout(fitArt, t));
-  if (window.ResizeObserver) {
-    const artEl = document.querySelector('.hero .art');
-    if (artEl) new ResizeObserver(fitArt).observe(artEl);
-  }
-  document.fonts && document.fonts.ready.then(fitArt);
-  window.addEventListener('load', fitArt);
+    stage.classList.add('is-walking');
+    clearTimeout(walkTimer);
+    walkTimer = setTimeout(function () {
+      stage.classList.remove('is-walking');
+    }, 180);
+  }, { passive: true });
 })();
 
 // --- Navbar: clase "scrolled" al hacer scroll ---
@@ -400,6 +365,32 @@ if ('IntersectionObserver' in window) {
 
   document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
 }
+
+// --- Portfolio: toda la tarjeta es clickeable ---
+(function () {
+  // Slides del carrusel de proyectos
+  document.querySelectorAll('.portfolio-carousel__slide').forEach(function (slide) {
+    var link = slide.querySelector('.portfolio-carousel__slide-arrow');
+    if (!link) return;
+    slide.addEventListener('click', function () {
+      window.location.href = link.href;
+    });
+  });
+
+  // Tarjeta featured (Monge Pay) — ignora clicks en los botones del carrusel interno
+  var featured = document.querySelector('.project-card--featured');
+  if (featured) {
+    var featuredLink = featured.querySelector('.project-card--featured__cta-arrow');
+    if (featuredLink) {
+      featured.style.cursor = 'pointer';
+      featured.addEventListener('click', function (e) {
+        if (!e.target.closest('.featured-carousel__btn')) {
+          window.location.href = featuredLink.href;
+        }
+      });
+    }
+  }
+})();
 
 // --- Fade-in al hacer scroll (Intersection Observer) ---
 // Solo se activa si IntersectionObserver está disponible (progressive enhancement).

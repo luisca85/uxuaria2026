@@ -1,9 +1,9 @@
 # 04 — Página de Contacto
 
-**Estado:** Spec aprobado — pendiente de implementación  
-**Archivo de destino:** `contacto.html`  
-**Creado:** 2026-06-04  
-**Depende de:** `00-overview.md`, `01-content.md`
+**Estado:** ✅ Implementado  
+**Archivo:** `contacto/index.html` (URL: `https://uxuaria.com/contacto/`)  
+**Implementado:** antes de 2026-06-22  
+**Depende de:** `00-overview.md`, `03-content.md`
 
 ---
 
@@ -20,7 +20,7 @@ El objetivo de conversión es lograr que el visitante tome acción en esta pági
 ## URL
 
 ```
-https://uxuaria.com/contacto.html
+https://uxuaria.com/contacto/
 ```
 
 ---
@@ -372,17 +372,19 @@ Reutilizar: `.breadcrumb`, `.section-eyebrow`, `.btn--primary`, `.footer`, `.nav
 
 ---
 
-## Pendientes antes de implementar
+## Implementación actual (2026-06-22)
 
-- [ ] URL real de Calendly (`calendly.com/[handle]/30min`)
-- [ ] Decidir implementación Calendly: inline embed vs popup
-- [ ] Crear cuenta en Brevo — obtener API key y configurar SMTP
-- [ ] Crear dos listas en Brevo: "Contactos generales" y "Newsletter UX·IA·Negocio"
-- [ ] Configurar template de email automático en Brevo (uno para contacto, uno para checkup)
-- [ ] Confirmar copy final de los emails con el cliente
+- **Formulario:** Web3Forms (reemplazó a Brevo). Procesa el envío sin backend.
+- **Calendly:** URL real → `https://calendly.com/luisca85/charla-introductoria-clone`
+- El contenido de la sección de email de respuesta automática más arriba es el **diseño spec** — verificar si fue implementado o si Web3Forms cubre esa parte.
+
+## Pendientes
+
 - [ ] Decidir si hay página de confirmación `gracias.html` o mensaje inline
-- [ ] Iconos SVG para cada método (calendario / mensaje)
+- [ ] Verificar si el email de respuesta automática al remitente está configurado en Web3Forms
+- [ ] Iconos SVG para cada método (si no están ya en el HTML)
 
 ## Changelog
 
-> Registra cambios una vez iniciada la implementación.
+- **2026-06-22** — Implementada. Formulario usa Web3Forms. Calendly con URL real.
+- **2026-06-04** — Spec creado.

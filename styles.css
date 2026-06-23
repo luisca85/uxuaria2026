@@ -134,7 +134,7 @@ ul { list-style: none; }
 .section-eyebrow {
   display: inline-flex;
   align-items: center;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   font-weight: 700;
   letter-spacing: .1em;
@@ -258,13 +258,13 @@ ul { list-style: none; }
    Usar cuando el destino es una página interna y el tamaño debe ser
    contenido (no protagonista). Ejemplos: "Ver servicio →", "Leer más →",
    "Ver proyecto →". Para acciones primarias usar .btn.btn--primary.
-   Patrón: borde 2px, sombra 4px offset, fuente Silkscreen, hover invierte.
+   Patrón: borde 2px, sombra 4px offset, fuente Share Tech Mono, hover invierte.
    Aplicar a <a> o <button>. ---- */
 .btn-retro {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   font-weight: 700;
   letter-spacing: .08em;
@@ -422,19 +422,18 @@ ul { list-style: none; }
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 var(--spacing-container);
-  display: grid; grid-template-columns: minmax(0,44%) minmax(0,56%);
-  align-items: stretch;
+  display: block;
 }
 
 /* ---- copy (left) ---- */
 /* padding-top = navbar (68px) + gap pedido (56px) */
 .copy {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 160px 0 120px; gap: 28px;
+  padding: 160px 0 16px; gap: 28px;
 }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
-  font-family: 'Silkscreen',monospace; font-weight: 700; font-size: 13px;
+  font-family: 'Share Tech Mono', monospace; font-weight: 700; font-size: 13px;
   letter-spacing: 2px; text-transform: uppercase; color: var(--hb);
   border: 3px solid var(--hb); padding: 8px 14px;
   box-shadow: 4px 4px 0 0 var(--hb);
@@ -457,14 +456,14 @@ ul { list-style: none; }
 }
 
 .tagline {
-  font-weight: 700; font-size: clamp(38px,5vw,56px);
-  line-height: .98; letter-spacing: -0.03em; max-width: 14ch;
+  font-weight: 700; font-size: clamp(48px, 6.5vw, 80px);
+  line-height: .93; letter-spacing: -0.04em; max-width: none;
 }
 .tagline .u { white-space: nowrap; box-shadow: inset 0 -0.14em 0 0 var(--hb); }
 
 .hero-lead {
   font-weight: 400; font-size: clamp(16px,1.25vw,20px);
-  line-height: 1.6; color: var(--color-text-muted); max-width: 42ch;
+  line-height: 1.6; color: var(--color-text-muted); max-width: 64ch;
 }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
 
@@ -493,7 +492,7 @@ ul { list-style: none; }
   border-top: 3px solid var(--hb); padding-top: 22px;
 }
 .hero-specs span {
-  font-family: 'Silkscreen',monospace; font-weight: 700; font-size: 11px;
+  font-family: 'Share Tech Mono', monospace; font-weight: 700; font-size: 11px;
   letter-spacing: 1px; text-transform: uppercase;
   padding: 7px 12px; border: 2px solid var(--hb);
 }
@@ -521,7 +520,7 @@ ul { list-style: none; }
   display: flex; align-items: center; gap: 10px; height: 40px;
   padding: 0 8px 0 12px; border-bottom: var(--hbd) solid var(--hb);
   background: var(--hb); color: var(--hc);
-  font-family: 'Silkscreen',monospace; font-weight: 700;
+  font-family: 'Share Tech Mono', monospace; font-weight: 700;
   font-size: 14px; letter-spacing: .5px; white-space: nowrap;
 }
 .win.dark .tb { border-bottom: 4px solid var(--hc); }
@@ -539,7 +538,7 @@ ul { list-style: none; }
 }
 .retro-btn {
   display: inline-flex; align-items: center; justify-content: center;
-  font-family: 'Silkscreen',monospace; font-weight: 700; font-size: 14px;
+  font-family: 'Share Tech Mono', monospace; font-weight: 700; font-size: 14px;
   letter-spacing: 1px; padding: 9px 20px; border: 4px solid var(--hb);
   background: #fff; color: var(--hb); box-shadow: 5px 5px 0 0 var(--hb); cursor: default;
 }
@@ -551,37 +550,37 @@ ul { list-style: none; }
 
 /* ---- individual windows ---- */
 #w-brand { width: 460px; left: 500px; top: 120px; z-index: 6; }
-#w-brand .pre  { font-family: 'Silkscreen',monospace; font-size: 14px; letter-spacing: 2px; opacity: .9; }
+#w-brand .pre  { font-family: 'Share Tech Mono', monospace; font-size: 14px; letter-spacing: 2px; opacity: .9; }
 #w-brand .chunky { font-size: 48px; margin: 12px 0 10px; }
-#w-brand .tag  { font-family: 'Silkscreen',monospace; font-size: 12px; line-height: 1.7; letter-spacing: .8px; opacity: .85; max-width: 340px; }
+#w-brand .tag  { font-family: 'Share Tech Mono', monospace; font-size: 12px; line-height: 1.7; letter-spacing: .8px; opacity: .85; max-width: 340px; }
 #w-brand .row  { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 24px; gap: 12px; }
-#w-brand .ver  { font-family: 'Silkscreen',monospace; font-size: 11px; opacity: .7; letter-spacing: 1px; }
+#w-brand .ver  { font-family: 'Share Tech Mono', monospace; font-size: 11px; opacity: .7; letter-spacing: 1px; }
 
 #w-error { width: 300px; left: 300px; top: 0; z-index: 7; }
 #w-error .wbody { align-items: center; gap: 18px; padding: 28px 20px 24px; }
-#w-error .msg   { font-family: 'Silkscreen',monospace; font-weight: 700; font-size: 20px; letter-spacing: 1px; }
+#w-error .msg   { font-family: 'Share Tech Mono', monospace; font-weight: 700; font-size: 20px; letter-spacing: 1px; }
 
 #w-claude { width: 300px; left: 0; top: 34px; z-index: 5; }
 #w-claude .wbody { align-items: center; justify-content: center; padding: 16px; background: var(--hc); }
-#w-claude .cap   { font-family: 'Silkscreen',monospace; font-size: 11px; letter-spacing: 1px; margin-top: 12px; color: #555; }
+#w-claude .cap   { font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 1px; margin-top: 12px; color: #555; }
 
 #w-gen { width: 440px; left: 440px; top: 632px; z-index: 7; }
 #w-gen .wbody { gap: 13px; padding: 20px 22px; }
-#w-gen .file  { font-family: 'Silkscreen',monospace; font-weight: 700; font-size: 22px; letter-spacing: 1px; }
-#w-gen .sub   { font-family: 'Silkscreen',monospace; font-size: 12px; letter-spacing: .8px; color: #444; line-height: 1.6; }
+#w-gen .file  { font-family: 'Share Tech Mono', monospace; font-weight: 700; font-size: 22px; letter-spacing: 1px; }
+#w-gen .sub   { font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: .8px; color: #444; line-height: 1.6; }
 .pbar         { height: 28px; border: 4px solid var(--hb); background: #fff; display: flex; align-items: stretch; padding: 3px; gap: 3px; }
 .pbar i       { flex: 0 0 11px; background: var(--hb); }
-#w-gen .pct   { display: flex; justify-content: space-between; align-items: center; font-family: 'Silkscreen',monospace; font-size: 12px; letter-spacing: 1px; }
+#w-gen .pct   { display: flex; justify-content: space-between; align-items: center; font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 1px; }
 #w-gen .foot  { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; }
-#w-gen .rem   { font-family: 'Silkscreen',monospace; font-size: 10px; color: #777; letter-spacing: .8px; }
+#w-gen .rem   { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #777; letter-spacing: .8px; }
 
 #w-bsod { width: 388px; left: 8px; top: 600px; z-index: 5; }
 #w-bsod .wbody  { padding: 24px; gap: 13px; }
 #w-bsod .face   { font-family: 'Press Start 2P',monospace; font-size: 40px; }
-#w-bsod .lead2  { font-family: 'Silkscreen',monospace; font-size: 13px; line-height: 1.7; letter-spacing: .4px; }
-#w-bsod .stop   { font-family: 'Silkscreen',monospace; font-size: 11px; line-height: 1.8; letter-spacing: .4px; color: #bdbdbd; }
+#w-bsod .lead2  { font-family: 'Share Tech Mono', monospace; font-size: 13px; line-height: 1.7; letter-spacing: .4px; }
+#w-bsod .stop   { font-family: 'Share Tech Mono', monospace; font-size: 11px; line-height: 1.8; letter-spacing: .4px; color: #bdbdbd; }
 #w-bsod .qrow   { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
-#w-bsod .qmeta  { font-family: 'Silkscreen',monospace; font-size: 10px; line-height: 1.7; color: #bdbdbd; letter-spacing: .4px; }
+#w-bsod .qmeta  { font-family: 'Share Tech Mono', monospace; font-size: 10px; line-height: 1.7; color: #bdbdbd; letter-spacing: .4px; }
 
 #w-psd { width: 480px; left: 60px; top: 316px; z-index: 3; }
 #w-psd .work    { display: flex; flex: 1 1 auto; }
@@ -610,6 +609,75 @@ ul { list-style: none; }
 }
 .badge-dot--light { background: var(--color-status-active-light); }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+/* ===== CLIENTS BAR ===== */
+/* ===== PARADE — pixel characters strip ===== */
+.parade {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--spacing-container);
+  height: 180px;
+  pointer-events: none;
+}
+
+.parade__stage {
+  position: absolute;
+  bottom: 0;
+  left: var(--spacing-container);
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  will-change: transform;
+}
+
+.parade__char {
+  height: 144px;
+  width: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  opacity: 0;
+  display: block;
+}
+
+.parade__char.fallen {
+  opacity: 1;
+}
+
+.parade__stage.is-walking .parade__char {
+  animation: char-walk-bounce 0.38s steps(2) infinite;
+}
+
+.parade__floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--hb) 0px,
+    var(--hb) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+}
+
+@keyframes char-fall {
+  0%   { transform: translateY(-320px); opacity: 0; animation-timing-function: ease-in; }
+  54%  { transform: translateY(0);      opacity: 1; animation-timing-function: ease-out; }
+  68%  { transform: translateY(-20px);              animation-timing-function: ease-in; }
+  80%  { transform: translateY(0);                  animation-timing-function: ease-out; }
+  90%  { transform: translateY(-8px);               animation-timing-function: ease-in; }
+  96%  { transform: translateY(0); }
+  100% { transform: translateY(0);      opacity: 1; }
+}
+
+@keyframes char-walk-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
 
 /* ===== CLIENTS BAR ===== */
 .clients-bar {
@@ -641,21 +709,27 @@ ul { list-style: none; }
   width: auto;
   flex-shrink: 0;
   opacity: 0.75;
-  transition: opacity 0.2s ease;
+  filter: grayscale(100%);
+  transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
 .clients-bar__logo:hover {
   opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* Invert + grayscale para logos claros sobre fondo oscuro */
+.clients-bar__logo--invert {
+  filter: invert(1) grayscale(100%);
+}
+.clients-bar__logo--invert:hover {
+  filter: invert(1) grayscale(0%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .clients-bar__logo { transition: opacity 0.2s ease; }
 }
 
-/* Greenify: texto negro sobre fondo oscuro — invertir para visibilidad */
-.clients-bar__logo--invert {
-  filter: invert(1);
-}
 
 /* POY: logo tipográfico ancho — reducir altura para equilibrar con el resto */
 .clients-bar__logo--sm {
@@ -748,7 +822,7 @@ ul { list-style: none; }
 }
 
 .stat-card__eyebrow {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .1em;
@@ -767,7 +841,7 @@ ul { list-style: none; }
 }
 
 .stat-card__unit {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-sm);
   font-weight: 700;
   letter-spacing: .08em;
@@ -869,7 +943,7 @@ ul { list-style: none; }
   font-size: 10px;
   color: var(--color-text);
   flex-shrink: 0;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 /* ===== UX CHECKUP — dark ===== */
@@ -907,9 +981,9 @@ ul { list-style: none; }
 .checkup__desc {
   font-size: var(--font-size-lg);
   color: var(--color-white-65);
-  line-height: var(--line-height-relaxed);
-  margin-bottom: 32px;
-  max-width: 520px;
+  line-height: 1.9;
+  margin-bottom: 40px;
+  max-width: none;
 }
 
 .checkup__list {
@@ -983,7 +1057,7 @@ ul { list-style: none; }
 .checkup__mock-dot--green  { background: #28C840; }
 
 .checkup__mock-title {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 9px;
   font-weight: 700;
   color: #111;
@@ -1007,7 +1081,7 @@ ul { list-style: none; }
 .checkup__mock-line--short   { width: 45%; }
 
 .checkup__mock-issue {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 9px;
   padding: 10px 12px;
   display: flex;
@@ -1078,7 +1152,7 @@ ul { list-style: none; }
   border-radius: 0;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   letter-spacing: .5px;
   color: var(--color-text);
 }
@@ -1219,7 +1293,7 @@ ul { list-style: none; }
 .featured-label {
   display: inline-flex;
   align-items: center;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -1238,7 +1312,7 @@ ul { list-style: none; }
   border: 2px solid var(--color-text);
   border-radius: 0;
   padding: 4px 10px 4px 8px;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: 700;
   color: var(--color-text);
@@ -1326,7 +1400,7 @@ ul { list-style: none; }
 }
 
 .project-card--featured__client-label {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
@@ -1580,7 +1654,7 @@ ul { list-style: none; }
   background: #fff;
   border: none;
   padding: 4px 10px;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: 700;
   color: var(--color-text);
@@ -1730,7 +1804,7 @@ ul { list-style: none; }
 .author-avatar--3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
 
 .author-name {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 11px;
   font-weight: 700;
   color: var(--color-text);
@@ -1858,7 +1932,7 @@ ul { list-style: none; }
   border: 2px solid var(--color-text-inverse);
   border-radius: 0;
   padding: 6px 14px 6px 10px;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: 700;
   color: var(--color-text-inverse);
@@ -2004,8 +2078,10 @@ ul { list-style: none; }
   .art  { display: none; }
 
   /* Hero text: sin max-width que cause overflow */
-  .tagline   { font-size: 48px; max-width: 100%; }
-  .hero-lead { font-size: 24px; max-width: 100%; }
+  .tagline   { font-size: clamp(40px, 10vw, 56px); max-width: 100%; }
+  .hero-lead { font-size: 20px; max-width: 100%; }
+  .parade    { height: 140px; }
+  .parade__char { height: 100px; }
 
   /* Space Invaders: escala progresiva, alineados al fondo */
   .hero-aliens {
@@ -2147,7 +2223,7 @@ ul { list-style: none; }
 }
 
 .blog-card--featured__label {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   font-weight: 700;
   text-transform: uppercase;
@@ -2160,7 +2236,7 @@ ul { list-style: none; }
 }
 
 .blog-card__meta {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -2268,7 +2344,7 @@ ul { list-style: none; }
   justify-content: center;
 }
 .blog-img-placeholder span {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   color: var(--color-text-light);
   background: var(--color-bg);
@@ -2291,7 +2367,7 @@ ul { list-style: none; }
 
 /* Cada nivel: caja con borde, sin sombra */
 .breadcrumb__item {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -2330,7 +2406,7 @@ a.breadcrumb__item:hover {
 
 /* Separador entre niveles */
 .breadcrumb__sep {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   user-select: none;
@@ -2370,7 +2446,7 @@ a.breadcrumb__item:hover {
 }
 
 .article-header__date {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   text-transform: uppercase;
@@ -2451,7 +2527,7 @@ a.breadcrumb__item:hover {
 
 .article-body ul li::before {
   content: '▸';
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   position: absolute;
   left: 0;
   top: 5px;
@@ -2463,7 +2539,7 @@ a.breadcrumb__item:hover {
 .article-body ol li { counter-increment: article-counter; }
 .article-body ol li::before {
   content: counter(article-counter) '.';
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   position: absolute;
   left: 0;
@@ -2478,7 +2554,7 @@ a.breadcrumb__item:hover {
 .article-body a:hover { background: var(--color-surface); }
 
 .article-body code {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   border: 2px solid var(--color-text);
   padding: 2px 6px;
   font-size: .85em;
@@ -2536,7 +2612,7 @@ a.breadcrumb__item:hover {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   color: var(--color-white-55);
   text-transform: uppercase;
@@ -2603,7 +2679,7 @@ a.breadcrumb__item:hover {
 .case-hero__tag {
   display: inline-flex;
   align-items: center;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   font-weight: 700;
   letter-spacing: .1em;
@@ -2761,7 +2837,7 @@ a.breadcrumb__item:hover {
 }
 
 .case-summary__meta-label {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
@@ -2838,7 +2914,7 @@ a.breadcrumb__item:hover {
 
 .case-objectives__list li::before {
   content: counter(obj-counter, decimal-leading-zero);
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 11px;
   font-weight: 700;
   color: var(--color-text-muted);
@@ -2883,7 +2959,7 @@ a.breadcrumb__item:hover {
 
 .case-process__item figcaption {
   padding: 14px 20px;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -2968,7 +3044,7 @@ a.breadcrumb__item:hover {
 }
 
 .case-results__achievement-icon {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 14px;
   color: var(--color-white-40);
   flex-shrink: 0;
@@ -3087,7 +3163,7 @@ a.breadcrumb__item:hover {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.05em;
@@ -3137,7 +3213,7 @@ a.breadcrumb__item:hover {
 }
 
 .ckm-block__label {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.1em;
@@ -3166,7 +3242,7 @@ a.breadcrumb__item:hover {
 }
 
 .ckm-check {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
@@ -3184,7 +3260,7 @@ a.breadcrumb__item:hover {
 
 /* --- Scarcity line --- */
 .ckm-scarcity {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.05em;
@@ -3227,7 +3303,7 @@ a.breadcrumb__item:hover {
 }
 
 .ckm-form-header__label {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.08em;
@@ -3446,4 +3522,94 @@ h2 { animation: bounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; animation-dela
   opacity: 0;
   animation: fadeIn 1s ease forwards;
   animation-delay: 0.7s;
+}
+
+/* ============================================================
+   STICKY CTA — solo mobile (mejora de conversión home)
+============================================================ */
+.sticky-cta { display: none; }
+@media (max-width: 768px) {
+  .sticky-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 999;
+    padding: 14px 20px;
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: 2px solid var(--color-text);
+    box-shadow: 0 4px 20px rgba(0,0,0,.25);
+  }
+}
+
+/* ============================================================
+   SCARCITY TAG animado + microcopy (bridge AI MVP Rescue)
+============================================================ */
+.scarcity-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,.25);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--color-text-inverse);
+  animation: scarcityPulse 2.2s ease-in-out infinite;
+}
+.scarcity-tag__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5a4d;
+  box-shadow: 0 0 0 0 rgba(255,90,77,.6);
+  animation: scarcityDot 1.6s ease-out infinite;
+}
+@keyframes scarcityDot {
+  0%   { box-shadow: 0 0 0 0 rgba(255,90,77,.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(255,90,77,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,90,77,0); }
+}
+@keyframes scarcityPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .72; }
+}
+.checkup__microcopy {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: .75;
+  color: var(--color-text-inverse);
+}
+@media (prefers-reduced-motion: reduce) {
+  .scarcity-tag, .scarcity-tag__dot { animation: none; }
+}
+
+/* ============================================================
+   BRIDGE — título XL en dos partes + highlight de descripción
+============================================================ */
+.checkup__title--xl {
+  font-size: clamp(40px, 6vw, 66px);
+  line-height: 1.16;
+  letter-spacing: -.02em;
+  margin-bottom: 28px;
+}
+.checkup__title-1 { display: block; color: var(--color-text-inverse); }
+.checkup__title-2 { display: block; margin-top: 8px; color: #D9A441; font-style: italic; font-weight: 600; }
+.checkup__desc-em {
+  font-style: italic;
+  color: var(--color-text-inverse);
+}
+.checkup__desc-highlight {
+  font-weight: 700;
+  color: #D9A441;
 }
