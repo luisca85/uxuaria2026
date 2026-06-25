@@ -684,7 +684,7 @@
        ESTO ES PARA VOS SI… (sección oscura · ref. del cliente)
     ============================================================ */
     .foryou { padding: var(--spacing-section) 0; background: var(--color-bg-dark); color: var(--hc); border-top: 1px solid rgba(255,255,255,.14); }
-    .foryou__title { font-size: clamp(34px, 5.5vw, 60px); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; color: #fff; max-width: 18ch; margin: 22px 0 52px; }
+    .foryou__title { font-size: clamp(34px, 5.5vw, 60px); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; color: #fff; margin: 22px 0 52px; }
     .foryou__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 56px; max-width: 1040px; }
     .foryou__item { display: flex; gap: 16px; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,.75); }
     .foryou__item::before { content: ''; flex: 0 0 22px; height: 2px; background: var(--ochre); margin-top: 12px; }
@@ -725,6 +725,8 @@
       .navbar__inner { gap: 0; }
     }
   </style>
+
+<link id="gfont-Inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
 </head>
 <body>
 
@@ -757,7 +759,7 @@
       <a href="blog.html" class="nav-link">Blog</a>
       <a href="contacto/index.html" class="nav-link">Contacto</a>
       <div class="mobile-menu__cta-row">
-        <a href="mailto:info@uxuaria.com" class="btn btn--primary">✉ Email</a>
+        <a href="/cdn-cgi/l/email-protection#10797e767f50656865716279713e737f7d" class="btn btn--primary">✉ Email</a>
         <a href="https://wa.me/5491100000000?text=Hola%20Luis%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20UX." class="btn btn--outline" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
@@ -768,20 +770,13 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container">
-        <div class="hero__inner">
+        <div class="hero__inner" style="gap: 42px">
           <p class="scarcity-tag" role="status">
             <span class="scarcity-tag__dot" aria-hidden="true"></span>
-            Queda 1 cupo de 2 este mes
+            CONSULTORIA INICIAL SIN COSTO
           </p>
-          <h1 class="hero__title">
-            Tu MVP se estancó.<br><span class="accent">Rescatémoslo.</span>
-          </h1>
-          <p class="hero__lead">
-            Para fundadores cuyo MVP hecho con IA no escala, cuyo freelancer desapareció
-            sin dejar rastro, o cuyo proyecto se estancó a mitad de lanzamiento.
-            Recuperación con alcance definido y entregables claros. Sin contratos de
-            retención ni consultoría indefinida. <span class="hl">Diagnóstico inicial sin costo.</span>
-          </p>
+          <h1 class="hero__title">Convierte tu prototipo hecho con IA en un MVP que realmente crezca.</h1>
+          <p class="hero__lead" style="font-family: Inter; font-weight: 400">Para Founders que tienen intuición y visión de negocio, pero su proyecto Vibe Coded fue diseñado por un desarrollador </p>
           <div class="hero__cta">
             <a href="https://8aqt6k328lv.typeform.com/to/lDjbMOFd" target="_blank" rel="noopener" class="btn-primary" data-track="cta_hero">
               Rescatá tu MVP ahora
@@ -809,14 +804,14 @@
     <!-- ESTO ES PARA VOS SI… -->
     <section class="foryou">
       <div class="container">
-        <p class="eyebrow eyebrow--inverse">Esto es para vos si…</p>
-        <h2 class="foryou__title">Creaste un proyecto con IA, y se quedó corto en el camino con los usuarios.</h2>
+        <p class="eyebrow eyebrow--inverse">ESTO ES PARA TI SI…</p>
+        <h2 class="foryou__title" style="width: 100%; font-size: 52px">Tu producto no falla porque no tenga valor, <em style="color: rgb(244, 232, 77)">sino porque los usuarios no pueden acceder a él.</em></h2>
         <div class="foryou__grid">
-          <p class="foryou__item">Lanzaste rápido con Cursor, Lovable o Claude Code, y ahora los usuarios reales rompen lo que antes andaba.</p>
-          <p class="foryou__item">Estás a punto de contratar a tu sobrino diseñador para que te ponga "bonitas las pantallas".</p>
-          <p class="foryou__item">No sabés por qué: tu proyecto es único, a nadie más se le ocurrió, y aun así la gente simplemente no se registra.</p>
-          <p class="foryou__item">Cada feature nuevo rompe algo de lo anterior y las inconsistencias se acumulan.</p>
-          <p class="foryou__item">Un freelancer desapareció a mitad del proyecto y tenés que dejarlo listo para producción.</p>
+          <p class="foryou__item"><span style="color: #ffffff">Lanzaste tu producto rápido, llegaste a una base de usuarios pero paró de crecer.</span></p>
+          <p class="foryou__item">Cada vez que quieres implementar una nueva funcionalidad se hace mas complicado y genera mas inconsistencias con otras features.</p>
+          <p class="foryou__item" style="color: rgb(255, 255, 255)">Tus usuarios entran y tal vez se registran pero nunca usan realmente tu producto.</p>
+          <p class="foryou__item">Ya te han hackeado y la seguridad de tu proyecto se ve comprometida</p>
+          <p class="foryou__item" style="color: rgb(255, 255, 255)">Tu producto parecer funcionar bien pero una interfaz generica, y confusa no permite que lo bueno impacte en el mercado</p>
         </div>
         <p class="foryou__close">Si dos o más de estas te describen, este rescate es para vos.</p>
       </div>
@@ -1006,7 +1001,7 @@
         </div>
         <div class="footer__col">
           <h4 class="footer__col-title">Contacto</h4>
-          <a href="mailto:info@uxuaria.com">info@uxuaria.com</a>
+          <a href="/cdn-cgi/l/email-protection#422b2c242d02373a3723302b236c212d2f"><span class="__cf_email__" data-cfemail="9ff6f1f9f0dfeae7eafeedf6feb1fcf0f2">[email&#160;protected]</span></a>
         </div>
       </div>
     </div>
@@ -1017,7 +1012,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ---- Parade hero: personajes se encuentran en el centro al hacer scroll ----
     (function () {
       const victimWrap  = document.getElementById('charVictim');
@@ -1148,5 +1143,215 @@
     })();
   </script>
 
+  <!-- ============================================================
+       TWEAKS PANEL — vanilla JS, sin dependencias
+  ============================================================ -->
+  <style>
+    #twk{position:fixed;right:16px;bottom:16px;z-index:9999;width:264px;
+      background:rgba(250,249,247,.92);backdrop-filter:blur(24px) saturate(160%);
+      -webkit-backdrop-filter:blur(24px) saturate(160%);
+      border:.5px solid rgba(255,255,255,.7);border-radius:14px;
+      box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 12px 40px rgba(0,0,0,.22);
+      font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;color:#29261b;
+      overflow:hidden;transition:opacity .2s}
+    #twk.hidden{opacity:0;pointer-events:none}
+    #twk-hd{display:flex;align-items:center;justify-content:space-between;
+      padding:10px 8px 10px 14px;cursor:move;user-select:none;
+      border-bottom:.5px solid rgba(0,0,0,.07)}
+    #twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+    #twk-close{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.45);
+      width:22px;height:22px;border-radius:6px;cursor:pointer;font-size:15px;
+      line-height:22px;text-align:center;display:flex;align-items:center;justify-content:center}
+    #twk-close:hover{background:rgba(0,0,0,.07);color:#29261b}
+    #twk-body{padding:6px 14px 14px;display:flex;flex-direction:column;gap:10px}
+    .twk-sec{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+      color:rgba(41,38,27,.38);padding-top:4px}
+    .twk-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .twk-lbl{font-size:12px;font-weight:500;flex-shrink:0}
+    .twk-radios{display:flex;gap:2px;background:rgba(0,0,0,.07);border-radius:7px;padding:2px}
+    .twk-radio{padding:3px 9px;border-radius:5px;font-size:11px;font-weight:500;border:none;
+      background:transparent;cursor:pointer;color:rgba(41,38,27,.5);transition:.12s;white-space:nowrap}
+    .twk-radio.on{background:#fff;color:#29261b;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+    .twk-chips{display:flex;gap:5px}
+    .twk-chip{width:22px;height:22px;border-radius:6px;border:2.5px solid transparent;
+      cursor:pointer;transition:.12s;outline:none;padding:0}
+    .twk-chip.on{border-color:#29261b;box-shadow:0 0 0 1.5px rgba(41,38,27,.15)}
+  </style>
+
+  <div id="twk">
+    <div id="twk-hd">
+      <b>Tweaks</b>
+      <button id="twk-close" title="Cerrar" aria-label="Cerrar tweaks">×</button>
+    </div>
+    <div id="twk-body">
+      <div class="twk-sec">Modo visual</div>
+      <div class="twk-row">
+        <span class="twk-lbl">Estética</span>
+        <div class="twk-radios" id="tw-modo">
+          <button class="twk-radio" data-val="retro">retro</button>
+          <button class="twk-radio" data-val="minimal">minimal</button>
+          <button class="twk-radio" data-val="dark">dark</button>
+        </div>
+      </div>
+      <div class="twk-sec">Acento</div>
+      <div class="twk-row">
+        <span class="twk-lbl">Color</span>
+        <div class="twk-chips" id="tw-acento">
+          <button class="twk-chip" data-val="#D9A441" style="background:#D9A441" title="Ochre"></button>
+          <button class="twk-chip" data-val="#C8F135" style="background:#C8F135" title="Lima"></button>
+          <button class="twk-chip" data-val="#E05D45" style="background:#E05D45" title="Coral"></button>
+          <button class="twk-chip" data-val="#3B7DD8" style="background:#3B7DD8" title="Azul"></button>
+        </div>
+      </div>
+      <div class="twk-sec">Tipografía</div>
+      <div class="twk-row">
+        <span class="twk-lbl">Títulos</span>
+        <div class="twk-radios" id="tw-tipo">
+          <button class="twk-radio" data-val="sans">sans</button>
+          <button class="twk-radio" data-val="mono">mono</button>
+          <button class="twk-radio" data-val="pixel">pixel</button>
+        </div>
+      </div>
+      <div class="twk-sec">Subrayado</div>
+      <div class="twk-row">
+        <span class="twk-lbl">Título hero</span>
+        <div class="twk-radios" id="tw-subray">
+          <button class="twk-radio" data-val="none">off</button>
+          <button class="twk-radio" data-val="solid">línea</button>
+          <button class="twk-radio" data-val="wavy">wavy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var KEY = 'uxuaria-mvp-tweaks';
+    var state;
+    try { state = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
+    state = Object.assign({ modo: 'retro', acento: '#D9A441', tipo: 'sans', subray: 'none' }, state || {});
+
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+    function injectStyle(id, css) {
+      var el = document.getElementById(id);
+      if (!el) { el = document.createElement('style'); el.id = id; document.head.appendChild(el); }
+      el.textContent = css;
+    }
+
+    var MODO_CSS = {
+      retro: '',
+      minimal: [
+        ':root { --hbd: 1px !important; }',
+        '.symptom,.proof__card,.about__stat,.pipe-step__node,.win,',
+        '.btn-primary,.btn-ghost,.eyebrow,.eyebrow--inverse,.scarcity-tag,',
+        '.specs span { border-radius: 6px !important; box-shadow: none !important; }',
+        '.btn-primary { box-shadow: 0 2px 10px rgba(0,0,0,.18) !important; }',
+        '.btn-primary:hover { transform: translateY(-1px) !important; box-shadow: 0 4px 18px rgba(0,0,0,.22) !important; }',
+        '.btn--primary { box-shadow: 0 2px 10px rgba(0,0,0,.18) !important; border-radius: 6px !important; }',
+        '.btn--primary:hover { transform: translateY(-1px) !important; box-shadow: 0 4px 18px rgba(0,0,0,.22) !important; }',
+        '.eyebrow,.eyebrow--inverse { border-width: 1px !important; }',
+        '.specs span { border-width: 1px !important; }'
+      ].join('\n'),
+      dark: [
+        '.why,.process,.faq { background: #111 !important; border-top-color: rgba(255,255,255,.1) !important; }',
+        '.why__title,.process__title,.section-title,.faq__title { color: #f5f5f5 !important; }',
+        '.why__body,.process__body { color: rgba(245,245,245,.6) !important; }',
+        '.symptom { background: #1c1c1c !important; }',
+        '.symptom__text { color: #f0f0f0 !important; }',
+        '.symptom__text span { color: rgba(240,240,240,.5) !important; }',
+        '.pipe-step__node { background: #1c1c1c !important; }',
+        '.pipe-step__title { color: #f5f5f5 !important; }',
+        '.pipe-step__body { color: rgba(245,245,245,.55) !important; }',
+        '.pipe-step:not(:last-child)::after { background: rgba(245,245,245,.15) !important; }',
+        '.process .btn--primary { background: #f5f5f5 !important; color: #111 !important; border-color: #f5f5f5 !important; }',
+        '.faq__q { color: #f0f0f0 !important; }',
+        '.faq__a { color: rgba(245,245,245,.55) !important; }',
+        '.faq__item { border-color: rgba(245,245,245,.15) !important; }',
+        '.eyebrow { color: #f5f5f5 !important; border-color: #f5f5f5 !important; box-shadow: 4px 4px 0 0 rgba(245,245,245,.25) !important; }'
+      ].join('\n')
+    };
+
+    var SUBRAY_CSS = {
+      none:  '.hero__title .accent { text-decoration: none !important; }',
+      solid: '.hero__title .accent { text-decoration: underline !important; text-underline-offset: 8px !important; text-decoration-thickness: 3px !important; text-decoration-color: var(--ochre) !important; }',
+      wavy:  '.hero__title .accent { text-decoration: underline wavy !important; text-underline-offset: 8px !important; text-decoration-color: var(--ochre) !important; text-decoration-thickness: 2px !important; }'
+    };
+
+    var TIPO_CSS = {
+      sans: '',
+      mono: '.hero__title,.foryou__title,.process__title,.section-title,.form-section__title,.final-cta__title,.why__title,.faq__title { font-family: \'Share Tech Mono\', monospace !important; letter-spacing: -.01em !important; }',
+      pixel: '.hero__title,.foryou__title,.process__title,.section-title,.form-section__title,.final-cta__title,.why__title,.faq__title { font-family: \'Press Start 2P\', monospace !important; font-size: clamp(13px,1.5vw,21px) !important; line-height: 1.9 !important; letter-spacing: 0 !important; }'
+    };
+
+    function apply() {
+      document.documentElement.style.setProperty('--ochre', state.acento);
+      injectStyle('tweaks-modo', MODO_CSS[state.modo] || '');
+      injectStyle('tweaks-tipo', TIPO_CSS[state.tipo] || '');
+      injectStyle('tweaks-subray', SUBRAY_CSS[state.subray] || '');
+      document.querySelectorAll('#tw-modo .twk-radio').forEach(function(b) {
+        b.classList.toggle('on', b.dataset.val === state.modo);
+      });
+      document.querySelectorAll('#tw-acento .twk-chip').forEach(function(b) {
+        b.classList.toggle('on', b.dataset.val === state.acento);
+      });
+      document.querySelectorAll('#tw-tipo .twk-radio').forEach(function(b) {
+        b.classList.toggle('on', b.dataset.val === state.tipo);
+      });
+      document.querySelectorAll('#tw-subray .twk-radio').forEach(function(b) {
+        b.classList.toggle('on', b.dataset.val === state.subray);
+      });
+    }
+
+    document.getElementById('tw-modo').addEventListener('click', function(e) {
+      var b = e.target.closest('.twk-radio'); if (!b) return;
+      state.modo = b.dataset.val; save(); apply();
+    });
+    document.getElementById('tw-acento').addEventListener('click', function(e) {
+      var b = e.target.closest('.twk-chip'); if (!b) return;
+      state.acento = b.dataset.val; save(); apply();
+    });
+    document.getElementById('tw-tipo').addEventListener('click', function(e) {
+      var b = e.target.closest('.twk-radio'); if (!b) return;
+      state.tipo = b.dataset.val; save(); apply();
+    });
+    document.getElementById('tw-subray').addEventListener('click', function(e) {
+      var b = e.target.closest('.twk-radio'); if (!b) return;
+      state.subray = b.dataset.val; save(); apply();
+    });
+    document.getElementById('twk-close').addEventListener('click', function() {
+      document.getElementById('twk').classList.add('hidden');
+    });
+
+    /* Draggable */
+    var panel = document.getElementById('twk');
+    var hd = document.getElementById('twk-hd');
+    var ox = 0, oy = 0, mx = 0, my = 0;
+    hd.addEventListener('mousedown', function(e) {
+      if (e.target.id === 'twk-close') return;
+      var r = panel.getBoundingClientRect();
+      panel.style.right = 'auto'; panel.style.bottom = 'auto';
+      panel.style.left = r.left + 'px'; panel.style.top = r.top + 'px';
+      mx = e.clientX; my = e.clientY;
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', stop);
+    });
+    function drag(e) {
+      ox = e.clientX - mx; oy = e.clientY - my; mx = e.clientX; my = e.clientY;
+      panel.style.left = (parseFloat(panel.style.left) + ox) + 'px';
+      panel.style.top  = (parseFloat(panel.style.top)  + oy) + 'px';
+    }
+    function stop() {
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('mouseup', stop);
+    }
+
+    apply();
+  })();
+  </script>
+
 </body>
 </html>
+<style id="__om-edit-overrides">
+.foryou :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >span { background-color: rgba(239, 238, 235, 0) !important }
+</style>
