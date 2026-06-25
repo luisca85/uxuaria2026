@@ -1,16 +1,5 @@
 .DS_Store
 .claude/
-Uxuaria Hero - Retro UI.html
-
-# Next.js (rama cult-ui-nextjs)
-.next/
-node_modules/
-next-env.d.ts
-next.config.mjs
-package.json
-package-lock.json
-postcss.config.js
-public/
-src/
-tailwind.config.ts
-tsconfig.json
+skills-lock.json
+serve.py
+server.js
