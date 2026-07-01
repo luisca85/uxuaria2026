@@ -2083,18 +2083,8 @@ ul { list-style: none; }
   .parade    { height: 140px; }
   .parade__char { height: 100px; }
 
-  /* Space Invaders: escala progresiva, alineados al fondo */
-  .hero-aliens {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    margin-bottom: 0px;
-  }
-  .hero-aliens .alien { display: block; flex-shrink: 0; }
-  .hero-aliens .alien--1 { width: 28px; fill: #111111; }
-  .hero-aliens .alien--2 { width: 36px; fill: #111111; }
-  .hero-aliens .alien--3 { width: 46px; fill: #C8F135; }
-  .hero-aliens .alien--4 { width: 60px; fill: #C8F135; }
+  /* Space Invaders: hidden on mobile */
+  .hero-aliens { display: none; }
 
   .ux-vision__inner { grid-template-columns: 1fr; gap: 48px; }
 
@@ -3604,7 +3594,7 @@ h2 { animation: bounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; animation-dela
   margin-bottom: 28px;
 }
 .checkup__title-1 { display: block; color: var(--color-text-inverse); }
-.checkup__title-2 { display: block; margin-top: 8px; color: #D9A441; font-style: italic; font-weight: 600; }
+.checkup__title-2 { display: block; margin-top: 8px; color: rgb(244, 232, 77); font-style: italic; font-weight: 600; }
 .checkup__desc-em {
   font-style: italic;
   color: var(--color-text-inverse);

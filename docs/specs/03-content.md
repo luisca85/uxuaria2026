@@ -127,19 +127,18 @@ Sección `.ux-vision`. Dos columnas: copy izquierda + stat cards derecha.
 [título h2]  Tu problema de crecimiento
              es un problema de diseño.
 
-[subtítulo]  Y no hablo de diseñar "pantallas bonitas".
+[cuerpo]     En Uxuaria concebimos el diseño como un proceso que permite
+             resolver problemas profundos y estructurales dentro de una
+             organización. Los problemas que tratamos de resolver son los
+             que conectan la promesa de valor de tu organización con tu
+             usuario: entre mayor conexión, mayor crecimiento y
+             sostenibilidad.
 
-[cuerpo]     La mayoría de los founders que vienen a mí me piden
-             "pantallas bonitas", creyendo que es lo que le falta a
-             su MVP para terminar de convencer. Pero esa intención
-             suele ser el último grito al ver que nada funciona, y
-             la conclusión más fácil es: "debe ser el diseño".
-             Y sí lo es. Solo que cuando hablo de diseño, hablo de
-             tomar buenas decisiones que cumplan una promesa al usuario.
-             Ese match entre tu público y tu idea es lo que estamos buscando.
-
-[bold]       Una mala experiencia no se ve en una demo.
-             Se ve cuando los usuarios no vuelven.
+[cuerpo]     Hacer pantallas atractivas, repensar un nuevo flujo de usuario,
+             rediseñar tu landing, investigar cuál es el modelo mental de
+             tus usuarios: son todas maneras en las que el diseño toma
+             acción para que tu organización encuentre vías hacia el
+             crecimiento.
 
 [CTA]        Ver servicios →   → servicios/index.html
 ```
