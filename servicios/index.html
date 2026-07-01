@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6TCJ5969G7');
+  </script>
+
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <title>Servicios UX: User Research, MVP, UX Audit y Diseño | Uxuaria · Buenos Aires</title>
   <meta name="description" content="Servicios de consultoría UX en Buenos Aires para startups en LATAM: User Research, validación de MVP, auditoría UX, diseño de interfaces y CRO. Más de 15 años de experiencia en fintech y apps con IA." />
   <link rel="canonical" href="https://uxuaria.com/servicios/" />
@@ -15,9 +29,42 @@
   <meta property="og:description" content="Consultoría UX especializada en fintech y apps con IA. User Research, prototipado, auditoría UX y diseño de interfaces. Buenos Aires, remoto para LATAM." />
   <meta property="og:url" content="https://uxuaria.com/servicios/" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:site_name" content="Uxuaria" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="twitter:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+
+  <!-- Schema.org JSON-LD — Service catalog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Servicios de consultoría UX — Uxuaria",
+    "description": "Servicios de consultoría UX en Buenos Aires para startups en LATAM: User Research, validación de MVP, auditoría UX, diseño de interfaces y CRO.",
+    "url": "https://uxuaria.com/servicios/",
+    "provider": {
+      "@type": ["Person", "ProfessionalService"],
+      "@id": "https://uxuaria.com/#luis",
+      "name": "Luis Carlos Romero León",
+      "alternateName": "Uxuaria"
+    },
+    "areaServed": ["Argentina", "Colombia", "Costa Rica", "México", "Latinoamérica"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios UX",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Investigación de Usuarios", "url": "https://uxuaria.com/servicios/investigacion/" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MVP Discovery y Validación", "url": "https://uxuaria.com/servicios/mvp/" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diseño UX/UI y Experiencia de Uso", "url": "https://uxuaria.com/servicios/experiencia/" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRO y Estrategia de Crecimiento", "url": "https://uxuaria.com/servicios/crecimiento/" } }
+      ]
+    }
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -96,7 +143,7 @@
         </div>
         <div class="s-service-block__image-wrap">
           <div class="s-service-block__image">
-            <img src="../images/services/research.png" alt="Sesión de investigación de usuarios — entrevistas y análisis de comportamiento" />
+            <img src="../images/services/research.png" width="1888" height="2272" alt="Sesión de investigación de usuarios — entrevistas y análisis de comportamiento" />
           </div>
         </div>
       </div>
@@ -125,7 +172,7 @@
         </div>
         <div class="s-service-block__image-wrap">
           <div class="s-service-block__image">
-            <img src="../images/services/MVP.png" alt="Prototipo de MVP — wireframes y flujos de producto validados con usuarios" />
+            <img src="../images/services/MVP.png" width="1696" height="2492" alt="Prototipo de MVP — wireframes y flujos de producto validados con usuarios" />
           </div>
         </div>
       </div>
@@ -155,7 +202,7 @@
         </div>
         <div class="s-service-block__image-wrap">
           <div class="s-service-block__image">
-            <img src="../images/services/turtle-com.png" alt="Diseño de experiencia de uso — interfaz de producto digital con flujos optimizados" />
+            <img src="../images/services/turtle-com.png" width="848" height="1246" alt="Diseño de experiencia de uso — interfaz de producto digital con flujos optimizados" />
           </div>
         </div>
       </div>
@@ -185,7 +232,7 @@
         </div>
         <div class="s-service-block__image-wrap">
           <div class="s-service-block__image">
-            <img src="../images/services/scale.png" alt="Escalamiento de crecimiento — optimización de conversión y rediseño estratégico de producto" />
+            <img src="../images/services/scale.png" width="2814" height="1536" alt="Escalamiento de crecimiento — optimización de conversión y rediseño estratégico de producto" />
           </div>
         </div>
       </div>
@@ -232,7 +279,7 @@
             Solo acepto 2 proyectos por mes para garantizar la calidad del análisis.
           </p>
 
-          <a href="../ux-checkup.html" class="btn btn--white btn--lg">
+          <a href="../ai-mvp-rescue.html" class="btn btn--white btn--lg">
             Aplicar al UX Checkup
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -320,7 +367,7 @@
           <a href="mvp/index.html">MVP &amp; Prototipado</a>
           <a href="experiencia/index.html">UI/UX Design</a>
           <a href="crecimiento/index.html">UX Audits</a>
-          <a href="../ux-checkup.html">AI MVP Rescue</a>
+          <a href="../ai-mvp-rescue.html">AI MVP Rescue</a>
         </div>
         <div class="footer__col">
           <h4 class="footer__col-title">Navegación</h4>

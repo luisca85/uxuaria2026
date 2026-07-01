@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <title>AI MVP Rescue · Diagnóstico y propuesta para tu app construida con IA</title>
   <meta name="description" content="Construiste con Lovable, Cursor, Bolt o v0. La IA no garantiza que tus usuarios se queden — ni que no haya barreras invisibles frenando el crecimiento. Una reunión de 20 minutos. Diagnóstico y propuesta en 48hs." />
   <meta name="robots" content="noindex, nofollow" /><!-- landing de ads: no indexar -->
@@ -11,22 +15,24 @@
   <meta property="og:title" content="La IA construyó tu app. No auditó la experiencia de tus usuarios." />
   <meta property="og:description" content="Una reunión de 20 minutos. En 48hs, diagnóstico concreto y una propuesta para resolverlo. Sin proceso de consultor de semanas." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
   <meta property="og:url" content="https://uxuaria.com/ai-mvp-rescue" />
 
   <!-- ============================================================
-       TRACKING (GA4) — descomentar y reemplazar G-XXXXXXXXXX
-       con el Measurement ID real. Los eventos ya están instrumentados
-       en el script del final (cta_click, form_submit).
+       TRACKING (GA4) — activo con el Measurement ID de Uxuaria.
+       Los eventos ya están instrumentados en el script del final (cta_click, form_submit).
   ============================================================ -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-6TCJ5969G7');
   </script>
-  -->
 
   <!-- Fuentes — mismas del sitio principal -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -790,10 +796,10 @@
       <!-- Parade: víctima entra por izquierda, rescatista por derecha, se encuentran con scroll -->
       <div class="hero__parade" aria-hidden="true">
         <div class="parade__char-wrap parade__char-wrap--victim" id="charVictim">
-          <img src="images/angry-at-laptop 1.png" class="parade__char" alt="">
+          <img src="images/angry-at-laptop 1.png" width="83" height="117" class="parade__char" alt="">
         </div>
         <div class="parade__char-wrap parade__char-wrap--rescuer" id="charRescuer">
-          <img src="images/repairing-with-tools 1.png" class="parade__char" alt="">
+          <img src="images/repairing-with-tools 1.png" width="95" height="115" class="parade__char" alt="">
         </div>
         <div class="parade__floor"></div>
       </div>
@@ -832,7 +838,7 @@
             <div class="pipe-step">
               <div class="pipe-step__node">
                 <span class="pipe-step__num">1</span>
-                <img src="images/evaluacion.png" class="pipe-step__img" alt="" loading="lazy">
+                <img src="images/evaluacion.png" width="2000" height="2000" class="pipe-step__img" alt="" loading="lazy">
               </div>
               <p class="pipe-step__title">Evaluamos (gratis)</p>
               <p class="pipe-step__body">En una charla de 15 minutos me contás el contexto, qué está roto y hacia dónde querés ir. Quizás incluso encontremos otras vías para resolverlo.</p>
@@ -841,7 +847,7 @@
             <div class="pipe-step">
               <div class="pipe-step__node">
                 <span class="pipe-step__num">2</span>
-                <img src="images/diagnostico.png" class="pipe-step__img" alt="" loading="lazy">
+                <img src="images/diagnostico.png" width="2000" height="2000" class="pipe-step__img" alt="" loading="lazy">
               </div>
               <p class="pipe-step__title">Diagnóstico</p>
               <p class="pipe-step__body">Recibís un diagnóstico general del estado de tu proyecto: negocio, usuarios y posibles bloqueos relacionados con tu stack de desarrollo.</p>
@@ -850,7 +856,7 @@
             <div class="pipe-step">
               <div class="pipe-step__node">
                 <span class="pipe-step__num">3</span>
-                <img src="images/priorizamos.png" class="pipe-step__img" alt="" loading="lazy">
+                <img src="images/priorizamos.png" width="2000" height="2000" class="pipe-step__img" alt="" loading="lazy">
               </div>
               <p class="pipe-step__title">Priorizamos</p>
               <p class="pipe-step__body">Juntos identificamos el problema correcto a resolver. No perdemos tiempo en detalles que no aportan valor.</p>
@@ -859,7 +865,7 @@
             <div class="pipe-step">
               <div class="pipe-step__node">
                 <span class="pipe-step__num">4</span>
-                <img src="images/alcance.png" class="pipe-step__img" alt="" loading="lazy">
+                <img src="images/alcance.png" width="2000" height="2000" class="pipe-step__img" alt="" loading="lazy">
               </div>
               <p class="pipe-step__title">Alcance</p>
               <p class="pipe-step__body">Armamos el proyecto con el presupuesto ideal para resolverlo. Alcance y precio cerrados, sin sorpresas.</p>
@@ -868,7 +874,7 @@
             <div class="pipe-step">
               <div class="pipe-step__node">
                 <span class="pipe-step__num">5</span>
-                <img src="images/rescate.png" class="pipe-step__img" alt="" loading="lazy">
+                <img src="images/rescate.png" width="2000" height="2000" class="pipe-step__img" alt="" loading="lazy">
               </div>
               <p class="pipe-step__title">Rescate y hand-off</p>
               <p class="pipe-step__body">Empieza todo de verdad: revisamos, arreglamos y proponemos. Siempre rescatamos lo que de verdad importa.</p>

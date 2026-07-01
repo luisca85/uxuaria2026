@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6TCJ5969G7');
+  </script>
+
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <!-- SEO primario -->
   <title>Contacto · Hablemos de tu proyecto UX | Uxuaria · Buenos Aires</title>
   <meta name="description" content="Contáctame para hablar sobre tu proyecto UX. Diseñador UX freelance con más de 15 años de experiencia en startups y productos digitales en Buenos Aires, Argentina y LATAM." />
@@ -18,9 +32,13 @@
   <meta property="og:description" content="Contáctame para hablar sobre tu proyecto UX. Disponible para nuevos proyectos en Buenos Aires y remoto para LATAM." />
   <meta property="og:url" content="https://uxuaria.com/contacto/" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:site_name" content="Uxuaria" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
   <meta name="twitter:title" content="Contacto · Hablemos de tu proyecto UX | Uxuaria" />
   <meta name="twitter:description" content="Diseñador UX freelance en Buenos Aires. Disponible para auditorías, MVPs, investigación de usuarios y diseño de producto." />
 
@@ -507,6 +525,9 @@
         form.style.display = 'none';
         success.classList.add('is-visible');
         success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (typeof window.uxuariaTrack === 'function') {
+          window.uxuariaTrack('form_submit', { form_id: 'contacto_principal', tipo_proyecto: data.tipoProyecto });
+        }
       })
       .catch(function () {
         btn.textContent = 'Enviar mensaje →';

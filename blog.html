@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6TCJ5969G7');
+  </script>
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <title>Blog UX para startups: IA, fintech y producto digital | Uxuaria</title>
   <meta name="description" content="Artículos de Luis Carlos Romero (consultor UX, Buenos Aires) sobre diseño UX, fintech, IA y producto digital para startups en LATAM. Sin tecnicismos, con foco en negocios." />
   <link rel="canonical" href="https://uxuaria.com/blog.html" />
@@ -13,9 +27,34 @@
   <meta property="og:description" content="Artículos sobre diseño UX, fintech y IA para startups en LATAM. Sin tecnicismos, con foco en negocios." />
   <meta property="og:url" content="https://uxuaria.com/blog.html" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:site_name" content="Uxuaria" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="twitter:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+
+  <!-- Schema.org JSON-LD — Blog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog UX para startups — Uxuaria",
+    "description": "Artículos sobre diseño UX, fintech y IA para startups en LATAM.",
+    "url": "https://uxuaria.com/blog.html",
+    "author": {
+      "@type": "Person",
+      "@id": "https://uxuaria.com/#luis",
+      "name": "Luis Carlos Romero León"
+    },
+    "blogPost": [
+      { "@type": "BlogPosting", "headline": "3 cosas que el diseño UX puede enseñarle a tu negocio", "url": "https://uxuaria.com/blog/3-cosas-ux.html", "datePublished": "2025-05-15" },
+      { "@type": "BlogPosting", "headline": "6 Preguntas y respuestas rápidas para entender el UX", "url": "https://uxuaria.com/blog/6-preguntas-ux.html", "datePublished": "2025-01-01" }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -83,7 +122,7 @@
         <!-- Card destacada — artículo más reciente -->
         <a href="blog/3-cosas-ux.html" class="blog-card--featured">
           <div class="blog-card--featured__image">
-            <img src="images/blog/articulo001.png" alt="3 cosas que el diseño UX puede enseñarle a tu negocio" loading="lazy" />
+            <img src="images/blog/articulo001.png" width="2534" height="1664" alt="3 cosas que el diseño UX puede enseñarle a tu negocio" loading="lazy" />
           </div>
           <div class="blog-card--featured__content">
             <span class="blog-card--featured__label">[ ARTÍCULO DESTACADO ]</span>
@@ -99,7 +138,7 @@
 
           <a href="blog/6-preguntas-ux.html" class="blog-card">
             <div class="blog-card__image">
-              <img src="images/blog/articulo002.png" alt="6 Preguntas y respuestas rápidas para entender el UX" loading="lazy" />
+              <img src="images/blog/articulo002.png" width="724" height="393" alt="6 Preguntas y respuestas rápidas para entender el UX" loading="lazy" />
             </div>
             <div class="blog-card__body">
               <span class="blog-card__meta">DISEÑO · UX &nbsp;·&nbsp; 1 enero, 2025</span>

@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6TCJ5969G7');
+  </script>
+
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <title>Fans.ai: UX de MVP para red social de artistas con IA de traducción en tiempo real | Uxuaria</title>
   <meta name="description" content="Fans.ai es una startup que quería que cualquier artista emergente pudiera hablarle directamente a sus fans, en su idioma y sin intermediarios, mediante notas de voz con IA de traducción automática. Diseñamos el MVP: evaluación heurística, rediseño de la experiencia y UI lista para validar. Caso de estudio UX." />
   <link rel="canonical" href="https://uxuaria.com/portafolio/fans-ai" />
@@ -10,11 +24,49 @@
   <meta property="og:description" content="Un artista emergente en cualquier idioma, un fan en cualquier país, cero intermediarios. Diseñamos el MVP de Fans.ai: la red social que quería hacer sentir al fan como si su artista favorito le mandara un audio de WhatsApp." />
   <meta property="og:url" content="https://uxuaria.com/portafolio/fans-ai" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
+
+  <!-- Schema.org JSON-LD — CreativeWork (caso de estudio) -->
+  <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "headline": "Fans.ai: UX de MVP para red social de artistas con IA de traducción en tiempo real",
+    "description": "Diseñamos el MVP de Fans.ai: evaluación heurística, rediseño de la experiencia y UI lista para validar con usuarios.",
+    "url": "https://uxuaria.com/portafolio/fans-ai",
+    "image": "https://uxuaria.com/images/portfolio/Fans.ia/fans-ia.png",
+    "datePublished": "2026-06-30",
+    "keywords": [
+        "MVP",
+        "UX Design",
+        "IA",
+        "producto digital"
+    ],
+    "author": {
+        "@type": "Person",
+        "@id": "https://uxuaria.com/#luis",
+        "name": "Luis Carlos Romero León"
+    },
+    "creator": {
+        "@type": "Person",
+        "@id": "https://uxuaria.com/#luis",
+        "name": "Luis Carlos Romero León"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Uxuaria",
+        "url": "https://uxuaria.com"
+    }
+}
+  </script>
 </head>
 <body>
 
@@ -137,7 +189,7 @@
 
     <section class="case-hero-image">
       <div class="container">
-        <img src="../images/portfolio/Fans.ia/fans-ia.png"
+        <img src="../images/portfolio/Fans.ia/fans-ia.png" width="544" height="380"
              alt="Fans.ai, red social para artistas emergentes con IA de traducción, MVP rediseñado"
              class="case-hero-image__img"
              loading="eager" />
@@ -161,19 +213,19 @@
         <h2 class="section-title">Proceso de diseño</h2>
         <div class="case-process__grid">
           <figure class="case-process__item case-process__item--wide">
-            <img src="../images/portfolio/Fans.ia/fans-ia.png"
+            <img src="../images/portfolio/Fans.ia/fans-ia.png" width="544" height="380"
                  alt="Vista general de la plataforma Fans.ai rediseñada"
                  loading="lazy" />
             <figcaption>Vista general del MVP rediseñado: la interfaz tenía que comunicar cercanía e intimidad desde el primer scroll, no producción ni distancia</figcaption>
           </figure>
           <figure class="case-process__item">
-            <img src="../images/portfolio/Fans.ia/Frame%203.png"
+            <img src="../images/portfolio/Fans.ia/Frame%203.png" width="1246" height="994"
                  alt="Evaluación heurística de Fans.ai, puntos de fricción que rompían la promesa de cercanía"
                  loading="lazy" />
             <figcaption>Evaluación heurística: cada hallazgo fue evaluado contra la promesa central del producto. ¿Esto hace sentir al fan más cerca o más lejos de su artista?</figcaption>
           </figure>
           <figure class="case-process__item">
-            <img src="../images/portfolio/Fans.ia/Instagram%20post%20-%2012.png"
+            <img src="../images/portfolio/Fans.ia/Instagram%20post%20-%2012.png" width="1080" height="1080"
                  alt="Rediseño de componentes de Fans.ai, feed de audio, clubs de fans y perfil de artista"
                  loading="lazy" />
             <figcaption>Rediseño de componentes: feed de notas de voz, clubs de fans y perfil de artista, diseñados para que la IA de traducción sea parte natural del flujo</figcaption>

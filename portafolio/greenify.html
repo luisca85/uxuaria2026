@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6TCJ5969G7');
+  </script>
+
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <title>Greenify: Auditoría UX con +40 problemas de conversión y retención encontrados | Uxuaria</title>
   <meta name="description" content="Auditoría UX de la app de huella de carbono Greenify: +40 puntos de fricción identificados con análisis de impacto de negocio, 2 proto-personas y un plan de implementación en 3 horizontes: quick wins, mediano plazo y roadmap. Caso de estudio UX." />
   <link rel="canonical" href="https://uxuaria.com/portafolio/greenify" />
@@ -10,11 +24,49 @@
   <meta property="og:description" content="+40 puntos de fricción en la app de huella de carbono Greenify. Auditoría UX con análisis de impacto de negocio y plan de implementación en 3 horizontes." />
   <meta property="og:url" content="https://uxuaria.com/portafolio/greenify" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
+
+  <!-- Schema.org JSON-LD — CreativeWork (caso de estudio) -->
+  <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "headline": "Greenify: Auditoría UX con +40 problemas de conversión y retención encontrados",
+    "description": "Auditoría UX de la app de huella de carbono Greenify: +40 puntos de fricción identificados con análisis de impacto de negocio y plan de implementación en 3 horizontes.",
+    "url": "https://uxuaria.com/portafolio/greenify",
+    "image": "https://uxuaria.com/images/portfolio/greenify/Slide%204_3%20-%207.jpg",
+    "datePublished": "2026-06-30",
+    "keywords": [
+        "auditoría UX",
+        "UX audit",
+        "conversión",
+        "retención"
+    ],
+    "author": {
+        "@type": "Person",
+        "@id": "https://uxuaria.com/#luis",
+        "name": "Luis Carlos Romero León"
+    },
+    "creator": {
+        "@type": "Person",
+        "@id": "https://uxuaria.com/#luis",
+        "name": "Luis Carlos Romero León"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Uxuaria",
+        "url": "https://uxuaria.com"
+    }
+}
+  </script>
 </head>
 <body>
 
@@ -138,7 +190,7 @@
 
     <section class="case-hero-image">
       <div class="container">
-        <img src="../images/portfolio/greenify/Slide%204_3%20-%207.jpg"
+        <img src="../images/portfolio/greenify/Slide%204_3%20-%207.jpg" width="1024" height="768"
              alt="Greenify, mapa de experiencia end-to-end y puntos de fricción"
              class="case-hero-image__img"
              loading="eager" />
@@ -161,25 +213,25 @@
         <h2 class="section-title">Proceso de diseño</h2>
         <div class="case-process__grid">
           <figure class="case-process__item case-process__item--wide">
-            <img src="../images/portfolio/greenify/Slide%204_3%20-%207.jpg"
+            <img src="../images/portfolio/greenify/Slide%204_3%20-%207.jpg" width="1024" height="768"
                  alt="Mapa de experiencia end-to-end de Greenify"
                  loading="lazy" />
             <figcaption>Mapa de experiencia end-to-end: cada punto de contacto del usuario con la app, desde que la descarga hasta que la abandona o se convierte en usuario activo</figcaption>
           </figure>
           <figure class="case-process__item">
-            <img src="../images/portfolio/greenify/Slide%204_3%20-%2013.jpg"
+            <img src="../images/portfolio/greenify/Slide%204_3%20-%2013.jpg" width="1024" height="768"
                  alt="Protopersonas y análisis de usuarios de Greenify"
                  loading="lazy" />
             <figcaption>Protopersonas: construidas a partir del análisis de comportamiento, no de suposiciones. Le dieron al equipo una imagen concreta de quién usa la app y con qué motivaciones</figcaption>
           </figure>
           <figure class="case-process__item">
-            <img src="../images/portfolio/greenify/Slide%204_3%20-%2014.jpg"
+            <img src="../images/portfolio/greenify/Slide%204_3%20-%2014.jpg" width="1024" height="768"
                  alt="User journey as-is con puntos de fricción detectados"
                  loading="lazy" />
             <figcaption>User journey as-is: el recorrido real tal como existe hoy, con cada punto de fricción marcado, clasificado por severidad y listo para priorizar</figcaption>
           </figure>
           <figure class="case-process__item case-process__item--wide">
-            <img src="../images/portfolio/greenify/Slide%204_3%20-%2017.jpg"
+            <img src="../images/portfolio/greenify/Slide%204_3%20-%2017.jpg" width="1024" height="768"
                  alt="Backlog estratégico de mejoras priorizado para Greenify"
                  loading="lazy" />
             <figcaption>Backlog estratégico priorizado: cada hallazgo convertido en una acción concreta, ordenada por impacto de negocio. El equipo entró al siguiente sprint sabiendo exactamente qué atacar primero</figcaption>

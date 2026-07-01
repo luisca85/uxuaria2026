@@ -3,6 +3,20 @@
 // Progressive enhancement: el sitio funciona sin este script.
 // ============================================================
 
+// --- Google Analytics (GA4): tracking de clicks en CTAs con data-track ---
+(function () {
+  function track(eventName, params) {
+    if (typeof gtag === 'function') { gtag('event', eventName, params || {}); }
+    else if (window.dataLayer) { window.dataLayer.push(Object.assign({ event: eventName }, params || {})); }
+  }
+  document.querySelectorAll('[data-track]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      track('cta_click', { cta_id: el.dataset.track });
+    });
+  });
+  window.uxuariaTrack = track; // exponer para otros scripts inline (ej. formularios)
+})();
+
 // --- Parade: pixel characters — fall on load, walk on scroll ---
 (function () {
   const stage = document.querySelector('.parade__stage');
