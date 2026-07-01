@@ -1,0 +1,9 @@
+# Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Duplicado detectado en Search Console: la home no debe ser accesible vía /index.html
+/index.html / 301
+
+# Rutas de idioma que nunca tuvieron contenido real (detectadas como 404 blando en GSC)
+/es/* / 301
+/en/* / 301

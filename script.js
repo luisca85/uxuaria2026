@@ -425,3 +425,22 @@ if ('IntersectionObserver' in window) {
       observer.observe(el);
     });
 }
+
+// --- Sticky CTA: aparece solo cuando el botón del hero sale de la pantalla ---
+(function () {
+  var heroBtn  = document.getElementById('hero-cta-call');
+  var stickyCta = document.querySelector('.sticky-cta');
+  if (!heroBtn || !stickyCta || !('IntersectionObserver' in window)) return;
+
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        stickyCta.classList.remove('sticky-cta--visible');
+      } else {
+        stickyCta.classList.add('sticky-cta--visible');
+      }
+    });
+  }, { threshold: 0 });
+
+  obs.observe(heroBtn);
+})();
