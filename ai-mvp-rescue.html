@@ -698,6 +698,123 @@
     @media (max-width: 760px) { .foryou__grid { grid-template-columns: 1fr; gap: 20px; } }
 
     /* ============================================================
+       STAGES — tabs de las 5 áreas de rescate
+    ============================================================ */
+    .stages {
+      padding: var(--spacing-section) 0;
+      background: var(--color-bg);
+      border-top: 3px solid var(--hb);
+    }
+    .stages__inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .stages__panel { text-align: left; }
+    .stages__eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--color-text-muted); margin-bottom: 20px;
+    }
+    .stages__title {
+      font-size: clamp(32px, 4.5vw, 52px); font-weight: 700; line-height: 1.1;
+      letter-spacing: -.02em; color: var(--hb); margin-bottom: 20px;
+    }
+    .stages__desc {
+      font-size: 17px; line-height: 1.65; color: var(--color-text-muted);
+      max-width: 56ch; margin-bottom: 56px;
+    }
+
+    /* Widget: tabs + panel */
+    .stages__widget {
+      width: 100%;
+      border: 2px solid var(--hb);
+      box-shadow: 6px 6px 0 0 var(--hb);
+    }
+
+    /* Tab row */
+    .stages__tabs {
+      display: flex;
+      border-bottom: 2px solid var(--hb);
+    }
+    .stages__tab {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 20px 24px;
+      background: #fff; border: none; border-right: 2px solid var(--hb);
+      cursor: pointer; font-family: var(--font); font-size: 16px; font-weight: 700;
+      color: var(--hb); transition: background 0.15s;
+      text-align: left;
+    }
+    .stages__tab:last-child { border-right: none; }
+    .stages__tab:hover:not(.stages__tab--active) { background: var(--color-surface); }
+    .stages__tab--active { background: var(--hb); color: #fff; }
+    .stages__tab-num { opacity: .55; font-size: 14px; }
+    .stages__tab--active .stages__tab-num { opacity: .7; }
+
+    /* Panel */
+    .stages__panels { background: #fff; }
+    .stages__panel {
+      display: none;
+      gap: 0;
+      padding: 40px 40px;
+      align-items: stretch;
+    }
+    .stages__panel--active { display: flex; }
+
+    .stages__panel-left {
+      flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
+      padding-right: 40px;
+    }
+    .stages__week {
+      display: inline-block;
+      background: var(--hb); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 12px;
+    }
+    .stages__panel-title {
+      font-size: 26px; font-weight: 700; line-height: 1.2; color: var(--hb);
+    }
+    .stages__panel-desc {
+      font-size: 16px; line-height: 1.6; color: #374151;
+    }
+
+    .stages__divider {
+      width: 1px; background: var(--hb); flex-shrink: 0; margin: 0 0;
+    }
+
+    .stages__panel-right {
+      flex: 1; display: flex; flex-direction: column; gap: 12px;
+      padding-left: 40px;
+    }
+    .stages__panel-subtitle {
+      font-size: 22px; font-weight: 700; color: var(--hb); margin-bottom: 4px;
+    }
+    .stages__list {
+      list-style: none; display: flex; flex-direction: column; gap: 10px;
+    }
+    .stages__list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 16px; line-height: 1.5; color: #374151;
+    }
+    .stages__list li::before {
+      content: '•'; font-size: 13px; margin-top: 2px; flex-shrink: 0;
+    }
+
+    /* Mobile */
+    @media (max-width: 860px) {
+      .stages__tabs { flex-wrap: wrap; }
+      .stages__tab { flex: 1 1 33%; border-bottom: 2px solid var(--hb); font-size: 14px; padding: 14px 12px; }
+      .stages__tab:last-child { border-right: 2px solid var(--hb); }
+      .stages__tab-label { display: none; }
+      .stages__tab-num { opacity: 1; font-size: 13px; }
+      .stages__tab--active .stages__tab-num { opacity: 1; }
+    }
+    @media (max-width: 640px) {
+      .stages__panel--active { flex-direction: column; }
+      .stages__panel-left { padding-right: 0; }
+      .stages__divider { width: 100%; height: 1px; margin: 24px 0; }
+      .stages__panel-right { padding-left: 0; }
+      .stages__panel { padding: 28px 20px; }
+    }
+
+    /* ============================================================
        NAVBAR GLOBAL — idéntico a index.html / demás páginas
     ============================================================ */
     .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--color-nav-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color var(--transition), box-shadow var(--transition); }
@@ -819,6 +936,136 @@
           <p class="foryou__item" style="color: rgb(255, 255, 255)">Tu producto parecer funcionar bien pero una interfaz generica, y confusa no permite que lo bueno impacte en el mercado</p>
         </div>
         <p class="foryou__close">Si dos o más de estas te describen, este rescate es para vos.</p>
+      </div>
+    </section>
+
+    <!-- CÓMO ABORDAMOS CADA ETAPA — tabs interactivos -->
+    <section class="stages">
+      <div class="container stages__inner">
+        <p class="stages__eyebrow">Nuestro enfoque</p>
+        <h2 class="stages__title">Cinco áreas que revisamos<br>en cada rescate</h2>
+        <p class="stages__desc">Cada proyecto tiene sus propias roturas. Estas son las cinco dimensiones que analizamos, y el trabajo concreto que hacemos en cada una.</p>
+
+        <div class="stages__widget">
+          <!-- Tabs -->
+          <div class="stages__tabs" role="tablist">
+            <button class="stages__tab stages__tab--active" role="tab" aria-selected="true" data-stage="0">
+              <span class="stages__tab-num">01</span>
+              <span class="stages__tab-label">Código</span>
+            </button>
+            <button class="stages__tab" role="tab" aria-selected="false" data-stage="1">
+              <span class="stages__tab-num">02</span>
+              <span class="stages__tab-label">Negocio</span>
+            </button>
+            <button class="stages__tab" role="tab" aria-selected="false" data-stage="2">
+              <span class="stages__tab-num">03</span>
+              <span class="stages__tab-label">Interfaz</span>
+            </button>
+            <button class="stages__tab" role="tab" aria-selected="false" data-stage="3">
+              <span class="stages__tab-num">04</span>
+              <span class="stages__tab-label">Backend</span>
+            </button>
+            <button class="stages__tab" role="tab" aria-selected="false" data-stage="4">
+              <span class="stages__tab-num">05</span>
+              <span class="stages__tab-label">User QA + Handoff</span>
+            </button>
+          </div>
+
+          <!-- Panels -->
+          <div class="stages__panels">
+
+            <div class="stages__panel stages__panel--active" data-panel="0">
+              <div class="stages__panel-left">
+                <span class="stages__week">Semana 0–1</span>
+                <h3 class="stages__panel-title">Revisión de código</h3>
+                <p class="stages__panel-desc">Revisamos cómo está construido tu producto. Código generado con IA, dependencias, deuda técnica y puntos de quiebre.</p>
+              </div>
+              <div class="stages__divider" aria-hidden="true"></div>
+              <div class="stages__panel-right">
+                <p class="stages__panel-subtitle">¿Qué haremos?</p>
+                <ul class="stages__list">
+                  <li>Auditoría de ciberseguridad</li>
+                  <li>Revisión de integraciones</li>
+                  <li>Análisis del stack del proyecto</li>
+                  <li>Detección de código zombie y deuda técnica</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="stages__panel" data-panel="1">
+              <div class="stages__panel-left">
+                <span class="stages__week">Semana 1–2</span>
+                <h3 class="stages__panel-title">Diagnóstico de negocio</h3>
+                <p class="stages__panel-desc">Analizamos si el producto refleja la propuesta de valor, si los flujos están alineados con el modelo de monetización y dónde se pierde la retención.</p>
+              </div>
+              <div class="stages__divider" aria-hidden="true"></div>
+              <div class="stages__panel-right">
+                <p class="stages__panel-subtitle">¿Qué haremos?</p>
+                <ul class="stages__list">
+                  <li>Mapa de flujos críticos vs. modelo de negocio</li>
+                  <li>Detección de puntos de fuga de usuarios</li>
+                  <li>Revisión de métricas de activación y retención</li>
+                  <li>Recomendaciones de prioridad</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="stages__panel" data-panel="2">
+              <div class="stages__panel-left">
+                <span class="stages__week">Semana 2–3</span>
+                <h3 class="stages__panel-title">Auditoría de interfaz</h3>
+                <p class="stages__panel-desc">Revisamos cada pantalla clave: jerarquía visual, consistencia, navegación y fricción que frena al usuario antes de llegar al valor.</p>
+              </div>
+              <div class="stages__divider" aria-hidden="true"></div>
+              <div class="stages__panel-right">
+                <p class="stages__panel-subtitle">¿Qué haremos?</p>
+                <ul class="stages__list">
+                  <li>Heurísticas de usabilidad (Nielsen)</li>
+                  <li>Revisión de onboarding y flujo de activación</li>
+                  <li>Inconsistencias visuales y de componentes</li>
+                  <li>Diagnóstico de accesibilidad básica</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="stages__panel" data-panel="3">
+              <div class="stages__panel-left">
+                <span class="stages__week">Semana 3–4</span>
+                <h3 class="stages__panel-title">Revisión de backend</h3>
+                <p class="stages__panel-desc">Evaluamos cómo las decisiones técnicas del backend afectan la experiencia: latencia, estados de error expuestos al usuario y datos sin usar.</p>
+              </div>
+              <div class="stages__divider" aria-hidden="true"></div>
+              <div class="stages__panel-right">
+                <p class="stages__panel-subtitle">¿Qué haremos?</p>
+                <ul class="stages__list">
+                  <li>Revisión de APIs y contratos de datos</li>
+                  <li>Errores expuestos al usuario final</li>
+                  <li>Latencia percibida y estados de carga</li>
+                  <li>Oportunidades de mejora sin refactor total</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="stages__panel" data-panel="4">
+              <div class="stages__panel-left">
+                <span class="stages__week">Semana 4–5</span>
+                <h3 class="stages__panel-title">User QA + Handoff</h3>
+                <p class="stages__panel-desc">Validamos con usuarios reales (o con el equipo simulando sesiones) y entregamos documentación lista para implementar sin ambigüedades.</p>
+              </div>
+              <div class="stages__divider" aria-hidden="true"></div>
+              <div class="stages__panel-right">
+                <p class="stages__panel-subtitle">¿Qué haremos?</p>
+                <ul class="stages__list">
+                  <li>Sesiones de QA con usuarios o stakeholders</li>
+                  <li>Redlines y specs de diseño</li>
+                  <li>Handoff documentado al equipo de desarrollo</li>
+                  <li>Lista priorizada de mejoras post-rescate</li>
+                </ul>
+              </div>
+            </div>
+
+          </div><!-- /stages__panels -->
+        </div><!-- /stages__widget -->
       </div>
     </section>
 
@@ -1030,6 +1277,22 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ---- Stages: tabs de las 5 áreas de rescate ----
+    (function () {
+      const tabs   = document.querySelectorAll('.stages__tab');
+      const panels = document.querySelectorAll('.stages__panel');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          const idx = parseInt(tab.dataset.stage, 10);
+          tabs.forEach(function (t) { t.classList.remove('stages__tab--active'); t.setAttribute('aria-selected', 'false'); });
+          panels.forEach(function (p) { p.classList.remove('stages__panel--active'); });
+          tab.classList.add('stages__tab--active');
+          tab.setAttribute('aria-selected', 'true');
+          panels[idx].classList.add('stages__panel--active');
+        });
+      });
+    })();
+
     // ---- Parade hero: personajes se encuentran en el centro al hacer scroll ----
     (function () {
       const victimWrap  = document.getElementById('charVictim');
