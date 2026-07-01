@@ -1076,6 +1076,12 @@
       el.addEventListener('click', () => track('cta_click', { cta_id: el.dataset.track }));
     });
 
+    // ---- Conversión: click en un CTA que abre el formulario de Typeform ----
+    // (cta_hero, cta_proceso y cta_final apuntan al Typeform; cta_como_funciona no cuenta, solo hace scroll)
+    document.querySelectorAll('a[href*="typeform.com"]').forEach(el => {
+      el.addEventListener('click', () => track('click_formulario_ai_mvp_rescue', { cta_id: el.dataset.track || 'sin_id' }));
+    });
+
     // ---- UTM capture: completa los hidden fields con los params de la URL ----
     (function () {
       const params = new URLSearchParams(window.location.search);

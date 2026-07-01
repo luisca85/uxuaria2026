@@ -527,6 +527,8 @@
         success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         if (typeof window.uxuariaTrack === 'function') {
           window.uxuariaTrack('form_submit', { form_id: 'contacto_principal', tipo_proyecto: data.tipoProyecto });
+          // Conversión: envío exitoso del formulario de contacto
+          window.uxuariaTrack('generate_lead', { form_id: 'contacto_principal', tipo_proyecto: data.tipoProyecto });
         }
       })
       .catch(function () {
