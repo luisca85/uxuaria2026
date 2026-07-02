@@ -11,7 +11,7 @@
 ```
 website/
 ├── index.html                    # Homepage principal
-├── ai-mvp-rescue.html            # Landing page para ads (noindex)
+├── ai-mvp-rescue.html            # Landing page para ads (indexable desde 2026-07-01)
 ├── blog.html                     # Listado del blog
 ├── styles.css                    # Todos los estilos del sitio
 ├── script.js                     # Lógica de UI (carruseles, hamburger, modal, etc.)
@@ -140,7 +140,7 @@ No hay "Sobre mí" ni "EN" en el navbar. El toggle de idioma está solo en el fo
 
 | Página | Estado | Notas |
 |---|---|---|
-| `ai-mvp-rescue.html` | ✅ Implementada | Landing page para ads. `noindex`. CSS embebido (no usa styles.css). Tokens espejados del sitio principal. Usa ochre (`#D9A441`) como acento. |
+| `ai-mvp-rescue.html` | ✅ Implementada | Landing page para ads. Indexable desde 2026-07-01 (`index, follow`). CSS embebido (no usa styles.css). Tokens espejados del sitio principal. Usa ochre (`#D9A441`) como acento. |
 | `contacto/index.html` | ✅ Implementada | Formulario de contacto. Ver spec `04-contact-page.md`. |
 | `servicios/index.html` | ✅ Implementada | 4 bloques horizontales con parallax. |
 | `servicios/investigacion/index.html` | ✅ Implementada | |

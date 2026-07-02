@@ -104,6 +104,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Landing (antes noindex, ahora indexable) -->
+  <url>
+    <loc>https://uxuaria.com/ai-mvp-rescue</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Blog -->
   <url>
     <loc>https://uxuaria.com/blog</loc>

@@ -33,7 +33,7 @@ Se abre en `target="_blank"`. Es el destino de todos los CTAs de conversión de 
 - Acento especial: `--ochre: #D9A441` (no existe en el sitio principal)
 - Colores semánticos: `--critical: #d94040`, `--warning: #c47a1a`, `--ok: #2d7a4f`
 - Navbar copiado del sitio principal (sin importar `styles.css`)
-- `<meta name="robots" content="noindex, nofollow">` — no indexable
+- `<meta name="robots" content="index, follow">` — indexable desde 2026-07-01, con `rel="canonical"`. Nota: `ux-ai-repair.html` (landing gemela) se mantiene `noindex, nofollow` a propósito.
 - GA4 comentado — reemplazar `G-XXXXXXXXXX` con el Measurement ID real cuando se active
 
 ### Relación con el resto del sitio
@@ -178,5 +178,5 @@ El modal con el Typeform existe en el HTML de `index.html` (`class="ckm-overlay"
 
 - [ ] Visual del hero en `ai-mvp-rescue.html` (columna derecha — "Visual contextual · reservado")
 - [ ] Activar GA4 — reemplazar `G-XXXXXXXXXX` con Measurement ID real
-- [ ] Decidir si `ai-mvp-rescue.html` se indexa en el futuro (actualmente `noindex`)
+- [x] Decidir si `ai-mvp-rescue.html` se indexa — sí, indexable desde 2026-07-01
 - [ ] Decidir qué hacer con el modal `#checkup-modal` (mantener / eliminar / conectar CTA)
