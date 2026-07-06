@@ -1,8 +1,8 @@
 # 06 — Blog
 
-**Estado:** ✅ Implementado (2 artículos activos)  
-**Archivos:** `blog.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
-**Última actualización:** 2026-06-22
+**Estado:** ✅ Implementado (3 artículos activos)  
+**Archivos:** `blog.html`, `blog/prompt-ear-no-es-disenar.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
+**Última actualización:** 2026-07-06
 
 ---
 
@@ -155,8 +155,11 @@ Hover: `translate(3px, 3px)` + sombra `3px 3px 0 0`
 
 | Slug | Archivo | Título aproximado |
 |---|---|---|
+| `prompt-ear-no-es-disenar` | `blog/prompt-ear-no-es-disenar.html` | ¿Por qué las apps hechas con IA se parecen tanto? |
 | `3-cosas-ux` | `blog/3-cosas-ux.html` | 3 cosas que aprendí de UX |
 | `6-preguntas-ux` | `blog/6-preguntas-ux.html` | 6 preguntas de UX |
+
+> Portada de `prompt-ear-no-es-disenar`: `images/blog/articulo003.png` (1267×832). Usada en `blog.html` (card destacada), `blog/prompt-ear-no-es-disenar.html` (`.article-cover__img`) y en los cards relacionados de los otros dos artículos.
 
 ---
 
@@ -208,3 +211,4 @@ images/blog/
 
 - **2026-06-03** — `blog.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`. CSS base agregado a `styles.css`.
 - **2026-06-04** — Rediseño de artículos: columna 25/50/25, artículos relacionados (carrusel), CTA de contacto.
+- **2026-07-06** — Nuevo artículo `prompt-ear-no-es-disenar`. Portada con `.blog-img-placeholder` pendiente de imagen real.
