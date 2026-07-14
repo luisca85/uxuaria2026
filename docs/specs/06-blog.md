@@ -1,8 +1,8 @@
 # 06 — Blog
 
-**Estado:** ✅ Implementado (3 artículos activos)  
-**Archivos:** `blog.html`, `blog/prompt-ear-no-es-disenar.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
-**Última actualización:** 2026-07-06
+**Estado:** ✅ Implementado (4 artículos activos)  
+**Archivos:** `blog.html`, `blog/diferencias-creacion-ia-vs-diseno.html`, `blog/prompt-ear-no-es-disenar.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
+**Última actualización:** 2026-07-14
 
 ---
 
@@ -155,11 +155,13 @@ Hover: `translate(3px, 3px)` + sombra `3px 3px 0 0`
 
 | Slug | Archivo | Título aproximado |
 |---|---|---|
+| `diferencias-creacion-ia-vs-diseno` | `blog/diferencias-creacion-ia-vs-diseno.html` | Diferencias entre diseñar con o sin IA y su impacto en el gesto creativo |
 | `prompt-ear-no-es-disenar` | `blog/prompt-ear-no-es-disenar.html` | ¿Por qué las apps hechas con IA se parecen tanto? |
 | `3-cosas-ux` | `blog/3-cosas-ux.html` | 3 cosas que aprendí de UX |
 | `6-preguntas-ux` | `blog/6-preguntas-ux.html` | 6 preguntas de UX |
 
-> Portada de `prompt-ear-no-es-disenar`: `images/blog/articulo003.png` (1267×832). Usada en `blog.html` (card destacada), `blog/prompt-ear-no-es-disenar.html` (`.article-cover__img`) y en los cards relacionados de los otros dos artículos.
+> Portada de `prompt-ear-no-es-disenar`: `images/blog/articulo003.png` (1267×832). Usada en `blog.html` (card regular), `blog/prompt-ear-no-es-disenar.html` (`.article-cover__img`) y en los cards relacionados de los otros artículos.
+> Portada de `diferencias-creacion-ia-vs-diseno`: `images/blog/articulo004.png` (1408×768). Usada en `blog.html` (card destacada) y en `blog/diferencias-creacion-ia-vs-diseno.html` (`.article-cover__img`).
 
 ---
 
@@ -212,3 +214,4 @@ images/blog/
 - **2026-06-03** — `blog.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`. CSS base agregado a `styles.css`.
 - **2026-06-04** — Rediseño de artículos: columna 25/50/25, artículos relacionados (carrusel), CTA de contacto.
 - **2026-07-06** — Nuevo artículo `prompt-ear-no-es-disenar`. Portada con `.blog-img-placeholder` pendiente de imagen real.
+- **2026-07-14** — Nuevo artículo `diferencias-creacion-ia-vs-diseno`. Portada `articulo004.png` (1408×768) agregada.
