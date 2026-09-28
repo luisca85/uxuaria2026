@@ -36,9 +36,6 @@
     gtag('config', 'G-6TCJ5969G7');
   </script>
 
-  <!-- Typeform embebido (popup): permite medir el envío del formulario como conversión -->
-  <link rel="stylesheet" href="https://embed.typeform.com/next/css/popup.css" />
-  <script src="https://embed.typeform.com/next/embed.js" defer></script>
 
   <!-- Fuentes — mismas del sitio principal -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -852,6 +849,7 @@
       .navbar__hamburger { display: flex; }
       .navbar__inner { gap: 0; }
     }
+
   </style>
 
 <link id="gfont-Inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
@@ -906,8 +904,8 @@
           <h1 class="hero__title">Convierte tu prototipo hecho con IA en un MVP que realmente crezca.</h1>
           <p class="hero__lead" style="font-family: Inter; font-weight: 400">Convertimos prototipos IA (Claude Code, Lovable, ChatGPT y otros) genéricos, crudos y difíciles de entender en MVPs listos para el mercado, tus usuarios e inversores.</p>
           <div class="hero__cta">
-            <a href="https://8aqt6k328lv.typeform.com/to/lDjbMOFd" target="_blank" rel="noopener" class="btn-primary" data-track="cta_hero">
-              Rescatá tu MVP ahora
+            <a href="diagnostico/?cta=cta_hero" data-open-diagnostico class="btn-primary" data-track="cta_hero">
+              Agendá tu diagnóstico UX sin costo
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
               </svg>
@@ -1134,8 +1132,8 @@
             </div>
           </div>
 
-          <a href="https://8aqt6k328lv.typeform.com/to/lDjbMOFd" target="_blank" rel="noopener" class="btn btn--primary process__cta" data-track="cta_proceso">
-            Agendá tu evaluación gratis
+          <a href="diagnostico/?cta=cta_proceso" data-open-diagnostico class="btn btn--primary process__cta" data-track="cta_proceso">
+            Agendá tu diagnóstico UX sin costo
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -1224,8 +1222,8 @@
             ¿Estás listo para hacer que tu MVP realmente funcione?
           </h2>
           <p class="final-cta__sub">Diagnóstico inicial sin costo. En 48hs tenés tu plan de rescate.</p>
-          <a href="https://8aqt6k328lv.typeform.com/to/lDjbMOFd" target="_blank" rel="noopener" class="btn-primary" data-track="cta_final">
-            Rescatá tu MVP ahora
+          <a href="diagnostico/?cta=cta_final" data-open-diagnostico class="btn-primary" data-track="cta_final">
+            Agendá tu diagnóstico UX sin costo
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
             </svg>
@@ -1233,6 +1231,7 @@
         </div>
       </div>
     </section>
+
 
   </main>
 
@@ -1344,97 +1343,28 @@
       el.addEventListener('click', () => track('cta_click', { cta_id: el.dataset.track }));
     });
 
-    // ---- Conversión: click en un CTA que abre el formulario de Typeform ----
-    // (cta_hero, cta_proceso y cta_final apuntan al Typeform; cta_como_funciona no cuenta, solo hace scroll)
-    document.querySelectorAll('a[href*="typeform.com"]').forEach(el => {
-      el.addEventListener('click', () => track('click_formulario_ai_mvp_rescue', { cta_id: el.dataset.track || 'sin_id' }));
-    });
-
-    // ---- Conversión real: envío del Typeform (popup embebido) ----
-    // Si el SDK de Typeform cargó, el CTA abre el formulario en un popup sobre la landing
-    // y al enviarlo dispara 'generate_lead' (marcarlo como evento clave en GA4 e importarlo a Google Ads).
-    // Si el SDK no cargó, el link sigue abriendo el Typeform en otra pestaña como antes.
+    // ---- Diagnóstico: los CTA llevan al funnel en página propia (/diagnostico/) ----
+    // Pasan cta_id y los UTM de la visita; el envío y 'generate_lead' viven en diagnostico/diagnostico.js
     (function () {
-      const TYPEFORM_ID = 'lDjbMOFd';
       const qs = new URLSearchParams(window.location.search);
-      const hidden = {};
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'].forEach(k => {
-        if (qs.get(k)) hidden[k] = qs.get(k);
-      });
-      let popup = null;
-      let lastCta = 'sin_id';
-      let submitted = false;
-
-      function getPopup() {
-        if (popup || !(window.tf && typeof window.tf.createPopup === 'function')) return popup;
-        popup = window.tf.createPopup(TYPEFORM_ID, {
-          hidden: hidden,
-          onSubmit: function (e) {
-            if (submitted) return;
-            submitted = true;
-            track('generate_lead', { form: 'ai_mvp_rescue', cta_id: lastCta, response_id: (e && e.responseId) || '' });
-          }
-        });
-        return popup;
+      const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
+      function urlDiagnostico(cta) {
+        const u = new URL('diagnostico/', window.location.href);
+        u.searchParams.set('cta', cta || 'sin_id');
+        UTM_KEYS.forEach(k => { if (qs.get(k)) u.searchParams.set(k, qs.get(k)); });
+        return u.toString();
       }
 
-      document.querySelectorAll('a[href*="typeform.com"]').forEach(el => {
-        el.addEventListener('click', ev => {
-          const p = getPopup();
-          if (!p) return; // sin SDK: se abre el link normal
-          ev.preventDefault();
-          lastCta = el.dataset.track || 'sin_id';
-          p.open();
+      document.querySelectorAll('[data-open-diagnostico]').forEach(el => {
+        el.href = urlDiagnostico(el.dataset.track);
+        el.addEventListener('click', () => {
+          track('click_formulario_ai_mvp_rescue', { cta_id: el.dataset.track || 'sin_id' });
         });
       });
+
+      // Link directo: uxuaria.com/ai-mvp-rescue#diagnostico lleva al funnel (útil para DMs de LinkedIn)
+      if (window.location.hash === '#diagnostico') window.location.replace(urlDiagnostico('link_directo'));
     })();
-
-    // ---- UTM capture: completa los hidden fields con los params de la URL ----
-    (function () {
-      const params = new URLSearchParams(window.location.search);
-      ['utm_source', 'utm_medium', 'utm_campaign'].forEach(key => {
-        const field = document.getElementById(key);
-        if (field && params.get(key)) field.value = params.get(key);
-      });
-    })();
-
-    // ---- Form: POST a endpoint si está definido, si no solo confirma ----
-    const form = document.getElementById('checkup-form-el');
-    const successBox = document.getElementById('form-success');
-
-    if (form && successBox) form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-
-      const btn = form.querySelector('.form__submit');
-      btn.disabled = true;
-      btn.textContent = 'Enviando…';
-
-      const endpoint = form.dataset.endpoint;
-
-      try {
-        if (endpoint) {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (!res.ok) throw new Error('Submit failed');
-        }
-        // TODO: si no hay endpoint configurado, conectar Formspree/Tally
-        // en el atributo data-endpoint del <form>.
-
-        track('form_submit', { form_id: 'repair_meeting' });
-        form.style.display = 'none';
-        successBox.classList.add('visible');
-        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } catch (err) {
-        btn.disabled = false;
-        btn.textContent = 'Quiero rescatar mi MVP →';
-        alert('Hubo un problema al enviar. Probá de nuevo o escribí a info@uxuaria.com');
-      }
-    });
 
     // ---- Smooth scroll ----
     document.querySelectorAll('a[href^="#"]').forEach(link => {

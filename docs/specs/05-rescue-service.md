@@ -33,7 +33,7 @@ Se abre en `target="_blank"`. Es el destino de todos los CTAs de conversión de 
 - Acento especial: `--ochre: #D9A441` (no existe en el sitio principal)
 - Colores semánticos: `--critical: #d94040`, `--warning: #c47a1a`, `--ok: #2d7a4f`
 - Navbar copiado del sitio principal (sin importar `styles.css`)
-- `<meta name="robots" content="index, follow">` — indexable desde 2026-07-01, con `rel="canonical"`. Nota: `ux-ai-repair.html` (landing gemela) se mantiene `noindex, nofollow` a propósito.
+- `<meta name="robots" content="index, follow">` — indexable desde 2026-07-01, con `rel="canonical"`. Nota: `ux-ai-repair.html` (landing gemela) se eliminó el 2026-09-28; `/ux-ai-repair` redirige 301 a `/ai-mvp-rescue` (`_redirects`).
 - GA4 comentado — reemplazar `G-XXXXXXXXXX` con el Measurement ID real cuando se active
 
 ### Relación con el resto del sitio
@@ -180,3 +180,17 @@ El modal con el Typeform existe en el HTML de `index.html` (`class="ckm-overlay"
 - [ ] Activar GA4 — reemplazar `G-XXXXXXXXXX` con Measurement ID real
 - [x] Decidir si `ai-mvp-rescue.html` se indexa — sí, indexable desde 2026-07-01
 - [ ] Decidir qué hacer con el modal `#checkup-modal` (mantener / eliminar / conectar CTA)
+
+---
+
+## Actualización 2026-09-28 · Formulario propio (reemplaza a Typeform)
+
+Motivo: el plan Free de Typeform limita a 10 respuestas por mes y el email automático al lead es pago.
+
+- Los 3 CTA de conversión (`cta_hero`, `cta_proceso`, `cta_final`) tienen `href="#diagnostico"` y `data-open-diagnostico`: abren el modal `#diag-modal` con un formulario de 3 pasos (producto · situación · datos).
+- Link directo: `uxuaria.com/ai-mvp-rescue#diagnostico` abre el formulario al cargar (para DMs de LinkedIn, con `?utm_source=linkedin&utm_medium=dm`).
+- Envío: `POST /api/diagnostico` (`functions/api/diagnostico.js`). Calcula puntaje y nivel (A ≥ 60, B 35 a 59, C < 35 o proyecto personal), avisa por Web3Forms, crea la ficha en Notion (Funnel Uxuaria) si existe `NOTION_TOKEN` y manda email al lead si existen `RESEND_API_KEY` y `MAIL_FROM`.
+- Pantalla final por nivel: A muestra el link de Calendly con nombre y email precargados; B y C, el siguiente paso.
+- Eventos GA4: `click_formulario_ai_mvp_rescue`, `form_start`, `form_step`, `generate_lead` (con `nivel`), `agenda_click`.
+- Anti-spam: campo trampa `website` y tiempo mínimo de 4 segundos.
+- Las opciones del formulario y sus puntos viven en `OPCIONES` dentro de la función: si se cambia una opción en el HTML, cambiarla también ahí.
