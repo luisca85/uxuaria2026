@@ -7,3 +7,7 @@
 # Rutas de idioma que nunca tuvieron contenido real (detectadas como 404 blando en GSC)
 /es/* / 301
 /en/* / 301
+
+# UX AI Repair fue reemplazada por AI MVP Rescue (2026-09-28)
+/ux-ai-repair /ai-mvp-rescue 301
+/ux-ai-repair.html /ai-mvp-rescue 301
