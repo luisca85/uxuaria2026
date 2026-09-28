@@ -8,13 +8,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <title>AI MVP Rescue · Diagnóstico y propuesta para tu app construida con IA</title>
-  <meta name="description" content="Construiste con Lovable, Cursor, Bolt o v0. La IA no garantiza que tus usuarios se queden — ni que no haya barreras invisibles frenando el crecimiento. Una reunión de 20 minutos. Diagnóstico y propuesta en 48hs." />
+  <meta name="description" content="Construiste con Lovable, Cursor, Bolt o v0. La IA no garantiza que tus usuarios se queden, ni que no haya barreras invisibles frenando el crecimiento. Una reunión de 15 minutos. Diagnóstico y propuesta en 48hs." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://uxuaria.com/ai-mvp-rescue" />
 
   <!-- OG para ads -->
   <meta property="og:title" content="Convierte tu prototipo hecho con IA en un MVP que realmente crezca." />
-  <meta property="og:description" content="Una reunión de 20 minutos. En 48hs, diagnóstico concreto y una propuesta para resolverlo. Sin proceso de consultor de semanas." />
+  <meta property="og:description" content="Una reunión de 15 minutos. En 48hs, diagnóstico concreto y una propuesta para resolverlo. Sin proceso de consultor de semanas." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://uxuaria.com/images/og-uxuaria.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -35,6 +35,10 @@
     gtag('js', new Date());
     gtag('config', 'G-6TCJ5969G7');
   </script>
+
+  <!-- Typeform embebido (popup): permite medir el envío del formulario como conversión -->
+  <link rel="stylesheet" href="https://embed.typeform.com/next/css/popup.css" />
+  <script src="https://embed.typeform.com/next/embed.js" defer></script>
 
   <!-- Fuentes — mismas del sitio principal -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -900,7 +904,7 @@
             CONSULTORIA INICIAL SIN COSTO
           </p>
           <h1 class="hero__title">Convierte tu prototipo hecho con IA en un MVP que realmente crezca.</h1>
-          <p class="hero__lead" style="font-family: Inter; font-weight: 400">Convertimos Prototipos IA (Claude code, Lovable, Chat-gpt y otros) Genericos, Crudos y dificiles de entender, en MVPs listos para el mercado, tus usuarios e inversores.</p>
+          <p class="hero__lead" style="font-family: Inter; font-weight: 400">Convertimos prototipos IA (Claude Code, Lovable, ChatGPT y otros) genéricos, crudos y difíciles de entender en MVPs listos para el mercado, tus usuarios e inversores.</p>
           <div class="hero__cta">
             <a href="https://8aqt6k328lv.typeform.com/to/lDjbMOFd" target="_blank" rel="noopener" class="btn-primary" data-track="cta_hero">
               Rescatá tu MVP ahora
@@ -931,10 +935,10 @@
         <h2 class="foryou__title" style="width: 100%; font-size: 52px">Tu producto no falla porque no tenga valor, <em style="color: rgb(244, 232, 77)">sino porque los usuarios no pueden acceder a él.</em></h2>
         <div class="foryou__grid">
           <p class="foryou__item"><span style="color: #ffffff">Lanzaste tu producto rápido, llegaste a una base de usuarios pero paró de crecer.</span></p>
-          <p class="foryou__item">Cada vez que quieres implementar una nueva funcionalidad se hace mas complicado y genera mas inconsistencias con otras features.</p>
+          <p class="foryou__item">Cada vez que quieres implementar una nueva funcionalidad se hace más complicado y genera más inconsistencias con otras features.</p>
           <p class="foryou__item" style="color: rgb(255, 255, 255)">Tus usuarios entran y tal vez se registran pero nunca usan realmente tu producto.</p>
           <p class="foryou__item">Ya te han hackeado y la seguridad de tu proyecto se ve comprometida</p>
-          <p class="foryou__item" style="color: rgb(255, 255, 255)">Tu producto parecer funcionar bien pero una interfaz generica, y confusa no permite que lo bueno impacte en el mercado</p>
+          <p class="foryou__item" style="color: rgb(255, 255, 255)">Tu producto parece funcionar bien, pero una interfaz genérica y confusa no permite que lo bueno impacte en el mercado</p>
         </div>
         <p class="foryou__close">Si dos o más de estas te describen, este rescate es para vos.</p>
       </div>
@@ -1194,7 +1198,7 @@
           </details>
           <details class="faq__item">
             <summary class="faq__q">¿Pueden dejar mi producto listo para inversores, nuevos usuarios y salida al mercado?</summary>
-            <p class="faq__a">Sí, nos alineamos con tu objetivo y trazamos un camino para lograrlo de acuerdo al tamaño de tu empresa, tu presupuesto y tus tiempos. Sincronizamos toda la experiencia de usuario para que tenga el justo tamaño —ni más ni menos— que lo que necesitas en este momento para crecer.</p>
+            <p class="faq__a">Sí, nos alineamos con tu objetivo y trazamos un camino para lograrlo de acuerdo al tamaño de tu empresa, tu presupuesto y tus tiempos. Sincronizamos toda la experiencia de usuario para que tenga el justo tamaño, ni más ni menos, que lo que necesitas en este momento para crecer.</p>
           </details>
           <details class="faq__item">
             <summary class="faq__q">¿Cuánto puede demorar este proceso?</summary>
@@ -1226,7 +1230,6 @@
               <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
             </svg>
           </a>
-          <p class="final-cta__scarcity">2 proyectos por mes · 1 lugar disponible · agosto 2026</p>
         </div>
       </div>
     </section>
@@ -1346,6 +1349,45 @@
     document.querySelectorAll('a[href*="typeform.com"]').forEach(el => {
       el.addEventListener('click', () => track('click_formulario_ai_mvp_rescue', { cta_id: el.dataset.track || 'sin_id' }));
     });
+
+    // ---- Conversión real: envío del Typeform (popup embebido) ----
+    // Si el SDK de Typeform cargó, el CTA abre el formulario en un popup sobre la landing
+    // y al enviarlo dispara 'generate_lead' (marcarlo como evento clave en GA4 e importarlo a Google Ads).
+    // Si el SDK no cargó, el link sigue abriendo el Typeform en otra pestaña como antes.
+    (function () {
+      const TYPEFORM_ID = 'lDjbMOFd';
+      const qs = new URLSearchParams(window.location.search);
+      const hidden = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'].forEach(k => {
+        if (qs.get(k)) hidden[k] = qs.get(k);
+      });
+      let popup = null;
+      let lastCta = 'sin_id';
+      let submitted = false;
+
+      function getPopup() {
+        if (popup || !(window.tf && typeof window.tf.createPopup === 'function')) return popup;
+        popup = window.tf.createPopup(TYPEFORM_ID, {
+          hidden: hidden,
+          onSubmit: function (e) {
+            if (submitted) return;
+            submitted = true;
+            track('generate_lead', { form: 'ai_mvp_rescue', cta_id: lastCta, response_id: (e && e.responseId) || '' });
+          }
+        });
+        return popup;
+      }
+
+      document.querySelectorAll('a[href*="typeform.com"]').forEach(el => {
+        el.addEventListener('click', ev => {
+          const p = getPopup();
+          if (!p) return; // sin SDK: se abre el link normal
+          ev.preventDefault();
+          lastCta = el.dataset.track || 'sin_id';
+          p.open();
+        });
+      });
+    })();
 
     // ---- UTM capture: completa los hidden fields con los params de la URL ----
     (function () {
