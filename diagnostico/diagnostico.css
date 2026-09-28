@@ -1,6 +1,6 @@
 /* ===================================================================
-   UXUARIA — formulario.css
-   Formulario de contacto estilo Typeform (una pregunta por pantalla)
+   UXUARIA — diagnostico.css
+   Funnel del diagnóstico AI MVP Rescue estilo Typeform (una pregunta por pantalla)
    =================================================================== */
 
 :root {
@@ -125,6 +125,30 @@
 }
 
 .tf-required { color: var(--color-text-light); }
+
+.tf-optional {
+  font-size: .7em;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-light);
+}
+
+/* Honeypot anti-spam: fuera de pantalla, no display:none */
+.tf-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.tf-noscript {
+  max-width: var(--tf-max-w);
+  margin: 0 auto;
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-normal);
+}
+
+.tf-noscript a { text-decoration: underline; }
 
 .tf-question + .tf-input,
 .tf-question__desc + .tf-input,
@@ -302,12 +326,24 @@
   margin-bottom: 16px;
 }
 
+.tf-welcome__eyebrow {
+  margin-bottom: 12px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
 .tf-welcome__desc {
   font-size: var(--font-size-xl);
   color: var(--color-text-muted);
   line-height: var(--line-height-normal);
-  max-width: 520px;
+  max-width: 560px;
 }
+
+.tf-welcome__desc + .tf-welcome__desc { margin-top: 12px; }
+.tf-welcome__desc a { color: var(--color-text); text-decoration: underline; }
 
 .tf-step--welcome .tf-actions,
 .tf-step--end .tf-actions { margin-left: 0; margin-top: 32px; }
@@ -412,6 +448,8 @@
 
 .is-enhanced .tf-step--welcome,
 .is-enhanced .tf-step--end { display: flex; }
+
+.is-done .tf-nav { display: none; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {

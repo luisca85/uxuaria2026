@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6TCJ5969G7');
+  </script>
+
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <title>Diagnóstico gratuito de tu MVP | Uxuaria</title>
+  <meta name="description" content="Contame de tu app hecha con IA y te preparo un diagnóstico de experiencia sobre tu caso. Menos de 2 minutos." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="diagnostico.css" />
+  <noscript><style>.tf-form { display: none; }</style></noscript>
+</head>
+<body class="tf-page">
+
+  <!-- ============================================================
+       TOP BAR — progress + logo
+  ============================================================ -->
+  <div class="tf-progress" aria-hidden="true">
+    <div class="tf-progress__bar" id="tfProgress"></div>
+  </div>
+
+  <header class="tf-header">
+    <a href="../" class="tf-header__logo" aria-label="Uxuaria — volver al inicio">
+      <span class="logo-text">uxuaria</span>
+    </a>
+    <a href="../ai-mvp-rescue" class="tf-header__close" aria-label="Salir del diagnóstico y volver a AI MVP Rescue">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </a>
+  </header>
+
+  <!-- ============================================================
+       FORM — one question per screen. Sends JSON to /api/diagnostico
+       (option values must match OPCIONES in functions/api/diagnostico.js)
+  ============================================================ -->
+  <main class="tf-main">
+    <noscript>
+      <p class="tf-noscript">Este formulario necesita JavaScript. También podés escribirme a <a href="mailto:info@uxuaria.com">info@uxuaria.com</a> con la URL de tu app y te respondo.</p>
+    </noscript>
+
+    <form class="tf-form" id="tfForm" action="/api/diagnostico" method="POST" novalidate>
+
+      <!-- Welcome -->
+      <section class="tf-step tf-step--welcome" data-step="welcome">
+        <div class="tf-step__inner">
+          <p class="tf-welcome__eyebrow">AI MVP Rescue</p>
+          <h1 class="tf-welcome__title">Diagnóstico gratuito de tu MVP</h1>
+          <p class="tf-welcome__desc">Con esto preparo el diagnóstico sobre tu caso y no una lista genérica.</p>
+          <div class="tf-actions">
+            <button type="button" class="tf-btn" data-action="next">Empezar</button>
+            <span class="tf-hint">presioná <strong>Enter ↵</strong></span>
+          </div>
+          <p class="tf-welcome__time">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Menos de 2 minutos
+          </p>
+        </div>
+      </section>
+
+      <!-- 1 · URL -->
+      <section class="tf-step" data-step="url">
+        <div class="tf-step__inner">
+          <label class="tf-question" for="diag-url">
+            <span class="tf-question__num">1 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">URL de tu app <span class="tf-required">*</span></span>
+          </label>
+          <input class="tf-input" id="diag-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="miapp.com" required data-validate="url" />
+          <p class="tf-error" role="alert"></p>
+          <div class="tf-actions">
+            <button type="button" class="tf-btn" data-action="next">OK <span aria-hidden="true">✓</span></button>
+            <span class="tf-hint">presioná <strong>Enter ↵</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · Producto (opcional) -->
+      <section class="tf-step" data-step="producto">
+        <div class="tf-step__inner">
+          <label class="tf-question" for="diag-producto">
+            <span class="tf-question__num">2 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">Nombre del producto <span class="tf-optional">(opcional)</span></span>
+          </label>
+          <input class="tf-input" id="diag-producto" name="producto" type="text" autocomplete="organization" placeholder="Escribí tu respuesta acá..." />
+          <p class="tf-error" role="alert"></p>
+          <div class="tf-actions">
+            <button type="button" class="tf-btn" data-action="next">OK <span aria-hidden="true">✓</span></button>
+            <span class="tf-hint">presioná <strong>Enter ↵</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · Construcción -->
+      <section class="tf-step" data-step="construccion">
+        <fieldset class="tf-step__inner tf-fieldset" data-required>
+          <legend class="tf-question">
+            <span class="tf-question__num">3 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">¿Cómo la construiste? <span class="tf-required">*</span></span>
+          </legend>
+          <div class="tf-choices">
+            <label class="tf-choice"><input type="radio" name="construccion" value="ia" /><span class="tf-choice__key">A</span><span class="tf-choice__label">Principalmente con IA</span></label>
+            <label class="tf-choice"><input type="radio" name="construccion" value="mixto" /><span class="tf-choice__key">B</span><span class="tf-choice__label">IA + desarrollo tradicional</span></label>
+            <label class="tf-choice"><input type="radio" name="construccion" value="tradicional" /><span class="tf-choice__key">C</span><span class="tf-choice__label">Solo desarrollo tradicional</span></label>
+          </div>
+          <p class="tf-error" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- 4 · Etapa -->
+      <section class="tf-step" data-step="etapa">
+        <fieldset class="tf-step__inner tf-fieldset" data-required>
+          <legend class="tf-question">
+            <span class="tf-question__num">4 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">¿En qué etapa está? <span class="tf-required">*</span></span>
+          </legend>
+          <div class="tf-choices">
+            <label class="tf-choice"><input type="radio" name="etapa" value="prototipo" /><span class="tf-choice__key">A</span><span class="tf-choice__label">Prototipo sin usuarios</span></label>
+            <label class="tf-choice"><input type="radio" name="etapa" value="beta" /><span class="tf-choice__key">B</span><span class="tf-choice__label">Beta con usuarios de prueba</span></label>
+            <label class="tf-choice"><input type="radio" name="etapa" value="produccion" /><span class="tf-choice__key">C</span><span class="tf-choice__label">En producción con usuarios</span></label>
+            <label class="tf-choice"><input type="radio" name="etapa" value="factura" /><span class="tf-choice__key">D</span><span class="tf-choice__label">Ya factura</span></label>
+          </div>
+          <p class="tf-error" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- 5 · Usuarios -->
+      <section class="tf-step" data-step="usuarios">
+        <fieldset class="tf-step__inner tf-fieldset" data-required>
+          <legend class="tf-question">
+            <span class="tf-question__num">5 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">Usuarios activos por mes, más o menos <span class="tf-required">*</span></span>
+          </legend>
+          <div class="tf-choices">
+            <label class="tf-choice"><input type="radio" name="usuarios" value="0" /><span class="tf-choice__key">A</span><span class="tf-choice__label">0</span></label>
+            <label class="tf-choice"><input type="radio" name="usuarios" value="1-50" /><span class="tf-choice__key">B</span><span class="tf-choice__label">1 a 50</span></label>
+            <label class="tf-choice"><input type="radio" name="usuarios" value="51-500" /><span class="tf-choice__key">C</span><span class="tf-choice__label">51 a 500</span></label>
+            <label class="tf-choice"><input type="radio" name="usuarios" value="500+" /><span class="tf-choice__key">D</span><span class="tf-choice__label">Más de 500</span></label>
+          </div>
+          <p class="tf-error" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- 6 · Rol -->
+      <section class="tf-step" data-step="rol">
+        <fieldset class="tf-step__inner tf-fieldset" data-required>
+          <legend class="tf-question">
+            <span class="tf-question__num">6 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">¿Cuál es tu rol en el proyecto? <span class="tf-required">*</span></span>
+          </legend>
+          <div class="tf-choices">
+            <label class="tf-choice"><input type="radio" name="rol" value="founder_ft" /><span class="tf-choice__key">A</span><span class="tf-choice__label">Founder, le dedico todo mi tiempo</span></label>
+            <label class="tf-choice"><input type="radio" name="rol" value="founder_pt" /><span class="tf-choice__key">B</span><span class="tf-choice__label">Founder, pero tengo otro trabajo</span></label>
+            <label class="tf-choice"><input type="radio" name="rol" value="empresa" /><span class="tf-choice__key">C</span><span class="tf-choice__label">PM o equipo de una empresa</span></label>
+            <label class="tf-choice"><input type="radio" name="rol" value="cliente" /><span class="tf-choice__key">D</span><span class="tf-choice__label">Lo construyo para un cliente</span></label>
+            <label class="tf-choice"><input type="radio" name="rol" value="personal" /><span class="tf-choice__key">E</span><span class="tf-choice__label">Proyecto personal o de estudio</span></label>
+          </div>
+          <p class="tf-error" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- 7 · Presupuesto -->
+      <section class="tf-step" data-step="presupuesto">
+        <fieldset class="tf-step__inner tf-fieldset" data-required>
+          <legend class="tf-question">
+            <span class="tf-question__num">7 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">Si el diagnóstico muestra algo para resolver, ¿cuánto podrías invertir en los próximos 3 meses? <span class="tf-required">*</span></span>
+          </legend>
+          <div class="tf-choices">
+            <label class="tf-choice"><input type="radio" name="presupuesto" value="menos-500" /><span class="tf-choice__key">A</span><span class="tf-choice__label">Menos de USD 500</span></label>
+            <label class="tf-choice"><input type="radio" name="presupuesto" value="500-1000" /><span class="tf-choice__key">B</span><span class="tf-choice__label">USD 500 a 1.000</span></label>
+            <label class="tf-choice"><input type="radio" name="presupuesto" value="1000-2500" /><span class="tf-choice__key">C</span><span class="tf-choice__label">USD 1.000 a 2.500</span></label>
+            <label class="tf-choice"><input type="radio" name="presupuesto" value="2500-5000" /><span class="tf-choice__key">D</span><span class="tf-choice__label">USD 2.500 a 5.000</span></label>
+            <label class="tf-choice"><input type="radio" name="presupuesto" value="5000+" /><span class="tf-choice__key">E</span><span class="tf-choice__label">Más de USD 5.000</span></label>
+            <label class="tf-choice"><input type="radio" name="presupuesto" value="personal" /><span class="tf-choice__key">F</span><span class="tf-choice__label">Nada, es un proyecto personal</span></label>
+          </div>
+          <p class="tf-error" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- 8 · Urgencia -->
+      <section class="tf-step" data-step="urgencia">
+        <fieldset class="tf-step__inner tf-fieldset" data-required>
+          <legend class="tf-question">
+            <span class="tf-question__num">8 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">¿Para cuándo necesitás resolverlo? <span class="tf-required">*</span></span>
+          </legend>
+          <div class="tf-choices">
+            <label class="tf-choice"><input type="radio" name="urgencia" value="este-mes" /><span class="tf-choice__key">A</span><span class="tf-choice__label">Este mes</span></label>
+            <label class="tf-choice"><input type="radio" name="urgencia" value="1-3-meses" /><span class="tf-choice__key">B</span><span class="tf-choice__label">En 1 a 3 meses</span></label>
+            <label class="tf-choice"><input type="radio" name="urgencia" value="sin-fecha" /><span class="tf-choice__key">C</span><span class="tf-choice__label">Sin fecha</span></label>
+          </div>
+          <p class="tf-error" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- 9 · Problema (opcional) -->
+      <section class="tf-step" data-step="problema">
+        <fieldset class="tf-step__inner tf-fieldset">
+          <legend class="tf-question">
+            <span class="tf-question__num">9 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">¿Qué es lo que más te preocupa hoy? <span class="tf-optional">(opcional)</span></span>
+          </legend>
+          <div class="tf-choices">
+            <label class="tf-choice"><input type="radio" name="problema" value="onboarding" /><span class="tf-choice__key">A</span><span class="tf-choice__label">No completan el onboarding</span></label>
+            <label class="tf-choice"><input type="radio" name="problema" value="churn" /><span class="tf-choice__key">B</span><span class="tf-choice__label">Abandono o churn alto</span></label>
+            <label class="tf-choice"><input type="radio" name="problema" value="engagement" /><span class="tf-choice__key">C</span><span class="tf-choice__label">Poco uso repetido</span></label>
+            <label class="tf-choice"><input type="radio" name="problema" value="confusion" /><span class="tf-choice__key">D</span><span class="tf-choice__label">La interfaz confunde</span></label>
+            <label class="tf-choice"><input type="radio" name="problema" value="claridad" /><span class="tf-choice__key">E</span><span class="tf-choice__label">No sé si se entiende</span></label>
+            <label class="tf-choice"><input type="radio" name="problema" value="otro" /><span class="tf-choice__key">F</span><span class="tf-choice__label">Otro</span></label>
+          </div>
+          <p class="tf-error" role="alert"></p>
+          <div class="tf-actions">
+            <button type="button" class="tf-btn" data-action="next">OK <span aria-hidden="true">✓</span></button>
+            <span class="tf-hint">o presioná <strong>Enter ↵</strong> para saltear</span>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- 10 · Nombre -->
+      <section class="tf-step" data-step="nombre">
+        <div class="tf-step__inner">
+          <label class="tf-question" for="diag-nombre">
+            <span class="tf-question__num">10 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">Tu nombre <span class="tf-required">*</span></span>
+          </label>
+          <input class="tf-input" id="diag-nombre" name="nombre" type="text" autocomplete="name" placeholder="Escribí tu respuesta acá..." required />
+          <p class="tf-error" role="alert"></p>
+          <div class="tf-actions">
+            <button type="button" class="tf-btn" data-action="next">OK <span aria-hidden="true">✓</span></button>
+            <span class="tf-hint">presioná <strong>Enter ↵</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 · Email -->
+      <section class="tf-step" data-step="email">
+        <div class="tf-step__inner">
+          <label class="tf-question" for="diag-email">
+            <span class="tf-question__num">11 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text"><span data-greeting></span>Tu email <span class="tf-required">*</span></span>
+          </label>
+          <input class="tf-input" id="diag-email" name="email" type="email" autocomplete="email" placeholder="nombre@empresa.com" required />
+          <p class="tf-error" role="alert"></p>
+          <div class="tf-actions">
+            <button type="button" class="tf-btn" data-action="next">OK <span aria-hidden="true">✓</span></button>
+            <span class="tf-hint">presioná <strong>Enter ↵</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 · Contexto (opcional) + envío -->
+      <section class="tf-step" data-step="contexto">
+        <div class="tf-step__inner">
+          <label class="tf-question" for="diag-contexto">
+            <span class="tf-question__num">12 <span aria-hidden="true">→</span></span>
+            <span class="tf-question__text">Algo que quieras que sepa antes de mirar tu app <span class="tf-optional">(opcional)</span></span>
+          </label>
+          <textarea class="tf-input tf-input--textarea" id="diag-contexto" name="contexto" rows="1" placeholder="Qué hace, para quién, qué intentaste, un usuario de prueba si requiere login..."></textarea>
+          <div class="tf-hp" aria-hidden="true">
+            <label for="diag-website">No completar</label>
+            <input id="diag-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <p class="tf-error" role="alert"></p>
+          <div class="tf-actions">
+            <button type="submit" class="tf-btn tf-btn--submit">Pedir mi diagnóstico</button>
+            <span class="tf-hint"><strong>Shift ⇧ + Enter ↵</strong> para salto de línea</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTADOS por nivel (los decide /api/diagnostico) -->
+      <section class="tf-step tf-step--end" data-step="resultado" data-result="A">
+        <div class="tf-step__inner">
+          <div class="tf-end__icon" aria-hidden="true">✓</div>
+          <h2 class="tf-welcome__title">Listo. Avancemos.</h2>
+          <p class="tf-welcome__desc">Por lo que me contaste, tiene sentido que lo veamos juntos. El siguiente paso es una reunión de 20 minutos: ahí entiendo tu producto y qué te preocupa.</p>
+          <p class="tf-welcome__desc">48hs hábiles después de la reunión te devuelvo el diagnóstico en una llamada, con lo que encontré y cómo resolverlo.</p>
+          <div class="tf-actions">
+            <a class="tf-btn" id="diag-calendly" href="https://calendly.com/luisca85/charla-introductoria-clone" target="_blank" rel="noopener">Agendar la reunión <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="tf-step tf-step--end" data-step="resultado" data-result="B">
+        <div class="tf-step__inner">
+          <div class="tf-end__icon" aria-hidden="true">✓</div>
+          <h2 class="tf-welcome__title">Recibido.</h2>
+          <p class="tf-welcome__desc">En los próximos 5 días hábiles te llega a tu email un video corto recorriendo el flujo principal de tu app y una página con los 3 puntos que más te conviene mirar.</p>
+          <p class="tf-welcome__desc">No necesitás hacer nada más. Si tu app requiere login, respondé mi email con un usuario de prueba.</p>
+          <div class="tf-actions">
+            <a class="tf-link" href="../ai-mvp-rescue">Volver a AI MVP Rescue</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="tf-step tf-step--end" data-step="resultado" data-result="C">
+        <div class="tf-step__inner">
+          <div class="tf-end__icon" aria-hidden="true">✓</div>
+          <h2 class="tf-welcome__title">Gracias por contarme de tu proyecto.</h2>
+          <p class="tf-welcome__desc">Por la etapa en la que está, un diagnóstico completo todavía no es lo que más te sirve. En los próximos días te escribo con algunas opciones para que puedas avanzar igual.</p>
+          <p class="tf-welcome__desc">Mientras tanto, en el <a href="../blog">blog</a> tenés artículos sobre los problemas más comunes de las apps hechas con IA.</p>
+        </div>
+      </section>
+    </form>
+  </main>
+
+  <!-- ============================================================
+       BOTTOM NAV — up / down
+  ============================================================ -->
+  <nav class="tf-nav" aria-label="Navegar entre preguntas">
+    <button type="button" class="tf-nav__btn" data-action="prev" aria-label="Pregunta anterior">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+    </button>
+    <button type="button" class="tf-nav__btn" data-action="next" aria-label="Pregunta siguiente">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+  </nav>
+
+  <script src="../script.js"></script>
+  <script src="diagnostico.js"></script>
+</body>
+</html>
