@@ -8,7 +8,6 @@
   var form = document.getElementById('tfForm');
   if (!form) return;
 
-  var page      = document.body;
   var steps     = Array.prototype.slice.call(form.querySelectorAll('.tf-step'));
   var progress  = document.getElementById('tfProgress');
   var navPrev   = document.querySelector('.tf-nav [data-action="prev"]');
@@ -27,7 +26,7 @@
   var startedAt = 0;
   var ctaId   = qs.get('cta') || 'sin_id';
 
-  page.classList.add('is-enhanced');
+  document.documentElement.classList.add('is-enhanced'); // usually already set in <head>
 
   function track(eventName, params) {
     if (typeof gtag === 'function') gtag('event', eventName, params || {});

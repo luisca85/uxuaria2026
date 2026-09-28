@@ -378,7 +378,9 @@
 /* ===================================================================
    ENHANCED MODE (JS) — one step per screen
    =================================================================== */
-.tf-page.is-enhanced { overflow: hidden; }
+/* .is-enhanced goes on <html> from an inline script in <head>, so the
+   one-step layout applies from the first paint (no flash of stacked steps) */
+.is-enhanced .tf-page { overflow: hidden; }
 
 .is-enhanced .tf-main {
   position: fixed;
