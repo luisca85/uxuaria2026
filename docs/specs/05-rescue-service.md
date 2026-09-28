@@ -1,8 +1,8 @@
 # 05 — AI MVP Rescue
 
 **Estado:** ✅ Implementado  
-**Archivos:** `ai-mvp-rescue.html` (landing page) · sección `#ux-checkup` en `index.html` · modal `#checkup-modal` en `index.html`  
-**Última actualización:** 2026-06-22
+**Archivos:** `ai-mvp-rescue.html` (landing page) · funnel `diagnostico/` (ver [07-funnel-diagnostico.md](07-funnel-diagnostico.md)) · `functions/api/diagnostico.js`  
+**Última actualización:** 2026-09-28
 
 ---
 
@@ -10,17 +10,13 @@
 
 Captar founders cuyo MVP (construido con herramientas de IA como Cursor, Lovable, Bolt, v0, Replit) está estancado. El servicio antes se llamaba "UX Checkup" — fue rebrandeado a "AI MVP Rescue".
 
-**Funnel:** Ad o navbar → `ai-mvp-rescue.html` → Typeform (diagnóstico) → llamada 15 min → propuesta cerrada
+**Funnel:** Ad o navbar → `ai-mvp-rescue.html` → `/diagnostico/` (formulario propio, spec 07) → `/diagnostico/gracias` → Luis responde a mano → propuesta cerrada
 
 ---
 
-## Typeform
+## Typeform (deprecado)
 
-```
-URL: https://8aqt6k328lv.typeform.com/to/lDjbMOFd
-```
-
-Se abre en `target="_blank"`. Es el destino de todos los CTAs de conversión de esta landing page.
+Deprecado el 2026-09-28: el plan Free limitaba a 10 respuestas por mes. Todos los CTA que llevaban a Typeform ahora llevan a `/diagnostico/` (ver [07-funnel-diagnostico.md](07-funnel-diagnostico.md)).
 
 ---
 
@@ -68,7 +64,7 @@ Réplica del navbar del sitio principal. Links: logo → `index.html`, hamburger
             Sin contratos de retención ni consultoría indefinida.
             Diagnóstico inicial sin costo.  ← en ochre/italic
 
-[CTA primario]   Rescatá tu MVP ahora →
+[CTA primario]   Agendá tu diagnóstico UX sin costo →
 [href]           https://8aqt6k328lv.typeform.com/to/lDjbMOFd (target _blank)
 
 [CTA ghost]      ¿Cómo funciona?
@@ -111,7 +107,7 @@ Visual columna derecha: "Visual contextual · reservado" — pendiente de defini
 | 4 | Alcance | Proyecto con presupuesto, alcance y precio cerrados |
 | 5 | Rescate | Implementación del rescate con entregables definidos |
 
-CTA al final: "Empezá el rescate →" → Typeform
+CTA al final: "Agendá tu diagnóstico UX sin costo →" → `/diagnostico/?cta=cta_proceso`
 
 #### 5. Proof / Casos de éxito (fondo oscuro, `id="casos"`)
 
@@ -128,7 +124,7 @@ Accordion de preguntas frecuentes (ver HTML para lista completa).
 #### 7. CTA Final (fondo oscuro)
 
 ```
-[CTA]  Rescatá tu MVP ahora →  → Typeform
+[CTA]  Agendá tu diagnóstico UX sin costo →  → /diagnostico/?cta=cta_final
 ```
 
 ---
@@ -162,15 +158,9 @@ Ventana retro oscura con título `AI_MVP_RESCUE: HALLAZGOS.PDF`:
 
 ---
 
-## Modal `#checkup-modal` en `index.html`
+## Modal `#checkup-modal` en `index.html` (eliminado)
 
-El modal con el Typeform existe en el HTML de `index.html` (`class="ckm-overlay"`). Contiene:
-- `.ckm-view--info`: vista informativa con checklist + CTA
-- `.ckm-view--form`: iframe del Typeform `https://8aqt6k328lv.typeform.com/to/lDjbMOFd`
-
-**Estado actual:** el modal existe pero ningún botón de la sección `#ux-checkup` lo abre — el CTA va directo a `ai-mvp-rescue.html`.
-
-**Decisión pendiente:** mantener el modal en el HTML, eliminarlo, o agregar un segundo CTA que lo abra.
+Era un modal con el iframe de Typeform, pero ningún botón lo abría. Se eliminó el 2026-09-28, junto con su JS en `script.js` y los estilos `ckm-*` en `styles.css`.
 
 ---
 
@@ -179,7 +169,7 @@ El modal con el Typeform existe en el HTML de `index.html` (`class="ckm-overlay"
 - [ ] Visual del hero en `ai-mvp-rescue.html` (columna derecha — "Visual contextual · reservado")
 - [ ] Activar GA4 — reemplazar `G-XXXXXXXXXX` con Measurement ID real
 - [x] Decidir si `ai-mvp-rescue.html` se indexa — sí, indexable desde 2026-07-01
-- [ ] Decidir qué hacer con el modal `#checkup-modal` (mantener / eliminar / conectar CTA)
+- [x] Decidir qué hacer con el modal `#checkup-modal` — eliminado el 2026-09-28
 
 ---
 
@@ -187,10 +177,17 @@ El modal con el Typeform existe en el HTML de `index.html` (`class="ckm-overlay"
 
 Motivo: el plan Free de Typeform limita a 10 respuestas por mes y el email automático al lead es pago.
 
-- Los 3 CTA de conversión (`cta_hero`, `cta_proceso`, `cta_final`) tienen `href="#diagnostico"` y `data-open-diagnostico`: abren el modal `#diag-modal` con un formulario de 3 pasos (producto · situación · datos).
-- Link directo: `uxuaria.com/ai-mvp-rescue#diagnostico` abre el formulario al cargar (para DMs de LinkedIn, con `?utm_source=linkedin&utm_medium=dm`).
-- Envío: `POST /api/diagnostico` (`functions/api/diagnostico.js`). Calcula puntaje y nivel (A ≥ 60, B 35 a 59, C < 35 o proyecto personal), avisa por Web3Forms, crea la ficha en Notion (Funnel Uxuaria) si existe `NOTION_TOKEN` y manda email al lead si existen `RESEND_API_KEY` y `MAIL_FROM`.
-- Pantalla final por nivel: A muestra el link de Calendly con nombre y email precargados; B y C, el siguiente paso.
-- Eventos GA4: `click_formulario_ai_mvp_rescue`, `form_start`, `form_step`, `generate_lead` (con `nivel`), `agenda_click`.
+El funnel vive en su propia spec: **[07-funnel-diagnostico.md](07-funnel-diagnostico.md)**. En resumen:
+
+- Los 3 CTA de conversión (`cta_hero`, `cta_proceso`, `cta_final`) dicen "Agendá tu diagnóstico UX sin costo" y llevan a `/diagnostico/?cta=<id>`, con los UTM de la visita.
+- El link directo `uxuaria.com/ai-mvp-rescue#diagnostico` (DMs de LinkedIn) redirige a `/diagnostico/?cta=link_directo`.
+- `/diagnostico/` es un formulario tipo Typeform, con una pregunta por pantalla. Al enviar, va a `/diagnostico/gracias`.
+- **Envío** a `POST /api/diagnostico` (`functions/api/diagnostico.js`):
+  - Calcula puntaje y nivel: A ≥ 60, B de 35 a 59, C < 35 o proyecto personal.
+  - Avisa a Luis por Web3Forms.
+  - Crea la ficha en Notion si existe `NOTION_TOKEN`.
+  - **No manda email automático al lead**: Luis responde a mano, y las variables de Resend no se cargan.
+- Eventos GA4: `click_formulario_ai_mvp_rescue`, `form_start`, `form_step`, `generate_lead` (con `nivel` y `cta_id`).
 - Anti-spam: campo trampa `website` y tiempo mínimo de 4 segundos.
 - Las opciones del formulario y sus puntos viven en `OPCIONES` dentro de la función: si se cambia una opción en el HTML, cambiarla también ahí.
+- El modal `#diag-modal` que se usó brevemente en `ai-mvp-rescue.html` se eliminó.

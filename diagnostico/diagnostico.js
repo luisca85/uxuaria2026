@@ -227,14 +227,14 @@
         return r;
       });
     })
-    .then(function () {
+    .then(function (r) {
       done = true;
       // First name for the thank-you page; sessionStorage keeps it out of the URL
       try {
         var first = (data.nombre || '').trim().split(/\s+/)[0];
         if (first) sessionStorage.setItem('diagnosticoNombre', first);
       } catch (err) { /* storage blocked: the page falls back to a generic title */ }
-      goToThanks();
+      goToThanks(r.nivel || '');
     })
     .catch(function () {
       sending = false;
@@ -245,16 +245,16 @@
   }
 
   // Send generate_lead before leaving the page; redirect anyway if GA doesn't answer
-  function goToThanks() {
+  function goToThanks(nivel) {
     var left = false;
     function leave() {
       if (left) return;
       left = true;
       window.location.assign('/diagnostico/gracias');
     }
-    var params = { form: 'ai_mvp_rescue', cta_id: ctaId, event_callback: leave, event_timeout: 1500 };
+    var params = { form: 'ai_mvp_rescue', cta_id: ctaId, nivel: nivel, event_callback: leave, event_timeout: 1500 };
     if (typeof gtag === 'function') gtag('event', 'generate_lead', params);
-    else track('generate_lead', { form: 'ai_mvp_rescue', cta_id: ctaId });
+    else track('generate_lead', { form: 'ai_mvp_rescue', cta_id: ctaId, nivel: nivel });
     window.setTimeout(leave, 1500);
   }
 

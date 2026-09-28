@@ -1,7 +1,7 @@
 # 07 — Funnel del diagnóstico (AI MVP Rescue)
 
 **id:** `funnel-diagnostico`
-**Estado:** 🧪 Explorado en rama `explorar/funnel-diagnostico` · pendiente de `/construir` sobre `main`
+**Estado:** ✅ Construido en `main` (sin publicar) · pendiente de `/revisar` y de la prueba contra la función real
 **Última actualización:** 2026-09-28
 **Relacionada con:** [05-rescue-service.md](05-rescue-service.md) (landing AI MVP Rescue y backend `/api/diagnostico`)
 
