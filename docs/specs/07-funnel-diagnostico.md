@@ -102,7 +102,7 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
 
 - **Diseño actual del sitio**: no se modifica nada visual fuera de `/diagnostico/`. En `ai-mvp-rescue.html` solo cambian el destino y el texto de los CTA.
 - **`/contacto/`**: el formulario de contacto queda exactamente como está.
-- **`functions/api/diagnostico.js`**: puntaje, niveles, integraciones y emails no cambian. El funnel envía los mismos campos y valores.
+- **`functions/api/diagnostico.js`**: puntaje, niveles y la integración con Notion no cambian. Único cambio (2026-09-28): ya no llama a Web3Forms y devuelve `asunto` y `resumen` para que el aviso lo mande el navegador.
 - **Copy de las preguntas**: es el del modal anterior. Cualquier cambio necesita aprobación.
 - **Pantallas de resultado por nivel (A/B/C) y botón de Calendly**: se reemplazan por la página de agradecimiento única. El backend sigue calculando el nivel y devolviendo `calendly`, pero el front ya no lo usa.
 - **Tokens de `diagnostico.css`**: quedan en el `:root` propio del archivo. Mover o no a `styles.css` es una decisión postergada; no se toca en este feature.
@@ -111,7 +111,7 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
 ## Dependencias
 
 - `POST /api/diagnostico` (`functions/api/diagnostico.js`, Cloudflare Pages Functions).
-- **Email a Luis**: Web3Forms. Ya funciona con la access key por defecto del código, sin configurar nada.
+- **Email a Luis**: Web3Forms, enviado **desde el navegador** (`diagnostico.js`) con el `asunto` y el `resumen` que devuelve `/api/diagnostico`. El plan Free de Web3Forms rechaza los envíos server-side, como los de una Cloudflare Function. La access key es pública por diseño, igual que en `/contacto/`.
 - **Email automático al lead (Resend)**: no se usa en esta spec. El código ya lo soporta, pero solo se activa si están cargadas `RESEND_API_KEY` y `MAIL_FROM`. Queda para el rediseño de la automatización.
 - **Ficha en Notion**: `NOTION_TOKEN`, opcional. Sin ella el lead igual llega por email.
 - **Otras variables opcionales**: `NOTION_DB_ID`, `WEB3FORMS_KEY` y `CALENDLY_URL` tienen valor por defecto en el código.
@@ -170,3 +170,4 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 - El servidor local (`python3 -m http.server`) no ejecuta Pages Functions. Para probar el envío hace falta `wrangler pages dev` o un mock local.
 - En local aparece un 404 de `/cdn-cgi/.../email-decode.min.js` en `ai-mvp-rescue.html`: es la protección de email de Cloudflare, que solo existe en producción.
 - Las clases CSS usan el prefijo `tf-` con BEM (`tf-choice__key`, `tf-step--end`). Los estados usan `is-*` (`is-active`, `is-blinking`), como el resto del sitio.
+- **Web3Forms no acepta envíos server-side en el plan Free** ("This method is not allowed…"). El primer deploy (2026-09-28) mandaba el aviso desde la función, y el envío de prueba de Luis no llegó ni se registró. Por eso el aviso sale desde el navegador. Si `NOTION_TOKEN` no está cargado, el email es el único registro del lead.

@@ -2,7 +2,8 @@
    UXUARIA — diagnostico.js
    Funnel del diagnóstico AI MVP Rescue, estilo Typeform:
    una pregunta por pantalla, navegable con teclado.
-   Envía JSON a /api/diagnostico y, si sale bien, redirige a /diagnostico/gracias.
+   Envía JSON a /api/diagnostico (nivel + Notion), manda el aviso a Luis por
+   Web3Forms desde el navegador y, si sale bien, redirige a /diagnostico/gracias.
    =================================================================== */
 (function () {
   var form = document.getElementById('tfForm');
@@ -18,6 +19,9 @@
   var EMAIL_RE  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var URL_RE    = /\.[a-z]{2,}/i;
   var ADVANCE_DELAY = 550;
+  // Public access key (Web3Forms keys are meant to be used client-side)
+  var WEB3FORMS_URL = 'https://api.web3forms.com/submit';
+  var WEB3FORMS_KEY = '7ecf21c6-65f3-4f53-99d0-9d4257a15c6b';
 
   var current = 0;
   var locked  = false;
@@ -223,6 +227,26 @@
     .then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (r) {
         if (!res.ok || !r.ok) throw new Error(r.error || 'Error ' + res.status);
+        return r;
+      });
+    })
+    .then(function (r) {
+      // Email to Luis goes from the browser: Web3Forms' free plan rejects server-side submissions
+      if (!r.resumen) return r; // honeypot/too fast: the API answered without data, nothing to send
+      return fetch(WEB3FORMS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: r.asunto,
+          from_name: 'Diagnóstico AI MVP Rescue',
+          name: data.nombre,
+          email: data.email,
+          replyto: data.email,
+          message: r.resumen
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error('Web3Forms ' + res.status);
         return r;
       });
     })

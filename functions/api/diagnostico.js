@@ -4,17 +4,16 @@
  * Recibe el formulario del diagnóstico de AI MVP Rescue (ai-mvp-rescue.html),
  * calcula puntaje y nivel (A, B, C) y:
  *   1. crea la ficha en Notion (Funnel Uxuaria)      → si hay NOTION_TOKEN
- *   2. avisa a Luis por email (Web3Forms)            → siempre
- *   3. manda el email de bienvenida al lead (Resend) → si hay RESEND_API_KEY y MAIL_FROM
+ *   2. manda el email de bienvenida al lead (Resend) → si hay RESEND_API_KEY y MAIL_FROM
  *
- * Responde { ok, nivel, calendly } para que la landing muestre la pantalla final
- * que corresponde. Si Notion o Resend fallan, el lead igual queda registrado por
- * el aviso de Web3Forms; solo devuelve error si no se pudo guardar en ningún lado.
+ * Responde { ok, nivel, puntaje, asunto, resumen }. El aviso por email a Luis lo
+ * manda el navegador a Web3Forms con asunto y resumen (diagnostico/diagnostico.js):
+ * el plan Free de Web3Forms rechaza los envíos server-side, como los de esta función.
+ * Si Notion o Resend fallan, igual responde ok: el lead queda en el email.
  *
  * Variables de entorno (Cloudflare Pages → Settings → Variables and secrets):
  *   NOTION_TOKEN     secreto  token de la integración interna de Notion
  *   NOTION_DB_ID     opcional id de la base Funnel Uxuaria (tiene valor por defecto)
- *   WEB3FORMS_KEY    opcional (tiene valor por defecto, el mismo de /api/contacto)
  *   RESEND_API_KEY   secreto  opcional: activa el email automático al lead
  *   MAIL_FROM        opcional ej. "Luis Carlos Romero <luis@uxuaria.com>" (dominio verificado en Resend)
  *   MAIL_REPLY_TO    opcional ej. "luisca85@gmail.com"
@@ -23,7 +22,6 @@
 
 const DEFAULTS = {
   NOTION_DB_ID: '3dc54c75015080be9a66d55233fa7afe',
-  WEB3FORMS_KEY: '7ecf21c6-65f3-4f53-99d0-9d4257a15c6b',
   CALENDLY_URL: 'https://calendly.com/luisca85/charla-introductoria-clone',
 };
 
@@ -225,23 +223,6 @@ async function crearFichaNotion(env, d, nivel, puntaje, origen, hoy) {
   if (!res.ok) throw new Error(`Notion ${res.status}: ${(await res.text()).slice(0, 300)}`);
 }
 
-async function avisarALuis(env, d, nivel, puntaje, origen) {
-  const res = await fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      access_key: env.WEB3FORMS_KEY || DEFAULTS.WEB3FORMS_KEY,
-      subject: `[Nivel ${nivel} · ${puntaje} pts] Nuevo lead: ${d.nombre} · ${d.producto || d.url}`,
-      from_name: 'Diagnóstico AI MVP Rescue',
-      name: d.nombre,
-      email: d.email,
-      replyto: d.email,
-      message: resumenTexto(d, nivel, puntaje, origen),
-    }),
-  });
-  if (!res.ok) throw new Error(`Web3Forms ${res.status}`);
-}
-
 export function emailAlLead(nivel, nombre, producto, calendly) {
   const n = nombre.split(' ')[0];
   const p = producto || 'tu producto';
@@ -335,7 +316,7 @@ export async function onRequestPost({ request, env }) {
   // Anti-spam: campo trampa oculto y tiempo mínimo de llenado
   const tiempo = Number(raw._t || 0);
   if (raw.website || (tiempo && tiempo < 4000)) {
-    return json({ ok: true, nivel: 'B', calendly: '' }); // respuesta falsa, no se guarda nada
+    return json({ ok: true, nivel: 'B' }); // respuesta falsa sin resumen: no se guarda ni se avisa nada
   }
 
   const { d, errores } = validar(raw);
@@ -346,18 +327,18 @@ export async function onRequestPost({ request, env }) {
   const calendly = env.CALENDLY_URL || DEFAULTS.CALENDLY_URL;
   const hoy = new Date();
 
-  const tareas = [avisarALuis(env, d, nivel, puntaje, origen)];
+  const tareas = [];
   if (env.NOTION_TOKEN) tareas.push(crearFichaNotion(env, d, nivel, puntaje, origen, hoy));
   if (env.RESEND_API_KEY && env.MAIL_FROM) tareas.push(mandarEmailAlLead(env, d, nivel, calendly));
 
   const resultados = await Promise.allSettled(tareas);
   resultados.forEach((r) => r.status === 'rejected' && console.error('[diagnostico]', r.reason && r.reason.message));
 
-  const avisoOk = resultados[0].status === 'fulfilled';
-  const notionOk = env.NOTION_TOKEN ? resultados[1].status === 'fulfilled' : false;
-  if (!avisoOk && !notionOk) {
-    return json({ ok: false, error: 'No se pudo registrar el pedido' }, 502);
-  }
-
-  return json({ ok: true, nivel, calendly: nivel === 'A' ? calendly : '' });
+  return json({
+    ok: true,
+    nivel,
+    puntaje,
+    asunto: `[Nivel ${nivel} · ${puntaje} pts] Nuevo lead: ${d.nombre} · ${d.producto || d.url}`,
+    resumen: resumenTexto(d, nivel, puntaje, origen),
+  });
 }
