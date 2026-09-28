@@ -1,0 +1,442 @@
+/* ===================================================================
+   UXUARIA — formulario.css
+   Formulario de contacto estilo Typeform (una pregunta por pantalla)
+   =================================================================== */
+
+:root {
+  --tf-question-size: clamp(20px, 2.4vw, 26px);
+  --tf-welcome-size:  clamp(32px, 5vw, 52px);
+  --tf-input-size:    clamp(20px, 2.6vw, 28px);
+  --tf-max-w:         720px;
+  --tf-step-ease:     cubic-bezier(.2, .8, .2, 1);
+  --tf-step-duration: .45s;
+  --color-error:      #D93025;
+  --color-error-bg:   #FDECEA;
+  --color-choice-bg:  rgba(17,17,17,.03);
+  --color-choice-bg-hover: rgba(17,17,17,.07);
+  --color-choice-bg-selected: rgba(17,17,17,.12);
+  --color-input-line: rgba(17,17,17,.25);
+}
+
+/* ===== PAGE ===== */
+.tf-page {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ===== PROGRESS ===== */
+.tf-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--color-border);
+  z-index: 20;
+}
+
+.tf-progress__bar {
+  height: 100%;
+  width: 0;
+  background: var(--color-text);
+  transition: width var(--tf-step-duration) var(--tf-step-ease);
+}
+
+/* ===== HEADER ===== */
+.tf-header {
+  position: fixed;
+  inset: 4px 0 auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  z-index: 10;
+  background: linear-gradient(var(--color-bg) 70%, transparent);
+}
+
+.tf-header__logo { text-decoration: none; }
+.tf-header__logo .logo-text { font-size: var(--font-size-2xl); }
+
+.tf-header__close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+
+.tf-header__close:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* ===== STEPS (base: no-JS, everything stacked) ===== */
+.tf-main {
+  padding: 120px 24px 80px;
+}
+
+.tf-form {
+  max-width: var(--tf-max-w);
+  margin: 0 auto;
+}
+
+.tf-step {
+  padding: 48px 0;
+}
+
+.tf-step--welcome,
+.tf-step--end,
+.tf-nav { display: none; }
+
+.tf-fieldset {
+  border: 0;
+  min-width: 0;
+}
+
+/* ===== QUESTION ===== */
+.tf-question {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: var(--tf-question-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  margin-bottom: 28px;
+  padding: 0;
+}
+
+.tf-question__num {
+  flex-shrink: 0;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.tf-question__desc {
+  margin: -16px 0 24px;
+  padding-left: 44px;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+}
+
+.tf-required { color: var(--color-text-light); }
+
+.tf-question + .tf-input,
+.tf-question__desc + .tf-input,
+.tf-choices,
+.tf-actions,
+.tf-error { margin-left: 44px; }
+
+/* ===== TEXT INPUT ===== */
+.tf-input {
+  display: block;
+  width: calc(100% - 44px);
+  font-family: var(--font);
+  font-size: var(--tf-input-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid var(--color-input-line);
+  padding: 8px 0 10px;
+  outline: none;
+  border-radius: 0;
+  transition: border-color var(--transition);
+}
+
+.tf-input::placeholder { color: var(--color-text-light); opacity: .6; }
+.tf-input:focus { border-bottom: 2px solid var(--color-text); }
+
+.tf-input--textarea {
+  resize: none;
+  overflow: hidden;
+  line-height: 1.4;
+  min-height: 52px;
+}
+
+/* ===== CHOICES ===== */
+.tf-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 420px;
+}
+
+.tf-choice {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px 10px 10px;
+  border: 1px solid var(--color-input-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-choice-bg);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.tf-choice:hover { background: var(--color-choice-bg-hover); }
+
+.tf-choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tf-choice__key {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-input-line);
+  border-radius: 4px;
+  background: var(--color-bg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  transition: background var(--transition), color var(--transition);
+}
+
+.tf-choice:has(input:checked) {
+  background: var(--color-choice-bg-selected);
+  border-color: var(--color-text);
+}
+
+.tf-choice:has(input:checked) .tf-choice__key {
+  background: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-text-inverse);
+}
+
+.tf-choice:has(input:focus-visible) {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.tf-choice.is-blinking { animation: tf-blink .5s steps(1) 1; }
+
+@keyframes tf-blink {
+  0%, 50%  { background: var(--color-choice-bg-selected); }
+  25%, 75% { background: var(--color-choice-bg); }
+}
+
+/* ===== ACTIONS ===== */
+.tf-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.tf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-inverse);
+  background: var(--color-text);
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.tf-btn:hover { background: var(--color-text-hover); }
+.tf-btn:active { transform: scale(.98); }
+.tf-btn:disabled { opacity: .6; cursor: progress; }
+
+.tf-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.tf-hint strong { font-weight: var(--font-weight-bold); color: var(--color-text); }
+
+.tf-link {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+/* ===== ERROR ===== */
+.tf-error {
+  display: none;
+  width: fit-content;
+  margin-top: 14px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.tf-error.is-visible {
+  display: block;
+  animation: tf-shake .3s ease;
+}
+
+@keyframes tf-shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-4px); }
+  75%      { transform: translateX(4px); }
+}
+
+/* ===== WELCOME / END ===== */
+.tf-welcome__title {
+  font-size: var(--tf-welcome-size);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -.035em;
+  line-height: var(--line-height-tight);
+  margin-bottom: 16px;
+}
+
+.tf-welcome__desc {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+  max-width: 520px;
+}
+
+.tf-step--welcome .tf-actions,
+.tf-step--end .tf-actions { margin-left: 0; margin-top: 32px; }
+
+.tf-welcome__time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.tf-end__icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ===================================================================
+   ENHANCED MODE (JS) — one step per screen
+   =================================================================== */
+.tf-page.is-enhanced { overflow: hidden; }
+
+.is-enhanced .tf-main {
+  position: fixed;
+  inset: 0;
+  padding: 0;
+}
+
+.is-enhanced .tf-form {
+  position: relative;
+  height: 100%;
+  max-width: none;
+}
+
+.is-enhanced .tf-step {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 24px 96px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(40px);
+  transition:
+    opacity var(--tf-step-duration) var(--tf-step-ease),
+    transform var(--tf-step-duration) var(--tf-step-ease),
+    visibility 0s linear var(--tf-step-duration);
+}
+
+.is-enhanced .tf-step.is-above { transform: translateY(-40px); }
+
+.is-enhanced .tf-step.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.is-enhanced .tf-step__inner {
+  width: 100%;
+  max-width: var(--tf-max-w);
+  margin: auto 0;
+}
+
+.is-enhanced .tf-nav {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  gap: 1px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.tf-nav__btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 36px;
+  border: 0;
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.tf-nav__btn:hover { background: var(--color-text-hover); }
+.tf-nav__btn:disabled { opacity: .35; cursor: default; }
+
+.is-enhanced .tf-step--welcome,
+.is-enhanced .tf-step--end { display: flex; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .tf-header { padding: 16px 20px; }
+
+  .tf-question { flex-direction: column; gap: 4px; }
+
+  .tf-question + .tf-input,
+  .tf-question__desc + .tf-input,
+  .tf-choices,
+  .tf-actions,
+  .tf-error { margin-left: 0; }
+
+  .tf-question__desc { padding-left: 0; margin-top: -20px; }
+  .tf-input { width: 100%; }
+  .tf-choices { max-width: none; }
+  .tf-hint { display: none; }
+
+  .is-enhanced .tf-step { padding: 88px 20px 88px; align-items: flex-start; }
+  .is-enhanced .tf-step__inner { margin-top: 12vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-enhanced .tf-step,
+  .tf-progress__bar { transition-duration: 0s; }
+  .tf-choice.is-blinking,
+  .tf-error.is-visible { animation: none; }
+}
