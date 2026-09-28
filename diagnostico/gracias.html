@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6TCJ5969G7');
+  </script>
+
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <title>¡Gracias! · Diagnóstico gratuito de tu MVP | Uxuaria</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/diagnostico/diagnostico.css" />
+</head>
+<body class="tf-page">
+
+  <header class="tf-header">
+    <a href="/" class="tf-header__logo" aria-label="Uxuaria — volver al inicio">
+      <span class="logo-text">uxuaria</span>
+    </a>
+  </header>
+
+  <!-- ============================================================
+       THANK YOU — single page for every level (the level only goes to Luis by email)
+  ============================================================ -->
+  <main class="tf-main">
+    <section class="tf-thanks" aria-labelledby="thanksTitle">
+      <div class="tf-end__icon" aria-hidden="true">✓</div>
+      <h1 class="tf-welcome__title" id="thanksTitle">¡Gracias!</h1>
+      <p class="tf-welcome__desc">Recibí tu pedido de diagnóstico. Te escribo personalmente pronto.</p>
+      <div class="tf-actions">
+        <a class="tf-btn" href="/ai-mvp-rescue">Volver a AI MVP Rescue</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function () {
+    // First name saved by diagnostico.js; kept out of the URL on purpose
+    var name = '';
+    try {
+      name = sessionStorage.getItem('diagnosticoNombre') || '';
+      sessionStorage.removeItem('diagnosticoNombre');
+    } catch (err) { /* storage blocked: keep the generic title */ }
+    if (name) document.getElementById('thanksTitle').textContent = '¡Gracias, ' + name + '!';
+  })();
+  </script>
+</body>
+</html>

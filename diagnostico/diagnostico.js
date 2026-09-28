@@ -2,16 +2,14 @@
    UXUARIA — diagnostico.js
    Funnel del diagnóstico AI MVP Rescue, estilo Typeform:
    una pregunta por pantalla, navegable con teclado.
-   Envía JSON a /api/diagnostico y muestra la pantalla final según el nivel.
+   Envía JSON a /api/diagnostico y, si sale bien, redirige a /diagnostico/gracias.
    =================================================================== */
 (function () {
   var form = document.getElementById('tfForm');
   if (!form) return;
 
   var page      = document.body;
-  var steps     = Array.prototype.slice.call(form.querySelectorAll('.tf-step:not(.tf-step--end)'));
-  var results   = Array.prototype.slice.call(form.querySelectorAll('.tf-step--end'));
-  var allSteps  = steps.concat(results);
+  var steps     = Array.prototype.slice.call(form.querySelectorAll('.tf-step'));
   var progress  = document.getElementById('tfProgress');
   var navPrev   = document.querySelector('.tf-nav [data-action="prev"]');
   var navNext   = document.querySelector('.tf-nav [data-action="next"]');
@@ -38,11 +36,10 @@
 
   // ----- Rendering -----
   function show(active) {
-    allSteps.forEach(function (step) {
+    steps.forEach(function (step, idx) {
       var isActive = step === active;
-      var idx = steps.indexOf(step);
       step.classList.toggle('is-active', isActive);
-      step.classList.toggle('is-above', idx !== -1 && idx < current);
+      step.classList.toggle('is-above', idx < current);
       step.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       if ('inert' in step) step.inert = !isActive;
     });
@@ -230,10 +227,14 @@
         return r;
       });
     })
-    .then(function (r) {
-      var nivel = r.nivel || 'B';
-      showResult(nivel, r.calendly, data);
-      track('generate_lead', { form: 'ai_mvp_rescue', cta_id: ctaId, nivel: nivel });
+    .then(function () {
+      done = true;
+      // First name for the thank-you page; sessionStorage keeps it out of the URL
+      try {
+        var first = (data.nombre || '').trim().split(/\s+/)[0];
+        if (first) sessionStorage.setItem('diagnosticoNombre', first);
+      } catch (err) { /* storage blocked: the page falls back to a generic title */ }
+      goToThanks();
     })
     .catch(function () {
       sending = false;
@@ -243,24 +244,18 @@
     });
   }
 
-  function showResult(nivel, calendly, data) {
-    done = true;
-    page.classList.add('is-done');
-    var panel = form.querySelector('.tf-step--end[data-result="' + nivel + '"]') ||
-                form.querySelector('.tf-step--end[data-result="B"]');
-    var link = document.getElementById('diag-calendly');
-    if (nivel === 'A' && link && calendly) {
-      var u = new URL(calendly);
-      if (data.nombre) u.searchParams.set('name', data.nombre);
-      if (data.email) u.searchParams.set('email', data.email);
-      link.href = u.toString();
-      link.addEventListener('click', function () { track('agenda_click', { form: 'ai_mvp_rescue' }); }, { once: true });
+  // Send generate_lead before leaving the page; redirect anyway if GA doesn't answer
+  function goToThanks() {
+    var left = false;
+    function leave() {
+      if (left) return;
+      left = true;
+      window.location.assign('/diagnostico/gracias');
     }
-    progress.style.width = '100%';
-    navPrev.disabled = true;
-    navNext.disabled = true;
-    current = lastIndex + 1;
-    show(panel);
+    var params = { form: 'ai_mvp_rescue', cta_id: ctaId, event_callback: leave, event_timeout: 1500 };
+    if (typeof gtag === 'function') gtag('event', 'generate_lead', params);
+    else track('generate_lead', { form: 'ai_mvp_rescue', cta_id: ctaId });
+    window.setTimeout(leave, 1500);
   }
 
   form.addEventListener('submit', function (e) {

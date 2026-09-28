@@ -88,7 +88,6 @@
 }
 
 .tf-step--welcome,
-.tf-step--end,
 .tf-nav { display: none; }
 
 .tf-fieldset {
@@ -288,11 +287,6 @@
 
 .tf-hint strong { font-weight: var(--font-weight-bold); color: var(--color-text); }
 
-.tf-link {
-  font-size: var(--font-size-md);
-  color: var(--color-text-muted);
-}
-
 /* ===== ERROR ===== */
 .tf-error {
   display: none;
@@ -346,7 +340,7 @@
 .tf-welcome__desc a { color: var(--color-text); text-decoration: underline; }
 
 .tf-step--welcome .tf-actions,
-.tf-step--end .tf-actions { margin-left: 0; margin-top: 32px; }
+.tf-thanks .tf-actions { margin-left: 0; margin-top: 32px; }
 
 .tf-welcome__time {
   display: flex;
@@ -355,6 +349,17 @@
   margin-top: 16px;
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
+}
+
+/* ===== THANK YOU PAGE (/diagnostico/gracias) ===== */
+.tf-thanks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: var(--tf-max-w);
+  min-height: calc(100vh - 200px);
+  min-height: calc(100dvh - 200px);
+  margin: 0 auto;
 }
 
 .tf-end__icon {
@@ -446,10 +451,7 @@
 .tf-nav__btn:hover { background: var(--color-text-hover); }
 .tf-nav__btn:disabled { opacity: .35; cursor: default; }
 
-.is-enhanced .tf-step--welcome,
-.is-enhanced .tf-step--end { display: flex; }
-
-.is-done .tf-nav { display: none; }
+.is-enhanced .tf-step--welcome { display: flex; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
