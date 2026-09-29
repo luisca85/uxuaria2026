@@ -171,3 +171,5 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 - En local aparece un 404 de `/cdn-cgi/.../email-decode.min.js` en `ai-mvp-rescue.html`: es la protección de email de Cloudflare, que solo existe en producción.
 - Las clases CSS usan el prefijo `tf-` con BEM (`tf-choice__key`, `tf-step--end`). Los estados usan `is-*` (`is-active`, `is-blinking`), como el resto del sitio.
 - **Web3Forms no acepta envíos server-side en el plan Free** ("This method is not allowed…"). El primer deploy (2026-09-28) mandaba el aviso desde la función, y el envío de prueba de Luis no llegó ni se registró. Por eso el aviso sale desde el navegador. Si `NOTION_TOKEN` no está cargado, el email es el único registro del lead.
+- **Caché del navegador:** Cloudflare sirve `.js` y `.css` con `max-age=14400` (4 h). Por eso `diagnostico.css` y `diagnostico.js` se cargan con `?v=AAAAMMDD`, y hay que cambiar ese número al modificarlos. Un envío de prueba ("bvv", 2026-09-28) usó el script viejo en caché y el aviso no salió.
+- La respuesta de Web3Forms se valida por `success: true` en el cuerpo, no solo por el código HTTP.

@@ -246,8 +246,14 @@
           message: r.resumen
         })
       }).then(function (res) {
-        if (!res.ok) throw new Error('Web3Forms ' + res.status);
-        return r;
+        // Web3Forms can answer 200 with { success: false }: check the body too
+        return res.json().catch(function () { return {}; }).then(function (w) {
+          if (!res.ok || w.success !== true) {
+            if (window.console) console.warn('[diagnostico] Web3Forms rechazó el envío:', res.status, w.message || w);
+            throw new Error('Web3Forms ' + res.status);
+          }
+          return r;
+        });
       });
     })
     .then(function (r) {
