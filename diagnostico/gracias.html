@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/diagnostico/diagnostico.css?v=20260929" />
+  <link rel="stylesheet" href="/diagnostico/diagnostico.css?v=20260930" />
 </head>
 <body class="tf-page">
 
@@ -40,9 +40,31 @@
     <section class="tf-thanks" aria-labelledby="thanksTitle">
       <div class="tf-end__icon" aria-hidden="true">✓</div>
       <h1 class="tf-welcome__title" id="thanksTitle">¡Gracias!</h1>
-      <p class="tf-welcome__desc">Recibí tu pedido de diagnóstico. Te escribo personalmente pronto.</p>
-      <div class="tf-actions">
+      <p class="tf-welcome__desc" id="thanksDesc">Recibí tu pedido de diagnóstico. Te escribo personalmente pronto.</p>
+      <div class="tf-actions" id="thanksBack">
         <a class="tf-btn" href="/ai-mvp-rescue">Volver a AI MVP Rescue</a>
+      </div>
+
+      <!-- Level A only (shown by the script below): conditions + booking the first call -->
+      <div class="tf-booking" id="thanksBooking" hidden>
+        <p class="tf-welcome__desc">Por lo que me contaste, tu proyecto encaja con el diagnóstico completo. El siguiente paso es una llamada de 30 minutos para entender tu producto, tus usuarios y qué querés mejorar.</p>
+        <h2 class="tf-booking__title">Cómo funciona</h2>
+        <ol class="tf-booking__list">
+          <li>Primera llamada de 30 minutos.</li>
+          <li>Recorro tu app como un usuario y analizo el flujo que más te importa.</li>
+          <li>En 48 horas hábiles te aviso que está listo y agendamos una segunda llamada para presentártelo.</li>
+        </ol>
+        <p class="tf-booking__note">El diagnóstico es gratuito y no te compromete a contratar nada.</p>
+        <h2 class="tf-booking__title">Lo que te pido a cambio</h2>
+        <ul class="tf-booking__list">
+          <li>Si el diagnóstico te resulta útil, 2 o 3 líneas de testimonio que pueda publicar en uxuaria.com con tu nombre.</li>
+          <li>Permiso para escribir sobre lo que encuentre sin nombrar tu producto. Si más adelante quiero nombrarlo, te pido el ok antes.</li>
+          <li>Un usuario de prueba, si tu app requiere login.</li>
+        </ul>
+        <div class="tf-actions">
+          <a class="tf-btn" id="thanksBookingLink" href="#" target="_blank" rel="noopener">Agendar la llamada</a>
+        </div>
+        <p class="tf-booking__note">Al agendar aceptás estas condiciones.</p>
       </div>
     </section>
   </main>
@@ -51,11 +73,25 @@
   (function () {
     // First name saved by diagnostico.js; kept out of the URL on purpose
     var name = '';
+    var agenda = '';
     try {
       name = sessionStorage.getItem('diagnosticoNombre') || '';
+      agenda = sessionStorage.getItem('diagnosticoAgenda') || '';
       sessionStorage.removeItem('diagnosticoNombre');
+      sessionStorage.removeItem('diagnosticoAgenda');
     } catch (err) { /* storage blocked: keep the generic title */ }
     if (name) document.getElementById('thanksTitle').textContent = '¡Gracias, ' + name + '!';
+    // Level A: show conditions and the booking button instead of the generic message
+    if (agenda && /^https:\/\/calendly\.com\//.test(agenda)) {
+      document.getElementById('thanksDesc').hidden = true;
+      document.getElementById('thanksBack').hidden = true;
+      document.getElementById('thanksBooking').hidden = false;
+      var link = document.getElementById('thanksBookingLink');
+      link.href = agenda;
+      link.addEventListener('click', function () {
+        if (typeof gtag === 'function') gtag('event', 'agenda_click', { form: 'ai_mvp_rescue', nivel: 'A' });
+      });
+    }
   })();
   </script>
 </body>

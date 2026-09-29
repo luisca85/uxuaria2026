@@ -58,13 +58,19 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
     - UTM y `gclid`;
     - `_t`: milisegundos desde "Empezar";
     - el campo trampa `website`.
-17. Dado que la API responde `{ ok: true }`, entonces me redirige a la página de agradecimiento **`/diagnostico/gracias`**. Es una sola para todos los niveles: el nivel no se muestra al usuario y solo le llega a Luis en el email.
+17. Dado que la API responde `{ ok: true }`, entonces me redirige a la página de agradecimiento **`/diagnostico/gracias`**. El nivel no se muestra al usuario. Niveles B y C ven el mensaje general; nivel A ve además las condiciones y el botón para agendar (criterio 18c).
 18. Dado que estoy en `/diagnostico/gracias`, entonces veo el mismo layout (fondo claro, logotipo negro), un ícono ✓ y:
     - el título "¡Gracias, <nombre>!", o "¡Gracias!" si no hay nombre disponible;
     - el texto "Recibí tu pedido de diagnóstico. Te escribo personalmente pronto.";
     - el link "Volver a AI MVP Rescue".
     El nombre se pasa con `sessionStorage` (no por la URL, para no exponer datos personales). El texto dice "pronto", sin plazo concreto (decisión de Luis, 2026-09-28).
 18b. Dado que abro `/diagnostico/gracias` directamente, sin haber enviado el formulario, entonces veo la versión sin nombre. La página es `noindex, nofollow` y no dispara `generate_lead`.
+18c. **(Agregado 2026-09-28, decisión de Luis.)** Dado que mi envío dio nivel A, cuando llego a `/diagnostico/gracias`, entonces en lugar de "Te escribo personalmente pronto" veo:
+    - el texto de que mi proyecto encaja con el diagnóstico completo y que el siguiente paso es una llamada de 30 minutos;
+    - "Cómo funciona" (3 pasos) y "Lo que te pido a cambio" (testimonio si resulta útil, permiso para escribir sin nombrar el producto, usuario de prueba);
+    - el botón **"Agendar la llamada"**, que abre el Calendly de Luis en otra pestaña con mi nombre y email precargados;
+    - la nota "Al agendar aceptás estas condiciones".
+    El link llega en la respuesta de `/api/diagnostico` (`calendly`, solo para nivel A) y pasa por `sessionStorage`, igual que el nombre. Clic en el botón registra `agenda_click`. Si el storage está bloqueado o el link no es de `calendly.com`, se ve la versión general.
 19. Dado un envío exitoso, entonces se registra `generate_lead` con `nivel` y `cta_id`.
 19b. Dado un envío exitoso, entonces Luis recibe un email (Web3Forms) con el asunto `[Nivel X · N pts] Nuevo lead: …` y todas las respuestas.
 19c. Dado un envío exitoso, entonces la persona **no** recibe ningún email automático: `RESEND_API_KEY` y `MAIL_FROM` no se cargan en Cloudflare, y el código se saltea ese paso solo.
@@ -102,9 +108,9 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
 
 - **Diseño actual del sitio**: no se modifica nada visual fuera de `/diagnostico/`. En `ai-mvp-rescue.html` solo cambian el destino y el texto de los CTA.
 - **`/contacto/`**: el formulario de contacto queda exactamente como está.
-- **`functions/api/diagnostico.js`**: puntaje, niveles y la integración con Notion no cambian. Único cambio (2026-09-28): ya no llama a Web3Forms y devuelve `asunto` y `resumen` para que el aviso lo mande el navegador.
+- **`functions/api/diagnostico.js`**: puntaje, niveles y la integración con Notion no cambian. Único cambio (2026-09-28): ya no llama a Web3Forms y devuelve `asunto` y `resumen` para que el aviso lo mande el navegador. Segundo cambio (2026-09-28): devuelve `calendly` solo para el nivel A.
 - **Copy de las preguntas**: es el del modal anterior. Cualquier cambio necesita aprobación.
-- **Pantallas de resultado por nivel (A/B/C) y botón de Calendly**: se reemplazan por la página de agradecimiento única. El backend sigue calculando el nivel y devolviendo `calendly`, pero el front ya no lo usa.
+- **Pantallas de resultado por nivel (A/B/C)**: se reemplazan por la página de agradecimiento única. Excepción agregada el 2026-09-28: el nivel A ve en esa misma página las condiciones y el botón de Calendly (criterio 18c).
 - **Tokens de `diagnostico.css`**: quedan en el `:root` propio del archivo. Mover o no a `styles.css` es una decisión postergada; no se toca en este feature.
 - **`ux-ai-repair.html`**: ya resuelto fuera de este feature. Se eliminó el 2026-09-28 y `/ux-ai-repair` redirige 301 a `/ai-mvp-rescue` en `_redirects`.
 
@@ -142,6 +148,7 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 - [ ] Los criterios de aceptación verificados en el navegador (desktop y 375 px).
 - [ ] Prueba en celular real (la hace Luis).
 - [ ] Envío probado contra la función real (deploy de preview de Cloudflare), con un lead de prueba por nivel A, B y C, usando un email propio de Luis. Se confirma que:
+  - el nivel A ve las condiciones y el botón de Calendly con nombre y email precargados; B y C, el mensaje general;
   - llega el aviso a Luis;
   - se muestra la página de agradecimiento;
   - el lead no recibe ningún email automático;
@@ -158,7 +165,7 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 ## Dónde vive
 
 - `diagnostico/index.html`: markup de las 12 preguntas.
-- `diagnostico/gracias.html`: página de agradecimiento (URL `/diagnostico/gracias`).
+- `diagnostico/gracias.html`: página de agradecimiento (URL `/diagnostico/gracias`), con el bloque `#thanksBooking` para el nivel A (clases `tf-booking*`).
 - `diagnostico/diagnostico.css`: estilos tipo Typeform (clases `tf-*`).
 - `diagnostico/diagnostico.js`: navegación, validación, envío a `/api/diagnostico` y tracking.
 - `ai-mvp-rescue.html`: CTA y bloque JS "Diagnóstico: los CTA llevan al funnel en página propia".

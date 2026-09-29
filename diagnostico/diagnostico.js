@@ -262,7 +262,14 @@
       try {
         var first = (data.nombre || '').trim().split(/\s+/)[0];
         if (first) sessionStorage.setItem('diagnosticoNombre', first);
-      } catch (err) { /* storage blocked: the page falls back to a generic title */ }
+        // Level A books the first call from the thank-you page (conditions + Calendly)
+        if (r.nivel === 'A' && r.calendly) {
+          var agenda = new URL(r.calendly);
+          if (data.nombre) agenda.searchParams.set('name', data.nombre.trim());
+          if (data.email) agenda.searchParams.set('email', data.email.trim());
+          sessionStorage.setItem('diagnosticoAgenda', agenda.toString());
+        }
+      } catch (err) { /* storage blocked: the page falls back to the generic message */ }
       goToThanks(r.nivel || '');
     })
     .catch(function () {

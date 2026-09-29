@@ -6,7 +6,9 @@
  *   1. crea la ficha en Notion (Funnel Uxuaria)      → si hay NOTION_TOKEN
  *   2. manda el email de bienvenida al lead (Resend) → si hay RESEND_API_KEY y MAIL_FROM
  *
- * Responde { ok, nivel, puntaje, asunto, resumen }. El aviso por email a Luis lo
+ * Responde { ok, nivel, puntaje, calendly, asunto, resumen }. `calendly` solo viene
+ * con valor para el nivel A: la página de gracias le muestra las condiciones y el
+ * botón para agendar la primera llamada. El aviso por email a Luis lo
  * manda el navegador a Web3Forms con asunto y resumen (diagnostico/diagnostico.js):
  * el plan Free de Web3Forms rechaza los envíos server-side, como los de esta función.
  * Si Notion o Resend fallan, igual responde ok: el lead queda en el email.
@@ -338,6 +340,8 @@ export async function onRequestPost({ request, env }) {
     ok: true,
     nivel,
     puntaje,
+    // Nivel A agenda la primera llamada desde la página de gracias (decisión 2026-09-28)
+    calendly: nivel === 'A' ? calendly : '',
     asunto: `[Nivel ${nivel} · ${puntaje} pts] Nuevo lead: ${d.nombre} · ${d.producto || d.url}`,
     resumen: resumenTexto(d, nivel, puntaje, origen),
   });

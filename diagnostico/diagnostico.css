@@ -375,6 +375,32 @@
   font-weight: var(--font-weight-bold);
 }
 
+/* Level A booking block on the thank-you page */
+.tf-booking__title {
+  margin-top: 28px;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+.tf-booking__list {
+  margin-top: 10px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+.tf-booking__note {
+  margin-top: 16px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+.tf-booking .tf-actions { margin-left: 0; margin-top: 28px; }
+ul.tf-booking__list { list-style: disc; }
+ol.tf-booking__list { list-style: decimal; }
+.tf-thanks [hidden] { display: none !important; }
+
 /* ===================================================================
    ENHANCED MODE (JS) — one step per screen
    =================================================================== */
