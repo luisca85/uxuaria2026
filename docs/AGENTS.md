@@ -1,8 +1,8 @@
 # AGENTS — Cómo trabajar en este repo
 
-> **Provisorio (2026-09-28).** Versión mínima creada durante la spec `funnel-diagnostico`. Luis la va a reordenar cuando incorpore la metodología spec-lite completa.
+Las convenciones de código (stack, BEM, tokens, idioma, HTML semántico, lo que no se toca sin aprobación) están en [`CLAUDE.md`](../CLAUDE.md). Este archivo no las repite: agrega el ciclo de trabajo, la definición de hecho y el test de regresión.
 
-Las convenciones de código (stack, BEM, tokens, idioma, HTML semántico, lo que no se toca sin aprobación) están en [`CLAUDE.md`](../CLAUDE.md). Este archivo no las repite: agrega el ciclo de trabajo y la definición de hecho general.
+Contexto del proyecto: [`architecture.md`](architecture.md) (módulos, dónde vive cada cosa, datos y servicios externos) y [`decisions.md`](decisions.md) (decisiones con fecha y motivo, append-only).
 
 ---
 
@@ -45,6 +45,46 @@ Un cambio está hecho cuando:
 - [ ] No cambia nada fuera del alcance de la spec: el diff solo toca lo previsto.
 - [ ] La spec quedó actualizada: estado, "Dónde vive" y "Conocido".
 - [ ] Está commiteado con un mensaje en español que explica el porqué.
+
+---
+
+## Test de regresión
+
+Se corre en `/revisar`, antes de cerrar cualquier cambio. Tiene tres partes: **A** es local, antes del push; **B** y **C** son en producción, después del deploy (1 o 2 minutos después del push).
+
+### A. Local (preview en `http://localhost:3000`)
+
+Siempre en las páginas que tocó el cambio. Si tocó `styles.css` o `script.js`, que se cargan en casi todo el sitio, también en la home, una página de servicios, un caso de portafolio y un artículo del blog.
+
+1. **Carga limpia**: sin errores nuevos en la consola, en desktop y en 375 px, sin scroll horizontal.
+2. **Navegación**: la navbar lleva a Servicios, AI MVP Rescue, Blog y Contacto. El menú mobile abre, cierra y se cierra al tocar un link.
+3. **CTAs de conversión**:
+   - Home: los botones de AI MVP Rescue llevan a `ai-mvp-rescue`; los de agenda, a Calendly.
+   - AI MVP Rescue: los 3 CTA llevan a `diagnostico/?cta=…`.
+4. **Contacto** (`/contacto/`): si se envía vacío o con un email inválido, muestra los errores y no envía. El envío real se prueba en C.
+5. **Funnel** (`/diagnostico/`): se ve una sola pregunta a la vez, avanza con Enter y con las letras, valida cada paso y llega a la última pregunta. Localmente no hay `/api`, así que el envío real se prueba en C.
+6. **Caché**: si cambió un CSS o JS que tiene `?v=` en su link, el `?v=` del HTML se actualizó.
+
+### B. Producción, automático (lo corre Claude)
+
+Comprueba que las páginas del sitemap respondan, que los 301 de `_redirects` funcionen y que `/api/diagnostico` esté viva. No crea datos: el POST vacío se rechaza con 400 antes de tocar Notion.
+
+```bash
+for u in $(grep -o '<loc>[^<]*' sitemap.xml | sed 's/<loc>//') https://uxuaria.com/diagnostico/ https://uxuaria.com/diagnostico/gracias; do c=$(curl -s -o /dev/null -w '%{http_code}' "$u"); [ "$c" = 200 ] || echo "FALLA $c $u"; done
+for u in /index.html /es/x /en/x /ux-ai-repair /ux-ai-repair.html; do echo "$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://uxuaria.com$u) <- $u"; done
+curl -s -o /dev/null -w '%{http_code} POST /api/diagnostico (esperado 400)\n' -X POST -H 'Content-Type: application/json' -d '{}' https://uxuaria.com/api/diagnostico
+```
+
+Resultado esperado: el primer comando no imprime nada; los redirects dan todos `301`, a `/` o a `/ai-mvp-rescue`; la API da `400`.
+
+### C. Producción, manual (lo hace Luis)
+
+Solo si el cambio tocó el formulario de contacto, el funnel o `/api/diagnostico`. Genera emails y fichas reales, así que conviene usar un nombre que empiece con `TEST` y borrar la ficha de Notion después.
+
+1. **Contacto**: enviar el formulario → aparece el mensaje de éxito y llega el email de Web3Forms.
+2. **Funnel, nivel A** (founder full-time, ya factura, más de 500 usuarios, USD 5.000 o más, este mes) → `/diagnostico/gracias` con las condiciones y el botón de Calendly. Llega el aviso por email y aparece la ficha en Notion.
+3. **Funnel, nivel C** (rol "proyecto personal") → `/gracias` con el mensaje general, sin Calendly.
+4. **GA4**: en la vista Realtime aparece `generate_lead`, con el nivel en el caso del funnel.
 
 ---
 
