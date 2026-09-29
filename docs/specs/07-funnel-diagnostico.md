@@ -1,8 +1,8 @@
 # 07 — Funnel del diagnóstico (AI MVP Rescue)
 
 **id:** `funnel-diagnostico`
-**Estado:** ✅ Construido en `main` (sin publicar) · pendiente de `/revisar` y de la prueba contra la función real
-**Última actualización:** 2026-09-28
+**Estado:** ✅ En producción · `/revisar` del 2026-09-29 sin fallas · pendiente: envíos reales A/B/C, GA4 DebugView y celular real (los hace Luis)
+**Última actualización:** 2026-09-29
 **Relacionada con:** [05-rescue-service.md](05-rescue-service.md) (landing AI MVP Rescue y backend `/api/diagnostico`)
 
 ---
@@ -120,7 +120,7 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
 - **Email a Luis**: Web3Forms, enviado **desde el navegador** (`diagnostico.js`) con el `asunto` y el `resumen` que devuelve `/api/diagnostico`. El plan Free de Web3Forms rechaza los envíos server-side, como los de una Cloudflare Function. La access key es pública por diseño, igual que en `/contacto/`.
 - **Email automático al lead (Resend)**: no se usa en esta spec. El código ya lo soporta, pero solo se activa si están cargadas `RESEND_API_KEY` y `MAIL_FROM`. Queda para el rediseño de la automatización.
 - **Ficha en Notion**: `NOTION_TOKEN`, opcional. Sin ella el lead igual llega por email.
-- **Otras variables opcionales**: `NOTION_DB_ID`, `WEB3FORMS_KEY` y `CALENDLY_URL` tienen valor por defecto en el código.
+- **Otras variables opcionales**: `NOTION_DB_ID` y `CALENDLY_URL` tienen valor por defecto en el código. La clave de Web3Forms está en `diagnostico.js`, no en la función.
 - Qué variables están cargadas hoy en producción no se sabe (se revisa en Cloudflare Pages → Settings → Variables and secrets). **No bloquea**: el aviso a Luis funciona con la clave de Web3Forms del código, y sin Resend no sale ningún email al lead, que es lo buscado.
 - GA4 `G-6TCJ5969G7` (snippet en `diagnostico/index.html`). `ai-mvp-rescue.html` usa su propio helper `track()`.
 - `styles.css`: tokens y `.logo-text`. `script.js` (sin dependencias fuertes, todos los lookups tienen guardas).
@@ -133,7 +133,7 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
 - **Error de validación:** mensaje en línea, en rojo, con una pequeña sacudida, debajo del campo. Se borra al escribir o elegir.
 - **Error de envío:** mensaje en línea con el email de contacto; el botón se reactiva.
 - **Éxito:** redirección a `/diagnostico/gracias` (página de agradecimiento única).
-- **Sin JavaScript:** se oculta el formulario y se muestra un aviso para escribir a `info@uxuaria.com`. Decidido el 2026-09-28: alcanza. La prioridad es que el formulario funcione bien para quien tiene JS, que es casi todo el mundo, y no se modifica `functions/api/diagnostico.js` para aceptar formularios sin JS. Esto es una excepción a la regla de progressive enhancement de `CLAUDE.md`; conviene registrarla con `/decidir`.
+- **Sin JavaScript:** se oculta el formulario y se muestra un aviso para escribir a `info@uxuaria.com`. Decidido el 2026-09-28: alcanza. La prioridad es que el formulario funcione bien para quien tiene JS, que es casi todo el mundo, y no se modifica `functions/api/diagnostico.js` para aceptar formularios sin JS. Esto es una excepción a la regla de progressive enhancement de `CLAUDE.md`, registrada en `docs/decisions.md`.
 
 ## Diseño
 
@@ -145,7 +145,7 @@ Referencia visual: fondo `--color-bg` (blanco), texto y botones `--color-text` (
 
 La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 
-- [ ] Los criterios de aceptación verificados en el navegador (desktop y 375 px).
+- [x] Los criterios de aceptación verificados en el navegador (desktop y 375 px). Ver "Revisión 2026-09-29".
 - [ ] Prueba en celular real (la hace Luis).
 - [ ] Envío probado contra la función real (deploy de preview de Cloudflare), con un lead de prueba por nivel A, B y C, usando un email propio de Luis. Se confirma que:
   - el nivel A ve las condiciones y el botón de Calendly con nombre y email precargados; B y C, el mensaje general;
@@ -154,11 +154,11 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
   - el lead no recibe ningún email automático;
   - después se borran las fichas de prueba en Notion, si las hubo.
 - [ ] `generate_lead` visible en GA4 DebugView, junto con `form_start`, `form_step` y `click_formulario_ai_mvp_rescue`.
-- [ ] Los valores de las opciones del HTML coinciden con `OPCIONES` de `functions/api/diagnostico.js`.
-- [ ] `/diagnostico/` con `noindex, follow` y fuera de `sitemap.xml` (decidido: no se indexa).
-- [ ] Sin referencias activas a Typeform en el sitio.
-- [ ] `05-rescue-service.md` actualizado y apuntando a esta spec.
-- [ ] `/contacto/` sin cambios (diff vacío).
+- [x] Los valores de las opciones del HTML coinciden con `OPCIONES` de `functions/api/diagnostico.js`.
+- [x] `/diagnostico/` con `noindex, follow` y fuera de `sitemap.xml` (decidido: no se indexa).
+- [x] Sin referencias activas a Typeform en el sitio.
+- [x] `05-rescue-service.md` actualizado y apuntando a esta spec.
+- [x] `/contacto/` sin cambios (diff vacío).
 
 ---
 
@@ -170,7 +170,7 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 - `diagnostico/diagnostico.js`: navegación, validación, envío a `/api/diagnostico` y tracking.
 - `ai-mvp-rescue.html`: CTA y bloque JS "Diagnóstico: los CTA llevan al funnel en página propia".
 - `functions/api/diagnostico.js`: backend (sin cambios por este feature).
-- `index.html` + `script.js`: modal `#checkup-modal` de Typeform (código muerto, se borra en este feature).
+- `index.html` + `script.js` + `styles.css`: ya no tienen el modal `#checkup-modal` de Typeform ni los estilos `ckm-*` (borrados en este feature).
 
 ## Conocido
 
@@ -180,3 +180,13 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 - **Web3Forms no acepta envíos server-side en el plan Free** ("This method is not allowed…"). El primer deploy (2026-09-28) mandaba el aviso desde la función, y el envío de prueba de Luis no llegó ni se registró. Por eso el aviso sale desde el navegador. Si `NOTION_TOKEN` no está cargado, el email es el único registro del lead.
 - **Caché del navegador:** Cloudflare sirve `.js` y `.css` con `max-age=14400` (4 h). Por eso `diagnostico.css` y `diagnostico.js` se cargan con `?v=AAAAMMDD`, y hay que cambiar ese número al modificarlos. Un envío de prueba ("bvv", 2026-09-28) usó el script viejo en caché y el aviso no salió.
 - La respuesta de Web3Forms se valida por `success: true` en el cuerpo, no solo por el código HTTP.
+
+## Revisión 2026-09-29
+
+Hecha en producción (`main` = `origin/main`). No se crearon datos reales: se simularon en el navegador las respuestas de `/api/diagnostico` y Web3Forms, y se anuló `gtag`.
+
+- **Estático**: los valores de las opciones coinciden con `OPCIONES`; el orden de las preguntas es el del criterio 15; `noindex` en las dos páginas y ninguna en el sitemap; sin referencias a Typeform ni a `diag-modal`; `/contacto/` sin cambios; sin secretos en el diff (la clave de Web3Forms es pública por diseño).
+- **Navegador**: criterios 1–4, 6–14, 16–18c, 19b, 20–24 OK. Nivel A: el botón de Calendly lleva nombre y email precargados. `/gracias` abierta directo: versión sin nombre y sin bloque de agenda. A 375 px no hay scroll horizontal y los botones ↑↓ no tapan opciones. Consola sin errores.
+- **Por código**: 19 (`generate_lead` con `nivel` y `cta_id`), 19c (sin Resend no sale el email) y 25 (`prefers-reduced-motion` en `diagnostico.css`).
+- **Regresión B** de `AGENTS.md`: OK (páginas en 200, redirects en 301, `POST {}` a la API da 400).
+- **Pendiente (Luis)**: envío real por nivel A, B y C (regresión C), `generate_lead` en GA4 y prueba en un celular real.
