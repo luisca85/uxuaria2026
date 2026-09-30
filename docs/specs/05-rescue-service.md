@@ -183,7 +183,7 @@ El funnel vive en su propia spec: **[07-funnel-diagnostico.md](07-funnel-diagnos
 - El link directo `uxuaria.com/ai-mvp-rescue#diagnostico` (DMs de LinkedIn) redirige a `/diagnostico/?cta=link_directo`.
 - `/diagnostico/` es un formulario tipo Typeform, con una pregunta por pantalla. Al enviar, va a `/diagnostico/gracias`.
 - **Envío** a `POST /api/diagnostico` (`functions/api/diagnostico.js`):
-  - Calcula puntaje y nivel: A ≥ 60, B de 35 a 59, C < 35 o proyecto personal.
+  - Calcula puntaje y nivel: A ≥ 60, B todo lo demás (incluye proyecto personal).
   - Avisa a Luis por Web3Forms.
   - Crea la ficha en Notion si existe `NOTION_TOKEN`.
   - **No manda email automático al lead**: Luis responde a mano, y las variables de Resend no se cargan.

@@ -1,8 +1,8 @@
 # 07 — Funnel del diagnóstico (AI MVP Rescue)
 
 **id:** `funnel-diagnostico`
-**Estado:** ✅ En producción · `/revisar` del 2026-09-29 sin fallas · pendiente: envíos reales A/B/C, GA4 DebugView y celular real (los hace Luis)
-**Última actualización:** 2026-09-29
+**Estado:** ✅ En producción · cambio a dos niveles (A/B) del 2026-09-30 pendiente de deploy y de regresión C · pendiente: envíos reales A/B, GA4 DebugView y celular real (los hace Luis)
+**Última actualización:** 2026-09-30
 **Relacionada con:** [05-rescue-service.md](05-rescue-service.md) (landing AI MVP Rescue y backend `/api/diagnostico`)
 
 ---
@@ -58,7 +58,7 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
     - UTM y `gclid`;
     - `_t`: milisegundos desde "Empezar";
     - el campo trampa `website`.
-17. Dado que la API responde `{ ok: true }`, entonces me redirige a la página de agradecimiento **`/diagnostico/gracias`**. El nivel no se muestra al usuario. Niveles B y C ven el mensaje general; nivel A ve además las condiciones y el botón para agendar (criterio 18c).
+17. Dado que la API responde `{ ok: true }`, entonces me redirige a la página de agradecimiento **`/diagnostico/gracias`**. El nivel no se muestra al usuario. El nivel B ve el mensaje general; nivel A ve además las condiciones y el botón para agendar (criterio 18c).
 18. Dado que estoy en `/diagnostico/gracias`, entonces veo el mismo layout (fondo claro, logotipo negro), un ícono ✓ y:
     - el título "¡Gracias, <nombre>!", o "¡Gracias!" si no hay nombre disponible;
     - el texto "Recibí tu pedido de diagnóstico. Te escribo personalmente pronto.";
@@ -91,7 +91,7 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
 
 - Página nueva `diagnostico/index.html` + `diagnostico/diagnostico.css` + `diagnostico/diagnostico.js`.
 - Página de agradecimiento `diagnostico/gracias.html` (`noindex, nofollow`, fuera de `sitemap.xml`). Reusa `diagnostico.css`.
-- Quitar de `diagnostico/index.html` las 3 pantallas de resultado A/B/C y, de `diagnostico.js`, la lógica de nivel y Calendly.
+- Quitar de `diagnostico/index.html` las pantallas de resultado por nivel y, de `diagnostico.js`, la lógica de nivel y Calendly.
 - En `ai-mvp-rescue.html`:
   - Los 3 CTA pasan a apuntar a `/diagnostico/`, con el texto nuevo.
   - El JS de los CTA pasa `cta_id` y los UTM.
@@ -108,9 +108,9 @@ Métrica de éxito: evento **`generate_lead`** en GA4 (envío exitoso a `/api/di
 
 - **Diseño actual del sitio**: no se modifica nada visual fuera de `/diagnostico/`. En `ai-mvp-rescue.html` solo cambian el destino y el texto de los CTA.
 - **`/contacto/`**: el formulario de contacto queda exactamente como está.
-- **`functions/api/diagnostico.js`**: puntaje, niveles y la integración con Notion no cambian. Único cambio (2026-09-28): ya no llama a Web3Forms y devuelve `asunto` y `resumen` para que el aviso lo mande el navegador. Segundo cambio (2026-09-28): devuelve `calendly` solo para el nivel A.
+- **`functions/api/diagnostico.js`**: puntaje, niveles y la integración con Notion no cambian. Único cambio (2026-09-28): ya no llama a Web3Forms y devuelve `asunto` y `resumen` para que el aviso lo mande el navegador. Segundo cambio (2026-09-28): devuelve `calendly` solo para el nivel A. Tercer cambio (2026-09-30): pasa a dos niveles, A (≥ 60) y B (el resto, incluido proyecto personal); se elimina el C. La próxima acción del nivel B en Notion es genérica ("revisar el caso y responder a mano").
 - **Copy de las preguntas**: es el del modal anterior. Cualquier cambio necesita aprobación.
-- **Pantallas de resultado por nivel (A/B/C)**: se reemplazan por la página de agradecimiento única. Excepción agregada el 2026-09-28: el nivel A ve en esa misma página las condiciones y el botón de Calendly (criterio 18c).
+- **Pantallas de resultado por nivel**: se reemplazan por la página de agradecimiento única. Excepción agregada el 2026-09-28: el nivel A ve en esa misma página las condiciones y el botón de Calendly (criterio 18c).
 - **Tokens de `diagnostico.css`**: quedan en el `:root` propio del archivo. Mover o no a `styles.css` es una decisión postergada; no se toca en este feature.
 - **`ux-ai-repair.html`**: ya resuelto fuera de este feature. Se eliminó el 2026-09-28 y `/ux-ai-repair` redirige 301 a `/ai-mvp-rescue` en `_redirects`.
 
@@ -147,8 +147,8 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 
 - [x] Los criterios de aceptación verificados en el navegador (desktop y 375 px). Ver "Revisión 2026-09-29".
 - [ ] Prueba en celular real (la hace Luis).
-- [ ] Envío probado contra la función real (deploy de preview de Cloudflare), con un lead de prueba por nivel A, B y C, usando un email propio de Luis. Se confirma que:
-  - el nivel A ve las condiciones y el botón de Calendly con nombre y email precargados; B y C, el mensaje general;
+- [ ] Envío probado contra la función real (deploy de preview de Cloudflare), con un lead de prueba por nivel A y B, usando un email propio de Luis. Se confirma que:
+  - el nivel A ve las condiciones y el botón de Calendly con nombre y email precargados; B, el mensaje general;
   - llega el aviso a Luis;
   - se muestra la página de agradecimiento;
   - el lead no recibe ningún email automático;
@@ -169,7 +169,7 @@ La general de [`docs/AGENTS.md`](../AGENTS.md), más la propia de este feature:
 - `diagnostico/diagnostico.css`: estilos tipo Typeform (clases `tf-*`).
 - `diagnostico/diagnostico.js`: navegación, validación, envío a `/api/diagnostico` y tracking.
 - `ai-mvp-rescue.html`: CTA y bloque JS "Diagnóstico: los CTA llevan al funnel en página propia".
-- `functions/api/diagnostico.js`: backend (sin cambios por este feature).
+- `functions/api/diagnostico.js`: backend (puntaje, nivel A/B y Notion). Sus cambios por este feature están listados en "Fuera de alcance / No tocar".
 - `index.html` + `script.js` + `styles.css`: ya no tienen el modal `#checkup-modal` de Typeform ni los estilos `ckm-*` (borrados en este feature).
 
 ## Conocido
@@ -189,4 +189,4 @@ Hecha en producción (`main` = `origin/main`). No se crearon datos reales: se si
 - **Navegador**: criterios 1–4, 6–14, 16–18c, 19b, 20–24 OK. Nivel A: el botón de Calendly lleva nombre y email precargados. `/gracias` abierta directo: versión sin nombre y sin bloque de agenda. A 375 px no hay scroll horizontal y los botones ↑↓ no tapan opciones. Consola sin errores.
 - **Por código**: 19 (`generate_lead` con `nivel` y `cta_id`), 19c (sin Resend no sale el email) y 25 (`prefers-reduced-motion` en `diagnostico.css`).
 - **Regresión B** de `AGENTS.md`: OK (páginas en 200, redirects en 301, `POST {}` a la API da 400).
-- **Pendiente (Luis)**: envío real por nivel A, B y C (regresión C), `generate_lead` en GA4 y prueba en un celular real.
+- **Pendiente (Luis)**: envío real por nivel A y B (incluido un proyecto personal, que cae en B), `generate_lead` en GA4 y prueba en un celular real.

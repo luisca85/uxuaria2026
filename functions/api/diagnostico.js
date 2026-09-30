@@ -2,7 +2,7 @@
  * POST /api/diagnostico
  *
  * Recibe el formulario del diagnóstico de AI MVP Rescue (ai-mvp-rescue.html),
- * calcula puntaje y nivel (A, B, C) y:
+ * calcula puntaje y nivel (A o B) y:
  *   1. crea la ficha en Notion (Funnel Uxuaria)      → si hay NOTION_TOKEN
  *   2. manda el email de bienvenida al lead (Resend) → si hay RESEND_API_KEY y MAIL_FROM
  *
@@ -81,7 +81,6 @@ export const OPCIONES = {
 };
 
 export const UMBRAL_A = 60;
-export const UMBRAL_B = 35;
 
 const PUNTUADAS = ['etapa', 'usuarios', 'rol', 'presupuesto', 'urgencia'];
 
@@ -92,10 +91,9 @@ export function calcularNivel(d) {
     if (opt) puntaje += opt.pts;
   }
   let nivel;
-  if (d.presupuesto === 'personal' || d.rol === 'personal') nivel = 'C';
+  if (d.presupuesto === 'personal' || d.rol === 'personal') nivel = 'B';
   else if (puntaje >= UMBRAL_A) nivel = 'A';
-  else if (puntaje >= UMBRAL_B) nivel = 'B';
-  else nivel = 'C';
+  else nivel = 'B';
   return { puntaje, nivel };
 }
 
@@ -146,8 +144,7 @@ export function sumarDiasHabiles(fecha, n) {
 
 const PROXIMA_ACCION = {
   A: 'Nivel A: confirmar que agendó la reunión; si no, escribirle (email A2)',
-  B: 'Nivel B: producir diagnóstico express (video + 1 página) en 5 días hábiles',
-  C: 'Nivel C: mandar email C1 (checklist + rescate en público / revisión paga)',
+  B: 'Nivel B: revisar el caso y responder a mano según corresponda',
 };
 
 function etiqueta(campo, valor) {
@@ -238,19 +235,11 @@ export function emailAlLead(nivel, nombre, producto, calendly) {
         `Agendá acá: ${calendly}\n\nSi tu app requiere login, tené a mano un usuario de prueba.` + firma,
     };
   }
-  if (nivel === 'B') {
-    return {
-      subject: `Tu diagnóstico de ${p} está en camino`,
-      text:
-        `Hola ${n},\n\nRecibí tu pedido. En los próximos 5 días hábiles te mando un video corto donde recorro el flujo principal de ${p} y una página con los 3 puntos que más te conviene mirar.\n\n` +
-        `No necesitás agendar nada. Si tu app requiere login, respondé este email con un usuario de prueba.` + firma,
-    };
-  }
   return {
-    subject: `Gracias por contarme de ${p}`,
+    subject: `Tu diagnóstico de ${p} está en camino`,
     text:
-      `Hola ${n},\n\nGracias por mandarme tu proyecto. Por la etapa en la que está, un diagnóstico completo todavía no es lo que más te sirve. En los próximos días te escribo con algunas opciones para que puedas avanzar igual.\n\n` +
-      `Mientras tanto, en uxuaria.com/blog tenés artículos sobre los problemas más comunes de las apps hechas con IA.` + firma,
+      `Hola ${n},\n\nRecibí tu pedido. En los próximos 5 días hábiles te mando un video corto donde recorro el flujo principal de ${p} y una página con los 3 puntos que más te conviene mirar.\n\n` +
+      `No necesitás agendar nada. Si tu app requiere login, respondé este email con un usuario de prueba.` + firma,
   };
 }
 

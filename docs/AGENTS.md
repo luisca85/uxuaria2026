@@ -83,7 +83,7 @@ Solo si el cambio tocó el formulario de contacto, el funnel o `/api/diagnostico
 
 1. **Contacto**: enviar el formulario → aparece el mensaje de éxito y llega el email de Web3Forms.
 2. **Funnel, nivel A** (founder full-time, ya factura, más de 500 usuarios, USD 5.000 o más, este mes) → `/diagnostico/gracias` con las condiciones y el botón de Calendly. Llega el aviso por email y aparece la ficha en Notion.
-3. **Funnel, nivel C** (rol "proyecto personal") → `/gracias` con el mensaje general, sin Calendly.
+3. **Funnel, nivel B** (rol "proyecto personal") → `/gracias` con el mensaje general, sin Calendly.
 4. **GA4**: en la vista Realtime aparece `generate_lead`, con el nivel en el caso del funnel.
 
 ---

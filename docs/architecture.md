@@ -17,7 +17,7 @@ Reconstruido desde el código el 2026-09-29. Lo que no se pudo verificar en el r
 | Contacto (`contacto/`) | Formulario general; envía a Web3Forms desde el navegador | 04 |
 | AI MVP Rescue (`ai-mvp-rescue.html`) | Landing autocontenida del servicio de rescate: CSS y JS inline, **no** carga `styles.css` ni `script.js` | 05 |
 | Funnel diagnóstico (`diagnostico/`) | Formulario de una pregunta por pantalla → `/api/diagnostico` → `/diagnostico/gracias` | 07 |
-| `/api/diagnostico` (`functions/api/diagnostico.js`) | Calcula puntaje y nivel A/B/C, crea la ficha en Notion y (opcional) manda email al lead con Resend | 05, 07 |
+| `/api/diagnostico` (`functions/api/diagnostico.js`) | Calcula puntaje y nivel A/B, crea la ficha en Notion y (opcional) manda email al lead con Resend | 05, 07 |
 | `/api/contacto` (`functions/api/contacto.js`) | Eliminado el 2026-09-29 (código muerto; ver decisions.md) | 04 |
 | UI compartida (`script.js`) | GA4 `uxuariaTrack` + `data-track`, navbar, menú mobile, smooth scroll, carruseles, parallax de servicios, contadores, fade-in, sticky CTA | — |
 | Design system (`styles.css`) | Tokens en `:root` + componentes de todas las páginas (estilo "Retro 3.1") | 01 |
