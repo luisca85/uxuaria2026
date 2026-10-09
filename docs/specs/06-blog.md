@@ -1,8 +1,8 @@
 # 06 — Blog
 
-**Estado:** ✅ Implementado (4 artículos activos)  
-**Archivos:** `blog.html`, `blog/diferencias-creacion-ia-vs-diseno.html`, `blog/prompt-ear-no-es-disenar.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
-**Última actualización:** 2026-07-14
+**Estado:** ✅ Implementado (5 artículos activos)  
+**Archivos:** `blog.html`, `blog/metodo-harada.html`, `blog/diferencias-creacion-ia-vs-diseno.html`, `blog/prompt-ear-no-es-disenar.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
+**Última actualización:** 2026-10-09
 
 ---
 
@@ -155,11 +155,13 @@ Hover: `translate(3px, 3px)` + sombra `3px 3px 0 0`
 
 | Slug | Archivo | Título aproximado |
 |---|---|---|
+| `metodo-harada` | `blog/metodo-harada.html` | Método Harada: cómo dividir una meta creativa en 64 acciones |
 | `diferencias-creacion-ia-vs-diseno` | `blog/diferencias-creacion-ia-vs-diseno.html` | Diferencias entre diseñar con o sin IA y su impacto en el gesto creativo |
 | `prompt-ear-no-es-disenar` | `blog/prompt-ear-no-es-disenar.html` | ¿Por qué las apps hechas con IA se parecen tanto? |
 | `3-cosas-ux` | `blog/3-cosas-ux.html` | 3 cosas que aprendí de UX |
 | `6-preguntas-ux` | `blog/6-preguntas-ux.html` | 6 preguntas de UX |
 
+> Portada de `metodo-harada`: `images/blog/metodo-harada/sakura64-intro-tablero.jpg` (1600×1000), card destacada en `blog.html`. Los screenshots de SAKURA 64 del cuerpo viven en `images/blog/metodo-harada/` y usan `.article-figure`.
 > Portada de `prompt-ear-no-es-disenar`: `images/blog/articulo003.png` (1267×832). Usada en `blog.html` (card regular), `blog/prompt-ear-no-es-disenar.html` (`.article-cover__img`) y en los cards relacionados de los otros artículos.
 > Portada de `diferencias-creacion-ia-vs-diseno`: `images/blog/articulo004.png` (1408×768). Usada en `blog.html` (card destacada) y en `blog/diferencias-creacion-ia-vs-diseno.html` (`.article-cover__img`).
 
@@ -185,6 +187,8 @@ Hover: `translate(3px, 3px)` + sombra `3px 3px 0 0`
 | `.article-cover` | Wrapper imagen principal |
 | `.article-cover__img` | Imagen 16:9 con borde retro |
 | `.article-body` | Cuerpo del artículo |
+| `.article-figure` | Screenshot dentro del cuerpo (borde + sombra retro) |
+| `.article-figure__img` | Imagen del screenshot, ancho completo de la columna |
 | `.related-articles` | Sección artículos relacionados (full width) |
 | `.related-articles__track` | Track horizontal con scroll |
 | `.article-cta` | CTA de contacto (full width, fondo oscuro) |
@@ -215,3 +219,4 @@ images/blog/
 - **2026-06-04** — Rediseño de artículos: columna 25/50/25, artículos relacionados (carrusel), CTA de contacto.
 - **2026-07-06** — Nuevo artículo `prompt-ear-no-es-disenar`. Portada con `.blog-img-placeholder` pendiente de imagen real.
 - **2026-07-14** — Nuevo artículo `diferencias-creacion-ia-vs-diseno`. Portada `articulo004.png` (1408×768) agregada.
+- **2026-10-09** — Nuevo artículo `metodo-harada` (promueve la microapp SAKURA 64), card destacada en `blog.html`; el anterior baja al grid. Se agregan `.article-figure` para screenshots en el cuerpo y un override de `.btn--primary` dentro de `.article-body`. El artículo carga `styles.css?v=20261009` por la caché de 4 h.

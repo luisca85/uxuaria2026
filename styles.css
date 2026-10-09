@@ -2548,6 +2548,24 @@ a.breadcrumb__item:hover {
   font-size: .85em;
 }
 
+.article-body .btn--primary {
+  color: var(--color-text-inverse);
+  text-decoration: none;
+}
+.article-body .btn--primary:hover { background: var(--color-text); }
+
+/* Screenshots inside the article body */
+.article-figure {
+  margin: 32px 0 40px;
+}
+.article-figure__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 3px solid var(--color-text);
+  box-shadow: 6px 6px 0 0 var(--color-text);
+}
+
 /* ===== ARTÍCULOS RELACIONADOS ===== */
 .related-articles {
   padding: var(--spacing-section-sm) 0;
