@@ -220,3 +220,4 @@ images/blog/
 - **2026-07-06** — Nuevo artículo `prompt-ear-no-es-disenar`. Portada con `.blog-img-placeholder` pendiente de imagen real.
 - **2026-07-14** — Nuevo artículo `diferencias-creacion-ia-vs-diseno`. Portada `articulo004.png` (1408×768) agregada.
 - **2026-10-09** — Nuevo artículo `metodo-harada` (promueve la microapp SAKURA 64), card destacada en `blog.html`; el anterior baja al grid. Se agregan `.article-figure` para screenshots en el cuerpo y un override de `.btn--primary` dentro de `.article-body`. El artículo carga `styles.css?v=20261009` por la caché de 4 h.
+- **2026-10-09** — SEO: `image` y `dateModified` en el JSON-LD de todos los artículos, descripción de `blog.html` acortada a 149 caracteres, y link a SAKURA 64 (`sakura64.uxuaria.com`) en la columna "Navegación" del footer de todas las páginas. SAKURA 64 tiene su propio `sitemap.xml` y `robots.txt` en su subdominio; no va en el sitemap de uxuaria.com porque es otro host.
