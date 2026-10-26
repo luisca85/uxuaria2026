@@ -155,7 +155,7 @@ Hover: `translate(3px, 3px)` + sombra `3px 3px 0 0`
 
 | Slug | Archivo | Título aproximado |
 |---|---|---|
-| `ilusion-de-productividad-ia` | `blog/ilusion-de-productividad-ia.html` | Una ilusión de productividad: qué le pasa a mi criterio cuando todo pasa por la IA |
+| `ilusion-de-productividad-ia` | `blog/ilusion-de-productividad-ia.html` | El instinto herramienta creativa en la toma de decisiones |
 | `metodo-harada` | `blog/metodo-harada.html` | Método Harada: cómo dividir una meta creativa en 64 acciones |
 | `diferencias-creacion-ia-vs-diseno` | `blog/diferencias-creacion-ia-vs-diseno.html` | Diferencias entre diseñar con o sin IA y su impacto en el gesto creativo |
 | `prompt-ear-no-es-disenar` | `blog/prompt-ear-no-es-disenar.html` | ¿Por qué las apps hechas con IA se parecen tanto? |
@@ -224,3 +224,4 @@ images/blog/
 - **2026-10-09** — Nuevo artículo `metodo-harada` (promueve la microapp SAKURA 64), card destacada en `blog.html`; el anterior baja al grid. Se agregan `.article-figure` para screenshots en el cuerpo y un override de `.btn--primary` dentro de `.article-body`. El artículo carga `styles.css?v=20261009` por la caché de 4 h.
 - **2026-10-09** — SEO: `image` y `dateModified` en el JSON-LD de todos los artículos, descripción de `blog.html` acortada a 149 caracteres, y link a SAKURA 64 (`sakura64.uxuaria.com`) en la columna "Navegación" del footer de todas las páginas. SAKURA 64 tiene su propio `sitemap.xml` y `robots.txt` en su subdominio; no va en el sitemap de uxuaria.com porque es otro host.
 - **2026-10-26** — Nuevo artículo `ilusion-de-productividad-ia` (IA · CREATIVIDAD), pieza ancla del boletín y destino de los posts de LinkedIn. Pasa a ser la card destacada en `blog.html` y entra en el JSON-LD `blogPost`; `metodo-harada` baja al grid. URL agregada a `sitemap.xml` (lastmod 2026-10-26).
+- **2026-10-26** — `ilusion-de-productividad-ia` cambia de título a "El instinto herramienta creativa en la toma de decisiones" (title, og:title, schema, breadcrumb, h1, card destacada y JSON-LD de `blog.html`). El slug no cambia.
