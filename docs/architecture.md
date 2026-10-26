@@ -13,7 +13,7 @@ Reconstruido desde el código el 2026-09-29. Lo que no se pudo verificar en el r
 | Home (`index.html`) | Página de captación: hero, proof bar, servicios, portafolio (destacado + carrusel), testimonios, about, CTA | 00, 03 |
 | Servicios (`servicios/`) | Índice + 4 páginas: investigación, MVP, experiencia, crecimiento | 00, 03 |
 | Portafolio (`portafolio/*.html`) | 7 casos de estudio, uno por archivo | 02 |
-| Blog (`blog.html`, `blog/*.html`) | Índice + 4 artículos | 06 |
+| Blog (`blog.html`, `blog/*.html`) | Índice + 6 artículos | 06 |
 | Contacto (`contacto/`) | Formulario general; envía a Web3Forms desde el navegador | 04 |
 | AI MVP Rescue (`ai-mvp-rescue.html`) | Landing autocontenida del servicio de rescate: CSS y JS inline, **no** carga `styles.css` ni `script.js` | 05 |
 | Funnel diagnóstico (`diagnostico/`) | Formulario de una pregunta por pantalla → `/api/diagnostico` → `/diagnostico/gracias` | 07 |

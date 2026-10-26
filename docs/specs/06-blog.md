@@ -1,8 +1,8 @@
 # 06 — Blog
 
-**Estado:** ✅ Implementado (5 artículos activos)  
-**Archivos:** `blog.html`, `blog/metodo-harada.html`, `blog/diferencias-creacion-ia-vs-diseno.html`, `blog/prompt-ear-no-es-disenar.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
-**Última actualización:** 2026-10-09
+**Estado:** ✅ Implementado (6 artículos activos)  
+**Archivos:** `blog.html`, `blog/ilusion-de-productividad-ia.html`, `blog/metodo-harada.html`, `blog/diferencias-creacion-ia-vs-diseno.html`, `blog/prompt-ear-no-es-disenar.html`, `blog/3-cosas-ux.html`, `blog/6-preguntas-ux.html`  
+**Última actualización:** 2026-10-26
 
 ---
 
@@ -155,15 +155,17 @@ Hover: `translate(3px, 3px)` + sombra `3px 3px 0 0`
 
 | Slug | Archivo | Título aproximado |
 |---|---|---|
+| `ilusion-de-productividad-ia` | `blog/ilusion-de-productividad-ia.html` | Una ilusión de productividad: qué le pasa a mi criterio cuando todo pasa por la IA |
 | `metodo-harada` | `blog/metodo-harada.html` | Método Harada: cómo dividir una meta creativa en 64 acciones |
 | `diferencias-creacion-ia-vs-diseno` | `blog/diferencias-creacion-ia-vs-diseno.html` | Diferencias entre diseñar con o sin IA y su impacto en el gesto creativo |
 | `prompt-ear-no-es-disenar` | `blog/prompt-ear-no-es-disenar.html` | ¿Por qué las apps hechas con IA se parecen tanto? |
 | `3-cosas-ux` | `blog/3-cosas-ux.html` | 3 cosas que aprendí de UX |
 | `6-preguntas-ux` | `blog/6-preguntas-ux.html` | 6 preguntas de UX |
 
-> Portada de `metodo-harada`: `images/blog/metodo-harada/sakura64-intro-tablero.jpg` (1600×1000), card destacada en `blog.html`. Los screenshots de SAKURA 64 del cuerpo viven en `images/blog/metodo-harada/` y usan `.article-figure`.
+> Artículo `ilusion-de-productividad-ia`: publicado el 2026-10-26, categoría `IA · CREATIVIDAD`. Propósito: pieza ancla del boletín y destino de los posts de LinkedIn. La URL `https://uxuaria.com/blog/ilusion-de-productividad-ia` es fija: la enlazan tres posts de LinkedIn. Card destacada en `blog.html`; `metodo-harada` pasa al grid como card regular. Artículos relacionados: `diferencias-creacion-ia-vs-diseno` y `prompt-ear-no-es-disenar`. Portada: `images/blog/ilusion-de-productividad-ia/portada.jpg` (1280×720, grabado vertical centrado sobre fondo crema `#E2D3BD`), usada también en `og:image`, `twitter:image`, el schema y la card destacada.
+> Portada de `metodo-harada`: `images/blog/metodo-harada/sakura64-intro-tablero.jpg` (1600×1000), card regular en `blog.html` desde el 2026-10-26 (antes, card destacada). Los screenshots de SAKURA 64 del cuerpo viven en `images/blog/metodo-harada/` y usan `.article-figure`.
 > Portada de `prompt-ear-no-es-disenar`: `images/blog/articulo003.png` (1267×832). Usada en `blog.html` (card regular), `blog/prompt-ear-no-es-disenar.html` (`.article-cover__img`) y en los cards relacionados de los otros artículos.
-> Portada de `diferencias-creacion-ia-vs-diseno`: `images/blog/articulo004.png` (1408×768). Usada en `blog.html` (card destacada) y en `blog/diferencias-creacion-ia-vs-diseno.html` (`.article-cover__img`).
+> Portada de `diferencias-creacion-ia-vs-diseno`: `images/blog/articulo004.png` (1408×768). Usada en `blog.html` (card regular) y en `blog/diferencias-creacion-ia-vs-diseno.html` (`.article-cover__img`).
 
 ---
 
@@ -221,3 +223,4 @@ images/blog/
 - **2026-07-14** — Nuevo artículo `diferencias-creacion-ia-vs-diseno`. Portada `articulo004.png` (1408×768) agregada.
 - **2026-10-09** — Nuevo artículo `metodo-harada` (promueve la microapp SAKURA 64), card destacada en `blog.html`; el anterior baja al grid. Se agregan `.article-figure` para screenshots en el cuerpo y un override de `.btn--primary` dentro de `.article-body`. El artículo carga `styles.css?v=20261009` por la caché de 4 h.
 - **2026-10-09** — SEO: `image` y `dateModified` en el JSON-LD de todos los artículos, descripción de `blog.html` acortada a 149 caracteres, y link a SAKURA 64 (`sakura64.uxuaria.com`) en la columna "Navegación" del footer de todas las páginas. SAKURA 64 tiene su propio `sitemap.xml` y `robots.txt` en su subdominio; no va en el sitemap de uxuaria.com porque es otro host.
+- **2026-10-26** — Nuevo artículo `ilusion-de-productividad-ia` (IA · CREATIVIDAD), pieza ancla del boletín y destino de los posts de LinkedIn. Pasa a ser la card destacada en `blog.html` y entra en el JSON-LD `blogPost`; `metodo-harada` baja al grid. URL agregada a `sitemap.xml` (lastmod 2026-10-26).
