@@ -35,7 +35,7 @@ contacto/             index.html (con el JS del formulario inline) + contacto.cs
 diagnostico/          index.html, gracias.html, diagnostico.css, diagnostico.js (versionados con ?v=)
 functions/api/        Pages Functions (código de servidor)
 images/               assets: portfolio/, blog/, services/, testimonials/, logos/ y sueltos
-_redirects            301 de Cloudflare (/index.html, /es/*, /en/*, ux-ai-repair → ai-mvp-rescue)
+_redirects            301 de Cloudflare (/index.html, /es/*, /en/*, ux-ai-repair → ai-mvp-rescue, blog/ilusion-de-productividad-ia → blog/instinto-herramienta-creativa-decisiones)
 sitemap.xml, robots.txt   SEO; /diagnostico/ y 404 llevan noindex y no están en el sitemap
 docs/                 AGENTS.md, architecture.md, decisions.md, specs/
 .claude/              config local (launch.json, servidor de preview); ignorado por git
