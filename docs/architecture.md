@@ -63,6 +63,7 @@ No hay base de datos propia. Las entidades viven en servicios externos.
 | Agenda de la primera llamada (nivel A) | Calendly | Link que devuelve `/api/diagnostico` |
 | Nombre y link de agenda para `/gracias` | `sessionStorage` (se borran al leerse) | `diagnostico.js` |
 | Eventos (`generate_lead`, clicks con `data-track`) | Google Analytics 4 (`G-6TCJ5969G7`) | `script.js` / scripts inline |
+| Visitas, origen, país y dispositivo (sin cookies) | Cloudflare Web Analytics, sitio `uxuaria.com` (mide también `sakura64.uxuaria.com`; se separa por Host) | Script `beacon.min.js` al final de cada HTML, salvo `404.html` |
 
 Otros externos: Google Fonts, LinkedIn y WhatsApp (links).
 
