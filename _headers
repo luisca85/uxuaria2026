@@ -1,0 +1,20 @@
+# Cloudflare Pages headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Landing de Mutis UX (spec 09-mutisux)
+# Las imágenes no llevan hash en el nombre: si se reemplaza una, conviene
+# cambiarle el nombre o esperar a que venza la caché (30 días).
+/mutisux/images/*
+  Cache-Control: public, max-age=2592000
+
+/mutisux/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# La página de gracias no se indexa (también tiene meta robots noindex)
+/mutisux/gracias
+  X-Robots-Tag: noindex
+
+# Pages publica todos los archivos: el README queda accesible, pero fuera de Google
+/mutisux/README.md
+  X-Robots-Tag: noindex

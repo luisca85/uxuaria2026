@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- DOMINIO: https://uxuaria.com/mutisux/ (confirmado el 2026-10-27).
+       Si cambia, reemplázalo aquí (canonical, og:url, og:image, JSON-LD),
+       en SITE_URL de mutisux.js y en sitemap.xml. -->
+  <title>Mutis UX: diagnostica, documenta y reporta hallazgos UX</title>
+  <meta name="description" content="Marca hallazgos con severidad, mapea user journeys y comparte reportes con tus clientes. Mutis UX abre su beta gratuita por tandas." />
+  <link rel="canonical" href="https://uxuaria.com/mutisux/" />
+
+  <!-- Open Graph y Twitter Card -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_419" />
+  <meta property="og:site_name" content="Uxuaria" />
+  <meta property="og:title" content="Mutis UX: diagnostica, documenta y reporta hallazgos UX" />
+  <meta property="og:description" content="Marca hallazgos con severidad, mapea user journeys y comparte reportes con tus clientes. Mutis UX abre su beta gratuita por tandas." />
+  <meta property="og:url" content="https://uxuaria.com/mutisux/" />
+  <meta property="og:image" content="https://uxuaria.com/mutisux/images/og-mutisux.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Mutis UX, beta gratuita: grabado de un sol con dos pines azules y el título Ordena, documenta y presenta tus hallazgos UX con reportes accionables" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mutis UX: diagnostica, documenta y reporta hallazgos UX" />
+  <meta name="twitter:description" content="Marca hallazgos con severidad, mapea user journeys y comparte reportes con tus clientes. Mutis UX abre su beta gratuita por tandas." />
+  <meta name="twitter:image" content="https://uxuaria.com/mutisux/images/og-mutisux.jpg" />
+  <meta name="twitter:image:alt" content="Mutis UX, beta gratuita: grabado de un sol con dos pines azules y el título de la página" />
+
+  <!-- Datos estructurados: solo datos verificados. Sin aggregateRating ni reseñas. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://uxuaria.com/#organization",
+        "name": "Uxuaria",
+        "url": "https://uxuaria.com/",
+        "email": "info@uxuaria.com",
+        "founder": {
+          "@type": "Person",
+          "name": "Luis Carlos Romero León"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://uxuaria.com/mutisux/#app",
+        "name": "Mutis UX",
+        "description": "Herramienta web para diagnosticar la experiencia de un producto: marca hallazgos con severidad sobre las pantallas, mapea user journeys y comparte reportes de solo lectura con tus clientes mediante un link con PIN.",
+        "url": "https://uxuaria.com/mutisux/",
+        "image": "https://uxuaria.com/mutisux/images/og-mutisux.jpg",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "es",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Beta gratuita, con acceso por tandas"
+        },
+        "publisher": { "@id": "https://uxuaria.com/#organization" }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo-eye-32.png" />
+  <link rel="apple-touch-icon" href="images/logo-eye-180.png" />
+  <meta name="theme-color" content="#F6F4EB" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fuentes sin bloquear el render: se aplican al cargar (display=swap).
+       Sin JS, el <noscript> las carga de la forma normal. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" /></noscript>
+  <!-- El sol es el LCP solo en escritorio; en celular queda debajo del texto y no se precarga. -->
+  <link rel="preload" as="image" type="image/avif" href="images/fig-1-sun-640.avif" imagesrcset="images/fig-1-sun-640.avif 640w, images/fig-1-sun-781.avif 781w" imagesizes="492px" media="(min-width: 761px)" fetchpriority="high" />
+  <link rel="stylesheet" href="mutisux.css?v=20261027b" />
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="brand" href="./" aria-label="Mutis UX, inicio">
+        <img class="brand__logo" src="images/logo-eye-80.webp" srcset="images/logo-eye-80.webp 80w, images/logo-eye-192.webp 192w" sizes="40px" width="40" height="40" alt="" />
+        <span class="brand__name">Mutis UX</span>
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#funciones">Funciones</a></li>
+          <li><a class="site-nav__link" href="#como-funciona">Cómo funciona</a></li>
+          <li><a class="site-nav__link" href="#beta">Beta</a></li>
+        </ul>
+        <a class="btn btn--primary site-nav__cta" href="#inscripcion">Pide tu acceso</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============================================================
+         HERO (copy aprobado en moodboard)
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner container">
+        <div class="hero__text">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Mutis UX · Beta gratuita</p>
+          <h1 class="hero__title" id="hero-title">Ordena, documenta y presenta tus hallazgos UX con <mark class="marker">reportes accionables</mark> para tus clientes</h1>
+          <p class="hero__lead">Diagnostica la experiencia de un producto en un solo lugar. Sube las pantallas, marca los hallazgos y mapea el recorrido de las personas. Tu criterio al mando, la herramienta a tu servicio.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="#inscripcion">Pide tu acceso</a>
+            <a class="btn btn--outline btn--lg" href="#funciones">Mira las funciones</a>
+          </div>
+          <p class="hero__note">Abrimos por tandas pequeñas. Anótate y te avisamos cuando te toque.</p>
+        </div>
+
+        <div class="hero__visual">
+          <figure class="plate plate--hero">
+            <div class="plate__image">
+              <picture>
+                <source type="image/avif" srcset="images/fig-1-sun-640.avif 640w, images/fig-1-sun-781.avif 781w" sizes="(max-width: 760px) calc(100vw - 60px), 492px" />
+                <img src="images/fig-1-sun-640.webp" srcset="images/fig-1-sun-640.webp 640w, images/fig-1-sun-781.webp 781w" sizes="(max-width: 760px) calc(100vw - 60px), 492px" width="781" height="800" fetchpriority="high" decoding="async" alt="Grabado antiguo de un sol con rostro rodeado de círculos concéntricos y nubes" />
+              </picture>
+              <span class="pin plate__pin plate__pin--1" aria-hidden="true">1</span>
+              <span class="pin plate__pin plate__pin--2" aria-hidden="true">2</span>
+            </div>
+            <figcaption class="plate__caption">Fig. 1 · El criterio al centro</figcaption>
+          </figure>
+
+          <!-- Tarjeta ilustrativa: datos inventados, no es una captura de la app. -->
+          <aside class="finding-card hero__card" aria-label="Ejemplo de hallazgo">
+            <div class="finding-card__head">
+              <span class="finding-card__id"><span class="pin pin--sm" aria-hidden="true">1</span>Hallazgo H1</span>
+              <span class="sev-chip sev-chip--3"><span class="sev-chip__dot" aria-hidden="true"></span>Sev 3 · Mayor</span>
+            </div>
+            <p class="finding-card__title">El botón principal no responde al tocarlo</p>
+            <p class="finding-card__meta">Heurística: visibilidad del estado del sistema</p>
+            <p class="finding-card__body">Recomendación: corregir el enlace y medir los clics.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FUNCIONES EN ACCIÓN (copy aprobado en moodboard)
+         Cada maqueta (.mockup) es un componente aislado con datos
+         inventados: se puede reemplazar por una captura real sin tocar
+         el resto de la tarjeta (ver README).
+    ============================================================ -->
+    <section class="features" id="funciones" aria-labelledby="features-title">
+      <div class="features__inner container">
+        <div class="features__head">
+          <h2 class="section-title" id="features-title">Funciones en acción</h2>
+          <p class="features__subtitle">Cada función, en el momento en que te ahorra trabajo.</p>
+        </div>
+
+        <div class="features__grid">
+
+          <!-- Fig. 2 · Hallazgos -->
+          <article class="feature-card">
+            <div class="mockup findings-mockup" role="img" aria-label="Animación: un pin cae sobre el botón de una pantalla y aparece su severidad, Sev 3, Mayor">
+              <div class="mockup-screen">
+                <span class="mockup-bar mockup-bar--eyebrow"></span>
+                <span class="mockup-bar mockup-bar--title"></span>
+                <span class="mockup-bar mockup-bar--line"></span>
+                <span class="mockup-bar mockup-bar--line mockup-bar--short"></span>
+                <span class="mockup-screen__button"></span>
+                <span class="mockup-screen__block"></span>
+                <span class="pin findings-mockup__pin">1</span>
+                <span class="sev-chip sev-chip--3 findings-mockup__chip"><span class="sev-chip__dot"></span>Sev 3 · Mayor</span>
+              </div>
+            </div>
+            <div class="feature-card__body">
+              <div class="feature-card__fig">
+                <img class="feature-card__thumb" src="images/fig-2-flying-machine-thumb.webp" width="44" height="44" loading="lazy" decoding="async" alt="Máquina voladora con letras que señalan cada pieza" />
+                <span class="feature-card__label">Fig. 2 · Hallazgos</span>
+              </div>
+              <h3 class="feature-card__title">Marca el hallazgo en el lugar exacto</h3>
+              <p class="feature-card__text">Un clic sobre la pantalla fija el pin y la severidad. Después filtras por lo que más urge.</p>
+            </div>
+          </article>
+
+          <!-- Fig. 3 · Recorridos -->
+          <article class="feature-card">
+            <div class="mockup journey-mockup" role="img" aria-label="Animación: tres pantallas, Inicio, Registro y Pago, se conectan y debajo se dibuja la curva emocional de la persona">
+              <span class="journey-mockup__node journey-mockup__node--1">Inicio</span>
+              <span class="journey-mockup__node journey-mockup__node--2">Registro</span>
+              <span class="journey-mockup__node journey-mockup__node--3">Pago</span>
+              <span class="journey-mockup__link journey-mockup__link--1"></span>
+              <span class="journey-mockup__link journey-mockup__link--2"></span>
+              <div class="journey-mockup__chart">
+                <svg class="journey-mockup__curve" viewBox="0 0 300 96" preserveAspectRatio="none" focusable="false">
+                  <polyline points="25,26 75,40 125,66 175,46 225,26 275,30" vector-effect="non-scaling-stroke" />
+                </svg>
+                <div class="journey-mockup__points">
+                  <span class="journey-mockup__point" style="--x: 8.333%; --y: 27.1%"></span>
+                  <span class="journey-mockup__point" style="--x: 25%; --y: 41.7%"></span>
+                  <span class="journey-mockup__point" style="--x: 41.667%; --y: 68.75%"></span>
+                  <span class="journey-mockup__point" style="--x: 58.333%; --y: 47.9%"></span>
+                  <span class="journey-mockup__point" style="--x: 75%; --y: 27.1%"></span>
+                  <span class="journey-mockup__point" style="--x: 91.667%; --y: 31.25%"></span>
+                </div>
+              </div>
+            </div>
+            <div class="feature-card__body">
+              <div class="feature-card__fig">
+                <img class="feature-card__thumb" src="images/fig-3-ship-thumb.webp" width="44" height="44" loading="lazy" decoding="async" alt="Litografía de pasajeros en la cubierta de un barco, con la Torre Eiffel al fondo" />
+                <span class="feature-card__label">Fig. 3 · Recorridos</span>
+              </div>
+              <h3 class="feature-card__title">Del flujo a la emoción, en un mismo mapa</h3>
+              <p class="feature-card__text">Diagrama el camino de la tarea y mira dónde cae la curva emocional de la persona.</p>
+            </div>
+          </article>
+
+          <!-- Fig. 4 · Personas (Pronto: la función aún no existe en la app) -->
+          <article class="feature-card feature-card--soon">
+            <div class="mockup persona-mockup" role="img" aria-label="Vista previa de una ficha de persona, con necesidades y dolores. Disponible pronto">
+              <span class="badge-soon">Pronto</span>
+              <span class="persona-mockup__avatar"></span>
+              <span class="mockup-bar persona-mockup__name"></span>
+              <span class="mockup-bar persona-mockup__role"></span>
+              <div class="persona-mockup__boxes">
+                <div class="persona-mockup__box">
+                  <span class="persona-mockup__box-title">Necesidades</span>
+                  <span class="mockup-bar mockup-bar--line"></span>
+                  <span class="mockup-bar mockup-bar--line mockup-bar--short"></span>
+                </div>
+                <div class="persona-mockup__box">
+                  <span class="persona-mockup__box-title">Dolores</span>
+                  <span class="mockup-bar mockup-bar--line"></span>
+                  <span class="mockup-bar mockup-bar--line mockup-bar--short"></span>
+                </div>
+              </div>
+            </div>
+            <div class="feature-card__body">
+              <div class="feature-card__fig">
+                <img class="feature-card__thumb" src="images/fig-4-head-thumb.webp" width="44" height="44" loading="lazy" decoding="async" alt="Cabeza de perfil dividida en escenas" />
+                <span class="feature-card__label">Fig. 4 · Personas</span>
+              </div>
+              <h3 class="feature-card__title">Mira cada hallazgo desde quien lo vive</h3>
+              <p class="feature-card__text">Fichas de protopersonas con necesidades, objetivos y dolores. Llegan pronto.</p>
+            </div>
+          </article>
+
+          <!-- Fig. 5 · Reportes -->
+          <article class="feature-card">
+            <div class="mockup report-mockup" role="img" aria-label="Animación: se activa la sección de propuestas, aparece en la vista previa del reporte y se genera un link con PIN para el cliente">
+              <ul class="report-mockup__toggles">
+                <li class="report-mockup__row">Hallazgos <span class="toggle toggle--on"><span class="toggle__knob"></span></span></li>
+                <li class="report-mockup__row">Journeys <span class="toggle toggle--on"><span class="toggle__knob"></span></span></li>
+                <li class="report-mockup__row">Propuestas <span class="toggle toggle--animated"><span class="toggle__fill"></span><span class="toggle__knob"></span></span></li>
+              </ul>
+              <div class="report-mockup__preview">
+                <span class="mockup-bar mockup-bar--title"></span>
+                <span class="mockup-bar mockup-bar--wide"></span>
+                <span class="report-mockup__cta">Trabajemos juntos</span>
+              </div>
+              <div class="report-mockup__share"><span>Link con PIN para tu cliente</span><span class="report-mockup__pin">482 915</span></div>
+            </div>
+            <div class="feature-card__body">
+              <div class="feature-card__fig">
+                <img class="feature-card__thumb" src="images/fig-5-manuscript-thumb.webp" width="44" height="44" loading="lazy" decoding="async" alt="Página de manuscrito antiguo con flores" />
+                <span class="feature-card__label">Fig. 5 · Reportes</span>
+              </div>
+              <h3 class="feature-card__title">Un reporte listo en un solo paso</h3>
+              <p class="feature-card__text">Elige las secciones, revisa la vista previa y comparte un link con PIN. Tus hallazgos y recorridos quedan ordenados, listos para que tu cliente los vea.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VISTA DE LA INTERFAZ: carrusel de capturas REALES de la app.
+         Orden: primero el journey (la captura con más contenido; la de
+         Hallazgos muestra un estudio vacío). Fuentes en
+         coding/Lupa-ux-lite/imagenes/:
+         - interfaz-1.png: Hallazgos de un estudio vacío (recortada 10 px).
+         - interfaz-2.png e interfaz-3.png: ANONIMIZADAS. Los
+            originales muestran el estudio de un cliente real (nombre,
+            cliente y URL), otro estudio y el email personal de Luis. Se
+            reemplazaron por datos ficticios ("Tienda Brisa", "Marina",
+            "Café Norte", "Tu nombre"). No publicar los originales sin
+            autorización escrita del cliente.
+         Sin JS es un riel con scroll horizontal y snap; con JS se suman
+         las flechas a los lados de la captura, que se apagan en los
+         extremos (no dan la vuelta). El texto de las capturas está en
+         voseo, como la app.
+    ============================================================ -->
+    <section class="showcase" id="interfaz" aria-roledescription="carrusel" aria-label="Capturas de Mutis UX">
+      <div class="showcase__inner container">
+        <div class="carousel__stage">
+          <!-- Flechas a los lados de la captura: solo con JS (sin JS, el riel se desliza solo) -->
+          <button class="carousel__arrow carousel__arrow--prev" type="button" data-dir="-1" aria-controls="carousel-track" aria-label="Captura anterior" hidden>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="app-frame">
+            <div class="app-frame__window">
+              <div class="carousel__track" id="carousel-track" tabindex="0" aria-label="Capturas: desliza o usa las flechas del teclado para ver las demás">
+                <div class="carousel__slide carousel__slide--journey" id="slide-journey" role="group" aria-roledescription="diapositiva" aria-label="1 de 3: User Journey">
+                  <picture>
+                    <source type="image/avif" srcset="images/interface-journey-960.avif 960w, images/interface-journey-1899.avif 1899w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" />
+                    <img class="app-frame__image" src="images/interface-journey-960.webp" srcset="images/interface-journey-960.webp 960w, images/interface-journey-1899.webp 1899w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" width="1899" height="953" loading="lazy" decoding="async" alt="Captura de Mutis UX: un user journey con etapas de colores, pasos numerados, touchpoints, la curva emocional con emojis y los carriles de acciones y expectativas" />
+                  </picture>
+                </div>
+                <div class="carousel__slide" id="slide-findings" role="group" aria-roledescription="diapositiva" aria-label="2 de 3: Hallazgos">
+                  <picture>
+                    <source type="image/avif" srcset="images/interface-findings-960.avif 960w, images/interface-findings-1493.avif 1493w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" />
+                    <img class="app-frame__image" src="images/interface-findings-960.webp" srcset="images/interface-findings-960.webp 960w, images/interface-findings-1493.webp 1493w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" width="1493" height="779" loading="lazy" decoding="async" alt="Captura de Mutis UX: la sección Hallazgos de un estudio, con las pestañas Resumen, Hallazgos, Flujos, Protopersonas, Reportes y Configuración, el lienzo para subir la primera pantalla y el panel de hallazgos a la derecha" />
+                  </picture>
+                </div>
+                <div class="carousel__slide carousel__slide--studies" id="slide-studies" role="group" aria-roledescription="diapositiva" aria-label="3 de 3: Estudios">
+                  <picture>
+                    <source type="image/avif" srcset="images/interface-studies-960.avif 960w, images/interface-studies-1902.avif 1902w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" />
+                    <img class="app-frame__image" src="images/interface-studies-960.webp" srcset="images/interface-studies-960.webp 960w, images/interface-studies-1902.webp 1902w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" width="1902" height="885" loading="lazy" decoding="async" alt="Captura de Mutis UX: la pantalla de inicio, con el panel de lecturas recomendadas a la izquierda y las tarjetas de los estudios a la derecha" />
+                  </picture>
+                </div>
+              </div>
+            </div>
+            <!-- Haz de luz que recorre el borde en ciclo (decorativo) -->
+            <span class="app-frame__beam" aria-hidden="true"></span>
+          </div>
+
+          <button class="carousel__arrow carousel__arrow--next" type="button" data-dir="1" aria-controls="carousel-track" aria-label="Captura siguiente" hidden>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <!-- Anuncia la captura visible a los lectores de pantalla -->
+        <p class="visually-hidden" id="carousel-status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HALLAZGOS (copy aprobado en moodboard)
+         El panel es ilustrativo: datos inventados, no es una captura.
+    ============================================================ -->
+    <section class="findings section--ink" id="hallazgos" aria-labelledby="findings-title">
+      <div class="findings__inner container">
+        <div class="section-intro">
+          <p class="eyebrow eyebrow--on-ink">Fig. 2 · Hallazgos</p>
+          <h2 class="section-title section-title--lg" id="findings-title">Marca lo que encuentras, en el lugar exacto</h2>
+          <p class="section-intro__text">Un hallazgo es una observación concreta que se puede ver y validar. Márcalo sobre la pantalla, asígnale una severidad y apóyalo en una heurística de Nielsen o en un sesgo del catálogo.</p>
+        </div>
+
+        <div class="findings__showcase">
+          <figure class="plate plate--parchment plate--on-ink findings__plate">
+            <div class="plate__image">
+              <picture>
+                <source type="image/avif" srcset="images/fig-2-flying-machine-640.avif 640w, images/fig-2-flying-machine-1200.avif 1200w" sizes="(max-width: 760px) calc(100vw - 60px), 640px" />
+                <img src="images/fig-2-flying-machine-640.webp" srcset="images/fig-2-flying-machine-640.webp 640w, images/fig-2-flying-machine-1200.webp 1200w" sizes="(max-width: 760px) calc(100vw - 60px), 640px" width="1200" height="798" loading="lazy" decoding="async" alt="Grabado de una máquina voladora con alas, con letras que señalan cada pieza" />
+              </picture>
+              <span class="pin pin--lg findings__pin findings__pin--1" aria-hidden="true">1</span>
+              <span class="pin pin--lg findings__pin findings__pin--2" aria-hidden="true">2</span>
+              <span class="pin pin--lg findings__pin findings__pin--3" aria-hidden="true">3</span>
+            </div>
+            <figcaption class="plate__caption">Cada pieza, señalada con su letra. Cada hallazgo, con su pin.</figcaption>
+          </figure>
+
+          <!-- Los filtros funcionan sin JS: radios ocultos + :checked ~ (ver .sev-filter en mutisux.css) -->
+          <aside class="findings-panel" aria-label="Ejemplo del panel de hallazgos">
+            <input class="sev-filter__radio sev-filter__radio--all" type="radio" name="findings-filter" id="findings-filter-all" checked />
+            <input class="sev-filter__radio sev-filter__radio--4" type="radio" name="findings-filter" id="findings-filter-4" />
+            <input class="sev-filter__radio sev-filter__radio--3" type="radio" name="findings-filter" id="findings-filter-3" />
+            <input class="sev-filter__radio sev-filter__radio--2" type="radio" name="findings-filter" id="findings-filter-2" />
+            <input class="sev-filter__radio sev-filter__radio--1" type="radio" name="findings-filter" id="findings-filter-1" />
+            <div class="findings-panel__head">
+              <p class="findings-panel__count">Hallazgos · 3</p>
+              <p class="findings-panel__label">Filtrar por severidad</p>
+            </div>
+            <div class="findings-panel__filters sev-filter__chips">
+              <label class="filter-chip filter-chip--button sev-filter__chip--all" for="findings-filter-all">Todas</label>
+              <label class="filter-chip filter-chip--button sev-filter__chip--4" for="findings-filter-4">Sev 4</label>
+              <label class="filter-chip filter-chip--button sev-filter__chip--3" for="findings-filter-3">Sev 3</label>
+              <label class="filter-chip filter-chip--button sev-filter__chip--2" for="findings-filter-2">Sev 2</label>
+              <label class="filter-chip filter-chip--button sev-filter__chip--1" for="findings-filter-1">Sev 1</label>
+            </div>
+            <ol class="findings-panel__list sev-filter__list">
+              <!-- Aviso vacío: lleva las clases de los filtros que no tienen hallazgos -->
+              <li class="finding-row finding-row--empty sev-filter__empty sev-filter__item--4 sev-filter__item--1">Ningún hallazgo con esta severidad.</li>
+              <li class="finding-row sev-filter__item--3">
+                <span class="pin pin--sm finding-row__pin" aria-hidden="true">1</span>
+                <div class="finding-row__body">
+                  <p class="finding-row__title">El botón principal no responde al tocarlo</p>
+                  <span class="sev-chip sev-chip--3"><span class="sev-chip__dot" aria-hidden="true"></span>Sev 3 · Mayor</span>
+                </div>
+              </li>
+              <li class="finding-row sev-filter__item--2">
+                <span class="pin pin--sm finding-row__pin" aria-hidden="true">2</span>
+                <div class="finding-row__body">
+                  <p class="finding-row__title">Falta un mensaje de confirmación al guardar</p>
+                  <span class="sev-chip sev-chip--2"><span class="sev-chip__dot" aria-hidden="true"></span>Sev 2 · Menor</span>
+                </div>
+              </li>
+              <li class="finding-row sev-filter__item--3">
+                <span class="pin pin--sm finding-row__pin" aria-hidden="true">3</span>
+                <div class="finding-row__body">
+                  <p class="finding-row__title">Los precios aparecen sin el costo de envío</p>
+                  <span class="sev-chip sev-chip--3"><span class="sev-chip__dot" aria-hidden="true"></span>Sev 3 · Mayor</span>
+                </div>
+              </li>
+            </ol>
+          </aside>
+        </div>
+
+        <div class="severity-scale">
+          <h3 class="severity-scale__title">Escala de severidad</h3>
+          <ul class="severity-scale__list">
+            <li class="sev-chip sev-chip--lg sev-chip--0"><span class="sev-chip__dot" aria-hidden="true"></span>0 · No es problema</li>
+            <li class="sev-chip sev-chip--lg sev-chip--1"><span class="sev-chip__dot" aria-hidden="true"></span>1 · Cosmético</li>
+            <li class="sev-chip sev-chip--lg sev-chip--2"><span class="sev-chip__dot" aria-hidden="true"></span>2 · Menor</li>
+            <li class="sev-chip sev-chip--lg sev-chip--3"><span class="sev-chip__dot" aria-hidden="true"></span>3 · Mayor</li>
+            <li class="sev-chip sev-chip--lg sev-chip--4"><span class="sev-chip__dot" aria-hidden="true"></span>4 · Catástrofe</li>
+          </ul>
+        </div>
+
+        <ul class="key-points key-points--on-ink">
+          <li class="key-points__item">
+            <span class="key-points__num">01</span>
+            <h3 class="key-points__title">Pines sobre la imagen</h3>
+            <p class="key-points__text">Un clic marca el lugar exacto del hallazgo.</p>
+          </li>
+          <li class="key-points__item">
+            <span class="key-points__num">02</span>
+            <h3 class="key-points__title">Severidad de 0 a 4</h3>
+            <p class="key-points__text">Prioriza con la escala de Nielsen.</p>
+          </li>
+          <li class="key-points__item">
+            <span class="key-points__num">03</span>
+            <h3 class="key-points__title">Heurísticas y sesgos</h3>
+            <p class="key-points__text">Las 10 de Nielsen y un catálogo que puedes ampliar.</p>
+          </li>
+          <li class="key-points__item">
+            <span class="key-points__num">04</span>
+            <h3 class="key-points__title">Filtros por severidad</h3>
+            <p class="key-points__text">Mira primero lo que más urge.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RECORRIDOS (copy aprobado en moodboard, con una corrección en
+         el punto 02: en la app la curva emocional es uno de los seis
+         carriles). La tabla es un ejemplo inventado.
+    ============================================================ -->
+    <section class="journeys" id="recorridos" aria-labelledby="journeys-title">
+      <div class="journeys__inner container">
+        <div class="journeys__top">
+          <div class="section-intro journeys__intro">
+            <p class="eyebrow">Fig. 3 · Recorridos</p>
+            <h2 class="section-title section-title--lg" id="journeys-title">El camino de tu usuario, de principio a fin</h2>
+            <p class="section-intro__text">Ninguna pantalla vive sola. Mapea la experiencia por etapas, con lo que la persona hace, piensa y siente en cada paso, y ubica cada hallazgo donde ocurre.</p>
+            <ol class="key-list">
+              <li class="key-list__item"><span class="key-list__num" aria-hidden="true">01</span>Seis etapas listas para usar, que puedes cambiar</li>
+              <li class="key-list__item"><span class="key-list__num" aria-hidden="true">02</span>Seis carriles por paso, entre ellos la curva emocional</li>
+              <li class="key-list__item"><span class="key-list__num" aria-hidden="true">03</span>Cada hallazgo vinculado al paso donde ocurre</li>
+            </ol>
+          </div>
+
+          <figure class="plate plate--white journeys__plate">
+            <picture>
+              <source type="image/avif" srcset="images/fig-3-ship-640.avif 640w, images/fig-3-ship-1200.avif 1200w" sizes="(max-width: 760px) calc(100vw - 60px), 472px" />
+              <img src="images/fig-3-ship-640.webp" srcset="images/fig-3-ship-640.webp 640w, images/fig-3-ship-1200.webp 1200w" sizes="(max-width: 760px) calc(100vw - 60px), 472px" width="1200" height="1008" loading="lazy" decoding="async" alt="Litografía de pasajeros en la cubierta de un barco, con la Torre Eiffel al fondo" />
+            </picture>
+            <figcaption class="plate__caption">Fig. 3 · Un recorrido, con personas dentro.</figcaption>
+          </figure>
+        </div>
+
+        <div class="journey-map" role="region" aria-labelledby="journey-map-caption" tabindex="0">
+          <table class="journey-map__table">
+            <caption class="journey-map__caption visually-hidden" id="journey-map-caption">Ejemplo de user journey de una reserva, con datos inventados</caption>
+            <thead>
+              <tr>
+                <th class="journey-map__lane" scope="col">Etapas</th>
+                <th class="journey-map__stage journey-map__stage--1" scope="col">Descubrimiento</th>
+                <th class="journey-map__stage journey-map__stage--2" scope="col">Consideración</th>
+                <th class="journey-map__stage journey-map__stage--3" scope="col">Decisión</th>
+                <th class="journey-map__stage journey-map__stage--4" scope="col">Conversión</th>
+                <th class="journey-map__stage journey-map__stage--5" scope="col">Experiencia de usuario</th>
+                <th class="journey-map__stage journey-map__stage--6" scope="col">Fidelización</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="journey-map__lane journey-map__lane--emotion" scope="row">
+                  <span>Emocionalidad</span>
+                  <span class="journey-map__scale">Muy positivo</span>
+                  <span class="journey-map__scale">Muy negativo</span>
+                </th>
+                <td class="journey-map__chart-cell" colspan="6">
+                  <div class="emotion-chart" role="img" aria-label="Curva emocional: empieza positiva, baja en la decisión y se recupera en la experiencia de usuario">
+                    <svg class="emotion-chart__svg" viewBox="0 0 600 120" preserveAspectRatio="none" focusable="false">
+                      <line class="emotion-chart__grid" x1="0" y1="20" x2="600" y2="20" vector-effect="non-scaling-stroke" />
+                      <line class="emotion-chart__grid" x1="0" y1="60" x2="600" y2="60" vector-effect="non-scaling-stroke" />
+                      <line class="emotion-chart__grid" x1="0" y1="100" x2="600" y2="100" vector-effect="non-scaling-stroke" />
+                      <polyline class="emotion-chart__line" points="50,40 150,60 250,80 350,60 450,40 550,40" vector-effect="non-scaling-stroke" />
+                    </svg>
+                    <!-- --y en px = 10 (margen del svg) + la y del punto en el viewBox -->
+                    <span class="emotion-chart__point" style="--x: 8.333%; --y: 50px"></span>
+                    <span class="emotion-chart__point" style="--x: 25%; --y: 70px"></span>
+                    <span class="emotion-chart__point" style="--x: 41.667%; --y: 90px"></span>
+                    <span class="emotion-chart__point" style="--x: 58.333%; --y: 70px"></span>
+                    <span class="emotion-chart__point" style="--x: 75%; --y: 50px"></span>
+                    <span class="emotion-chart__point" style="--x: 91.667%; --y: 50px"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th class="journey-map__lane" scope="row">Acciones</th>
+                <td class="journey-map__cell">Ve un anuncio y entra al sitio</td>
+                <td class="journey-map__cell">Compara opciones y lee reseñas</td>
+                <td class="journey-map__cell">Elige una y revisa el precio final</td>
+                <td class="journey-map__cell">Crea su cuenta y paga</td>
+                <td class="journey-map__cell">Usa el servicio</td>
+                <td class="journey-map__cell">Califica y vuelve a reservar</td>
+              </tr>
+              <tr>
+                <th class="journey-map__lane" scope="row">Pensamiento</th>
+                <td class="journey-map__cell journey-map__cell--thought">¿Esto es para mí?</td>
+                <td class="journey-map__cell journey-map__cell--thought">¿Puedo confiar en esto?</td>
+                <td class="journey-map__cell journey-map__cell--thought">¿Qué pasa si cancelo?</td>
+                <td class="journey-map__cell journey-map__cell--thought">Ojalá sea rápido</td>
+                <td class="journey-map__cell journey-map__cell--thought">Es lo que esperaba</td>
+                <td class="journey-map__cell journey-map__cell--thought">Quiero repetirlo</td>
+              </tr>
+              <tr>
+                <th class="journey-map__lane" scope="row">Pain points</th>
+                <td class="journey-map__cell journey-map__cell--pain">Mensaje poco claro</td>
+                <td class="journey-map__cell journey-map__cell--pain">Pocas reseñas visibles</td>
+                <td class="journey-map__cell journey-map__cell--pain journey-map__cell--linked">
+                  <span>Política de cambios escondida</span>
+                  <span class="journey-map__finding"><span class="pin pin--xs" aria-hidden="true">2</span>H2 · Sev 3</span>
+                </td>
+                <td class="journey-map__cell journey-map__cell--pain">Pide demasiados datos</td>
+                <td class="journey-map__cell journey-map__cell--pain">Sin aviso previo</td>
+                <td class="journey-map__cell journey-map__cell--pain">Sin recordatorio para volver</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="journey-map__hint">Desliza la tabla hacia los costados para ver todas las etapas.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         REPORTE DE EJEMPLO (copy aprobado en moodboard, con dos ajustes:
+         la nota "diagnóstico inicial" sin la construcción "X, no Y", y el
+         texto de Contacto, que ahora describe lo que hace la app).
+         "Tienda Brisa" es una app inventada. No enlazar reportes reales
+         de clientes ni publicar ningún PIN.
+         Las pestañas funcionan sin JS: radios ocultos + :checked ~.
+    ============================================================ -->
+    <section class="demo" id="reporte" aria-labelledby="demo-title">
+      <div class="demo__inner container">
+        <div class="demo__head">
+          <div class="demo__heading">
+            <p class="eyebrow">Fig. 5 · Reporte de ejemplo</p>
+            <h2 class="section-title section-title--lg" id="demo-title">Así recibe tu cliente el diagnóstico</h2>
+          </div>
+          <p class="demo__lead">Explóralo tú mismo: cambia de sección en el menú de la izquierda. Es un reporte de muestra con datos ficticios, de una app inventada.</p>
+        </div>
+
+        <div class="demo-report">
+          <input class="demo-report__radio" type="radio" name="demo-section" id="demo-tab-1" checked />
+          <input class="demo-report__radio" type="radio" name="demo-section" id="demo-tab-2" />
+          <input class="demo-report__radio" type="radio" name="demo-section" id="demo-tab-3" />
+          <input class="demo-report__radio" type="radio" name="demo-section" id="demo-tab-4" />
+          <input class="demo-report__radio" type="radio" name="demo-section" id="demo-tab-5" />
+
+          <div class="demo-report__window">
+            <div class="demo-report__sidebar">
+              <div class="demo-report__brand">
+                <span class="demo-report__avatar" aria-hidden="true">T</span>
+                <span class="demo-report__brand-text"><span class="demo-report__app">Tienda Brisa</span><span class="demo-report__client">Marina</span></span>
+              </div>
+              <div class="demo-report__menu">
+                <p class="demo-report__menu-title" id="demo-menu-title">Reporte</p>
+                <label class="demo-report__tab demo-report__tab--1" for="demo-tab-1">Presentación</label>
+                <label class="demo-report__tab demo-report__tab--2" for="demo-tab-2"><span class="demo-report__tab-name">Hallazgos</span><span class="demo-report__tab-count">6</span></label>
+                <label class="demo-report__tab demo-report__tab--3" for="demo-tab-3">Flujos</label>
+                <label class="demo-report__tab demo-report__tab--4" for="demo-tab-4">User Journeys</label>
+                <label class="demo-report__tab demo-report__tab--5" for="demo-tab-5">Contacto</label>
+              </div>
+            </div>
+
+            <div class="demo-report__main">
+
+              <!-- Presentación -->
+              <div class="demo-report__panel demo-report__panel--1 demo-report__panel--narrow">
+                <p class="demo-report__kicker">Presentación</p>
+                <h3 class="demo-report__title">Tienda Brisa</h3>
+                <p class="demo-report__subtitle">Marina</p>
+                <ul class="demo-report__tags">
+                  <li class="tag">App móvil</li>
+                  <li class="tag">Octubre 2026</li>
+                </ul>
+                <p class="demo-report__text">Gracias por tu tiempo y por el interés en este diagnóstico. Lo preparé para ayudarte a ver con claridad dónde tu producto facilita el camino de las personas y dónde se lo complica.</p>
+                <div class="demo-report__notes">
+                  <div class="demo-note">
+                    <p class="demo-note__title">Hecho por una persona</p>
+                    <p class="demo-note__text">Revisé y validé cada hallazgo con mi experiencia en diseño de experiencia de usuario. El criterio y las conclusiones son míos.</p>
+                  </div>
+                  <div class="demo-note">
+                    <p class="demo-note__title">Es un diagnóstico inicial</p>
+                    <p class="demo-note__text">Es un punto de partida para priorizar y conversar los próximos pasos.</p>
+                  </div>
+                </div>
+                <dl class="demo-report__stats">
+                  <div class="demo-stat"><dt class="demo-stat__label">Hallazgos</dt><dd class="demo-stat__value">6</dd></div>
+                  <div class="demo-stat"><dt class="demo-stat__label">Problemas</dt><dd class="demo-stat__value">5</dd></div>
+                  <div class="demo-stat"><dt class="demo-stat__label">Oportunidades</dt><dd class="demo-stat__value">1</dd></div>
+                  <div class="demo-stat"><dt class="demo-stat__label">Severidad alta</dt><dd class="demo-stat__value">4</dd></div>
+                </dl>
+              </div>
+
+              <!-- Hallazgos -->
+              <div class="demo-report__panel demo-report__panel--2">
+                <p class="demo-report__kicker">Hallazgos</p>
+                <h3 class="demo-report__title">Hallazgos</h3>
+                <input class="sev-filter__radio sev-filter__radio--all" type="radio" name="demo-filter" id="demo-filter-all" checked />
+                <input class="sev-filter__radio sev-filter__radio--4" type="radio" name="demo-filter" id="demo-filter-4" />
+                <input class="sev-filter__radio sev-filter__radio--3" type="radio" name="demo-filter" id="demo-filter-3" />
+                <input class="sev-filter__radio sev-filter__radio--2" type="radio" name="demo-filter" id="demo-filter-2" />
+                <input class="sev-filter__radio sev-filter__radio--1" type="radio" name="demo-filter" id="demo-filter-1" />
+                <div class="demo-report__filters sev-filter__chips">
+                  <label class="filter-chip filter-chip--button sev-filter__chip--all" for="demo-filter-all">Todas 6</label>
+                  <label class="filter-chip filter-chip--button sev-filter__chip--4" for="demo-filter-4">Catástrofe 2</label>
+                  <label class="filter-chip filter-chip--button sev-filter__chip--3" for="demo-filter-3">Mayor 2</label>
+                  <label class="filter-chip filter-chip--button sev-filter__chip--2" for="demo-filter-2">Menor 1</label>
+                  <label class="filter-chip filter-chip--button sev-filter__chip--1" for="demo-filter-1">Cosmético 1</label>
+                </div>
+                <ul class="demo-report__grid sev-filter__list">
+                  <li class="demo-finding sev-filter__item--4">
+                    <div class="demo-finding__screen" style="--w: 60%; --x: 42px; --y: 62px"><span class="pin pin--sm demo-finding__pin" aria-hidden="true">1</span></div>
+                    <div class="demo-finding__body">
+                      <span class="sev-chip sev-chip--4"><span class="sev-chip__dot" aria-hidden="true"></span>Catástrofe</span>
+                      <p class="demo-finding__title">El logo no lleva al inicio</p>
+                    </div>
+                  </li>
+                  <li class="demo-finding sev-filter__item--4">
+                    <div class="demo-finding__screen" style="--w: 50%; --x: 104px; --y: 52px"><span class="pin pin--sm demo-finding__pin" aria-hidden="true">2</span></div>
+                    <div class="demo-finding__body">
+                      <span class="sev-chip sev-chip--4"><span class="sev-chip__dot" aria-hidden="true"></span>Catástrofe</span>
+                      <p class="demo-finding__title">Al confirmar el pedido no pasa nada</p>
+                    </div>
+                  </li>
+                  <li class="demo-finding sev-filter__item--3">
+                    <div class="demo-finding__screen" style="--w: 70%; --x: 66%; --y: 66px"><span class="pin pin--sm demo-finding__pin" aria-hidden="true">3</span></div>
+                    <div class="demo-finding__body">
+                      <span class="sev-chip sev-chip--3"><span class="sev-chip__dot" aria-hidden="true"></span>Mayor</span>
+                      <p class="demo-finding__title">El costo de envío aparece recién al final</p>
+                    </div>
+                  </li>
+                  <li class="demo-finding sev-filter__item--3">
+                    <div class="demo-finding__screen" style="--w: 30%; --x: 48%; --y: 48px"><span class="pin pin--sm demo-finding__pin" aria-hidden="true">4</span></div>
+                    <div class="demo-finding__body">
+                      <span class="sev-chip sev-chip--3"><span class="sev-chip__dot" aria-hidden="true"></span>Mayor</span>
+                      <p class="demo-finding__title">Los filtros no muestran cuáles están activos</p>
+                    </div>
+                  </li>
+                  <li class="demo-finding sev-filter__item--2">
+                    <div class="demo-finding__screen" style="--w: 60%; --x: 54%; --y: 56px"><span class="pin pin--sm demo-finding__pin" aria-hidden="true">5</span></div>
+                    <div class="demo-finding__body">
+                      <span class="sev-chip sev-chip--2"><span class="sev-chip__dot" aria-hidden="true"></span>Menor</span>
+                      <p class="demo-finding__title">Etiquetas confusas en el menú</p>
+                    </div>
+                  </li>
+                  <li class="demo-finding sev-filter__item--1">
+                    <div class="demo-finding__screen" style="--w: 45%; --x: 40%; --y: 58px"><span class="pin pin--sm demo-finding__pin" aria-hidden="true">6</span></div>
+                    <div class="demo-finding__body">
+                      <span class="sev-chip sev-chip--1"><span class="sev-chip__dot" aria-hidden="true"></span>Cosmético</span>
+                      <p class="demo-finding__title">El selector de talla no tiene ejemplo</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Flujos -->
+              <div class="demo-report__panel demo-report__panel--3 demo-report__panel--narrow">
+                <p class="demo-report__kicker">Flujos</p>
+                <h3 class="demo-report__title">Flujos de usuario</h3>
+                <p class="demo-report__hint">Mira el diagrama de interacciones del flujo.</p>
+                <div class="demo-flow-card">
+                  <p class="demo-flow-card__title">Comprar un producto</p>
+                  <p class="demo-flow-card__goal">Quiero comprar mi primer pedido en pocos minutos</p>
+                </div>
+                <ol class="demo-flow">
+                  <li class="demo-flow__step">Catálogo</li>
+                  <li class="demo-flow__step">Carrito <span class="pin pin--xs demo-flow__count"><span class="visually-hidden">Hallazgos en este paso: </span>3</span></li>
+                  <li class="demo-flow__step">Pago <span class="pin pin--xs demo-flow__count"><span class="visually-hidden">Hallazgos en este paso: </span>2</span></li>
+                </ol>
+                <p class="demo-report__note">Los números marcan los hallazgos de cada paso.</p>
+              </div>
+
+              <!-- User Journeys -->
+              <div class="demo-report__panel demo-report__panel--4">
+                <p class="demo-report__kicker">User Journeys</p>
+                <h3 class="demo-report__title">User Journeys</h3>
+                <p class="demo-report__hint">Mapa completo del recorrido actual de Tienda Brisa.</p>
+                <ol class="demo-report__tags demo-report__tags--steps">
+                  <li class="tag">Descubre</li>
+                  <li class="tag">Explora</li>
+                  <li class="tag">Elige</li>
+                  <li class="tag">Paga</li>
+                  <li class="tag">Espera</li>
+                  <li class="tag">Recibe</li>
+                </ol>
+                <div class="demo-curve" role="img" aria-label="Curva emocional: baja al pagar y esperar, y se recupera al recibir el pedido">
+                  <div class="demo-curve__drawing">
+                    <svg class="demo-curve__svg" viewBox="0 0 600 150" preserveAspectRatio="none" focusable="false">
+                      <polyline points="50,40 150,55 250,100 350,125 450,85 550,45" vector-effect="non-scaling-stroke" />
+                    </svg>
+                    <span class="demo-curve__point" style="--x: 8.333%; --y: 26.7%"></span>
+                    <span class="demo-curve__point" style="--x: 25%; --y: 36.7%"></span>
+                    <span class="demo-curve__point" style="--x: 41.667%; --y: 66.7%"></span>
+                    <span class="demo-curve__point" style="--x: 58.333%; --y: 83.3%"></span>
+                    <span class="demo-curve__point" style="--x: 75%; --y: 56.7%"></span>
+                    <span class="demo-curve__point" style="--x: 91.667%; --y: 30%"></span>
+                  </div>
+                </div>
+                <dl class="demo-lanes">
+                  <div class="demo-lanes__row"><dt class="demo-lanes__label">Acciones</dt><dd class="demo-lanes__value">Busca, filtra, agrega al carrito y completa el pago.</dd></div>
+                  <div class="demo-lanes__row"><dt class="demo-lanes__label">Pensamiento</dt><dd class="demo-lanes__value">"¿Cuánto me va a costar con el envío?"</dd></div>
+                  <div class="demo-lanes__row"><dt class="demo-lanes__label">Pain points</dt><dd class="demo-lanes__value">El costo aparece tarde y el pedido no confirma.</dd></div>
+                </dl>
+              </div>
+
+              <!-- Contacto -->
+              <div class="demo-report__panel demo-report__panel--5 demo-report__panel--contact">
+                <p class="demo-report__kicker">Contacto</p>
+                <h3 class="demo-report__title">Contacto</h3>
+                <div class="demo-contact">
+                  <div class="demo-contact__person">
+                    <span class="demo-contact__avatar" aria-hidden="true">T</span>
+                    <span class="demo-contact__who"><span class="demo-contact__name">Tu nombre aquí</span><span class="demo-contact__role">Consultoría en diseño de experiencia de usuario</span></span>
+                  </div>
+                  <p class="demo-contact__line">tu-correo@tu-estudio.com</p>
+                  <p class="demo-contact__line">www.tu-estudio.com</p>
+                </div>
+                <p class="demo-report__text">Cada reporte lleva tus datos de contacto. Si sumas tus propuestas de trabajo, aparece el botón "Trabajemos juntos" y tu cliente puede reservar una desde el mismo reporte.</p>
+              </div>
+
+            </div>
+
+            <!-- Como en el reporte real, lleva a Contacto. aria-hidden: la pestaña Contacto es su equivalente accesible -->
+            <label class="demo-report__fab" for="demo-tab-5" aria-hidden="true">Trabajemos juntos</label>
+          </div>
+        </div>
+
+        <ul class="key-points">
+          <li class="key-points__item">
+            <span class="key-points__num">01</span>
+            <h3 class="key-points__title">Solo lectura y con PIN</h3>
+            <p class="key-points__text">Tu cliente abre el reporte con un link y un PIN de 6 dígitos.</p>
+          </li>
+          <li class="key-points__item">
+            <span class="key-points__num">02</span>
+            <h3 class="key-points__title">Condiciones de uso aceptadas</h3>
+            <p class="key-points__text">Antes de verlo acepta las condiciones, y te queda el registro.</p>
+          </li>
+          <li class="key-points__item">
+            <span class="key-points__num">03</span>
+            <h3 class="key-points__title">Tú decides qué mostrar</h3>
+            <p class="key-points__text">Elige las secciones que entran en el reporte antes de compartirlo.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CÓMO FUNCIONA (BORRADOR: sin diseño en el moodboard, copy por
+         confirmar). Pasos verificados contra la app: alta de estudio
+         (spec home), pantallas por imagen o URL y pines (spec hz),
+         journeys por etapas (spec jr), Reportes y Compartir (spec rpt).
+         Son 4 pasos: el flujo real empieza por crear el estudio.
+    ============================================================ -->
+    <section class="steps" id="como-funciona" aria-labelledby="steps-title">
+      <div class="steps__inner container">
+        <div class="section-intro">
+          <p class="eyebrow">Cómo funciona</p>
+          <h2 class="section-title section-title--lg" id="steps-title">Del primer pin al reporte, en cuatro pasos</h2>
+        </div>
+        <ol class="steps__list">
+          <li class="step">
+            <span class="step__num" aria-hidden="true">1</span>
+            <h3 class="step__title">Crea el estudio y sube tus pantallas</h3>
+            <p class="step__text">Completa los datos básicos del producto y carga cada pantalla una sola vez, como imagen o desde su URL.</p>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">2</span>
+            <h3 class="step__title">Marca los hallazgos</h3>
+            <p class="step__text">Un clic sobre la pantalla fija el pin. Asigna la severidad, apóyalo en una heurística o un sesgo y escribe tu recomendación.</p>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">3</span>
+            <h3 class="step__title">Mapea el recorrido</h3>
+            <p class="step__text">Arma el journey por etapas, completa los carriles de cada paso y vincula cada hallazgo al paso donde ocurre.</p>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">4</span>
+            <h3 class="step__title">Comparte el reporte</h3>
+            <p class="step__text">Elige qué ve tu cliente, revisa la vista previa y comparte un link con PIN. Tu cliente lo abre sin crear una cuenta.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BETA E INSCRIPCIÓN (BORRADOR: sin diseño, copy por confirmar)
+         Funciona sin JS: POST nativo a /api/mutisux-beta.
+    ============================================================ -->
+    <section class="beta section--ink" id="beta" aria-labelledby="beta-title">
+      <div class="beta__inner container">
+        <div class="beta__intro">
+          <p class="eyebrow eyebrow--on-ink">Beta</p>
+          <h2 class="section-title" id="beta-title">Beta gratuita, por tandas pequeñas</h2>
+          <p class="beta__text">Estamos abriendo Mutis UX de a poco. Si te anotas, te escribimos cuando te toque tu acceso. La beta es gratuita para quienes se inscriban.</p>
+        </div>
+
+        <form class="signup" id="inscripcion" action="/api/mutisux-beta" method="post" novalidate>
+          <div class="signup__field">
+            <label class="signup__label" for="signup-name">Nombre</label>
+            <input class="signup__input" id="signup-name" name="nombre" type="text" autocomplete="name" maxlength="80" required aria-describedby="signup-name-error" />
+            <p class="signup__error" id="signup-name-error" hidden></p>
+          </div>
+
+          <div class="signup__field">
+            <label class="signup__label" for="signup-email">Correo</label>
+            <input class="signup__input" id="signup-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required aria-describedby="signup-email-error" />
+            <p class="signup__error" id="signup-email-error" hidden></p>
+          </div>
+
+          <div class="signup__field">
+            <label class="signup__label" for="signup-type">¿Qué tipo de diagnósticos haces? <span class="signup__optional">(opcional)</span></label>
+            <textarea class="signup__input signup__input--area" id="signup-type" name="tipo" rows="3" maxlength="500" autocomplete="off"></textarea>
+          </div>
+
+          <!-- Campo trampa contra spam: las personas no lo ven ni lo completan. -->
+          <div class="signup__trap" aria-hidden="true">
+            <label for="signup-website">No completes este campo</label>
+            <input id="signup-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="signup__field signup__field--check">
+            <input class="signup__check" id="signup-consent" name="consentimiento" type="checkbox" value="si" required aria-describedby="signup-consent-error" />
+            <!-- DATO DESCONOCIDO: URL de la política de privacidad (uxuaria.com no tiene una). -->
+            <label class="signup__check-label" for="signup-consent">Acepto que Uxuaria use mi nombre y correo para avisarme de la beta de Mutis UX, según la <a href="/mutisux/privacidad">política de privacidad</a>.</label>
+            <p class="signup__error" id="signup-consent-error" hidden></p>
+          </div>
+
+          <button class="btn btn--primary btn--lg signup__submit" type="submit">Anótame a la beta</button>
+          <p class="signup__status" id="signup-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- Confirmación con JS: reemplaza al formulario (sin JS, el aviso es gracias.html) -->
+        <div class="signup-done" id="signup-done" tabindex="-1" hidden>
+          <span class="signup-done__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3 class="signup-done__title">Ya estás en la lista</h3>
+          <p class="signup-done__text">Te escribimos cuando te toque tu acceso a la beta de Mutis UX.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PREGUNTAS FRECUENTES (BORRADOR: copy por confirmar)
+         <details> funciona sin JS. Solo hechos verificados en las specs:
+         beta gratuita (spec cta), sin IA (spec onb), link con PIN y
+         secciones (spec rpt). DATO DESCONOCIDO, sin publicar: qué pasa
+         después de la beta, fecha de Personas, límites de la beta y la
+         exportación (solo para administradores).
+    ============================================================ -->
+    <section class="faq" id="preguntas" aria-labelledby="faq-title">
+      <div class="faq__inner container">
+        <div class="section-intro faq__intro">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2 class="section-title section-title--lg" id="faq-title">Lo que conviene saber antes de anotarte</h2>
+        </div>
+        <div class="faq__list">
+          <details class="faq-item">
+            <summary class="faq-item__question">¿Es gratis la beta?</summary>
+            <div class="faq-item__answer">
+              <p>Sí. La beta es gratuita para quienes se inscriban. Abrimos los accesos por tandas pequeñas y te escribimos cuando te toque.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">¿Para quién es?</summary>
+            <div class="faq-item__answer">
+              <p>Para quienes trabajan en diseño UX/UI y entregan diagnósticos de experiencia a sus clientes.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">¿Reemplaza mi criterio?</summary>
+            <div class="faq-item__answer">
+              <p>No. Mutis UX no genera reportes automáticos ni diagnósticos con inteligencia artificial. Ordena tu trabajo en un solo lugar y agiliza la entrega. Las conclusiones son tuyas.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">¿Qué puedo compartir con mi cliente?</summary>
+            <div class="faq-item__answer">
+              <p>Un reporte de solo lectura, con un link y un PIN de 6 dígitos. Eliges qué secciones ve: hallazgos, flujos, journeys, diagnóstico, propuestas y contacto. Tu cliente acepta las condiciones de uso antes de abrirlo.</p>
+              <p>Si cambias el diagnóstico, actualizas el reporte desde el mismo lugar. También puedes generar un PIN nuevo o dejar de compartirlo cuando quieras.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">¿Cuándo llega Personas?</summary>
+            <div class="faq-item__answer">
+              <p>Las fichas de protopersonas están en desarrollo y todavía no tienen fecha de llegada.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       PIE DE PÁGINA
+       DATO DESCONOCIDO: URL de la política de privacidad (uxuaria.com
+       no tiene una) y de las condiciones de los reportes (en la app
+       viven en /legal/reportes, pero la app aún no es pública).
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__brand">
+        <a class="brand brand--on-ink" href="./" aria-label="Mutis UX, inicio">
+          <img class="brand__logo" src="images/logo-eye-80.webp" width="40" height="40" loading="lazy" decoding="async" alt="" />
+          <span class="brand__name">Mutis UX</span>
+        </a>
+        <p class="site-footer__tagline">Mutis UX es una micro app de <a href="https://uxuaria.com/">Uxuaria</a>.</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Pie de página">
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="/mutisux/privacidad">Política de privacidad</a></li>
+          <li><a class="site-footer__link" href="https://mutis.uxuaria.com/legal/reportes">Condiciones de los reportes</a></li>
+          <li><a class="site-footer__link" href="mailto:info@uxuaria.com">info@uxuaria.com</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__bottom container">
+      <p>© 2026 Uxuaria · Luis Carlos Romero León</p>
+    </div>
+  </footer>
+
+  <script src="mutisux.js?v=20261027b"></script>
+<!-- Cloudflare Web Analytics: visitas anónimas, sin cookies. El token es público. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "62129c69792d41ef95ef5714de3aa163"}'></script>
+</body>
+</html>
