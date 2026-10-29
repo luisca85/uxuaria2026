@@ -1,18 +1,19 @@
 # Landing de Mutis UX (`/mutisux/`)
 
-Página de una sola pantalla para presentar Mutis UX y juntar inscripciones a la beta.
-Contrato: [`docs/specs/09-mutisux.md`](../docs/specs/09-mutisux.md). Mismo stack que el resto
+Página de una sola pantalla para presentar Mutis UX y recibir solicitudes de acceso a la beta
+privada. Contrato: [`docs/specs/09-mutisux.md`](../docs/specs/09-mutisux.md); el formulario
+sigue la spec `acc` de la app (`coding/Lupa-ux-lite/docs/specs/acceso-beta.md`). Mismo stack que el resto
 de uxuaria.com: HTML, CSS y JS vanilla, sin build. Un push a `main` es un deploy.
 
 ```
 mutisux/
 ├── index.html      la página (todo el copy está acá)
-├── gracias.html    confirmación del envío sin JS (noindex)
+├── gracias.html    confirmación vieja del envío sin JS (noindex; ya no se usa)
 ├── mutisux.css      estilos; los tokens de color, sombra, radio y tipografía están en :root
-├── mutisux.js       SITE_URL, animaciones al entrar en pantalla y envío del formulario
+├── mutisux.js       SITE_URL, animaciones al entrar en pantalla, Turnstile y envío del formulario
 └── images/         grabados en AVIF y WebP, logo, favicon e imagen para redes (og-mutisux.jpg)
 
-functions/api/mutisux-beta.js   recibe el formulario (destino de los datos: pendiente)
+functions/api/mutisux-beta.js   recibe la solicitud, verifica Turnstile y la guarda en la D1 SOLICITUDES
 ```
 
 ## Probar en local
@@ -20,10 +21,23 @@ functions/api/mutisux-beta.js   recibe el formulario (destino de los datos: pend
 Desde la raíz del repo del sitio (`coding/Lupa-ux-website/`):
 
 ```bash
-npx wrangler pages dev . --port 8790
+npx wrangler pages dev . --port 8790 --d1 SOLICITUDES=solicitudes-local --binding TURNSTILE_SECRET=1x0000000000000000000000000000000AA
 ```
 
 Abre `http://localhost:8790/mutisux/`. Así corren también `_headers` y la función del formulario.
+En localhost el widget usa la clave de prueba de Cloudflare y la secreta de arriba es la de
+prueba, así que el chequeo siempre pasa. Las solicitudes quedan en la base local
+`.wrangler/state`; para verlas con el script de la app:
+
+```bash
+cd ../Lupa-ux-lite && node scripts/autorizar.mjs --listar --local --persist-solicitudes ../Lupa-ux-website/.wrangler/state
+```
+
+**El formulario va en un modal** (`#acceso-modal`): lo abren todos los links a `#inscripcion`
+y la URL `/mutisux/#inscripcion`. Para probarlo en local, abre `http://localhost:8790/mutisux/#inscripcion`.
+
+**La landing no enlaza a la app**: el link a la app solo va en el correo que
+Luis manda al aprobar a alguien (spec `acc`).
 
 ## Editar el copy
 
@@ -35,8 +49,9 @@ de cada una que dice si el copy está **aprobado en el moodboard** o es **BORRAD
   `coding/Lupa-ux-lite/docs/specs/`. No prometer funciones, cifras ni fechas que no existan.
 - El título y la descripción para Google y redes están en el `<head>` (`title`,
   `description`, `og:*`, `twitter:*`). Si cambias uno, cambia los tres.
-- Los mensajes del formulario están dos veces: en `MESSAGES` de `mutisux.js` (con JS) y en
-  `MENSAJES` de `functions/api/mutisux-beta.js` (sin JS). Mantenlos iguales.
+- Los mensajes del formulario están en `MESSAGES` de `mutisux.js`; la función solo devuelve
+  códigos de error. Las opciones de rol están en `index.html` y en `ROLES` de
+  `functions/api/mutisux-beta.js`: mantenlas iguales.
 
 ## Cambiar el dominio
 
@@ -97,7 +112,9 @@ de clientes ni publiques ningún PIN.**
 ## Imágenes
 
 - Las fuentes están en `coding/Lupa-ux-lite/imagenes/` (`1.jpg` a `5.jpg` y `logo.jpg`).
-- Todos los grabados vienen del **Public Domain Image Archive** de The Public Domain Review
+- El logo (`logo-ojo-*`, desde el 2026-10-29) es un ojo grabado que Luis subió a Figma; se exportó con su recorte. Fuente y condiciones de uso: A CONFIRMAR. Los `logo-eye-*` son el logo anterior y ya no se usan.
+- La quina del hero (`fig-1-quina-*`) viene de la Biblioteca Digital del Real Jardín Botánico (CSIC):
+  condiciones de uso por confirmar (ver la spec). El resto de los grabados viene del **Public Domain Image Archive** de The Public Domain Review
   ([pdimagearchive.org](https://pdimagearchive.org/)). Si sumas uno, anota su página aquí y
   en la spec, y revisa sus condiciones de uso:
 
@@ -113,7 +130,11 @@ de clientes ni publiques ningún PIN.**
 - Para regenerarlas: AVIF y WebP a 640 px y al ancho original, miniaturas de 88 px y el
   logo recortado en círculo (`object-position: 50% 26%`). Se hicieron con `sharp`.
 - `og-mutisux.jpg` (1200 × 630) se generó con Chrome headless a partir de un HTML con las
-  fuentes de la página. Si cambia el título, hay que regenerarla.
+  fuentes de la página. Si cambia el título, hay que regenerarla. Desde el 2026-10-28 lleva
+  la quina con los mismos cuatro pines del hero; como el nombre no cambió, `og:image` y
+  `twitter:image` llevan `?v=20261028` para que las redes la vuelvan a pedir.
+- La quina del hero (`fig-1-quina-640` y `-900`): recorte de la lámina con la planta entera
+  y la fila de partes, saturación 0.74 y papel entibiado (`linear([0.99, 0.955, 0.93])`).
 - Al reemplazar una imagen con el mismo nombre, la caché de `_headers` dura 30 días:
   mejor cambiarle el nombre.
 
