@@ -79,7 +79,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,700;1,6..72,400&display=swap" /></noscript>
   <!-- El sol es el LCP solo en escritorio; en celular queda debajo del texto y no se precarga. -->
   <link rel="preload" as="image" type="image/avif" href="images/fig-1-quina-640.avif" imagesrcset="images/fig-1-quina-640.avif 640w, images/fig-1-quina-900.avif 900w" imagesizes="432px" media="(min-width: 761px)" fetchpriority="high" />
-  <link rel="stylesheet" href="mutisux.css?v=20261029e" />
+  <link rel="stylesheet" href="mutisux.css?v=20261029g" />
 </head>
 <body>
 
@@ -110,7 +110,7 @@
         <div class="hero__text">
           <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Mutis UX · Beta gratuita</p>
           <h1 class="hero__title" id="hero-title">Ordena, documenta y presenta tus hallazgos UX con <mark class="marker">reportes accionables</mark> para tus clientes</h1>
-          <p class="hero__lead">Diagnostica la experiencia de un producto en un solo lugar. Sube las pantallas, marca los hallazgos y mapea el recorrido de las personas. Tu criterio al mando, la herramienta a tu servicio.</p>
+          <p class="hero__lead">Diagnostica la experiencia de un producto en un solo lugar. Sube las pantallas, marca los hallazgos y mapea el recorrido de las personas.</p>
           <div class="hero__actions">
             <a class="btn btn--ink btn--lg" href="#inscripcion">Pide tu acceso</a>
             <a class="btn btn--outline btn--lg" href="#funciones">Mira las funciones</a>
@@ -259,7 +259,7 @@
               <div class="offer-mockup__plan offer-mockup__plan--rec">
                 <span class="offer-mockup__badge">Recomendado</span>
                 <span class="offer-mockup__name">Plan mensual</span>
-                <span class="offer-mockup__price">US$ 500 <small>/mes</small></span>
+                <span class="offer-mockup__price">US$ 500</span>
                 <span class="mockup-bar mockup-bar--line"></span>
                 <span class="mockup-bar mockup-bar--line mockup-bar--short"></span>
                 <span class="offer-mockup__btn">Reservar</span>
@@ -270,7 +270,7 @@
                 <img class="feature-card__thumb" src="images/fig-1-sun-thumb.webp" width="44" height="44" loading="lazy" decoding="async" alt="Grabado de un sol rodeado de nubes" />
                 <span class="feature-card__label">Propuestas</span>
               </div>
-              <h3 class="feature-card__title">Del diagnóstico a tu propuesta de trabajo</h3>
+              <h3 class="feature-card__title">Del diagnóstico a tu próximo cliente</h3>
               <p class="feature-card__text">Arma planes con precio fijo o mensual, qué incluye cada uno y descuentos por pago adelantado. Aparecen en el reporte, en "Trabajemos juntos", y tu cliente reserva el que elija.</p>
             </div>
           </article>
@@ -348,7 +348,7 @@
         <div class="section-intro">
           <p class="eyebrow eyebrow--on-ink">Hallazgos</p>
           <h2 class="section-title section-title--lg" id="findings-title">Marca lo que encuentras, en el lugar exacto</h2>
-          <p class="section-intro__text">Un hallazgo es una observación concreta que se puede ver y validar. Márcalo sobre la pantalla, asígnale una severidad y apóyalo en una heurística de Nielsen o en un sesgo del catálogo.</p>
+          <p class="section-intro__text">Un hallazgo es una observación concreta que se puede ver y validar. Márcalo sobre la pantalla, asígnale una severidad y apóyalo en una heurística o en un sesgo del catálogo.</p>
         </div>
 
         <div class="findings__showcase">
@@ -549,7 +549,7 @@
         </div>
         <p class="journey-map__hint">Desliza la tabla hacia los costados para ver todas las etapas.</p>
         <div class="section-cta">
-          <a class="btn btn--primary btn--lg" href="#inscripcion">Pide tu acceso ahora</a>
+          <a class="btn btn--ink btn--lg" href="#inscripcion">Pide tu acceso ahora</a>
         </div>
       </div>
     </section>
@@ -846,9 +846,9 @@
           <p class="offers__lead">Un buen diagnóstico demuestra cómo piensas y todo lo que sabes hacer. Mutis UX lo convierte en una pieza que trabaja por ti.</p>
         </div>
 
-        <!-- Destino de los "Pide tu acceso" sin JS (con JS abren el modal) -->
+        <!-- Destino de los "Pide tu acceso" sin JS (con JS abren el modal). El botón que
+             estaba acá salió el 2026-10-29; lo reemplaza el botón flotante. -->
         <div class="section-cta" id="inscripcion">
-          <a class="btn btn--primary btn--lg" href="#inscripcion">Pide tu acceso ahora</a>
           <noscript><p class="section-cta__nojs">Para pedir acceso necesitas activar JavaScript.</p></noscript>
         </div>
 
@@ -988,7 +988,7 @@
          <details> funciona sin JS. Solo hechos verificados en las specs:
          beta gratuita (spec cta), sin IA (spec onb), link con PIN y
          secciones (spec rpt). DATO DESCONOCIDO, sin publicar: qué pasa
-         después de la beta, fecha de Personas, límites de la beta y la
+         después de la beta, funciones en camino, límites de la beta y la
          exportación (solo para administradores).
     ============================================================ -->
     <section class="faq" id="preguntas" aria-labelledby="faq-title">
@@ -1011,9 +1011,10 @@
             </div>
           </details>
           <details class="faq-item">
-            <summary class="faq-item__question">¿Reemplaza mi criterio?</summary>
+            <summary class="faq-item__question">¿Usan inteligencia artificial para generar los reportes?</summary>
             <div class="faq-item__answer">
-              <p>No. Mutis UX no genera reportes automáticos ni diagnósticos con inteligencia artificial. Ordena tu trabajo en un solo lugar y agiliza la entrega. Las conclusiones son tuyas.</p>
+              <p>No usamos inteligencia artificial para hacer reportes automáticos. Creemos que el criterio humano es lo primero y lo fundamental.</p>
+              <p>Sin embargo, sí podremos sumar ayudas y asistencia con inteligencia artificial para hacer más eficientes algunas tareas.</p>
             </div>
           </details>
           <details class="faq-item">
@@ -1024,15 +1025,19 @@
             </div>
           </details>
           <details class="faq-item">
-            <summary class="faq-item__question">¿Cuándo llega Personas?</summary>
+            <summary class="faq-item__question">¿Qué otras funciones tienen pensado desarrollar?</summary>
             <div class="faq-item__answer">
-              <p>Las fichas de protopersonas están en desarrollo y todavía no tienen fecha de llegada.</p>
+              <p>Tenemos pensado sumar la construcción de protopersonas, los flujos de interacción dentro de los user journeys y el registro de pruebas de usabilidad y tests con usuarios.</p>
+              <p>También queremos incorporar herramientas de inteligencia artificial, nunca para reemplazar el criterio humano. Y siempre vamos a seguir mejorando la experiencia según lo que nos digan quienes usan Mutis UX.</p>
             </div>
           </details>
         </div>
       </div>
     </section>
 
+    <!-- Botón flotante (diseño de Luis en Figma, 2026-10-29): abajo a la derecha. Con JS
+         aparece después del hero y se oculta con el modal abierto. -->
+    <a class="btn btn--primary btn--lg flotante" href="#inscripcion" id="boton-flotante">Pide tu acceso</a>
   </main>
 
   <!-- ============================================================
@@ -1062,7 +1067,7 @@
     </div>
   </footer>
 
-  <script src="mutisux.js?v=20261029e"></script>
+  <script src="mutisux.js?v=20261029g"></script>
 <!-- Cloudflare Web Analytics: visitas anónimas, sin cookies. El token es público. -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "62129c69792d41ef95ef5714de3aa163"}'></script>
 </body>

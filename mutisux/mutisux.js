@@ -83,6 +83,18 @@
     var modal = document.getElementById('acceso-modal');
     if (!form || !modal || typeof modal.showModal !== 'function' ||
         !window.fetch || !window.URLSearchParams || !window.Promise) return;
+    document.documentElement.classList.add('js-acceso');
+
+    // Botón flotante: aparece cuando el hero (con su propio "Pide tu acceso") sale de pantalla.
+    var flotante = document.getElementById('boton-flotante');
+    var hero = document.querySelector('.hero');
+    if (flotante && hero && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        flotante.classList.toggle('is-visible', !entries[0].isIntersecting);
+      }, { threshold: 0 }).observe(hero);
+    } else if (flotante) {
+      flotante.classList.add('is-visible');
+    }
 
     var fields = {
       nombre: form.elements.nombre,
@@ -239,6 +251,48 @@
   }
 
   /* -----------------------------------------------------------------
+     Entrada de las secciones al hacer scroll (2026-10-29): cada bloque
+     sube y aparece una sola vez al entrar en pantalla; los que van en
+     grupo (tarjetas, puntos, preguntas) entran en cascada. El hero tiene
+     su propia entrada en CSS. Sin JS, sin IntersectionObserver o con
+     movimiento reducido no se oculta nada.
+  ----------------------------------------------------------------- */
+  var REVEAL = [
+    '.features__head', '.feature-card',
+    '.carousel__stage',
+    '.findings .section-intro', '.findings__showcase > *', '.severity-scale', '.key-points__item',
+    '.journeys__top > *', '.journey-map', '.journeys .section-cta',
+    '.demo__head', '.demo-report',
+    '.offers__head', '.pitch', '.offers__item',
+    '.faq__intro', '.faq-item'
+  ];
+  function initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var items = document.querySelectorAll(REVEAL.join(','));
+    if (!items.length) return;
+
+    // Cascada: el orden entre hermanos marca el retraso (máximo 5 pasos).
+    Array.prototype.forEach.call(items, function (el) {
+      var i = 0, prev = el.previousElementSibling;
+      while (prev) { if (prev.classList.contains('reveal')) i++; prev = prev.previousElementSibling; }
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-i', Math.min(i, 5));
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    document.documentElement.classList.add('js-reveal');
+    Array.prototype.forEach.call(items, function (el) { observer.observe(el); });
+  }
+
+  /* -----------------------------------------------------------------
      Maquetas animadas: se arman una sola vez. Sin JS corren al cargar
      la página. Con JS esperan a entrar en pantalla y se pausan si salen
      a mitad de camino (.js-anim + .is-visible).
@@ -319,6 +373,7 @@
   }
 
   document.documentElement.classList.add('js');
+  initReveal();
   initMockups();
   initCarousel();
   initSignup();

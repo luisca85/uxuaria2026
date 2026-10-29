@@ -490,6 +490,48 @@ ul { padding: 0; list-style: none; }
 .finding-card__meta { font-size: .8125rem; line-height: 1.45; color: var(--color-text-muted); }
 .finding-card__body { font-size: .8125rem; line-height: 1.45; color: var(--color-text); }
 
+/* Entrada de las secciones al hacer scroll (2026-10-29, ver initReveal en mutisux.js).
+   Solo con JS (.js-reveal), que no se agrega con prefers-reduced-motion.
+   Es una animación (no una transición) con fill "backwards": al terminar, cada bloque
+   vuelve a sus propios estilos y no pisa sus efectos de hover ni sus transiciones. */
+.js-reveal .reveal:not(.is-revealed) { opacity: 0; }
+.js-reveal .reveal.is-revealed { animation: revelar .8s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--reveal-i, 0) * 90ms); }
+@keyframes revelar {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@media print { .js-reveal .reveal:not(.is-revealed) { opacity: 1; } }
+
+/* Entrada del hero (2026-10-29): los textos suben en cascada, la lámina aparece y después
+   caen los pines y la tarjeta del hallazgo. Solo con movimiento permitido; con
+   prefers-reduced-motion la regla global apaga las animaciones y queda todo quieto. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__text > * { animation: heroEntra .7s cubic-bezier(.2, .8, .2, 1) both; }
+  .hero__text > :nth-child(1) { animation-delay: .05s; }
+  .hero__text > :nth-child(2) { animation-delay: .13s; }
+  .hero__text > :nth-child(3) { animation-delay: .21s; }
+  .hero__text > :nth-child(4) { animation-delay: .29s; }
+  .hero__text > :nth-child(5) { animation-delay: .37s; }
+  .plate--hero { animation: heroLamina .9s cubic-bezier(.2, .8, .2, 1) .15s both; }
+  .plate--hero .plate__pin { animation: heroPin .45s cubic-bezier(.3, 1.4, .5, 1) both; }
+  .plate--hero .plate__pin--1 { animation-delay: .75s; }
+  .plate--hero .plate__pin--2 { animation-delay: .85s; }
+  .plate--hero .plate__pin--3 { animation-delay: .95s; }
+  .plate--hero .plate__pin--4 { animation-delay: 1.05s; }
+  .hero__card { animation: heroEntra .6s cubic-bezier(.2, .8, .2, 1) 1.15s both; }
+}
+@keyframes heroEntra {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes heroLamina {
+  from { opacity: 0; transform: translateY(24px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes heroPin {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
 .hero__card { position: absolute; left: 0; bottom: 64px; }
 
 @media (max-width: 760px) {
@@ -1849,6 +1891,26 @@ ul { padding: 0; list-style: none; }
    La tarjeta copia la entrada de la app (.ent-box, .pf, .ent-btn en
    coding/Lupa-ux-lite/src/styles/base.css): sus tokens --app-* están en :root.
    =================================================================== */
+/* Botón flotante (diseño de Luis en Figma, 2026-10-29): abajo a la derecha, siempre a
+   mano. Con JS aparece recién cuando el hero sale de pantalla (ahí ya hay un botón). */
+.flotante { position: fixed; right: 32px; bottom: 32px; z-index: 30; }
+.js-acceso .flotante {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .25s ease, transform .35s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .35s;
+}
+.js-acceso .flotante.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .25s ease, transform .35s cubic-bezier(.2, .8, .2, 1), visibility 0s;
+}
+.js-acceso #inscripcion { display: none; } /* con JS, "Pide tu acceso" abre el modal */
+@media (max-width: 600px) {
+  .flotante { right: 16px; bottom: 16px; min-height: 48px; padding-left: 20px; padding-right: 20px; }
+}
+
 /* Botón centrado al final de Recorridos y debajo del encabezado de Tu próximo cliente
    (2026-10-29). El de Tu próximo cliente es además el destino de #inscripcion sin JS. */
 .section-cta { display: flex; flex-direction: column; align-items: center; gap: 12px; scroll-margin-top: 120px; }
