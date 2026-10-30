@@ -1,0 +1,39 @@
+---
+import { cardDate, type Post } from '../lib/blog';
+
+interface Props {
+  post: Post;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const { title, excerpt, description, category, pubDate, cover, cardImage } = post.data;
+const img = cardImage ?? cover;
+const meta = `${category}  ·  ${cardDate(pubDate)}`;
+---
+{featured ? (
+  <a href={`/blog/${post.id}`} class="blog-card--featured">
+    <div class="blog-card--featured__image">
+      <img src={img.src} width={img.width} height={img.height} alt={img.alt} loading="lazy" />
+    </div>
+    <div class="blog-card--featured__content">
+      <span class="blog-card--featured__label">[ ARTÍCULO DESTACADO ]</span>
+      <span class="blog-card__meta">{meta}</span>
+      <h2 class="blog-card--featured__title">{title}</h2>
+      <p class="blog-card--featured__excerpt">{excerpt ?? description}</p>
+      <span class="blog-card__read-more">▸ Leer artículo completo</span>
+    </div>
+  </a>
+) : (
+  <a href={`/blog/${post.id}`} class="blog-card">
+    <div class="blog-card__image">
+      <img src={img.src} width={img.width} height={img.height} alt={img.alt} loading="lazy" />
+    </div>
+    <div class="blog-card__body">
+      <span class="blog-card__meta">{meta}</span>
+      <h2 class="blog-card__title">{title}</h2>
+      <p class="blog-card__excerpt">{excerpt ?? description}</p>
+      <span class="blog-card__read-more">▸ Leer más</span>
+    </div>
+  </a>
+)}

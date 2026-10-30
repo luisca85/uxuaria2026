@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getPosts } from '../lib/blog';
+
+const posts = await getPosts();
+// Featured card: the post marked featured, else the newest
+const featured = posts.find((p) => p.data.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
+---
+<BaseLayout
+  title="Blog UX para startups: IA, fintech y producto digital | Uxuaria"
+  description="Artículos de Luis Carlos Romero, consultor UX en Buenos Aires, sobre diseño UX, creatividad, IA y producto digital en Latinoamérica. Sin tecnicismos."
+  ogDescription="Artículos sobre diseño UX, fintech y IA para startups en LATAM. Sin tecnicismos, con foco en negocios."
+>
+  <section class="blog-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="/" class="breadcrumb__item">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <span class="breadcrumb__item breadcrumb__item--current">Blog</span>
+      </nav>
+      <h1 class="blog-hero__title">Ideas sobre UX, IA<br>y producto digital</h1>
+      <p class="blog-hero__desc">Reflexiones y aprendizajes de 15 años diseñando productos en LATAM.</p>
+    </div>
+  </section>
+
+  <section class="blog-listing">
+    <div class="container">
+      {featured && <BlogCard post={featured} featured />}
+      <div class="blog-grid">
+        {rest.map((post) => <BlogCard post={post} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

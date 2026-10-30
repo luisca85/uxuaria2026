@@ -3,3 +3,7 @@
 skills-lock.json
 serve.py
 server.js
+.wrangler/
+node_modules/
+dist/
+.astro/
