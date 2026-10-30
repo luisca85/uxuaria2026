@@ -7,24 +7,24 @@
   <!-- DOMINIO: https://uxuaria.com/mutisux/ (confirmado el 2026-10-27).
        Si cambia, reemplázalo aquí (canonical, og:url, og:image, JSON-LD),
        en SITE_URL de mutisux.js y en sitemap.xml. -->
-  <title>Mutis UX: diagnostica, documenta y reporta hallazgos UX</title>
-  <meta name="description" content="Marca hallazgos con severidad, mapea user journeys y comparte reportes con tus clientes. Mutis UX abre su beta privada y gratuita." />
+  <title>Mutis UX: evaluación heurística y auditorías UX con reportes</title>
+  <meta name="description" content="Haz evaluaciones heurísticas y auditorías UX: marca hallazgos con severidad de 0 a 4, mapea user journeys y entrega el informe a tu cliente. Beta gratuita." />
   <link rel="canonical" href="https://uxuaria.com/mutisux/" />
 
   <!-- Open Graph y Twitter Card -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_419" />
   <meta property="og:site_name" content="Uxuaria" />
-  <meta property="og:title" content="Mutis UX: diagnostica, documenta y reporta hallazgos UX" />
-  <meta property="og:description" content="Marca hallazgos con severidad, mapea user journeys y comparte reportes con tus clientes. Mutis UX abre su beta privada y gratuita." />
+  <meta property="og:title" content="Mutis UX: evaluación heurística y auditorías UX con reportes" />
+  <meta property="og:description" content="Haz evaluaciones heurísticas y auditorías UX: marca hallazgos con severidad de 0 a 4, mapea user journeys y entrega el informe a tu cliente. Beta gratuita." />
   <meta property="og:url" content="https://uxuaria.com/mutisux/" />
   <meta property="og:image" content="https://uxuaria.com/mutisux/images/og-mutisux.jpg?v=20261029" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Mutis UX, beta gratuita: lámina de la quina de la Expedición Botánica de Mutis con cuatro pines azules de hallazgos y el título Ordena, documenta y presenta tus hallazgos UX con reportes accionables" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mutis UX: diagnostica, documenta y reporta hallazgos UX" />
-  <meta name="twitter:description" content="Marca hallazgos con severidad, mapea user journeys y comparte reportes con tus clientes. Mutis UX abre su beta privada y gratuita." />
+  <meta name="twitter:title" content="Mutis UX: evaluación heurística y auditorías UX con reportes" />
+  <meta name="twitter:description" content="Haz evaluaciones heurísticas y auditorías UX: marca hallazgos con severidad de 0 a 4, mapea user journeys y entrega el informe a tu cliente. Beta gratuita." />
   <meta name="twitter:image" content="https://uxuaria.com/mutisux/images/og-mutisux.jpg?v=20261029" />
   <meta name="twitter:image:alt" content="Mutis UX, beta gratuita: lámina de la quina de la Expedición Botánica de Mutis con cuatro pines azules de hallazgos y el título de la página" />
 
@@ -48,13 +48,19 @@
         "@type": "SoftwareApplication",
         "@id": "https://uxuaria.com/mutisux/#app",
         "name": "Mutis UX",
-        "description": "Herramienta web para diagnosticar la experiencia de un producto: marca hallazgos con severidad sobre las pantallas, mapea user journeys y comparte reportes de solo lectura con tus clientes mediante un link con PIN.",
+        "description": "Herramienta web para hacer evaluaciones heurísticas y auditorías UX: marca hallazgos con severidad sobre las pantallas, mapea user journeys y comparte reportes de solo lectura con tus clientes mediante un link con PIN.",
         "url": "https://uxuaria.com/mutisux/",
         "image": "https://uxuaria.com/mutisux/images/og-mutisux.jpg",
         "applicationCategory": "DesignApplication",
         "operatingSystem": "Web",
         "inLanguage": "es",
         "isAccessibleForFree": true,
+        "featureList": [
+          "Hallazgos marcados sobre las pantallas con severidad de 0 a 4",
+          "Las 10 heurísticas de Nielsen y un catálogo de sesgos ampliable",
+          "User journeys con curva emocional",
+          "Reporte de solo lectura para el cliente con link y PIN"
+        ],
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -62,6 +68,68 @@
           "description": "Beta privada y gratuita: revisamos cada solicitud"
         },
         "publisher": { "@id": "https://uxuaria.com/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://uxuaria.com/mutisux/#preguntas",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Es gratis la beta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. La beta es gratuita y privada: pides tu acceso en el formulario, revisamos cada solicitud y te escribimos cuando puedas entrar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Para quién es?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Para quienes trabajan en diseño UX/UI y entregan diagnósticos de experiencia a sus clientes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Usan inteligencia artificial para generar los reportes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No usamos inteligencia artificial para hacer reportes automáticos. Creemos que el criterio humano es lo primero y lo fundamental. Sin embargo, sí podremos sumar ayudas y asistencia con inteligencia artificial para hacer más eficientes algunas tareas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Sirve para hacer una evaluación heurística?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Subes las pantallas, marcas cada hallazgo en el lugar exacto, le asignas una severidad de 0 a 4 y lo apoyas en una de las 10 heurísticas de Nielsen o en un sesgo del catálogo, que puedes ampliar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿En qué se diferencia de una plantilla en Miro o una hoja de cálculo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Los hallazgos quedan sobre la pantalla donde ocurren, los filtras por severidad y, al terminar, compartes un informe de solo lectura con link y PIN. No necesitas armar una presentación aparte."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué puedo compartir con mi cliente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un reporte de solo lectura, con un link y un PIN de 6 dígitos. Eliges qué secciones ve: hallazgos, flujos, journeys, diagnóstico, propuestas y contacto. Tu cliente acepta las condiciones de uso antes de abrirlo. Si cambias el diagnóstico, actualizas el reporte desde el mismo lugar. También puedes generar un PIN nuevo o dejar de compartirlo cuando quieras."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué otras funciones tienen pensado desarrollar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tenemos pensado sumar la construcción de protopersonas, los flujos de interacción dentro de los user journeys y el registro de pruebas de usabilidad y tests con usuarios. También queremos incorporar herramientas de inteligencia artificial, nunca para reemplazar el criterio humano. Y siempre vamos a seguir mejorando la experiencia según lo que nos digan quienes usan Mutis UX."
+            }
+          }
+        ]
       }
     ]
   }
@@ -109,8 +177,8 @@
       <div class="hero__inner container">
         <div class="hero__text">
           <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Mutis UX · Beta gratuita</p>
-          <h1 class="hero__title" id="hero-title">Ordena, documenta y presenta tus hallazgos UX con <mark class="marker">reportes accionables</mark> para tus clientes</h1>
-          <p class="hero__lead">Diagnostica la experiencia de un producto en un solo lugar. Sube las pantallas, marca los hallazgos y mapea el recorrido de las personas.</p>
+          <h1 class="hero__title" id="hero-title">Ordena, documenta y presenta los hallazgos de tus auditorías UX con <mark class="marker">reportes accionables</mark> para tus clientes</h1>
+          <p class="hero__lead">Diagnostica la experiencia de un producto en un solo lugar: evaluación heurística, user journeys e informe para tu cliente. Sube las pantallas, marca los hallazgos y mapea el recorrido de las personas.</p>
           <div class="hero__actions">
             <a class="btn btn--ink btn--lg" href="#inscripcion">Pide tu acceso</a>
             <a class="btn btn--outline btn--lg" href="#funciones">Mira las funciones</a>
@@ -157,7 +225,7 @@
     <section class="features" id="funciones" aria-labelledby="features-title">
       <div class="features__inner container">
         <div class="features__head">
-          <h2 class="section-title" id="features-title">Funciones en acción</h2>
+          <h2 class="section-title" id="features-title">Funciones para tu auditoría UX</h2>
           <p class="features__subtitle">Cada función, en el momento en que te ahorra trabajo.</p>
         </div>
 
@@ -315,7 +383,7 @@
                 <div class="carousel__slide" id="slide-findings" role="group" aria-roledescription="diapositiva" aria-label="2 de 3: Hallazgos">
                   <picture>
                     <source type="image/avif" srcset="images/interface-findings-960.avif 960w, images/interface-findings-1493.avif 1493w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" />
-                    <img class="app-frame__image" src="images/interface-findings-960.webp" srcset="images/interface-findings-960.webp 960w, images/interface-findings-1493.webp 1493w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" width="1493" height="779" loading="lazy" decoding="async" alt="Captura de Mutis UX: la sección Hallazgos de un estudio, con las pestañas Resumen, Hallazgos, Flujos, Protopersonas, Reportes y Configuración, el lienzo para subir la primera pantalla y el panel de hallazgos a la derecha" />
+                    <img class="app-frame__image" src="images/interface-findings-960.webp" srcset="images/interface-findings-960.webp 960w, images/interface-findings-1493.webp 1493w" sizes="(max-width: 1200px) calc(100vw - 2 * clamp(16px, 4vw, 32px)), 1136px" width="1493" height="779" loading="lazy" decoding="async" alt="Captura de Mutis UX: evaluación heurística en la sección Hallazgos de un estudio, con las pestañas Resumen, Hallazgos, Flujos, Protopersonas, Reportes y Configuración, el lienzo para subir la primera pantalla y el panel de hallazgos a la derecha" />
                   </picture>
                 </div>
                 <div class="carousel__slide carousel__slide--studies" id="slide-studies" role="group" aria-roledescription="diapositiva" aria-label="3 de 3: Estudios">
@@ -348,7 +416,7 @@
         <div class="section-intro">
           <p class="eyebrow eyebrow--on-ink">Hallazgos</p>
           <h2 class="section-title section-title--lg" id="findings-title">Marca lo que encuentras, en el lugar exacto</h2>
-          <p class="section-intro__text">Un hallazgo es una observación concreta que se puede ver y validar. Márcalo sobre la pantalla, asígnale una severidad y apóyalo en una heurística o en un sesgo del catálogo.</p>
+          <p class="section-intro__text">Un hallazgo es una observación concreta que se puede ver y validar. Márcalo sobre la pantalla, asígnale una severidad y apóyalo en una de las 10 heurísticas de Nielsen o en un sesgo del catálogo.</p>
         </div>
 
         <div class="findings__showcase">
@@ -1015,6 +1083,18 @@
             <div class="faq-item__answer">
               <p>No usamos inteligencia artificial para hacer reportes automáticos. Creemos que el criterio humano es lo primero y lo fundamental.</p>
               <p>Sin embargo, sí podremos sumar ayudas y asistencia con inteligencia artificial para hacer más eficientes algunas tareas.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">¿Sirve para hacer una evaluación heurística?</summary>
+            <div class="faq-item__answer">
+              <p>Sí. Subes las pantallas, marcas cada hallazgo en el lugar exacto, le asignas una severidad de 0 a 4 y lo apoyas en una de las 10 heurísticas de Nielsen o en un sesgo del catálogo, que puedes ampliar.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">¿En qué se diferencia de una plantilla en Miro o una hoja de cálculo?</summary>
+            <div class="faq-item__answer">
+              <p>Los hallazgos quedan sobre la pantalla donde ocurren, los filtras por severidad y, al terminar, compartes un informe de solo lectura con link y PIN. No necesitas armar una presentación aparte.</p>
             </div>
           </details>
           <details class="faq-item">
