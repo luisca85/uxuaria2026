@@ -49,6 +49,9 @@ const testimonials = [
   legacyStyles={false}
 >
   <link slot="head" rel="stylesheet" href="/home.css?v=20261102" />
+  <script is:inline slot="head">
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('home-motion');
+  </script>
   <meta slot="head" name="geo.region" content="AR-C" />
   <meta slot="head" name="geo.placename" content="Buenos Aires, Argentina" />
   <script is:inline slot="head" type="application/ld+json">
@@ -120,12 +123,17 @@ const testimonials = [
 
   <div class="home">
     <div class="home-flow">
-      <img class="home-flow__line" src="/images/home/flow-line.svg" width="1170" height="2255" alt="" aria-hidden="true" />
+      <svg class="home-flow__line" viewBox="0 0 1170.09 2254.78" fill="none" aria-hidden="true" focusable="false">
+        <g class="home-flow__strokes" stroke="currentColor" stroke-width="2">
+          <path id="flow-path" d="M1158.09 2242.78H951.065C940.019 2242.78 931.065 2233.82 931.065 2222.78V1837.43C931.065 1826.38 922.111 1817.43 911.065 1817.43H586.55C575.504 1817.43 566.55 1826.38 566.55 1837.43V1937.84C566.55 1948.89 557.596 1957.84 546.55 1957.84H411.695H255.84C244.795 1957.84 235.84 1948.89 235.84 1937.84L235.84 1246.41C235.84 1235.37 226.886 1226.41 215.84 1226.41H21C9.95431 1226.41 1 1217.46 1 1206.41V1034.55C1 1023.5 9.95429 1014.55 21 1014.55H795.39C806.435 1014.55 815.39 1005.59 815.39 994.547V418.15C815.39 407.104 806.435 398.15 795.39 398.15H511.288C500.243 398.15 491.288 389.195 491.288 378.15V1" />
+          <use href="#flow-path" x="11" y="11" />
+        </g>
+      </svg>
 
       <section class="home-hero">
-        <h1 class="home-hero__title">Dirigimos a tu usuario hacia donde crece tu negocio.</h1>
-        <p class="home-hero__lead">Diseño experiencias para startups que escalan, con foco en productos construidos con IA. Si los usuarios entran y se van, si la interfaz se siente genérica, o si algo no cierra y no sabés qué, ese es mi trabajo: encontrarlo y resolverlo.</p>
-        <div class="home-hero__actions">
+        <h1 class="home-hero__title" data-reveal>Dirigimos a tu usuario hacia donde crece tu negocio.</h1>
+        <p class="home-hero__lead" data-reveal style="--reveal-delay:120ms">Diseño experiencias para startups que escalan, con foco en productos construidos con IA. Si los usuarios entran y se van, si la interfaz se siente genérica, o si algo no cierra y no sabés qué, ese es mi trabajo: encontrarlo y resolverlo.</p>
+        <div class="home-hero__actions" data-reveal style="--reveal-delay:240ms">
           <a href={CALENDLY_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
           {/* No destination yet: spec 11-home, "Destinos" */}
           <span class="home-hero__diagnosis">
@@ -136,19 +144,19 @@ const testimonials = [
       </section>
 
       <section class="home-metrics" aria-label="Resultados">
-        <article class="metric-card">
-          <p class="metric-card__value">+150K</p>
+        <article class="metric-card" data-reveal>
+          <p class="metric-card__value" data-count>+150K</p>
           <p class="metric-card__description">Nuevos usuarios de crecimiento</p>
           <img class="metric-card__logo metric-card__logo--monge-pay" src="/images/home/logo-monge-pay.png" width="154" height="30" alt="Monge Pay" />
           <ArrowLink label="Leer la historia" href="/portafolio/monge-pay" />
         </article>
-        <article class="metric-card">
-          <p class="metric-card__value">+15<span class="metric-card__unit">años</span></p>
+        <article class="metric-card" data-reveal>
+          <p class="metric-card__value" data-count>+15<span class="metric-card__unit">años</span></p>
           <p class="metric-card__description">Experiencia en el diseño de experiencias de productis digitales para latinoamerica, USA y Europa</p>
           <ArrowLink label="Sobre nosotros" />
         </article>
-        <article class="metric-card">
-          <p class="metric-card__value">+40</p>
+        <article class="metric-card" data-reveal>
+          <p class="metric-card__value" data-count>+40</p>
           <p class="metric-card__description">Problemas de conversión detectados</p>
           <img class="metric-card__logo metric-card__logo--greenify" src="/images/home/logo-greenify.png" width="105" height="30" alt="Greenify" />
           <ArrowLink label="Leer la historia" href="/portafolio/greenify" />
@@ -156,19 +164,19 @@ const testimonials = [
       </section>
 
       <section class="home-process" aria-label="Cómo trabajamos">
-        <article class="process-step process-step--research">
+        <article class="process-step process-step--research" data-reveal>
           <img class="process-step__symbol" src="/images/home/symbol-research.svg" width="65" height="66" alt="" />
           <h2 class="process-step__title">Vamos al hueso y detectamos el problema real</h2>
           <p class="process-step__description">Expertos en research que detectan patrones riesgosos en tu producto</p>
           <ArrowLink label="Research y usuarios" />
         </article>
-        <article class="process-step process-step--design">
+        <article class="process-step process-step--design" data-reveal>
           <ArrowLink label="Diseño guiado por IA" align="start" />
           <img class="process-step__symbol process-step__symbol--quarter" src="/images/home/symbol-design.svg" width="65" height="66" alt="" />
           <h2 class="process-step__title">Solucionamos el problema que mueve la aguja</h2>
           <p class="process-step__description">Diseñadores IA-native que entienden el negocio y construyen la experiencia del usuario</p>
         </article>
-        <article class="process-step process-step--build">
+        <article class="process-step process-step--build" data-reveal>
           <img class="process-step__symbol process-step__symbol--half" src="/images/home/symbol-build.svg" width="65" height="66" alt="" />
           <h2 class="process-step__title">Construimos, y entregamos para llegar al mercado</h2>
           <p class="process-step__description">Desarrolladores practicos que construyen con economia y metodologia</p>
@@ -178,7 +186,7 @@ const testimonials = [
 
     <section class="home-clients" aria-label="Clientes">
       {clients.map((client) => (
-        <div class="client-card">
+        <div class="client-card" data-reveal>
           <img class={`client-card__logo client-card__logo--${client.modifier}`} src={client.src} width={client.width} height={client.height} alt={client.name} loading="lazy" />
         </div>
       ))}
@@ -189,7 +197,7 @@ const testimonials = [
       {/* Rows have no destination yet: spec 11-home, "Destinos" */}
       <ul class="service-rows">
         {services.map((service) => (
-          <li class="service-row">
+          <li class="service-row" data-reveal>
             {service}
             <img class="service-row__arrow" src="/images/home/arrow-right.svg" width="48" height="48" alt="" />
           </li>
@@ -201,7 +209,7 @@ const testimonials = [
       <h2 class="home-section-title home-testimonials__title">Founders que han apostado con nosotros</h2>
       <div class="home-testimonials__grid">
         {testimonials.map((testimonial) => (
-          <figure class="testimonial-card">
+          <figure class="testimonial-card" data-reveal>
             <p class="testimonial-card__badge">Testimonial</p>
             <blockquote class="testimonial-card__quote">{testimonial.quote}</blockquote>
             <figcaption class="testimonial-card__attribution">
@@ -215,7 +223,7 @@ const testimonials = [
 
     <section class="home-closing" id="contacto">
       <div class="home-closing__inner">
-        <div class="home-closing__statement">
+        <div class="home-closing__statement" data-reveal>
           <div>
             <h2 class="home-closing__title">Tu problema de crecimiento<br />es un problema de diseño.</h2>
             <p class="home-closing__text">En Uxuaria concebimos el diseño como un proceso que permite resolver problemas profundos y estructurales dentro de una organización. Los problemas que tratamos de resolver son los que conectan la promesa de valor de tu organización con tu usuario: entre mayor conexión, mayor crecimiento y sostenibilidad.</p>
@@ -226,7 +234,7 @@ const testimonials = [
             <img class="home-closing__symbol home-closing__symbol--ccw" src="/images/home/symbol-statement-alt.svg" width="65" height="66" alt="" loading="lazy" />
           </div>
         </div>
-        <div class="home-closing__contact">
+        <div class="home-closing__contact" data-reveal>
           <div>
             <h2 class="home-closing__contact-title">Conversemos y averiguemos que tan lejos podemos llegar</h2>
             {/* Direct link: the alternative if the embed is slow or fails (spec 11-home) */}
@@ -240,4 +248,5 @@ const testimonials = [
       </div>
     </section>
   </div>
+  <script is:inline src="/home.js"></script>
 </BaseLayout>

@@ -482,3 +482,62 @@ a.arrow-link:hover { text-decoration: underline; }
   .home-closing__symbols { display: none; }
   .client-card__logo { max-height: 48px; }
 }
+
+/* ===== MOTION (exploration) ===== */
+.home-flow__line { color: var(--ux-color-ink); }
+
+.home-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.home-motion [data-reveal].is-visible { opacity: 1; transform: none; }
+
+.home-motion .process-step__symbol {
+  transition: rotate .9s cubic-bezier(.2, .8, .2, 1) .15s;
+  rotate: -180deg;
+}
+
+.home-motion .is-visible .process-step__symbol { rotate: 0deg; }
+
+.home-motion .home-flow::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .6s ease;
+}
+
+.home-motion .home-flow--line-done::after { transform: scaleX(1); }
+
+.home-motion .service-row:nth-child(odd) { transform: translateX(-48px); }
+.home-motion .service-row:nth-child(even) { transform: translateX(48px); }
+.home-motion .service-row.is-visible { transform: none; }
+
+.service-row { position: relative; isolation: isolate; }
+
+.service-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ux-color-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+
+.service-row:nth-child(even)::before { transform-origin: right; }
+.service-row__arrow { transition: transform .35s cubic-bezier(.2, .8, .2, 1), filter .2s; }
+
+@media (hover: hover) {
+  .service-row { transition: color .2s; }
+  .service-row:hover { color: var(--ux-color-text-inverse); }
+  .service-row:hover::before { transform: scaleX(1); }
+  .service-row:hover .service-row__arrow { filter: invert(1); transform: translateX(12px); }
+  .service-row:nth-child(even):hover .service-row__arrow { transform: translateX(-12px) rotate(180deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-flow__strokes { stroke-dasharray: none !important; }
+}
