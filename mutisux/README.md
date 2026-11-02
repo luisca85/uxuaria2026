@@ -11,6 +11,7 @@ mutisux/
 ├── gracias.html    confirmación vieja del envío sin JS (noindex; ya no se usa)
 ├── mutisux.css      estilos; los tokens de color, sombra, radio y tipografía están en :root
 ├── mutisux.js       SITE_URL, animaciones al entrar en pantalla, Turnstile y envío del formulario
+├── analytics.js     eventos de la landing; el aviso y GA4/Hotjar están en /cookies.js (raíz del sitio)
 └── images/         grabados en AVIF y WebP, logo, favicon e imagen para redes (og-mutisux.jpg)
 
 functions/api/mutisux-beta.js   recibe la solicitud, verifica Turnstile y la guarda en la D1 SOLICITUDES
@@ -146,4 +147,4 @@ edites alguno de los dos, o el navegador puede seguir usando la versión anterio
 ## Pendiente (decisiones de Luis)
 
 Ver "Conocido" en la spec: destino de las inscripciones, política de privacidad,
-condiciones de los reportes, GA4, condiciones de uso de los grabados y voseo o tuteo.
+condiciones de los reportes, condiciones de uso de los grabados y voseo o tuteo.

@@ -206,6 +206,7 @@
       var errors = validate();
       if (errors.length) {
         fields[errors[0]].focus();
+        if (window.MutisAnalytics) window.MutisAnalytics.track('form_error', { form: 'mutisux_beta', error: errors[0] });
         return;
       }
       if (!token) {
@@ -236,8 +237,10 @@
           form.hidden = true;
           done.hidden = false;
           done.focus();
+          if (window.MutisAnalytics) window.MutisAnalytics.track('generate_lead', { form: 'mutisux_beta' });
           return;
         }
+        if (window.MutisAnalytics) window.MutisAnalytics.track('form_error', { form: 'mutisux_beta', error: result.error });
         // Un token de Turnstile sirve una sola vez: para reintentar hace falta otro.
         resetTurnstile();
         if (fields[result.error]) {
