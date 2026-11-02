@@ -1868,6 +1868,8 @@ ul { padding: 0; list-style: none; }
 .site-footer__tagline { font-size: .9375rem; }
 .site-footer__tagline a { color: var(--color-paper); text-underline-offset: 3px; }
 .site-footer__list { display: flex; flex-wrap: wrap; gap: 0 28px; }
+.site-footer__button { padding: 0; border: 0; background: none; font-family: inherit; cursor: pointer; }
+.site-footer__button[hidden] { display: none; }
 .site-footer__link {
   display: inline-flex;
   align-items: center;

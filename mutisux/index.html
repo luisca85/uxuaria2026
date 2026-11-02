@@ -147,7 +147,8 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,700;1,6..72,400&display=swap" /></noscript>
   <!-- El sol es el LCP solo en escritorio; en celular queda debajo del texto y no se precarga. -->
   <link rel="preload" as="image" type="image/avif" href="images/fig-1-quina-640.avif" imagesrcset="images/fig-1-quina-640.avif 640w, images/fig-1-quina-900.avif 900w" imagesizes="432px" media="(min-width: 761px)" fetchpriority="high" />
-  <link rel="stylesheet" href="mutisux.css?v=20261029g" />
+  <link rel="stylesheet" href="mutisux.css?v=20261102b" />
+  <script src="/cookies.js?v=20261102a"></script>
 </head>
 <body>
 
@@ -163,7 +164,7 @@
         <span class="brand__name">Mutis UX</span>
       </a>
       <nav class="site-nav" aria-label="Principal">
-        <a class="btn btn--ink site-nav__cta" href="#inscripcion">Pide tu acceso ahora</a>
+        <a class="btn btn--ink site-nav__cta" href="#inscripcion" data-cta="nav">Pide tu acceso ahora</a>
       </nav>
     </div>
   </header>
@@ -180,7 +181,7 @@
           <h1 class="hero__title" id="hero-title">Ordena, documenta y presenta los hallazgos de tus auditorías UX con <mark class="marker">reportes accionables</mark> para tus clientes</h1>
           <p class="hero__lead">Diagnostica la experiencia de un producto en un solo lugar: evaluación heurística, user journeys e informe para tu cliente. Sube las pantallas, marca los hallazgos y mapea el recorrido de las personas.</p>
           <div class="hero__actions">
-            <a class="btn btn--ink btn--lg" href="#inscripcion">Pide tu acceso</a>
+            <a class="btn btn--ink btn--lg" href="#inscripcion" data-cta="hero">Pide tu acceso</a>
             <a class="btn btn--outline btn--lg" href="#funciones">Mira las funciones</a>
           </div>
           <p class="hero__note">Beta privada: revisamos cada solicitud y te escribimos cuando tengas acceso.</p>
@@ -617,7 +618,7 @@
         </div>
         <p class="journey-map__hint">Desliza la tabla hacia los costados para ver todas las etapas.</p>
         <div class="section-cta">
-          <a class="btn btn--ink btn--lg" href="#inscripcion">Pide tu acceso ahora</a>
+          <a class="btn btn--ink btn--lg" href="#inscripcion" data-cta="recorridos">Pide tu acceso ahora</a>
         </div>
       </div>
     </section>
@@ -972,7 +973,7 @@
          fondo blanco y botón negro. Necesita JS (Turnstile). La sección Beta que lo
          presentaba salió el 2026-10-29 (diseño de Luis en Figma).
     ============================================================ -->
-    <dialog class="acceso-modal" id="acceso-modal" aria-labelledby="acceso-titulo">
+    <dialog class="acceso-modal" id="acceso-modal" aria-labelledby="acceso-titulo" data-hj-suppress>
         <div class="acceso" tabindex="-1" autofocus>
           <div class="acceso__marca">
             <img class="acceso__logo" src="images/logo-uxuaria-80.webp" width="38" height="38" alt="" loading="lazy" decoding="async" />
@@ -1117,7 +1118,7 @@
 
     <!-- Botón flotante (diseño de Luis en Figma, 2026-10-29): abajo a la derecha. Con JS
          aparece después del hero y se oculta con el modal abierto. -->
-    <a class="btn btn--primary btn--lg flotante" href="#inscripcion" id="boton-flotante">Pide tu acceso</a>
+    <a class="btn btn--primary btn--lg flotante" href="#inscripcion" id="boton-flotante" data-cta="flotante">Pide tu acceso</a>
   </main>
 
   <!-- ============================================================
@@ -1139,6 +1140,7 @@
         <ul class="site-footer__list">
           <li><a class="site-footer__link" href="/mutisux/privacidad">Política de privacidad</a></li>
           <li><a class="site-footer__link" href="mailto:info@uxuaria.com">info@uxuaria.com</a></li>
+          <li><button class="site-footer__link site-footer__button" type="button" data-cookie-settings hidden>Preferencias de cookies</button></li>
         </ul>
       </nav>
     </div>
@@ -1147,7 +1149,8 @@
     </div>
   </footer>
 
-  <script src="mutisux.js?v=20261029g"></script>
+  <script src="mutisux.js?v=20261102a"></script>
+<script src="analytics.js?v=20261102c"></script>
 <!-- Cloudflare Web Analytics: visitas anónimas, sin cookies. El token es público. -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "62129c69792d41ef95ef5714de3aa163"}'></script>
 </body>

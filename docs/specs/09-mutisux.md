@@ -116,8 +116,15 @@ Todos vienen del **Public Domain Image Archive** de The Public Domain Review ([p
   - El reporte suma la sección "Trabajemos juntos" con tres propuestas (los precios por defecto de la app, con "Plan mensual · Aliado" recomendado y un descuento trimestral calculado como lo muestra la app). La abre el botón flotante, como en el reporte real; antes llevaba a Contacto.
 - **Renombre a Mutis UX (2026-10-27):** la app y la landing pasan de Lupa UX a Mutis UX (siempre con UX en mayúsculas) y la landing de `/lupaux/` a `/mutisux/`, sin redirección porque nunca se publicó. La app va a vivir en `mutis.uxuaria.com`. La captura de Estudios todavía muestra "Lupa Ux" bajo la marca y "Consejo de Lupa": hay que sacarla de nuevo con datos ficticios cuando la app tenga el nombre nuevo.
 - **Tuteo en la landing**, mientras el sitio y la app usan voseo. Decisión abierta de Luis.
-- Decisiones abiertas: política de privacidad (uxuaria.com no tiene; la tarjeta ya la enlaza en `/mutisux/privacidad`), GA4 sí o no, condiciones de la beta, confirmar las condiciones de uso de cada grabado en su página (la fuente ya está anotada en "Fuente de los grabados"), la cabeza frenológica de Personas y si se menciona la exportación.
+- Decisiones abiertas: política de privacidad (uxuaria.com no tiene; la tarjeta ya la enlaza en `/mutisux/privacidad`), condiciones de la beta, confirmar las condiciones de uso de cada grabado en su página (la fuente ya está anotada en "Fuente de los grabados"), la cabeza frenológica de Personas y si se menciona la exportación.
 - La app está en `mutis.uxuaria.com` con beta privada desde el 2026-10-27. La landing no la enlaza a propósito: el link va solo en el correo de invitación (spec `acc`).
+
+### Medición (2026-11-02, pedido de Luis)
+
+- **Cloudflare Web Analytics:** sin cookies, siempre activo.
+- **GA4 y Hotjar:** los carga `/cookies.js`, el aviso de todo el sitio (spec 10-cookies-privacidad), solo después de "Aceptar". `mutisux/analytics.js` solo manda los eventos de la landing.
+- **Hotjar:** el modal del formulario lleva `data-hj-suppress`.
+- **Eventos, sin datos personales:** `click_cta` (`cta_id`: nav, hero, recorridos, flotante), `form_start`, `form_error` (`error`), `generate_lead` (`form: mutisux_beta`), `faq_open` (`pregunta`), `demo_section` (`seccion`).
 
 ## Definición de hecho
 
