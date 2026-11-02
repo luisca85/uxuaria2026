@@ -538,13 +538,14 @@ a.arrow-link:hover { text-decoration: underline; }
   .service-row:nth-child(even):hover .service-row__arrow { transform: translateX(-12px) rotate(180deg); }
 }
 
-/* --- Cards with a link --- */
+/* --- Metric cards --- */
 .metric-card { transition: transform .25s ease, box-shadow .25s ease; }
 .metric-card:has(a) { position: relative; }
 .metric-card:has(a) a::after { content: ''; position: absolute; inset: 0; border-radius: var(--ux-radius-card); }
 
-.metric-card:has(a:hover),
+.metric-card:hover,
 .metric-card:has(a:focus-visible) {
+  position: relative;
   z-index: 2;
   transform: scale(1.025);
   box-shadow: var(--ux-shadow-card-hover);
@@ -567,5 +568,5 @@ a.arrow-link:hover { text-decoration: underline; }
 
 @media (prefers-reduced-motion: reduce) {
   .home-flow__strokes { stroke-dasharray: none !important; }
-  .metric-card:has(a:hover), .metric-card:has(a:focus-visible), .testimonial-card:hover { transform: none; }
+  .metric-card:hover, .metric-card:has(a:focus-visible), .testimonial-card:hover { transform: none; }
 }
