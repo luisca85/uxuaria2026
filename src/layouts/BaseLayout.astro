@@ -10,6 +10,7 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   noindex?: boolean;
+  legacyStyles?: boolean;
 }
 
 const {
@@ -20,6 +21,8 @@ const {
   ogImage = '/images/og-uxuaria.jpg',
   ogType = 'website',
   noindex = false,
+  // Pages not yet moved to the new design keep Retro 3.1 (spec 11-home)
+  legacyStyles = true,
 } = Astro.props;
 
 // Clean URLs, no trailing .html (decisions.md 2026-07-02)
@@ -64,8 +67,9 @@ const ogImageUrl = new URL(ogImage, Astro.site);
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
+  {legacyStyles && <link rel="stylesheet" href="/styles.css" />}
+  <link rel="stylesheet" href="/site.css?v=20261102" />
 </head>
 <body>
   <Navbar />

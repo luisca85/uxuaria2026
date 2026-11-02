@@ -1,0 +1,15 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  align?: 'start' | 'end';
+}
+
+const { label, href, align = 'end' } = Astro.props;
+// No href means the destination is still pending: spec 11-home, "Destinos"
+const Tag = href ? 'a' : 'span';
+---
+<Tag href={href} class:list={['arrow-link', `arrow-link--${align}`]}>
+  {label}
+  <img src="/images/home/arrow-up-right.svg" width="24" height="24" alt="" />
+</Tag>

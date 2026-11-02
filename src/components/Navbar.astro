@@ -1,27 +1,32 @@
 ---
 const links = [
-  { href: '/servicios/', label: 'Servicios' },
   { href: '/ai-mvp-rescue', label: 'AI MVP Rescue' },
   { href: '/blog', label: 'Blog' },
   { href: '/contacto/', label: 'Contacto' },
 ];
 ---
-<header class="navbar" id="navbar">
-  <div class="container navbar__inner">
-    <a href="/" class="navbar__logo" aria-label="Uxuaria — inicio">
-      <span class="logo-text">uxuaria</span>
-    </a>
-    <nav class="navbar__nav" aria-label="Navegación principal">
-      {links.map((link) => <a href={link.href} class="nav-link">{link.label}</a>)}
-    </nav>
-    <a href="/contacto/" class="btn btn--primary navbar__cta">Contáctame</a>
-    <button class="navbar__hamburger" id="hamburger"
+<header class="site-header" id="navbar">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__logo" aria-label="Uxuaria, inicio">uxuaria</a>
+    <div class="site-header__actions">
+      <nav class="site-header__nav" aria-label="Navegación principal">
+        <a href="/ai-mvp-rescue" class="site-header__item">AI MVP Rescue</a>
+        {/* No destination yet: spec 11-home, "Destinos" */}
+        <span class="site-header__item site-header__item--padded">Projectos</span>
+        <a href="/blog" class="site-header__item site-header__item--padded">Blog</a>
+        <a href="/contacto/" class="site-header__item">Contacto</a>
+      </nav>
+      {/* No destination yet: spec 11-home, "Destinos" */}
+      <span class="pill-button">Empecemos ahora</span>
+      <span class="site-header__item site-header__item--active">ES</span>
+      <span class="site-header__item site-header__item--inactive">EN</span>
+    </div>
+    <button class="site-header__hamburger" id="hamburger"
             aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    {links.map((link) => <a href={link.href} class="nav-link">{link.label}</a>)}
-    <a href="/contacto/" class="btn btn--primary">Contáctame</a>
+  <div class="site-header__menu" id="mobileMenu" aria-hidden="true">
+    {links.map((link) => <a href={link.href} class="site-header__item">{link.label}</a>)}
   </div>
 </header>

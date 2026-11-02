@@ -1,7 +1,7 @@
 # 11 — Nueva home de Uxuaria
 
 **id:** `home`
-**Estado:** 📝 Borrador · sin aprobar · decisiones de construcción resueltas · falta el frame mobile para maquetar 375 px · no se publica hasta aprobar el contenido y tener las demás páginas nuevas
+**Estado:** 🚧 En construcción en la rama `astro` · hecho: desktop (1280 px o más), header y footer · pendiente: frame mobile, contenido y destinos por aprobar · no se publica hasta tener todo eso y las demás páginas nuevas
 **Última actualización:** 2026-11-02
 **Relacionada con:** 00-overview, 01-design-system, 02-portfolio, 03-content, 05-rescue-service, 07-funnel-diagnostico, 10-astro
 
@@ -104,7 +104,7 @@ Una línea doble continua (53:13) baja desde el hero y atraviesa las métricas y
 | 4 filas de servicios | **A CONFIRMAR** |
 | Footer: Servicios, Sobre mí | **A CONFIRMAR** |
 | Footer: SAKURA 64 | `https://sakura64.uxuaria.com/` (el mismo de hoy) |
-| Ícono social del footer | Debe proveerlo Luis (`CLAUDE.md`). **A CONFIRMAR** |
+| Ícono social del footer | LinkedIn: `https://www.linkedin.com/company/uxuaria/` (el del footer actual) |
 
 ---
 
@@ -116,12 +116,12 @@ El diseño cambia elementos que `CLAUDE.md` protege. Nada de esto se publica sin
 |---|---|---|---|
 | H1 | "UX para productos digitales · Buenos Aires · LATAM" | Ese texto quedó fuera del frame (nodo 26:5) | ¿Se elimina? ¿Qué texto es el `<h1>`? Afecta SEO |
 | CTA del hero | "▶ Agendá…", "¿Tu app la construiste con IA? →" | "Agenda…", "o obten un diagnostico Ux…" | Texto final; desaparece el CTA de AI MVP Rescue del hero |
-| Voseo y ortografía | Voseo | "Agenda", "elije", "escribeme", "obten", "diagnostico", "practicos", "economia", "metodologia", "que tan lejos" | Corregir a voseo y con tildes (regla de `CLAUDE.md`), con confirmación del texto |
+| Voseo y ortografía | Voseo | "Agenda", "elije", "escribeme", "obten", "diagnostico", "Ux", "practicos", "economia", "metodologia", "que tan lejos", "Projectos", "productis", "latinoamerica" | Corregir a voseo y con tildes (regla de `CLAUDE.md`), con confirmación del texto |
 | Voz | Primera persona singular (decisión 2026-05-27) | Mezcla "Diseño… mi trabajo" con "nosotros", "somos", "Expertos", "Diseñadores", "Desarrolladores" | ¿Se reemplaza la decisión? Si sí, registrarla con `/decidir` |
 | +150K | Caso Monge Pay: "+150K usuarios activos" | "Nuevos usuarios de crecimiento" | Qué afirmación es la correcta |
 | +15 años | "Argentina y LATAM" | "latinoamerica, USA y Europa" | Confirmar alcance geográfico |
 | +40 | Caso Greenify: "puntos de fricción" | "Problemas de conversión detectados" | Confirmar texto |
-| Testimonios | 3: Flavio Strianese, Ireland Bender, Walter Aguilar Barahona | 4: suma a Laszlo Sandor, con la cita en inglés. Los nombres, cargos y la primera cita parecen diferir (leído de una captura; verificar en el nodo) | Aprobar nombres, cargos y citas; ¿traducir la cuarta? ¿Fotos? |
+| Testimonios | 3: Flavio Strianese, Ireland Bender, Walter Aguilar Barahona | 4: suma a Laszlo Sandor, con la cita en inglés. La primera cita dice "Aportan" en vez de "Luis aporta". Walter figura como "Walter Aguilar", "CEO · Deoper" (hoy "Walter Aguilar Barahona", "Director y Consultor · DeOper"). Sin fotos. Badge "Testimonial" | Aprobar nombres, cargos y citas; ¿traducir la cuarta y el badge? |
 | Clientes | Monge Pay, Striano, Greenify, Poy, Personal | Sale Personal; Poy aparece como Points of You | Confirmar lista |
 | Servicios | Investigación, MVP, Experiencia, Crecimiento | Research, UI, Product design, "Desarrollo…" | ¿Se ofrece desarrollo? ¿Cómo se relaciona con las páginas de `servicios/`? |
 | Bloque de contacto | Llamada de 30 minutos, "Cupos limitados este trimestre" | Llamada de 15 minutos, sin aviso de cupos | Confirmar |
@@ -187,3 +187,22 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 8. **Contenido que sale de la home:** portafolio (destacado y carrusel), "Sobre mí", el bloque de AI MVP Rescue, los personajes pixel y el sticky CTA no están en el frame. ¿Se eliminan? Quitar proyectos requiere revisar la spec 02. Hay un bloque de AI MVP Rescue fuera del frame (26:155): ¿va en la home?
 9. **Línea continua:** ¿estática o animada con el scroll? Si se anima: comportamiento con `prefers-reduced-motion`.
 10. **Métrica de éxito** y nombres de eventos GA4 para los CTA nuevos.
+
+---
+
+## Dónde vive
+
+- Página: `src/pages/index.astro`. Estilos: `public/home.css`.
+- Tokens nuevos, header y footer: `public/site.css`, `src/components/Navbar.astro`, `src/components/Footer.astro`.
+- Link con flecha: `src/components/ArrowLink.astro`. Assets de Figma: `public/images/home/`.
+- `src/layouts/BaseLayout.astro` carga las fuentes nuevas y `site.css`. La prop `legacyStyles` deja afuera `styles.css`: la home la pasa en `false`; las demás páginas siguen en Retro 3.1.
+
+## Conocido
+
+- **Copy:** es literal de Figma, con sus erratas, hasta que se apruebe.
+- **Sin destino:** lo marcado **A CONFIRMAR** en "Destinos" se muestra como texto sin link, para no inventar URLs ni generar 404.
+- **Links a páginas sin migrar:** `/ai-mvp-rescue`, `/contacto/` y `/portafolio/*` dan 404 en la rama `astro` hasta completar la spec 10.
+- **Navegación:** el header nuevo no tiene link a Servicios, así que `/servicios/` queda sin acceso desde el header. `ai-mvp-rescue.html` y `lupaux/` tienen navegación propia y no reciben el header nuevo.
+- **Menos de 1280 px:** layout provisional, sin la línea, hasta tener el frame mobile. Entre 1280 y 1440 px la composición escala con `--home-u`, así que el texto del flujo se achica un poco.
+- **Calendly en el embed:** en una ventana de 450 px de alto, el aviso de cookies de Calendly tapa buena parte del calendario hasta que se responde, y el contenido se recorre con scroll interno. Se ve también la cinta "Powered by Calendly".
+- **Diferencia con Figma:** en los testimonios, autor y cargo pasan a dos líneas si no entran; en Figma se pisan o se salen de la card.

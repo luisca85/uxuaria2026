@@ -1,0 +1,484 @@
+/* ===================================================================
+   UXUARIA — home.css
+   Figma: uxuaria-Web, "Home — Desktop 1441" (26:2). Spec: 11-home.
+   The flow section keeps the frame's geometry: every value there is
+   its Figma px value times --home-u, so the line stays aligned.
+   =================================================================== */
+
+:root {
+  --home-u: calc(min(100vw, 1440px) / 1440);
+
+  --home-size-hero: calc(96 * var(--home-u));
+  --home-line-hero: calc(95.4 * var(--home-u));
+  --home-track-hero: calc(-3.2 * var(--home-u));
+  --home-size-lead: calc(24 * var(--home-u));
+  --home-line-lead: calc(28.8 * var(--home-u));
+  --home-size-metric: calc(64 * var(--home-u));
+  --home-track-metric: calc(-2.6 * var(--home-u));
+  --home-size-card: calc(40 * var(--home-u));
+  --home-track-card: calc(-3.2 * var(--home-u));
+
+  --home-size-section: 48px;
+  --home-size-row: 40px;
+  --home-size-statement: 56px;
+  --home-size-contact: 40px;
+}
+
+/* ===== RESET (this page does not load styles.css) ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ux-color-surface);
+  color: var(--ux-color-text);
+  font-family: var(--ux-font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+
+.home {
+  padding-top: var(--ux-header-height);
+  overflow-x: clip;
+}
+
+/* ===== ARROW LINK ===== */
+.arrow-link {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: var(--ux-color-ink);
+  font-size: 16px;
+  line-height: 28.8px;
+  text-decoration: none;
+}
+
+.arrow-link--end { justify-content: flex-end; }
+.arrow-link--start { justify-content: flex-start; }
+a.arrow-link:hover { text-decoration: underline; }
+
+/* ===== FLOW: hero, metrics and process, tied to the line ===== */
+.home-flow {
+  position: relative;
+  max-width: 1440px;
+  height: calc(2308.91 * var(--home-u));
+  margin: 0 auto;
+}
+
+.home-flow__line {
+  position: absolute;
+  top: calc(-87 * var(--home-u));
+  left: calc(294.99 * var(--home-u));
+  width: calc(1170.09 * var(--home-u));
+  max-width: none;
+  height: calc(2254.78 * var(--home-u));
+  pointer-events: none;
+}
+
+/* Carries the line to the viewport edge on screens wider than the frame */
+.home-flow::after {
+  content: '';
+  position: absolute;
+  top: calc(2154.78 * var(--home-u));
+  left: 100%;
+  width: 50vw;
+  height: calc(13 * var(--home-u));
+  border-block: 2px solid var(--ux-color-ink);
+}
+
+.home-hero {
+  position: relative;
+  width: calc(826.93 * var(--home-u));
+  height: calc(830.89 * var(--home-u));
+  margin-left: calc(164 * var(--home-u));
+  padding-top: calc(132.23 * var(--home-u));
+}
+
+.home-hero__title {
+  margin-bottom: calc(16 * var(--home-u));
+  color: var(--ux-color-text);
+  font-size: var(--home-size-hero);
+  font-weight: 700;
+  line-height: var(--home-line-hero);
+  letter-spacing: var(--home-track-hero);
+}
+
+.home-hero__lead {
+  margin-bottom: calc(16 * var(--home-u));
+  color: var(--ux-color-ink);
+  font-size: var(--home-size-lead);
+  line-height: var(--home-line-lead);
+}
+
+.home-hero__actions {
+  display: flex;
+  gap: calc(24 * var(--home-u));
+  align-items: center;
+}
+
+.home-hero__call { width: calc(323 * var(--home-u)); }
+
+.home-hero__diagnosis {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  color: var(--ux-color-ink);
+  font-size: 16px;
+  line-height: 28.8px;
+  white-space: nowrap;
+}
+
+/* ===== METRICS ===== */
+.home-metrics {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(16 * var(--home-u));
+  align-items: center;
+  width: calc(1117 * var(--home-u));
+  height: calc(203 * var(--home-u));
+  margin-left: calc(164 * var(--home-u));
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--ux-color-ink);
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface);
+}
+
+.metric-card__value {
+  color: var(--ux-color-text);
+  font-size: var(--home-size-metric);
+  font-weight: 700;
+  line-height: var(--home-size-metric);
+  letter-spacing: var(--home-track-metric);
+}
+
+.metric-card__unit {
+  margin-left: 4px;
+  font-size: 13px;
+  line-height: 0;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.metric-card__description {
+  color: var(--ux-color-text);
+  font-size: 16px;
+}
+
+.metric-card__logo {
+  height: 30px;
+  object-fit: cover;
+  opacity: .8;
+}
+
+.metric-card__logo--monge-pay { width: 153.9px; }
+.metric-card__logo--greenify { width: 104.8px; mix-blend-mode: difference; }
+
+/* ===== PROCESS ===== */
+.home-process {
+  position: relative;
+  height: calc(1275.02 * var(--home-u));
+}
+
+.process-step {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.process-step--research {
+  top: calc(160.52 * var(--home-u));
+  left: calc(191.79 * var(--home-u));
+  width: calc(304.88 * var(--home-u));
+  align-items: flex-end;
+  text-align: right;
+}
+
+.process-step--design {
+  top: calc(428.02 * var(--home-u));
+  left: calc(564 * var(--home-u));
+  width: calc(276 * var(--home-u));
+}
+
+.process-step--build {
+  top: calc(738.02 * var(--home-u));
+  left: calc(896.05 * var(--home-u));
+  width: calc(300 * var(--home-u));
+}
+
+.process-step__symbol { flex: none; width: 65px; height: 66px; }
+.process-step__symbol--quarter { transform: rotate(90deg); }
+.process-step__symbol--half { transform: rotate(180deg); }
+
+.process-step__title {
+  color: var(--ux-color-text);
+  font-size: var(--home-size-card);
+  font-weight: 500;
+  line-height: var(--home-size-card);
+  letter-spacing: var(--home-track-card);
+}
+
+.process-step__description {
+  color: var(--ux-color-ink);
+  font-size: var(--home-size-lead);
+  line-height: var(--home-line-lead);
+}
+
+/* ===== CLIENTS ===== */
+.home-clients {
+  display: grid;
+  grid-template-columns: repeat(3, 267.25fr) 325fr;
+  gap: 20px;
+  max-width: calc(1186.75px + 32px);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.client-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84.5px;
+  padding: 17px 16px;
+  border: 1px solid var(--ux-color-ink);
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface);
+}
+
+.client-card__logo { height: auto; object-fit: contain; }
+.client-card__logo--monge-pay { opacity: .8; }
+.client-card__logo--striano { mix-blend-mode: difference; }
+.client-card__logo--greenify { mix-blend-mode: difference; opacity: .8; }
+.client-card__logo--points-of-you { mix-blend-mode: difference; }
+
+/* ===== SERVICES ===== */
+.home-services { margin-top: 177px; }
+
+.home-section-title {
+  color: var(--ux-color-text);
+  font-size: var(--home-size-section);
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -3.2px;
+  text-align: center;
+}
+
+.service-rows { margin-top: 33px; border-bottom: 1px solid var(--ux-color-ink); }
+
+.service-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px clamp(16px, 11.25vw, 162px);
+  border-top: 1px solid var(--ux-color-ink);
+  color: var(--ux-color-text);
+  font-size: var(--home-size-row);
+  font-weight: 500;
+  letter-spacing: -3.2px;
+}
+
+.service-row:nth-child(even) { flex-direction: row-reverse; text-align: right; }
+.service-row__arrow { flex: none; }
+
+/* ===== TESTIMONIALS ===== */
+.home-testimonials {
+  margin-top: 157px;
+  padding: 40px 16px;
+}
+
+.home-testimonials__title { max-width: 725px; margin: 0 auto; }
+
+.home-testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 311px));
+  gap: 28px;
+  align-items: start;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid var(--ux-color-ink);
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface);
+}
+
+.testimonial-card__badge {
+  width: 101px;
+  border: 1px solid var(--ux-color-border-soft);
+  border-radius: var(--ux-radius-badge);
+  color: var(--ux-color-text-subtle);
+  font-family: var(--ux-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 17.6px;
+  letter-spacing: .3px;
+  text-align: center;
+}
+
+.testimonial-card__quote {
+  color: var(--ux-color-text);
+  font-size: 16px;
+}
+
+.testimonial-card__attribution {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  justify-content: space-between;
+  width: 100%;
+  color: var(--ux-color-text);
+  font-family: var(--ux-font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.6px;
+  letter-spacing: .3px;
+}
+
+/* ===== CLOSING BLOCK ===== */
+.home-closing {
+  margin-top: 24px;
+  padding: 100px 16px 84.6px;
+  background: var(--ux-color-surface-inverse);
+  color: var(--ux-color-text-inverse);
+}
+
+.home-closing__inner { max-width: 1119px; margin: 0 auto; }
+
+.home-closing__statement {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--ux-color-text-inverse);
+}
+
+.home-closing__title {
+  margin-bottom: 16px;
+  font-family: var(--ux-font-ui);
+  font-size: var(--home-size-statement);
+  font-weight: 700;
+  line-height: 54.3px;
+  letter-spacing: -1.7px;
+}
+
+.home-closing__text {
+  max-width: 826.93px;
+  font-size: 20px;
+  line-height: 28.8px;
+}
+
+.home-closing__symbols {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 16px;
+  width: 66px;
+}
+
+.home-closing__symbol { width: 65px; height: 66px; }
+.home-closing__symbol--cw { transform: rotate(90deg); }
+.home-closing__symbol--ccw { transform: rotate(-90deg); }
+
+.home-closing__contact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.home-closing__contact-title {
+  margin-bottom: 16px;
+  font-family: var(--ux-font-ui);
+  font-size: var(--home-size-contact);
+  font-weight: 700;
+  line-height: 54.3px;
+  letter-spacing: -1.7px;
+}
+
+.home-closing__contact-text {
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 28.8px;
+}
+
+.home-closing__link { color: inherit; text-decoration: none; }
+.home-closing__link:hover { text-decoration: underline; }
+.home-closing__link--email { text-decoration: underline; }
+
+.home-closing__calendar {
+  height: 450.375px;
+  overflow: hidden;
+  border: 1px solid var(--ux-color-text-inverse);
+  border-radius: var(--ux-radius-frame);
+}
+
+.home-closing__calendar iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ===== BELOW THE FRAME'S RANGE =====
+   Provisional until the mobile frame exists (spec 11-home): stacks the
+   content and drops the line, which only fits the desktop geometry. */
+@media (max-width: 1279px) {
+  :root {
+    --home-u: 1px;
+    --home-size-hero: clamp(40px, 9vw, 72px);
+    --home-line-hero: 1.05em;
+    --home-track-hero: -.03em;
+    --home-size-lead: 20px;
+    --home-line-lead: 1.3;
+    --home-size-metric: 48px;
+    --home-size-card: 32px;
+    --home-track-card: -.05em;
+    --home-size-section: 36px;
+    --home-size-row: 28px;
+    --home-size-statement: 40px;
+    --home-size-contact: 32px;
+  }
+
+  .home-flow { height: auto; padding: 0 16px; }
+  .home-flow__line, .home-flow::after { display: none; }
+  .home-hero { width: auto; height: auto; margin: 0; padding: 56px 0; }
+  .home-hero__actions { flex-wrap: wrap; }
+  .home-hero__call { width: auto; padding-inline: 24px; white-space: normal; }
+  .home-hero__diagnosis { padding-inline: 0; white-space: normal; }
+  .home-metrics { width: auto; height: auto; margin: 0; align-items: stretch; }
+  .home-process { display: grid; gap: 56px; height: auto; margin: 72px 0; }
+  .process-step { position: static; width: auto; }
+  .home-services { margin-top: 96px; }
+  .home-section-title { line-height: 1.1; }
+  .home-testimonials { margin-top: 72px; }
+  .home-testimonials__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-clients { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .home-metrics, .home-testimonials__grid, .home-closing__contact { grid-template-columns: minmax(0, 1fr); }
+  .service-row { letter-spacing: -.03em; }
+  .service-row__arrow { width: 32px; height: 32px; }
+  .home-closing__title, .home-closing__contact-title { line-height: 1.15; }
+  .home-closing { padding: 64px 16px; }
+  .home-closing__symbols { display: none; }
+  .client-card__logo { max-height: 48px; }
+}

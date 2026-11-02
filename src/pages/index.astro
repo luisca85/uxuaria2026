@@ -1,12 +1,243 @@
 ---
-// Placeholder for the Astro test install: the real home is not migrated yet (spec 10-astro, phase 4)
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArrowLink from '../components/ArrowLink.astro';
+
+const CALENDLY_URL = 'https://calendly.com/luisca85/charla-introductoria-clone';
+
+// Copy is literal from Figma until approved: spec 11-home, "Contenido a aprobar"
+const services = [
+  'Research y diagnostico UX de tu producto',
+  'Diseño de interfaz (UI) para atrapar a tus usuarios',
+  'Product design para escalar y crecer tu MVP',
+  'Desarrollo que no se escapa de tu presupuesto',
+];
+
+const clients = [
+  { name: 'Monge Pay', modifier: 'monge-pay', src: '/images/home/logo-monge-pay.png', width: 235, height: 46 },
+  { name: 'Striano', modifier: 'striano', src: '/images/home/logo-striano.png', width: 144, height: 49 },
+  { name: 'Greenify', modifier: 'greenify', src: '/images/home/logo-greenify.png', width: 166, height: 48 },
+  { name: 'Points of You', modifier: 'points-of-you', src: '/images/home/logo-points-of-you.svg', width: 273, height: 28 },
+];
+
+const testimonials = [
+  {
+    quote: '"Aportan un enfoque creativo y orientado a los detalles para cada aspecto del diseño de UX, priorizando constantemente las necesidades del usuario para ofrecer resultados excepcionales."',
+    author: 'Flavio Strianese',
+    role: 'CEO · Striano',
+  },
+  {
+    quote: "'Realmente disfrutamos trabajar nuestro diseñador (Luis) y lo recomendaríamos a cualquiera que necesite ayuda con diseño UX/UI.'",
+    author: 'Ireland Bender',
+    role: 'Weezie Towels',
+  },
+  {
+    quote: "'He tenido el placer de trabajar con Luis en varios proyectos y en distintas modalidades. Su habilidad para transformar ideas complejas en interfaces intuitivas y visualmente atractivas fue fundamental en cada proyecto. Su enfoque en el usuario es evidente en cada diseño que crea, siempre buscando soluciones que no solo sean estéticamente agradables, sino también funcionales y fáciles de usar.",
+    author: 'Walter Aguilar',
+    role: 'CEO · Deoper',
+  },
+  {
+    quote: '"I worked with Luis for over 12 months on several web projects and had only good experience. He was always available, responsive and brought a wide range of expertise in UX and UI. He was very attentive to detail, customer focused (listening to our feedback and coming back with the best possible solutions) and took ownership of the work he did. I highly recommend him for Web design, User Experience Design and, User Interface Design. I would definitely work with him in the future."',
+    author: 'Laszlo Sandor',
+    role: 'Senior Project Manager',
+  },
+];
 ---
-<BaseLayout title="Uxuaria · Instalación de prueba (Astro)" description="Instalación de prueba del sitio en Astro." noindex>
-  <section class="blog-hero">
-    <div class="container">
-      <h1 class="blog-hero__title">Instalación de prueba</h1>
-      <p class="blog-hero__desc">La home todavía no está migrada. Por ahora solo está el <a href="/blog">blog</a>.</p>
+<BaseLayout
+  title="Consultora UX para Startups (IA, Fintech, SaaS) | Uxuaria"
+  description="Consultoría UX con más de 15 años de experiencia en startups y productos digitales en Buenos Aires, Argentina y LATAM. Especialización en fintech y apps construidas con IA. Agendá una llamada gratuita."
+  ogDescription="Consultoría UX especializada en fintech y productos digitales con IA. Más de 15 años trabajando con startups en Argentina y LATAM."
+  legacyStyles={false}
+>
+  <link slot="head" rel="stylesheet" href="/home.css?v=20261102" />
+  <meta slot="head" name="geo.region" content="AR-C" />
+  <meta slot="head" name="geo.placename" content="Buenos Aires, Argentina" />
+  <script is:inline slot="head" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Person", "ProfessionalService"],
+    "@id": "https://uxuaria.com/#luis",
+    "name": "Luis Carlos Romero León",
+    "alternateName": "Uxuaria",
+    "jobTitle": "UX Designer freelance",
+    "url": "https://uxuaria.com",
+    "email": "info@uxuaria.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "areaServed": ["Argentina", "Colombia", "Costa Rica", "México", "Latinoamérica"],
+    "knowsAbout": [
+      "UX Design", "User Research", "Fintech UX", "MVP Discovery",
+      "Auditoría UX", "Design Systems", "IA productos digitales",
+      "Prototipado", "Wireframing", "Diseño de onboarding"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/company/uxuaria/"
+    ]
+  }
+  </script>
+  <script is:inline slot="head" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es una consultoría UX para startups?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es un servicio de diseño de experiencia de usuario especializado en productos digitales en etapa de crecimiento. Incluye investigación de usuarios, auditoría UX, diseño de interfaces y validación de MVPs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Trabajás con apps construidas con IA (Lovable, Bolt, Cursor)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Me especializo en mejorar productos creados con herramientas de vibe coding como Lovable, Bolt, v0 y Cursor. Identifico qué problemas son de UX y cuáles son de implementación, y diseño la solución correcta para cada caso."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta contratar un diseñador UX freelance en Argentina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El costo varía según el alcance del proyecto. Ofrezco un diagnóstico inicial gratuito de 30 minutos para entender tu situación antes de cotizar. Trabajé con startups en Argentina, Colombia, Costa Rica y México."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué diferencia a Uxuaria de otros diseñadores UX freelance en LATAM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Especialización en fintech y productos construidos con IA, 15 años de experiencia real con startups en LATAM, y el único servicio que distingue explícitamente si tu problema es de UX o de implementación técnica."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="home">
+    <div class="home-flow">
+      <img class="home-flow__line" src="/images/home/flow-line.svg" width="1170" height="2255" alt="" aria-hidden="true" />
+
+      <section class="home-hero">
+        <h1 class="home-hero__title">Dirigimos a tu usuario hacia donde crece tu negocio.</h1>
+        <p class="home-hero__lead">Diseño experiencias para startups que escalan, con foco en productos construidos con IA. Si los usuarios entran y se van, si la interfaz se siente genérica, o si algo no cierra y no sabés qué, ese es mi trabajo: encontrarlo y resolverlo.</p>
+        <div class="home-hero__actions">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
+          {/* No destination yet: spec 11-home, "Destinos" */}
+          <span class="home-hero__diagnosis">
+            o obten un diagnostico Ux gratis de tu proyecto
+            <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
+          </span>
+        </div>
+      </section>
+
+      <section class="home-metrics" aria-label="Resultados">
+        <article class="metric-card">
+          <p class="metric-card__value">+150K</p>
+          <p class="metric-card__description">Nuevos usuarios de crecimiento</p>
+          <img class="metric-card__logo metric-card__logo--monge-pay" src="/images/home/logo-monge-pay.png" width="154" height="30" alt="Monge Pay" />
+          <ArrowLink label="Leer la historia" href="/portafolio/monge-pay" />
+        </article>
+        <article class="metric-card">
+          <p class="metric-card__value">+15<span class="metric-card__unit">años</span></p>
+          <p class="metric-card__description">Experiencia en el diseño de experiencias de productis digitales para latinoamerica, USA y Europa</p>
+          <ArrowLink label="Sobre nosotros" />
+        </article>
+        <article class="metric-card">
+          <p class="metric-card__value">+40</p>
+          <p class="metric-card__description">Problemas de conversión detectados</p>
+          <img class="metric-card__logo metric-card__logo--greenify" src="/images/home/logo-greenify.png" width="105" height="30" alt="Greenify" />
+          <ArrowLink label="Leer la historia" href="/portafolio/greenify" />
+        </article>
+      </section>
+
+      <section class="home-process" aria-label="Cómo trabajamos">
+        <article class="process-step process-step--research">
+          <img class="process-step__symbol" src="/images/home/symbol-research.svg" width="65" height="66" alt="" />
+          <h2 class="process-step__title">Vamos al hueso y detectamos el problema real</h2>
+          <p class="process-step__description">Expertos en research que detectan patrones riesgosos en tu producto</p>
+          <ArrowLink label="Research y usuarios" />
+        </article>
+        <article class="process-step process-step--design">
+          <ArrowLink label="Diseño guiado por IA" align="start" />
+          <img class="process-step__symbol process-step__symbol--quarter" src="/images/home/symbol-design.svg" width="65" height="66" alt="" />
+          <h2 class="process-step__title">Solucionamos el problema que mueve la aguja</h2>
+          <p class="process-step__description">Diseñadores IA-native que entienden el negocio y construyen la experiencia del usuario</p>
+        </article>
+        <article class="process-step process-step--build">
+          <img class="process-step__symbol process-step__symbol--half" src="/images/home/symbol-build.svg" width="65" height="66" alt="" />
+          <h2 class="process-step__title">Construimos, y entregamos para llegar al mercado</h2>
+          <p class="process-step__description">Desarrolladores practicos que construyen con economia y metodologia</p>
+        </article>
+      </section>
     </div>
-  </section>
+
+    <section class="home-clients" aria-label="Clientes">
+      {clients.map((client) => (
+        <div class="client-card">
+          <img class={`client-card__logo client-card__logo--${client.modifier}`} src={client.src} width={client.width} height={client.height} alt={client.name} loading="lazy" />
+        </div>
+      ))}
+    </section>
+
+    <section class="home-services">
+      <h2 class="home-section-title">4 cosas en las que somos buenos</h2>
+      {/* Rows have no destination yet: spec 11-home, "Destinos" */}
+      <ul class="service-rows">
+        {services.map((service) => (
+          <li class="service-row">
+            {service}
+            <img class="service-row__arrow" src="/images/home/arrow-right.svg" width="48" height="48" alt="" />
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="home-testimonials">
+      <h2 class="home-section-title home-testimonials__title">Founders que han apostado con nosotros</h2>
+      <div class="home-testimonials__grid">
+        {testimonials.map((testimonial) => (
+          <figure class="testimonial-card">
+            <p class="testimonial-card__badge">Testimonial</p>
+            <blockquote class="testimonial-card__quote">{testimonial.quote}</blockquote>
+            <figcaption class="testimonial-card__attribution">
+              <span>{testimonial.author}</span>
+              <span>{testimonial.role}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-closing" id="contacto">
+      <div class="home-closing__inner">
+        <div class="home-closing__statement">
+          <div>
+            <h2 class="home-closing__title">Tu problema de crecimiento<br />es un problema de diseño.</h2>
+            <p class="home-closing__text">En Uxuaria concebimos el diseño como un proceso que permite resolver problemas profundos y estructurales dentro de una organización. Los problemas que tratamos de resolver son los que conectan la promesa de valor de tu organización con tu usuario: entre mayor conexión, mayor crecimiento y sostenibilidad.</p>
+          </div>
+          <div class="home-closing__symbols" aria-hidden="true">
+            <img class="home-closing__symbol home-closing__symbol--cw" src="/images/home/symbol-statement.svg" width="65" height="66" alt="" loading="lazy" />
+            <img class="home-closing__symbol home-closing__symbol--cw" src="/images/home/symbol-statement.svg" width="65" height="66" alt="" loading="lazy" />
+            <img class="home-closing__symbol home-closing__symbol--ccw" src="/images/home/symbol-statement-alt.svg" width="65" height="66" alt="" loading="lazy" />
+          </div>
+        </div>
+        <div class="home-closing__contact">
+          <div>
+            <h2 class="home-closing__contact-title">Conversemos y averiguemos que tan lejos podemos llegar</h2>
+            {/* Direct link: the alternative if the embed is slow or fails (spec 11-home) */}
+            <p class="home-closing__contact-text"><a class="home-closing__link" href={CALENDLY_URL} target="_blank" rel="noopener" data-track="cta_final_call">Agenda una llamada de 15 minutos, elije una fecha en mi calendario</a></p>
+            <p class="home-closing__contact-text">O escribeme a <a class="home-closing__link home-closing__link--email" href="mailto:info@uxuaria.com">info@uxuaria.com</a></p>
+          </div>
+          <div class="home-closing__calendar">
+            <iframe src={`${CALENDLY_URL}?embed_domain=uxuaria.com&embed_type=Inline`} title="Agenda de Calendly para elegir una fecha" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
