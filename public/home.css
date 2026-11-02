@@ -75,6 +75,12 @@
   letter-spacing: var(--home-track-hero);
 }
 
+.home-hero__word {
+  display: inline-block;
+  overflow-x: clip;
+  white-space: nowrap;
+}
+
 .home-hero__lead {
   margin-bottom: calc(16 * var(--home-u));
   color: var(--ux-color-ink);

@@ -131,7 +131,7 @@ const testimonials = [
       </svg>
 
       <section class="home-hero">
-        <h1 class="home-hero__title" data-reveal>Dirigimos a tu usuario hacia donde crece tu negocio.</h1>
+        <h1 class="home-hero__title" aria-label="Dirigimos a tu usuario hacia donde crece tu negocio."><span class="home-hero__scramble" aria-hidden="true">Dirigimos a tu usuario hacia donde crece tu negocio.</span></h1>
         <p class="home-hero__lead" data-reveal style="--reveal-delay:120ms">Diseño experiencias para startups que escalan, con foco en productos construidos con IA. Si los usuarios entran y se van, si la interfaz se siente genérica, o si algo no cierra y no sabés qué, ese es mi trabajo: encontrarlo y resolverlo.</p>
         <div class="home-hero__actions" data-reveal style="--reveal-delay:240ms">
           <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
@@ -249,4 +249,39 @@ const testimonials = [
     </section>
   </div>
   <script is:inline src="/home.js?v=20261102"></script>
+  <script>
+    import gsap from 'gsap';
+    import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+
+    const text = document.querySelector('.home-hero__scramble');
+
+    if (text && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.registerPlugin(ScrambleTextPlugin);
+
+      // Word by word at a fixed width, so random letters keep the spaces and line breaks
+      document.fonts.ready.then(() => {
+        const original = text.textContent ?? '';
+        const words = original.split(' ').map((word) => {
+          const span = document.createElement('span');
+          span.className = 'home-hero__word';
+          span.textContent = word;
+          return span;
+        });
+        text.replaceChildren(...words.flatMap((span, index) => (index ? [' ', span] : [span])));
+        words.forEach((span) => { span.style.width = `${span.getBoundingClientRect().width}px`; });
+
+        const timeline = gsap.timeline({
+          // Back to plain text, so the title can reflow when the window changes
+          onComplete: () => { text.textContent = original; },
+        });
+        words.forEach((span, index) => {
+          timeline.to(span, {
+            duration: 0.9,
+            ease: 'none',
+            scrambleText: { text: span.textContent ?? '', chars: 'upperAndLowerCase', revealDelay: 0.3, speed: 0.5 },
+          }, index * 0.1);
+        });
+      });
+    }
+  </script>
 </BaseLayout>
