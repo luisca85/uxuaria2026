@@ -162,4 +162,12 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Lupa UX (spec 09-lupaux). Si cambia el dominio, cambiar aquí también. -->
+  <url>
+    <loc>https://uxuaria.com/lupaux/</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
