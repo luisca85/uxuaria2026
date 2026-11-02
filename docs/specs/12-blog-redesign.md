@@ -94,7 +94,7 @@ Métrica de éxito: **A CONFIRMAR**.
 | Animaciones | Solo hovers |
 | CTA final | Abre Calendly, en lugar del email actual y del que muestra Figma |
 | Base técnica | Rama `astro`, sobre el blog ya migrado (spec 10) |
-| Publicación | Junto con la home y las demás páginas nuevas (decisions.md, 2026-11-02) |
+| Publicación | Progresiva, cuando esté listo (decisions.md, 2026-11-02) |
 
 ## Alcance
 

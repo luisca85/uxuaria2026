@@ -1,7 +1,7 @@
 # 11 — Nueva home de Uxuaria
 
 **id:** `home`
-**Estado:** 🚧 Diseño desktop y animaciones aprobados por Luis (2026-11-02), en la rama `astro` · hecho: desktop (1280 px o más), header, footer y animaciones · pendiente: frame mobile, contenido y destinos por aprobar · no se publica hasta tener todo eso y las demás páginas nuevas
+**Estado:** 🚧 Diseño desktop y animaciones aprobados por Luis (2026-11-02), en la rama `astro` · hecho: desktop (1280 px o más), header, footer y animaciones · pendiente: frame mobile, contenido y destinos por aprobar · no se publica hasta tener todo eso
 **Última actualización:** 2026-11-02
 **Relacionada con:** 00-overview, 01-design-system, 02-portfolio, 03-content, 05-rescue-service, 07-funnel-diagnostico, 10-astro
 
@@ -160,7 +160,7 @@ El diseño cambia elementos que `CLAUDE.md` protege. Nada de esto se publica sin
 - **Fuentes:** Space Grotesk, Inter y Space Mono en Google Fonts.
 - **Assets:** símbolos de marca y logos de clientes exportados de Figma.
 - **Externos existentes:** Calendly (ahora también como embed) y GA4 (`G-6TCJ5969G7`).
-- **Publicación:** las demás páginas nuevas, con sus propias specs. La home no sale a producción antes que ellas.
+- **Publicación:** progresiva. Las páginas sin diseño nuevo deben seguir respondiendo en sus URLs (decisions.md, 2026-11-02).
 - **Base técnica:** rama `astro`, con `src/pages/index.astro`, `BaseLayout`, `Navbar` y `Footer` (spec 10).
 
 ## Estados (UI)
@@ -187,7 +187,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 1. **Base técnica y orden: resuelto (2026-11-02).** Se construye en la rama `astro`, en `src/pages/index.astro`. La home actual no se migra 1:1; ver `decisions.md`.
 2. **Mobile: resuelto (2026-11-02).** Luis diseña el frame en Figma. Pendiente: el link del frame. Solo bloquea la parte mobile.
-3. **Convivencia visual: resuelto (2026-11-02).** La home se publica junto con las demás páginas nuevas.
+3. **Convivencia visual: resuelto (2026-11-02).** La publicación es progresiva: la home sale cuando esté lista y convive con las páginas que siguen en Retro 3.1 (reemplaza la decisión anterior de publicar todo junto).
 4. **Header y footer: resuelto (2026-11-02).** Cambian en todo el sitio.
 5. **Rectángulo vacío del bloque oscuro (57:37): resuelto (2026-11-02).** Embed de Calendly.
 
