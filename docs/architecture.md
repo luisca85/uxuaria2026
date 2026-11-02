@@ -6,6 +6,14 @@ Reconstruido desde el código el 2026-09-29. Lo que no se pudo verificar en el r
 
 ---
 
+## Rama `astro` (sin publicar)
+
+Migración a Astro en curso (spec 10) y nueva home (spec 11). Lo de abajo describe `main`, que sigue en producción. En esta rama, además:
+
+- `src/`: páginas, layouts, componentes y blog en Markdown. `public/`: lo que se copia tal cual al build. Requiere Node 24 y `npm run build`.
+- Nueva home: `src/pages/index.astro`, `public/home.css`, `public/home.js`, `public/images/home/`.
+- Tokens nuevos, header y footer compartidos: `public/site.css`, `src/components/Navbar.astro`, `src/components/Footer.astro`. Las demás páginas siguen con `styles.css`.
+
 ## Módulos
 
 | Módulo | Qué hace | Spec |

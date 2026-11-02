@@ -24,3 +24,4 @@
 2026-11-02 - La nueva home (spec 11-home) se construye en la rama `astro`, en src/pages/index.astro, y la home actual no se migra 1:1: esa parte de la fase 4 de la spec 10 queda reemplazada. El resto de la migración sigue igual. Motivo: A CONFIRMAR.
 2026-11-02 - La nueva home se publica junto con las demás páginas nuevas, no sola; header y footer nuevos aplican a todo el sitio (spec 11-home). Motivo: A CONFIRMAR.
 2026-11-02 - El bloque de contacto de la nueva home lleva un embed de Calendly, con link directo como alternativa (spec 11-home). Motivo: A CONFIRMAR.
+2026-11-02 - Luis aprueba el diseño desktop de la nueva home y sus animaciones: línea dibujada con el scroll, apariciones, contadores, franja de marcas móvil, testimonios uno a uno y hovers (spec 11-home). El contenido protegido y los destinos siguen pendientes de aprobación. Motivo: A CONFIRMAR.

@@ -1,7 +1,7 @@
 # 11 — Nueva home de Uxuaria
 
 **id:** `home`
-**Estado:** 🚧 En construcción en la rama `astro` · hecho: desktop (1280 px o más), header y footer · pendiente: frame mobile, contenido y destinos por aprobar · no se publica hasta tener todo eso y las demás páginas nuevas
+**Estado:** 🚧 Diseño desktop y animaciones aprobados por Luis (2026-11-02), en la rama `astro` · hecho: desktop (1280 px o más), header, footer y animaciones · pendiente: frame mobile, contenido y destinos por aprobar · no se publica hasta tener todo eso y las demás páginas nuevas
 **Última actualización:** 2026-11-02
 **Relacionada con:** 00-overview, 01-design-system, 02-portfolio, 03-content, 05-rescue-service, 07-funnel-diagnostico, 10-astro
 
@@ -80,6 +80,17 @@ Una línea doble continua (53:13) baja desde el hero y atraviesa las métricas y
 13. Dado el bloque oscuro, cuando se abre la página con JavaScript, entonces el rectángulo 57:37 muestra el embed de Calendly y permite elegir una fecha.
 14. Dado el embed sin cargar, con error o con JavaScript desactivado, entonces queda visible un link directo a Calendly.
 15. Dado que el visitante todavía no llegó al bloque, entonces el embed no frena la carga inicial de la página.
+
+**Animaciones**
+16. Dado que bajo por la página, cuando hago scroll, entonces la línea se dibuja de arriba hacia abajo siguiendo el scroll.
+17. Dado un bloque que entra en pantalla, entonces aparece con un fundido; los contadores de las métricas cuentan hasta su valor y los símbolos del proceso giran hasta su posición.
+18. Dada la franja de marcas, cuando hago scroll, entonces se desplaza a la izquierda al bajar y a la derecha al subir, sin generar scroll horizontal.
+19. Dados los testimonios en una fila, cuando hago scroll, entonces aparecen uno a uno, en orden.
+20. Dada una card de métrica, cuando paso el mouse, entonces crece levemente y muestra una sombra sutil.
+21. Dado un testimonio, cuando paso el mouse, entonces crece y muestra sombra, y los demás pierden opacidad.
+22. Dado un botón, cuando paso el mouse o tiene foco de teclado, entonces invierte sus colores.
+23. Dada una fila de servicios, cuando paso el mouse, entonces un fondo negro la recorre e invierte el texto y la flecha.
+24. Dado `prefers-reduced-motion: reduce` o JavaScript desactivado, entonces todo el contenido y la línea completa se ven de entrada, sin animaciones de aparición ni de scroll.
 
 **SEO**
 12. Dada la home publicada, entonces conserva `/` como URL y canonical, con `title`, description, OG y JSON-LD presentes. Cambios en esos textos: **A CONFIRMAR**.
@@ -185,7 +196,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 6. Todo lo de "Contenido a aprobar".
 7. Los destinos marcados en "Destinos".
 8. **Contenido que sale de la home:** portafolio (destacado y carrusel), "Sobre mí", el bloque de AI MVP Rescue, los personajes pixel y el sticky CTA no están en el frame. ¿Se eliminan? Quitar proyectos requiere revisar la spec 02. Hay un bloque de AI MVP Rescue fuera del frame (26:155): ¿va en la home?
-9. **Línea continua:** ¿estática o animada con el scroll? Si se anima: comportamiento con `prefers-reduced-motion`.
+9. **Línea continua: resuelto (2026-11-02).** Se dibuja con el scroll; ver criterios 16 y 24.
 10. **Métrica de éxito** y nombres de eventos GA4 para los CTA nuevos.
 
 ---
@@ -194,6 +205,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 - Página: `src/pages/index.astro`. Estilos: `public/home.css`.
 - Tokens nuevos, header y footer: `public/site.css`, `src/components/Navbar.astro`, `src/components/Footer.astro`.
+- Animaciones: `public/home.js` y el bloque MOTION de `public/home.css`.
 - Link con flecha: `src/components/ArrowLink.astro`. Assets de Figma: `public/images/home/`.
 - `src/layouts/BaseLayout.astro` carga las fuentes nuevas y `site.css`. La prop `legacyStyles` deja afuera `styles.css`: la home la pasa en `false`; las demás páginas siguen en Retro 3.1.
 
@@ -205,4 +217,6 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - **Navegación:** el header nuevo no tiene link a Servicios, así que `/servicios/` queda sin acceso desde el header. `ai-mvp-rescue.html` y `lupaux/` tienen navegación propia y no reciben el header nuevo.
 - **Menos de 1280 px:** layout provisional, sin la línea, hasta tener el frame mobile. Entre 1280 y 1440 px la composición escala con `--home-u`, así que el texto del flujo se achica un poco.
 - **Calendly en el embed:** en una ventana de 450 px de alto, el aviso de cookies de Calendly tapa buena parte del calendario hasta que se responde, y el contenido se recorre con scroll interno. Se ve también la cinta "Powered by Calendly".
+- **Hover sin destino:** "Empecemos ahora", la card de +15 años y las filas de servicios reaccionan al mouse aunque todavía no llevan a ningún lado.
+- **Línea:** es un SVG en la página, con dos trazos, para poder dibujarla con el scroll, en lugar del asset exportado de Figma.
 - **Diferencia con Figma:** en los testimonios, autor y cargo pasan a dos líneas si no entran; en Figma se pisan o se salen de la card.

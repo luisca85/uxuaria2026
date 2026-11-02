@@ -483,7 +483,7 @@ a.arrow-link:hover { text-decoration: underline; }
   .client-card__logo { max-height: 48px; }
 }
 
-/* ===== MOTION (exploration) ===== */
+/* ===== MOTION (spec 11-home) ===== */
 .home-flow__line { color: var(--ux-color-ink); }
 
 .home-motion [data-reveal] {

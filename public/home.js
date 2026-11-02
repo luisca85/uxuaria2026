@@ -1,4 +1,4 @@
-// Exploration: scroll-drawn line, reveals, counters, clients strip and testimonials
+// Home motion (spec 11-home): scroll-drawn line, reveals, counters, clients strip and testimonials
 (function () {
   if (!document.documentElement.classList.contains('home-motion')) return;
 
