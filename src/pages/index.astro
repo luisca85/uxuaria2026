@@ -276,10 +276,10 @@ const testimonials = [
         });
         words.forEach((span, index) => {
           timeline.to(span, {
-            duration: 0.9,
+            duration: 0.5,
             ease: 'none',
-            scrambleText: { text: span.textContent ?? '', chars: 'upperAndLowerCase', revealDelay: 0.3, speed: 0.5 },
-          }, index * 0.1);
+            scrambleText: { text: span.textContent ?? '', chars: 'lowerCase', revealDelay: 0.2, speed: 0.3 },
+          }, index * 0.05);
         });
       });
     }
