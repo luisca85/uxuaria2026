@@ -458,6 +458,16 @@
 /* ===== MOTION (spec 11-home) ===== */
 .home-flow__line { color: var(--ux-color-ink); }
 
+/* Waits for SplitText in home's script; shows anyway if that script fails */
+.home-motion .home-hero__lead {
+  visibility: hidden;
+  animation: home-lead-fallback 0s linear 3s forwards;
+}
+
+@keyframes home-lead-fallback {
+  to { visibility: visible; }
+}
+
 .home-motion [data-reveal] {
   opacity: 0;
   transform: translateY(28px);

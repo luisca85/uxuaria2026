@@ -132,7 +132,7 @@ const testimonials = [
 
       <section class="home-hero">
         <h1 class="home-hero__title" aria-label="Dirigimos a tu usuario hacia donde crece tu negocio."><span class="home-hero__scramble" aria-hidden="true">Dirigimos a tu usuario hacia donde crece tu negocio.</span></h1>
-        <p class="home-hero__lead" data-reveal style="--reveal-delay:120ms">Diseño experiencias para startups que escalan, con foco en productos construidos con IA. Si los usuarios entran y se van, si la interfaz se siente genérica, o si algo no cierra y no sabés qué, ese es mi trabajo: encontrarlo y resolverlo.</p>
+        <p class="home-hero__lead">Diseño experiencias para startups que escalan, con foco en productos construidos con IA. Si los usuarios entran y se van, si la interfaz se siente genérica, o si algo no cierra y no sabés qué, ese es mi trabajo: encontrarlo y resolverlo.</p>
         <div class="home-hero__actions" data-reveal style="--reveal-delay:240ms">
           <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
           {/* No destination yet: spec 11-home, "Destinos" */}
@@ -252,11 +252,13 @@ const testimonials = [
   <script>
     import gsap from 'gsap';
     import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+    import { SplitText } from 'gsap/SplitText';
 
     const text = document.querySelector('.home-hero__scramble');
+    const lead = document.querySelector('.home-hero__lead');
 
-    if (text && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.registerPlugin(ScrambleTextPlugin);
+    if (text && lead && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.registerPlugin(ScrambleTextPlugin, SplitText);
 
       // Word by word at a fixed width, so random letters keep the spaces and line breaks
       document.fonts.ready.then(() => {
@@ -280,6 +282,19 @@ const testimonials = [
             ease: 'none',
             scrambleText: { text: span.textContent ?? '', chars: 'lowerCase', revealDelay: 0.2, speed: 0.3 },
           }, index * 0.05);
+        });
+
+        // Lead: each line rises from behind its own mask
+        const split = SplitText.create(lead, { type: 'lines', mask: 'lines' });
+        gsap.set(lead, { visibility: 'visible' });
+        gsap.from(split.lines, {
+          yPercent: 100,
+          duration: 0.7,
+          delay: 0.25,
+          ease: 'power3.out',
+          stagger: 0.09,
+          // Back to plain text, so the paragraph can reflow when the window changes
+          onComplete: () => { split.revert(); },
         });
       });
     }
