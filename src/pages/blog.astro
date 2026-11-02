@@ -16,20 +16,20 @@ const rest = posts.filter((p) => p !== featured);
 >
   <link slot="head" rel="stylesheet" href="/blog.css?v=20261102" />
 
-  <div class="blog-page">
-    <section class="blog-intro">
-      <div class="blog-container">
-        <nav class="blog-breadcrumb" aria-label="Ruta de navegación">
-          <a href="/" class="blog-breadcrumb__item">HOME</a>
-          <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
+  <div class="page-shell">
+    <section class="page-intro">
+      <div class="page-container">
+        <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="page-breadcrumb__item">HOME</a>
+          <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
           <span class="badge" aria-current="page">Blog</span>
         </nav>
-        <h1 class="blog-intro__title">Ideas sobre UX, IA<br />y producto digital</h1>
-        <p class="blog-intro__lead">Reflexiones y aprendizajes de 15 años diseñando productos en LATAM.</p>
+        <h1 class="page-intro__title">Ideas sobre UX, IA<br />y producto digital</h1>
+        <p class="page-intro__lead">Reflexiones y aprendizajes de 15 años diseñando productos en LATAM.</p>
       </div>
     </section>
 
-    <section class="blog-listing blog-container">
+    <section class="blog-listing page-container">
       {featured && <BlogCard post={featured} variant="featured" />}
       <div class="blog-listing__grid">
         {rest.map((post) => <BlogCard post={post} />)}

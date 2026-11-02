@@ -1,7 +1,7 @@
 # 13 — Proyectos en Astro
 
 **id:** `proyectos`
-**Estado:** 🚧 En construcción: plantilla primero, contenido después · no se publica hasta resolver A CONFIRMAR
+**Estado:** 🚧 Diseño desktop de la lista y la plantilla visto y aprobado por Luis por ahora (2026-11-02), con Monge Pay · pendiente: contenido, 6 casos por migrar y frames mobile · no se publica hasta resolver A CONFIRMAR
 **Última actualización:** 2026-11-02
 **Relacionada con:** 02-portfolio, 10-astro, 11-home, 12-blog-redesign
 
@@ -185,3 +185,23 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 9. **Navegación de las páginas sin diseño nuevo:** al publicar, siguen con su navegación vieja, que no lleva a `/portafolio`. Propongo dejarla así hasta rehacerlas.
 10. **Página "Sobre mí": pendiente por decisión de Luis (2026-11-02).** El link de la home y el footer sigue sin destino.
 11. **Medición: resuelto (2026-11-02).** Queda como hoy; ver "Medición".
+
+---
+
+## Dónde vive
+
+- Contenido: `src/content/portfolio/<slug>.md`, con esquema en `src/content.config.ts`.
+- Lista: `src/pages/portafolio/index.astro`. Caso: `src/pages/portafolio/[slug].astro`.
+- Componentes: `src/components/ProjectCard.astro`, y `src/components/ClosingCta.astro`, compartido con el blog.
+- Estilos: `public/portfolio.css`. Compartidos: `public/site.css`, ahora con breadcrumb, encabezado de página y CTA final.
+- Ayudas de datos: `src/lib/portfolio.ts`.
+
+## Conocido
+
+- **Estado de la plantilla:** solo Monge Pay está migrado. Los otros 6 casos siguen en `portafolio/*.html` y dan 404 en esta rama hasta migrarlos.
+- **Mutis UX y Sakura 64:** son borradores (`draft: true`), con el texto de ejemplo de Figma y sin destino. Se ven en desarrollo y no en producción.
+- **Resumen de Monge Pay en la card:** es un borrador basado en su texto actual, pendiente de aprobación.
+- **Título de Monge Pay:** va como oración, como en la plantilla; A CONFIRMAR #4 para el resto.
+- **Capturas:** se muestran completas, con su proporción real. Figma recorta algunas en alturas fijas a partir de una imagen compuesta.
+- **Etiqueta del visual principal:** "PLATAFORMA WEB · VISTA PRINCIPAL", leída de una captura de Figma.
+- **Medición:** este CTA no lleva `data-track`, como los casos actuales.

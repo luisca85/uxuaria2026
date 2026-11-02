@@ -1,0 +1,28 @@
+---
+import ArrowLink from './ArrowLink.astro';
+import { projectHref, type Project } from '../lib/portfolio';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { client, card, externalUrl } = project.data;
+const href = projectHref(project);
+// No destination yet: spec 13-proyectos, A CONFIRMAR #2
+const Tag = href ? 'a' : 'article';
+const external = !project.data.caseStudy && externalUrl;
+---
+<Tag href={href} class:list={['project-card', { 'project-card--linked': href }]} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+  <div class="project-card__content">
+    <div class="project-card__text">
+      <span class="badge">{card.badge}</span>
+      <h2 class="project-card__name">{client}</h2>
+      <p class="project-card__summary">{card.summary}</p>
+    </div>
+    <ArrowLink label="Leer la historia" align="start" />
+  </div>
+  <div class="project-card__image">
+    <img src={card.image.src} width={card.image.width} height={card.image.height} alt={card.image.alt} loading="lazy" />
+  </div>
+</Tag>

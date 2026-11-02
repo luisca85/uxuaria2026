@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import ClosingCta from '../../components/ClosingCta.astro';
 import { getPosts, longDate, isoDate, type Post } from '../../lib/blog';
 
 export async function getStaticPaths() {
@@ -18,7 +19,6 @@ const { post, posts } = Astro.props;
 const { title, seoTitle, description, category, pubDate, updatedDate, readingTime, cover, ogImage } = post.data;
 const { Content } = await render(post);
 const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
-const CALENDLY_URL = 'https://calendly.com/luisca85/charla-introductoria-clone';
 const url = new URL(`/blog/${post.id}`, Astro.site).href;
 const image = new URL(ogImage ?? cover.src, Astro.site).href;
 
@@ -51,14 +51,14 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
-  <div class="blog-page">
-    <header class="post-header blog-container">
-      <nav class="blog-breadcrumb" aria-label="Ruta de navegación">
-        <a href="/" class="blog-breadcrumb__item">HOME</a>
-        <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
-        <a href="/blog" class="blog-breadcrumb__item">BLOG</a>
-        <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
-        <span class="blog-breadcrumb__current" aria-current="page">{title}</span>
+  <div class="page-shell">
+    <header class="post-header page-container">
+      <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+        <a href="/" class="page-breadcrumb__item">HOME</a>
+        <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+        <a href="/blog" class="page-breadcrumb__item">BLOG</a>
+        <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+        <span class="page-breadcrumb__current" aria-current="page">{title}</span>
       </nav>
       <div class="post-header__heading">
         <span class="badge">{category}</span>
@@ -83,7 +83,7 @@ const jsonLd = {
 
     {related.length > 0 && (
       <section class="post-related" aria-label="Más artículos">
-        <div class="blog-container">
+        <div class="page-container">
           <span class="badge">Más artículos</span>
           <div class="post-related__grid">
             {related.map((p) => <BlogCard post={p} variant="related" />)}
@@ -92,15 +92,12 @@ const jsonLd = {
       </section>
     )}
 
-    <section class="post-cta">
-      <p class="post-cta__status">
-        <img src="/images/home/indicator.svg" width="6" height="6" alt="" />
-        Asesorías disponibles
-      </p>
-      <h2 class="post-cta__title">¿Querés aplicar todo esto en tu proyecto?</h2>
-      <p class="post-cta__text">Agendá una charla honesta de 30 minutos sin costo. Sin fórmulas mágicas: encontramos juntos dónde está la oportunidad real.</p>
-      {/* Button text and duration pending: spec 12-blog-redesign, A CONFIRMAR #5 */}
-      <a href={CALENDLY_URL} target="_blank" rel="noopener" class="pill-button pill-button--on-dark" data-track="cta_article_call">Agendá una llamada →</a>
-    </section>
+    {/* Button text and duration pending: spec 12-blog-redesign, A CONFIRMAR #5 */}
+    <ClosingCta
+      status="Asesorías disponibles"
+      title="¿Querés aplicar todo esto en tu proyecto?"
+      text="Agendá una charla honesta de 30 minutos sin costo. Sin fórmulas mágicas: encontramos juntos dónde está la oportunidad real."
+      track="cta_article_call"
+    />
   </div>
 </BaseLayout>

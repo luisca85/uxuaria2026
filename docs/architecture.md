@@ -13,6 +13,7 @@ Migración a Astro en curso (spec 10) y nueva home (spec 11). Lo de abajo descri
 - `src/`: páginas, layouts, componentes y blog en Markdown. `public/`: lo que se copia tal cual al build. Requiere Node 24 y `npm run build`.
 - Nueva home: `src/pages/index.astro`, `public/home.css`, `public/home.js`, `public/images/home/`.
 - Blog nuevo: `src/pages/blog.astro`, `src/pages/blog/[slug].astro`, `src/components/BlogCard.astro`, `public/blog.css` (spec 12).
+- Proyectos: `src/content/portfolio/`, `src/pages/portafolio/`, `src/components/ProjectCard.astro`, `public/portfolio.css` (spec 13).
 - Tokens nuevos, header y footer compartidos: `public/site.css`, `public/base.css`, `src/components/Navbar.astro`, `src/components/Footer.astro`. Las páginas que no pasaron al diseño nuevo siguen con `styles.css`.
 
 ## Módulos

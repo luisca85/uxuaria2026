@@ -107,7 +107,7 @@ Una línea doble continua (53:13) baja desde el hero y atraviesa las métricas y
 | Blog | `/blog` |
 | Contacto | `/contacto/` |
 | "Empecemos ahora" | **A CONFIRMAR** |
-| Proyectos | **A CONFIRMAR**. Figma tiene un frame de esa página (82:2912), pero no existe en el sitio |
+| Proyectos | `/portafolio` (spec 13) |
 | ES / EN y "Español / English" | **A CONFIRMAR**. No hay versión en inglés: `/en/*` redirige a `/` con 301 |
 | "Leer la historia" (Monge Pay, Greenify) | `/portafolio/monge-pay`, `/portafolio/greenify` |
 | "Sobre nosotros" | **A CONFIRMAR**. El frame no tiene sección "Sobre mí" |

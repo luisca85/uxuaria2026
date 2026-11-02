@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../lib/portfolio';
+
+const projects = await getProjects();
+---
+<BaseLayout
+  title="Proyectos de UX para startups y empresas en crecimiento | Uxuaria"
+  description="Casos de estudio de Uxuaria: diseño UX de productos digitales para startups y empresas en crecimiento en Latinoamérica, Estados Unidos y Europa."
+  legacyStyles={false}
+>
+  <link slot="head" rel="stylesheet" href="/portfolio.css?v=20261102" />
+
+  <div class="page-shell">
+    <section class="page-intro">
+      <div class="page-container">
+        <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="page-breadcrumb__item">HOME</a>
+          <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+          <span class="badge" aria-current="page">Proyectos</span>
+        </nav>
+        <h1 class="page-intro__title">Nuestros<br />Proyectos</h1>
+        <p class="page-intro__lead">En esto andamos</p>
+      </div>
+    </section>
+
+    <section class="project-list page-container">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </section>
+  </div>
+</BaseLayout>

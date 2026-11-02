@@ -1,0 +1,21 @@
+---
+interface Props {
+  status: string;
+  title: string;
+  text: string;
+  label?: string;
+  track?: string;
+}
+
+const CALENDLY_URL = 'https://calendly.com/luisca85/charla-introductoria-clone';
+const { status, title, text, label = 'Agendá una llamada →', track } = Astro.props;
+---
+<section class="closing-cta">
+  <p class="closing-cta__status">
+    <img src="/images/home/indicator.svg" width="6" height="6" alt="" />
+    {status}
+  </p>
+  <h2 class="closing-cta__title">{title}</h2>
+  <p class="closing-cta__text">{text}</p>
+  <a href={CALENDLY_URL} target="_blank" rel="noopener" class="pill-button pill-button--on-dark" data-track={track}>{label}</a>
+</section>

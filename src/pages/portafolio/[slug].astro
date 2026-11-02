@@ -1,0 +1,188 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ClosingCta from '../../components/ClosingCta.astro';
+import { getProjects, type Project } from '../../lib/portfolio';
+import { isoDate } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects
+    .filter((project) => project.data.caseStudy)
+    .map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { title, client, seoTitle, description, ogDescription, pubDate, keywords, meta, evidence, results, resultNotes, facts, mainImage, objectives, process } = project.data;
+const { Content } = await render(project);
+
+const person = { '@type': 'Person', '@id': 'https://uxuaria.com/#luis', name: 'Luis Carlos Romero León' };
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  headline: seoTitle!.replace(' | Uxuaria', ''),
+  description,
+  url: new URL(`/portafolio/${project.id}`, Astro.site).href,
+  image: new URL(mainImage!.src, Astro.site).href,
+  datePublished: isoDate(pubDate!),
+  keywords,
+  author: person,
+  creator: person,
+  publisher: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+};
+
+const factRows = [
+  ['Rol', facts!.role],
+  ['Industria', facts!.industry],
+  ['Entregables', facts!.deliverables],
+  ['Herramientas', facts!.tools],
+  ['Año', facts!.year],
+];
+
+// Section numbers follow the sections each project actually has
+let sectionIndex = 0;
+const sectionLabel = (name: string) => `${String(++sectionIndex).padStart(2, '0')} / ${name}`;
+const srcset = (image: { src: string; src2x?: string }) => image.src2x && `${image.src} 1x, ${image.src2x} 2x`;
+---
+<BaseLayout
+  title={seoTitle!}
+  description={description!}
+  ogDescription={ogDescription}
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/portfolio.css?v=20261102" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <div class="page-shell">
+    <header class="case-intro page-container">
+      <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+        <a href="/" class="page-breadcrumb__item">INICIO</a>
+        <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+        <a href="/portafolio" class="page-breadcrumb__item">PROYECTOS</a>
+        <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+        <span class="badge" aria-current="page">{client}</span>
+      </nav>
+      <div class="case-intro__body">
+        <div class="case-intro__heading">
+          <p class="case-intro__meta">{meta}</p>
+          <h1 class="case-intro__title">{title}</h1>
+        </div>
+        {evidence && (
+          <a href={evidence.url} target="_blank" rel="noopener" class="case-evidence">
+            <p class="case-evidence__source">{evidence.source}</p>
+            <p class="case-evidence__headline">{evidence.headline}</p>
+            <p class="case-evidence__quote">{evidence.quote}</p>
+            <p class="case-evidence__date">{evidence.date}</p>
+            <span class="arrow-link arrow-link--start">
+              Leer nota completa
+              <img src="/images/home/arrow-up-right.svg" width="24" height="24" alt="" />
+            </span>
+          </a>
+        )}
+      </div>
+    </header>
+
+    {results.length > 0 && (
+      <section class="case-results">
+        <div class="page-container">
+          <div class="case-section-heading">
+            <p class="case-section-heading__label case-section-heading__label--inverse">{sectionLabel('IMPACTO')}</p>
+            <h2 class="case-section-heading__title">Resultados reales</h2>
+          </div>
+          <div class="case-results__grid">
+            {results.map((result) => (
+              <div class="case-result">
+                <p class="case-result__value">{result.value}</p>
+                <p class="case-result__detail">{result.detail}</p>
+              </div>
+            ))}
+          </div>
+          {resultNotes.length > 0 && (
+            <ul class="case-results__notes">
+              {resultNotes.map((note) => (
+                <li class="case-results__note">
+                  <span class="case-results__marker" aria-hidden="true">↗</span>
+                  {note}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+    )}
+
+    <section class="case-overview page-container">
+      <dl class="case-facts">
+        {factRows.map(([label, value]) => (
+          <div class="case-facts__row">
+            <dt class="case-facts__label">{label}</dt>
+            <dd class="case-facts__value">{value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div class="case-context">
+        <p class="case-context__label">El punto de partida</p>
+        <Content />
+      </div>
+    </section>
+
+    <section class="case-visual page-container" aria-label={`Vista principal de ${client}`}>
+      <div class="case-visual__caption">
+        <p class="case-visual__name">{client}</p>
+        <p class="case-visual__label">{mainImage!.label}</p>
+      </div>
+      <div class="case-visual__frame">
+        <img src={mainImage!.src} srcset={srcset(mainImage!)} width={mainImage!.width} height={mainImage!.height} alt={mainImage!.alt} fetchpriority="high" />
+      </div>
+    </section>
+
+    {objectives.length > 0 && (
+      <section class="case-objectives">
+        <div class="page-container">
+          <div class="case-section-heading">
+            <p class="case-section-heading__label">{sectionLabel('ENFOQUE')}</p>
+            <h2 class="case-section-heading__title">Objetivos del proyecto</h2>
+          </div>
+          <ol class="case-objectives__grid">
+            {objectives.map((objective, index) => (
+              <li class="case-objective">
+                <p class="case-objective__number">{String(index + 1).padStart(2, '0')}</p>
+                <h3 class="case-objective__title">{objective.title}</h3>
+                <p class="case-objective__text">{objective.description}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )}
+
+    {process.length > 0 && (
+      <section class="case-process page-container">
+        <div class="case-section-heading">
+          <p class="case-section-heading__label">{sectionLabel('DISEÑO')}</p>
+          <h2 class="case-section-heading__title">Proceso de diseño</h2>
+        </div>
+        <div class="case-process__grid">
+          {process.map((step) => (
+            <figure class:list={['case-figure', { 'case-figure--wide': step.wide }]}>
+              <img src={step.src} srcset={srcset(step)} width={step.width} height={step.height} alt={step.alt} loading="lazy" />
+              <figcaption class="case-figure__caption">{step.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <ClosingCta
+      status="Cupos limitados este trimestre"
+      title="¿Tenés un producto que mejorar o una idea que validar?"
+      text="Escribime y coordinamos una llamada de 30 minutos sin costo. Te cuento cómo puedo ayudarte y si tiene sentido trabajar juntos."
+    />
+  </div>
+</BaseLayout>

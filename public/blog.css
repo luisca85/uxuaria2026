@@ -4,87 +4,6 @@
    Spec: 12-blog-redesign.
    =================================================================== */
 
-:root {
-  --blog-size-display: clamp(44px, 6.67vw, 96px);
-  --blog-size-heading: clamp(28px, 2.78vw, 40px);
-  --blog-size-section: clamp(32px, 3.33vw, 48px);
-  --blog-size-lead: 24px;
-  --blog-size-body: 20px;
-  --blog-size-small: 16px;
-  --blog-track-display: -.033em;
-  --blog-track-heading: -.08em;
-  --blog-gutter: clamp(16px, 11.32vw, 163px);
-}
-
-.blog-page { padding-top: var(--ux-header-height); }
-
-.blog-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-inline: var(--blog-gutter);
-}
-
-/* ===== BREADCRUMB ===== */
-.blog-breadcrumb {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  min-width: 0;
-}
-
-.blog-breadcrumb__item {
-  color: var(--ux-color-text-muted);
-  font-family: var(--ux-font-ui);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22.4px;
-  text-decoration: none;
-}
-
-.blog-breadcrumb__item:hover { color: var(--ux-color-text); }
-
-.blog-breadcrumb__separator {
-  color: var(--ux-color-text-muted);
-  font-size: var(--blog-size-small);
-  line-height: 25.6px;
-}
-
-.blog-breadcrumb__current {
-  overflow: hidden;
-  max-width: 232px;
-  color: var(--ux-color-text-muted);
-  font-family: var(--ux-font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 17.6px;
-  letter-spacing: .3px;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* ===== LISTING INTRO ===== */
-.blog-intro {
-  padding: 56px 0 64px;
-  border-bottom: 1px solid var(--ux-color-border-soft);
-}
-
-.blog-intro__title {
-  margin-top: 24px;
-  color: var(--ux-color-text);
-  font-size: var(--blog-size-display);
-  font-weight: 700;
-  line-height: .994;
-  letter-spacing: var(--blog-track-display);
-}
-
-.blog-intro__lead {
-  margin-top: 24px;
-  color: var(--ux-color-text-muted);
-  font-size: var(--blog-size-lead);
-  line-height: 28.8px;
-}
-
 /* ===== LISTING ===== */
 .blog-listing {
   display: flex;
@@ -159,10 +78,10 @@
 
 .post-card__title {
   min-height: 5em;
-  font-size: var(--blog-size-heading);
+  font-size: var(--ux-size-heading);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: var(--blog-track-heading);
+  letter-spacing: var(--ux-track-heading);
 }
 
 .post-card__excerpt {
@@ -170,7 +89,7 @@
   overflow: hidden;
   min-height: 76.8px;
   color: var(--ux-color-text-muted);
-  font-size: var(--blog-size-small);
+  font-size: var(--ux-size-small);
   line-height: 25.6px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -196,7 +115,7 @@
 
 .post-card--featured .post-card__excerpt {
   display: block;
-  font-size: var(--blog-size-body);
+  font-size: var(--ux-size-body);
   line-height: 28.8px;
 }
 
@@ -234,10 +153,10 @@
 
 .post-header__title {
   color: var(--ux-color-text);
-  font-size: var(--blog-size-display);
+  font-size: var(--ux-size-display);
   font-weight: 700;
   line-height: .994;
-  letter-spacing: var(--blog-track-display);
+  letter-spacing: var(--ux-track-display);
 }
 
 .post-header__date {
@@ -272,21 +191,21 @@
   margin: 0 auto;
   padding: 0 16px 48px;
   color: var(--ux-color-text);
-  font-size: var(--blog-size-body);
+  font-size: var(--ux-size-body);
   line-height: 28.8px;
 }
 
 .post-body h2 {
   margin-top: 24px;
-  font-size: var(--blog-size-heading);
+  font-size: var(--ux-size-heading);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: var(--blog-track-heading);
+  letter-spacing: var(--ux-track-heading);
 }
 
 .post-body h3 {
   margin-top: 8px;
-  font-size: var(--blog-size-lead);
+  font-size: var(--ux-size-lead);
   font-weight: 500;
   line-height: 28.8px;
 }
@@ -299,7 +218,7 @@
 .post-body blockquote {
   padding-left: 24px;
   border-left: 2px solid var(--ux-color-ink);
-  font-size: var(--blog-size-lead);
+  font-size: var(--ux-size-lead);
 }
 
 .post-body hr { border: 0; border-top: 1px solid var(--ux-color-border-soft); }
@@ -310,7 +229,7 @@
 .post-body > ul:last-child {
   gap: 20px;
   padding-left: 18px;
-  font-size: var(--blog-size-small);
+  font-size: var(--ux-size-small);
   line-height: 25.6px;
 }
 
@@ -326,7 +245,7 @@
 .article-figure figcaption {
   margin-top: 8px;
   color: var(--ux-color-text-muted);
-  font-size: var(--blog-size-small);
+  font-size: var(--ux-size-small);
   line-height: 25.6px;
 }
 
@@ -337,7 +256,7 @@
   border: 1px solid var(--ux-color-ink);
   border-radius: var(--ux-radius-pill);
   box-shadow: var(--ux-shadow-button);
-  font-size: var(--blog-size-small);
+  font-size: var(--ux-size-small);
   text-decoration: none;
   transition: background-color .2s ease, color .2s ease;
 }
@@ -363,15 +282,15 @@
 
 .post-author__name {
   color: var(--ux-color-text);
-  font-size: var(--blog-size-heading);
+  font-size: var(--ux-size-heading);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: var(--blog-track-heading);
+  letter-spacing: var(--ux-track-heading);
 }
 
 .post-author__bio {
   color: var(--ux-color-text-muted);
-  font-size: var(--blog-size-small);
+  font-size: var(--ux-size-small);
   line-height: 25.6px;
 }
 
@@ -387,46 +306,6 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
   margin-top: 32px;
-}
-
-/* ===== CTA ===== */
-.post-cta {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  align-items: center;
-  padding: 100px 16px;
-  background: var(--ux-color-footer);
-  text-align: center;
-}
-
-.post-cta__status {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  color: var(--ux-color-inverse-55);
-  font-family: var(--ux-font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 17.6px;
-  letter-spacing: .3px;
-  text-transform: uppercase;
-}
-
-.post-cta__title {
-  max-width: 760px;
-  color: var(--ux-color-text-inverse);
-  font-size: var(--blog-size-section);
-  font-weight: 700;
-  line-height: .833;
-  letter-spacing: -3.2px;
-}
-
-.post-cta__text {
-  max-width: 620px;
-  color: var(--ux-color-inverse-55);
-  font-size: var(--blog-size-body);
-  line-height: 28.8px;
 }
 
 /* ===== RESPONSIVE =====
@@ -445,9 +324,6 @@
   .post-card--featured .post-card__content { padding: 0 4px 8px; }
   .post-author { margin-inline: 16px; padding: 24px; }
   .post-related { padding-block: 56px; }
-  .post-cta { padding-block: 72px; }
-  .post-cta__title { line-height: 1.05; letter-spacing: -.04em; }
-  .blog-intro__lead { font-size: 20px; }
   .post-body { font-size: 18px; }
 }
 
