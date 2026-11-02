@@ -1,39 +1,43 @@
 ---
+import ArrowLink from './ArrowLink.astro';
 import { cardDate, type Post } from '../lib/blog';
 
 interface Props {
   post: Post;
-  featured?: boolean;
+  variant?: 'grid' | 'featured' | 'related';
 }
 
-const { post, featured = false } = Astro.props;
+const { post, variant = 'grid' } = Astro.props;
 const { title, excerpt, description, category, pubDate, cover, cardImage } = post.data;
 const img = cardImage ?? cover;
-const meta = `${category}  ·  ${cardDate(pubDate)}`;
+const date = cardDate(pubDate);
+const Heading = variant === 'related' ? 'h3' : 'h2';
 ---
-{featured ? (
-  <a href={`/blog/${post.id}`} class="blog-card--featured">
-    <div class="blog-card--featured__image">
-      <img src={img.src} width={img.width} height={img.height} alt={img.alt} loading="lazy" />
-    </div>
-    <div class="blog-card--featured__content">
-      <span class="blog-card--featured__label">[ ARTÍCULO DESTACADO ]</span>
-      <span class="blog-card__meta">{meta}</span>
-      <h2 class="blog-card--featured__title">{title}</h2>
-      <p class="blog-card--featured__excerpt">{excerpt ?? description}</p>
-      <span class="blog-card__read-more">▸ Leer artículo completo</span>
-    </div>
-  </a>
-) : (
-  <a href={`/blog/${post.id}`} class="blog-card">
-    <div class="blog-card__image">
-      <img src={img.src} width={img.width} height={img.height} alt={img.alt} loading="lazy" />
-    </div>
-    <div class="blog-card__body">
-      <span class="blog-card__meta">{meta}</span>
-      <h2 class="blog-card__title">{title}</h2>
-      <p class="blog-card__excerpt">{excerpt ?? description}</p>
-      <span class="blog-card__read-more">▸ Leer más</span>
-    </div>
-  </a>
-)}
+<a href={`/blog/${post.id}`} class:list={['post-card', `post-card--${variant}`]}>
+  <div class="post-card__image">
+    <img src={img.src} width={img.width} height={img.height} alt={img.alt} loading="lazy" />
+  </div>
+  <div class="post-card__content">
+    {variant === 'featured' && (
+      <>
+        <span class="badge">Artículo destacado</span>
+        <p class="post-card__date">{category} · {date}</p>
+      </>
+    )}
+    {variant === 'grid' && (
+      <>
+        <span class="badge post-card__category">{category}</span>
+        <p class="post-card__date">{date}</p>
+      </>
+    )}
+    {variant === 'related' && (
+      <div class="post-card__meta">
+        <span class="badge">{category}</span>
+        <p class="post-card__date">{date}</p>
+      </div>
+    )}
+    <Heading class="post-card__title">{title}</Heading>
+    <p class="post-card__excerpt">{excerpt ?? description}</p>
+    <ArrowLink label={variant === 'featured' ? 'Leer artículo completo' : 'Leer más'} align="start" />
+  </div>
+</a>

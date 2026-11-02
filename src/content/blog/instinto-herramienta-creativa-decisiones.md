@@ -7,14 +7,14 @@ category: "IA · CREATIVIDAD"
 pubDate: 2026-10-26
 readingTime: 4
 cover:
-  src: "/images/blog/ilusion-de-productividad-ia/portada.jpg"
-  width: 438
-  height: 246
+  src: "/images/blog/ilusion-de-productividad-ia/og.jpg"
+  width: 1280
+  height: 720
   alt: "Detalle de un grabado antiguo: un hombre de perfil con círculos y diagramas que salen de su cabeza y conectan los sentidos con la mente"
 cardImage:
-  src: "/images/blog/ilusion-de-productividad-ia/card.jpg"
-  width: 438
-  height: 280
+  src: "/images/blog/ilusion-de-productividad-ia/og.jpg"
+  width: 1280
+  height: 720
   alt: "Detalle de un grabado antiguo: un hombre de perfil con círculos y diagramas que salen de su cabeza y conectan los sentidos con la mente"
 ogImage: "/images/blog/ilusion-de-productividad-ia/og.jpg"
 featured: true

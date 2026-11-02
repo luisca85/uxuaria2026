@@ -1,7 +1,7 @@
 # 12 — Rediseño del blog
 
 **id:** `blog-redesign`
-**Estado:** 📝 Borrador · decisiones de construcción resueltas · falta el frame mobile para maquetar 375 px · no se publica hasta resolver los puntos 5 a 11 de A CONFIRMAR
+**Estado:** 🚧 En construcción en la rama `astro` · hecho: listado y artículos en desktop, hovers y CTA con Calendly · pendiente: frames mobile y puntos 5 a 11 de A CONFIRMAR · no se publica hasta tener todo eso
 **Última actualización:** 2026-11-02
 **Relacionada con:** 06-blog, 10-astro, 11-home
 
@@ -64,9 +64,9 @@ Métrica de éxito: **A CONFIRMAR**.
 
 **Artículo**
 6. Dado un viewport de 1440 px, cuando se abre `/blog/instinto-herramienta-creativa-decisiones`, entonces coincide con el frame 69:1088, con su portada real.
-7. Dado cualquiera de los 6 artículos, entonces todo su contenido se ve con el estilo nuevo: títulos, listas, citas, links y fuentes. Esto incluye las 5 figuras y el botón de `metodo-harada`, que hoy usan clases de Retro 3.1.
+7. Dado cualquiera de los 6 artículos, entonces todo su contenido se ve con el estilo nuevo: títulos, listas, citas, links y fuentes. Esto incluye las 4 figuras y el botón de `metodo-harada`, que hoy usan clases de Retro 3.1.
 8. Dada la portada de un artículo, entonces llena su espacio sin deformarse y no corta la parte principal de la imagen.
-9. Dado el bloque final, cuando se hace click en su botón, entonces abre Calendly y se registra el evento en GA4 (nombre: **A CONFIRMAR**).
+9. Dado el bloque final, cuando se hace click en su botón, entonces abre Calendly y se registra el evento `cta_article_call` en GA4 (nombre provisional: **A CONFIRMAR**).
 
 **Interacción**
 10. Dada una card, cuando paso el mouse o tiene foco de teclado, entonces crece levemente y muestra una sombra sutil.
@@ -150,7 +150,24 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 5. **Texto del CTA final:** Figma dice "Agendá una charla honesta de 30 minutos…" y "Escribime a info@uxuaria.com"; la home dice 15 minutos. Falta definir el texto del botón y la duración real. ¿Queda también el email como alternativa?
 6. **"Sobre el autor":** la biografía (nodo 69:1157) está en tercera persona y la decisión del 2026-05-27 pide primera persona singular. Hay que aprobar el texto. ¿Va en todos los artículos?
 7. **Artículos relacionados:** la spec 06 y Figma muestran "prompt-ear" y "diferencias" en "El instinto", pero el código actual elige los dos más recientes, y da otro resultado. ¿Se agrega un campo opcional `related` o se mantiene automático?
-8. **Footer:** en este frame, Navegación suma un ítem que parece decir "Mutis UX" (leído de una captura), que no está en el frame de la home. ¿Se agrega en todo el sitio? ¿A dónde lleva?
+8. **Footer:** en este frame, Navegación suma el ítem "Mults UX", que no está en el frame de la home. ¿Se agrega en todo el sitio? ¿A dónde lleva?
 9. **Títulos en las cards:** Figma acorta "3 cosas…" sin "(aunque no quieras escucharlas) 🤑". ¿Se usa el título completo, o un campo de título corto?
 10. **Links de la ruta y del listado:** "Home" y "Blog" tienen destino. El evento de GA4 del CTA y la métrica de éxito siguen sin definir.
 11. **Elementos que Figma no muestra:** citas, listas, subtítulos, figuras y el botón de `metodo-harada`. Propongo resolverlos con los tokens de la biblioteca y revisarlos con vos en el navegador.
+
+---
+
+## Dónde vive
+
+- Listado: `src/pages/blog.astro`. Artículo: `src/pages/blog/[slug].astro`. Cards: `src/components/BlogCard.astro`.
+- Estilos: `public/blog.css`. Compartidos con la home: `public/base.css` (reset) y `public/site.css` (tokens, botón, badge y link con flecha).
+- Portada de "El instinto": `og.jpg`, también en sus cards, indicado en el frontmatter del artículo.
+
+## Conocido
+
+- **Figuras y botón de `metodo-harada`:** el Markdown sigue usando las clases `article-figure` y `btn btn--primary`, ahora con estilo nuevo en `blog.css`, para no tocar el contenido.
+- **Elementos sin frame:** citas, listas, subtítulos y figuras se resolvieron con los tokens de la biblioteca (A CONFIRMAR #11).
+- **Fuentes:** el estilo más chico se aplica a la última lista de un artículo si la precede un `h3`. Un artículo nuevo que termine con otra lista también lo recibe.
+- **Menos de 1100 px:** layout provisional hasta tener los frames mobile.
+- **Portadas:** "El instinto" conserva márgenes crema a los costados en la portada de 1114 × 500 y se recorta arriba y abajo. "6 preguntas" se ve algo suave por su tamaño.
+- **Link a Calendly:** el botón final dice "Agendá una llamada →", texto provisional. La descripción sigue diciendo 30 minutos, tal como en Figma.

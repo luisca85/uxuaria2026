@@ -24,39 +24,10 @@
   --home-size-contact: 40px;
 }
 
-/* ===== RESET (this page does not load styles.css) ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--ux-color-surface);
-  color: var(--ux-color-text);
-  font-family: var(--ux-font-display);
-  -webkit-font-smoothing: antialiased;
-}
-
-img { display: block; max-width: 100%; }
-ul, ol { list-style: none; }
-
 .home {
   padding-top: var(--ux-header-height);
   overflow-x: clip;
 }
-
-/* ===== ARROW LINK ===== */
-.arrow-link {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  color: var(--ux-color-ink);
-  font-size: 16px;
-  line-height: 28.8px;
-  text-decoration: none;
-}
-
-.arrow-link--end { justify-content: flex-end; }
-.arrow-link--start { justify-content: flex-start; }
-a.arrow-link:hover { text-decoration: underline; }
 
 /* ===== FLOW: hero, metrics and process, tied to the line ===== */
 .home-flow {

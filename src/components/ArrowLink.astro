@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { label, href, align = 'end' } = Astro.props;
-// No href means the destination is still pending: spec 11-home, "Destinos"
+// No href renders a label: pending destination (spec 11-home) or inside a linked card
 const Tag = href ? 'a' : 'span';
 ---
 <Tag href={href} class:list={['arrow-link', `arrow-link--${align}`]}>

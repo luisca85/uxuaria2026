@@ -12,25 +12,28 @@ const rest = posts.filter((p) => p !== featured);
   title="Blog UX para startups: IA, fintech y producto digital | Uxuaria"
   description="Artículos de Luis Carlos Romero, consultor UX en Buenos Aires, sobre diseño UX, creatividad, IA y producto digital en Latinoamérica. Sin tecnicismos."
   ogDescription="Artículos sobre diseño UX, fintech y IA para startups en LATAM. Sin tecnicismos, con foco en negocios."
+  legacyStyles={false}
 >
-  <section class="blog-hero">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Ruta de navegación">
-        <a href="/" class="breadcrumb__item">Home</a>
-        <span class="breadcrumb__sep">›</span>
-        <span class="breadcrumb__item breadcrumb__item--current">Blog</span>
-      </nav>
-      <h1 class="blog-hero__title">Ideas sobre UX, IA<br>y producto digital</h1>
-      <p class="blog-hero__desc">Reflexiones y aprendizajes de 15 años diseñando productos en LATAM.</p>
-    </div>
-  </section>
+  <link slot="head" rel="stylesheet" href="/blog.css?v=20261102" />
 
-  <section class="blog-listing">
-    <div class="container">
-      {featured && <BlogCard post={featured} featured />}
-      <div class="blog-grid">
+  <div class="blog-page">
+    <section class="blog-intro">
+      <div class="blog-container">
+        <nav class="blog-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="blog-breadcrumb__item">HOME</a>
+          <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
+          <span class="badge" aria-current="page">Blog</span>
+        </nav>
+        <h1 class="blog-intro__title">Ideas sobre UX, IA<br />y producto digital</h1>
+        <p class="blog-intro__lead">Reflexiones y aprendizajes de 15 años diseñando productos en LATAM.</p>
+      </div>
+    </section>
+
+    <section class="blog-listing blog-container">
+      {featured && <BlogCard post={featured} variant="featured" />}
+      <div class="blog-listing__grid">
         {rest.map((post) => <BlogCard post={post} />)}
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </BaseLayout>

@@ -12,6 +12,7 @@
   --ux-color-text-muted: #666666;
   --ux-color-text-subtle: rgba(0, 0, 0, .45);
   --ux-color-border-soft: rgba(0, 0, 0, .2);
+  --ux-color-surface-soft: #F5F5F2;
   --ux-color-surface-inverse: #111111;
   --ux-color-footer: #0A0A0A;
   --ux-color-text-inverse: #FFFFFF;
@@ -65,6 +66,43 @@
 .pill-button:focus-visible {
   background: var(--ux-color-ink);
   color: var(--ux-color-text-inverse);
+}
+
+.pill-button--on-dark:hover,
+.pill-button--on-dark:focus-visible { border-color: var(--ux-color-text-inverse); }
+
+/* ===== ARROW LINK ===== */
+.arrow-link {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: var(--ux-color-ink);
+  font-size: 16px;
+  line-height: 28.8px;
+  text-decoration: none;
+}
+
+.arrow-link--end { justify-content: flex-end; }
+.arrow-link--start { justify-content: flex-start; }
+a.arrow-link:hover { text-decoration: underline; }
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  padding: 0 14px;
+  border: 1px solid var(--ux-color-border-soft);
+  border-radius: var(--ux-radius-badge);
+  color: var(--ux-color-text-subtle);
+  font-family: var(--ux-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 17.6px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ===== HEADER ===== */
