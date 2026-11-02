@@ -2,7 +2,7 @@
 
 **id:** `astro`
 **Estado:** 🧪 Instalación de prueba en la rama `astro` · hecho: Astro 7 (Node 24, `.nvmrc`), layout, navbar, footer y blog completo (6 artículos en `src/content/blog/`, texto idéntico al sitio actual) · pendiente: home (hoy es un placeholder), servicios, portafolio, contacto, diagnóstico, 404, `ai-mvp-rescue.html` y `lupaux/` en `public/`, sitemap con el nombre actual, CTA propio del artículo del 26 de octubre · después de esto viene el rediseño
-**Última actualización:** 2026-10-30
+**Última actualización:** 2026-11-02
 **Relacionada con:** 00-overview, 01-design-system, 02-portfolio, 06-blog, `docs/architecture.md`
 
 ---
@@ -65,7 +65,7 @@ functions/api/                 # sin cambios
 1. **Base** — `npm create astro`, `astro.config.mjs` (site `https://uxuaria.com`, `build.format: 'preserve'`, `@astrojs/sitemap`), `BaseLayout`, Navbar y Footer. `ai-mvp-rescue.html` y `lupaux/` se copian a `public/` sin tocar (son autocontenidas). `_redirects`, `_headers`, `robots.txt` e `images/` pasan a `public/`.
 2. **Blog** — colección `blog`, los 6 artículos pasados a Markdown, `blog.astro` y `blog/[slug].astro`. Es la fase que más rinde para el objetivo.
 3. **Portafolio** — colección `portfolio` con los 7 casos y el carrusel de la home leyendo la colección (mismo orden que hoy; cambiar el orden sigue necesitando spec 02).
-4. **Resto de páginas** — home, servicios, contacto, diagnóstico y 404 como `.astro`, con el mismo HTML.
+4. **Resto de páginas** — servicios, contacto, diagnóstico y 404 como `.astro`, con el mismo HTML. La home no se migra 1:1: se construye directo con la spec 11-home (decisions.md, 2026-11-02).
 5. **Corte** — en Cloudflare Pages: build command `npm run build`, output `dist`, `NODE_VERSION` fijada. Preview de la rama antes de mergear a `main`.
 
 ## Criterios de aceptación
