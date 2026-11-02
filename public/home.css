@@ -510,9 +510,9 @@ a.arrow-link:hover { text-decoration: underline; }
 
 .home-motion .home-flow--line-done::after { transform: scaleX(1); }
 
-.home-motion .service-row:nth-child(odd) { transform: translateX(-48px); }
-.home-motion .service-row:nth-child(even) { transform: translateX(48px); }
-.home-motion .service-row.is-visible { transform: none; }
+.home-motion .service-row[data-reveal]:nth-child(odd) { transform: translateX(-48px); }
+.home-motion .service-row[data-reveal]:nth-child(even) { transform: translateX(48px); }
+.home-motion .service-row[data-reveal].is-visible { transform: none; }
 
 .service-row { position: relative; isolation: isolate; }
 
@@ -538,6 +538,34 @@ a.arrow-link:hover { text-decoration: underline; }
   .service-row:nth-child(even):hover .service-row__arrow { transform: translateX(-12px) rotate(180deg); }
 }
 
+/* --- Cards with a link --- */
+.metric-card { transition: transform .25s ease, box-shadow .25s ease; }
+.metric-card:has(a) { position: relative; }
+.metric-card:has(a) a::after { content: ''; position: absolute; inset: 0; border-radius: var(--ux-radius-card); }
+
+.metric-card:has(a:hover),
+.metric-card:has(a:focus-visible) {
+  z-index: 2;
+  transform: scale(1.025);
+  box-shadow: var(--ux-shadow-card-hover);
+}
+
+/* --- Clients strip: moved from home.js with the scroll --- */
+.home-motion .home-clients { will-change: transform; }
+
+/* --- Testimonials: the hovered card stands out and the rest step back --- */
+.testimonial-card { transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease; }
+
+.home-testimonials__grid:has(.testimonial-card:hover) .testimonial-card:not(:hover) { opacity: .4; }
+
+.testimonial-card:hover {
+  position: relative;
+  z-index: 2;
+  transform: scale(1.03);
+  box-shadow: var(--ux-shadow-card-hover);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-flow__strokes { stroke-dasharray: none !important; }
+  .metric-card:has(a:hover), .metric-card:has(a:focus-visible), .testimonial-card:hover { transform: none; }
 }

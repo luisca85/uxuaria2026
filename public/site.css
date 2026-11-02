@@ -34,6 +34,7 @@
   --ux-radius-badge: 14px;
   --ux-radius-frame: 8px;
   --ux-shadow-button: 0 4px 0 0 var(--ux-color-ink);
+  --ux-shadow-card-hover: 0 12px 28px rgba(0, 0, 0, .14);
 
   /* --- Layout --- */
   --ux-header-height: 87px;
@@ -58,8 +59,13 @@
   white-space: nowrap;
 }
 
-a.pill-button { transition: transform .15s ease, box-shadow .15s ease; }
-a.pill-button:hover { transform: translateY(2px); box-shadow: 0 2px 0 0 var(--ux-color-ink); }
+.pill-button { transition: background-color .2s ease, color .2s ease; }
+
+.pill-button:hover,
+.pill-button:focus-visible {
+  background: var(--ux-color-ink);
+  color: var(--ux-color-text-inverse);
+}
 
 /* ===== HEADER ===== */
 .site-header {

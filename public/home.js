@@ -1,19 +1,26 @@
-// Exploration: scroll-drawn line, reveals and counters for the home
+// Exploration: scroll-drawn line, reveals, counters, clients strip and testimonials
 (function () {
   if (!document.documentElement.classList.contains('home-motion')) return;
 
+  // Once in place, an item drops the reveal rules so its hover transitions run undelayed
+  function reveal(item) {
+    item.classList.add('is-visible');
+    const finish = () => item.removeAttribute('data-reveal');
+    item.addEventListener('transitionend', finish, { once: true });
+    setTimeout(finish, 1600);
+    item.querySelectorAll('[data-count]').forEach(countUp);
+  }
+
   // --- Reveal on scroll, staggered inside each row of siblings ---
-  const revealItems = document.querySelectorAll('[data-reveal]');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
       revealObserver.unobserve(entry.target);
-      entry.target.querySelectorAll('[data-count]').forEach(countUp);
+      reveal(entry.target);
     });
   }, { rootMargin: '0px 0px -12% 0px' });
 
-  revealItems.forEach((item) => {
+  document.querySelectorAll('[data-reveal]:not([data-reveal="scroll"])').forEach((item) => {
     const siblings = [...item.parentElement.children].filter((el) => el.hasAttribute('data-reveal'));
     if (siblings.length > 1 && !item.style.getPropertyValue('--reveal-delay')) {
       item.style.setProperty('--reveal-delay', `${siblings.indexOf(item) * 90}ms`);
@@ -38,16 +45,41 @@
     })(start);
   }
 
+  // --- Testimonials: one at a time, each after a further stretch of scroll ---
+  const testimonials = [...document.querySelectorAll('.testimonial-card[data-reveal="scroll"]')];
+  const testimonialStep = 0.16;
+
+  function updateTestimonials() {
+    const sameRow = testimonials.length > 1 && testimonials[0].offsetTop === testimonials[1].offsetTop;
+    testimonials.forEach((card, index) => {
+      if (card.classList.contains('is-visible')) return;
+      const anchor = sameRow ? card.parentElement : card;
+      const line = innerHeight * (0.85 - testimonialStep * (sameRow ? index : 0));
+      const previous = testimonials[index - 1];
+      if (anchor.getBoundingClientRect().top < line && (!previous || previous.classList.contains('is-visible'))) reveal(card);
+    });
+  }
+
+  // --- Clients strip: drifts left going down the page and right going back up ---
+  const clients = document.querySelector('.home-clients');
+  let clientsX = 0;
+
+  function clientsTarget() {
+    const rect = clients.getBoundingClientRect();
+    const progress = (rect.top + rect.height / 2) / innerHeight - 0.5;
+    const range = Math.min(160, innerWidth * 0.11);
+    return Math.max(-1, Math.min(1, progress * 2)) * range;
+  }
+
   // --- Line drawn with the scroll, from the top of the page downwards ---
   const flow = document.querySelector('.home-flow');
   const svg = document.querySelector('.home-flow__line');
   const strokes = document.querySelector('.home-flow__strokes');
   const path = document.getElementById('flow-path');
-  if (!svg || !path) return;
-
   const total = path.getTotalLength();
   const samples = [];
   let maxY = -Infinity;
+  let drawn = 0;
   // The path runs bottom to top, so sampling goes from its end. maxY keeps the
   // mapping monotonic across the stretches where the line climbs.
   for (let s = 0; s <= total; s += 8) {
@@ -55,24 +87,46 @@
     samples.push({ s, y: maxY });
   }
 
-  function targetLength() {
+  function lineTarget() {
     const rect = svg.getBoundingClientRect();
     if (!rect.height) return total;
-    const scale = rect.height / 2254.78;
-    const tipY = (innerHeight * 0.72 - rect.top) / scale;
+    const tipY = (innerHeight * 0.72 - rect.top) / (rect.height / 2254.78);
     if (tipY >= maxY) return total;
     const next = samples.find((sample) => sample.y > tipY);
     return next ? next.s : total;
   }
 
-  let drawn = 0;
+  // --- Shared loop: runs only while something is still moving ---
+  let running = false;
+
   function frame() {
-    drawn += (targetLength() - drawn) * 0.12;
-    if (Math.abs(targetLength() - drawn) < 0.5) drawn = targetLength();
+    const lineGoal = lineTarget();
+    const clientsGoal = clientsTarget();
+    drawn += (lineGoal - drawn) * 0.12;
+    clientsX += (clientsGoal - clientsX) * 0.12;
+    const settled = Math.abs(lineGoal - drawn) < 0.5 && Math.abs(clientsGoal - clientsX) < 0.2;
+    if (settled) {
+      drawn = lineGoal;
+      clientsX = clientsGoal;
+    }
     strokes.style.strokeDasharray = `${drawn} ${total}`;
     strokes.style.strokeDashoffset = `${-(total - drawn)}`;
     flow.classList.toggle('home-flow--line-done', drawn >= total - 1);
+    clients.style.transform = `translate3d(${clientsX}px, 0, 0)`;
+    updateTestimonials();
+    running = !settled;
+    if (running) requestAnimationFrame(frame);
+  }
+
+  function wake() {
+    updateTestimonials();
+    if (running) return;
+    running = true;
     requestAnimationFrame(frame);
   }
-  frame();
+
+  addEventListener('scroll', wake, { passive: true });
+  addEventListener('resize', wake);
+  clientsX = clientsTarget();
+  wake();
 })();
