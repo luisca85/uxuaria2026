@@ -11,3 +11,7 @@
 # UX AI Repair fue reemplazada por AI MVP Rescue (2026-09-28)
 /ux-ai-repair /ai-mvp-rescue 301
 /ux-ai-repair.html /ai-mvp-rescue 301
+
+# El artículo del 2026-10-26 cambió de título y de URL; la vieja la enlazan posts de LinkedIn
+/blog/ilusion-de-productividad-ia /blog/instinto-herramienta-creativa-decisiones 301
+/blog/ilusion-de-productividad-ia.html /blog/instinto-herramienta-creativa-decisiones 301

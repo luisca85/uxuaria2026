@@ -13,7 +13,7 @@ Reconstruido desde el código el 2026-09-29. Lo que no se pudo verificar en el r
 | Home (`index.html`) | Página de captación: hero, proof bar, servicios, portafolio (destacado + carrusel), testimonios, about, CTA | 00, 03 |
 | Servicios (`servicios/`) | Índice + 4 páginas: investigación, MVP, experiencia, crecimiento | 00, 03 |
 | Portafolio (`portafolio/*.html`) | 7 casos de estudio, uno por archivo | 02 |
-| Blog (`blog.html`, `blog/*.html`) | Índice + 4 artículos | 06 |
+| Blog (`blog.html`, `blog/*.html`) | Índice + 6 artículos | 06 |
 | Contacto (`contacto/`) | Formulario general; envía a Web3Forms desde el navegador | 04 |
 | AI MVP Rescue (`ai-mvp-rescue.html`) | Landing autocontenida del servicio de rescate: CSS y JS inline, **no** carga `styles.css` ni `script.js` | 05 |
 | Funnel diagnóstico (`diagnostico/`) | Formulario de una pregunta por pantalla → `/api/diagnostico` → `/diagnostico/gracias` | 07 |
@@ -35,7 +35,7 @@ contacto/             index.html (con el JS del formulario inline) + contacto.cs
 diagnostico/          index.html, gracias.html, diagnostico.css, diagnostico.js (versionados con ?v=)
 functions/api/        Pages Functions (código de servidor)
 images/               assets: portfolio/, blog/, services/, testimonials/, logos/ y sueltos
-_redirects            301 de Cloudflare (/index.html, /es/*, /en/*, ux-ai-repair → ai-mvp-rescue)
+_redirects            301 de Cloudflare (/index.html, /es/*, /en/*, ux-ai-repair → ai-mvp-rescue, blog/ilusion-de-productividad-ia → blog/instinto-herramienta-creativa-decisiones)
 sitemap.xml, robots.txt   SEO; /diagnostico/ y 404 llevan noindex y no están en el sitemap
 docs/                 AGENTS.md, architecture.md, decisions.md, specs/
 .claude/              config local (launch.json, servidor de preview); ignorado por git
