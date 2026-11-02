@@ -159,7 +159,7 @@ a.arrow-link:hover { text-decoration: underline; }
 
 .site-header__item {
   color: var(--ux-color-text-muted);
-  font-family: var(--ux-font-ui);
+  font-family: var(--ux-font-display);
   font-size: 14px;
   font-weight: 500;
   line-height: 22.4px;
@@ -326,7 +326,7 @@ a.site-footer__item:hover { color: var(--ux-color-text-inverse); }
 
 .page-breadcrumb__item {
   color: var(--ux-color-text-muted);
-  font-family: var(--ux-font-ui);
+  font-family: var(--ux-font-display);
   font-size: 14px;
   font-weight: 500;
   line-height: 22.4px;
