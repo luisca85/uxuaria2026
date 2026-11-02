@@ -42,7 +42,7 @@ Métrica de éxito: publicar un proyecto = crear `src/content/portfolio/<slug>.m
 | 5 | Visual principal | Nombre del producto, tipo de evidencia y captura | Sí |
 | 6 | Objetivos | Número, título y descripción | Sí |
 | 7 | Proceso de diseño | Capturas con leyenda, de ancho completo o en dos columnas | Sí |
-| 8 | CTA | Bloque oscuro con botón a Calendly | Sí |
+| 8 | CTA | Bloque oscuro con botón a Cal.com | Sí |
 
 ---
 
@@ -69,7 +69,7 @@ Métrica de éxito: publicar un proyecto = crear `src/content/portfolio/<slug>.m
 12. Dado un viewport de 1440 px, cuando se abre `/portafolio/monge-pay`, entonces coincide con la plantilla 93:1983, salvo en las diferencias aprobadas.
 13. Dado cualquiera de los 7 casos, entonces todo su contenido actual está presente, sin inventar ni quitar datos.
 14. Dado el proceso, entonces cada captura conserva su leyenda y se ve completa, sin deformarse.
-15. Dado el CTA, cuando se hace click en el botón, entonces abre Calendly y la medición sigue funcionando como hoy (ver "Medición").
+15. Dado el CTA, cuando se hace click en el botón, entonces abre Cal.com y la medición sigue funcionando como hoy (ver "Medición").
 
 **Interacción y accesibilidad**
 16. Dada una card, cuando paso el mouse o tiene foco de teclado, entonces crece levemente y muestra una sombra sutil.
@@ -114,7 +114,7 @@ Queda como está hoy en Uxuaria: GA4 (`G-6TCJ5969G7`), clicks con `data-track` m
 |---|---|
 | URLs | No se cambia ninguna URL existente. Lista en `/portafolio`; casos en `/portafolio/<slug>` |
 | Proyectos | Los 7 casos actuales, más Mutis UX y Sakura 64 |
-| CTA final | Abre Calendly. El texto dice 30 minutos |
+| CTA final | Abre Cal.com. El texto dice 30 minutos |
 | Resumen de las cards | Sale del texto actual de cada caso; se presenta para aprobación |
 | Animaciones | Solo hovers, como en el blog |
 | Publicación | Progresiva, cuando esté listo |
@@ -142,7 +142,7 @@ Queda como está hoy en Uxuaria: GA4 (`G-6TCJ5969G7`), clicks con `data-track` m
 - **Figma:** frames 82:2912 y 93:1983, y Uxuaria Library.
 - **Contenido:** `portafolio/*.html` en esta rama, como fuente de los 7 casos, e imágenes en `public/images/portfolio/`.
 - **Base visual:** `public/base.css`, `public/site.css`, `Navbar`, `Footer` y `BaseLayout` con `legacyStyles={false}`.
-- **Externos:** Calendly y GA4.
+- **Externos:** Cal.com y GA4.
 
 ## Estados (UI)
 
@@ -179,7 +179,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 **Bloquean la publicación**
 
 5. **Distintivo de las cards:** ¿es "Cliente" en todos los proyectos? El resumen sale del texto actual de cada caso.
-6. **Texto del CTA: resuelto en parte (2026-11-02).** Dice 30 minutos, como Figma. Pendiente: el texto del botón, que en Figma dice "Escribime a info@uxuaria.com" y ahora abre Calendly. La home sigue diciendo 15 minutos.
+6. **Texto del CTA: resuelto en parte (2026-11-02).** Dice 30 minutos, como Figma. Pendiente: el texto del botón, que en Figma dice "Escribime a info@uxuaria.com" y ahora abre Cal.com. La home sigue diciendo 15 minutos.
 7. **Resultados de `striano`:** hay que definir qué se muestra si no tiene cifras comparables.
 8. **Animaciones: resuelto (2026-11-02).** Solo hovers, como en el blog.
 9. **Navegación de las páginas sin diseño nuevo:** al publicar, siguen con su navegación vieja, que no lleva a `/portafolio`. Propongo dejarla así hasta rehacerlas.

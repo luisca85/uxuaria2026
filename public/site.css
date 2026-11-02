@@ -168,6 +168,7 @@ a.arrow-link:hover { text-decoration: underline; }
 }
 
 a.site-header__item:hover { color: var(--ux-color-text); }
+.site-header__item[aria-current='page'] { color: var(--ux-color-text); text-decoration: underline; }
 .site-header__item--padded { padding: 0 16px; }
 .site-header__item--active { color: var(--ux-color-text); }
 .site-header__item--inactive { color: var(--ux-color-text-subtle); }
@@ -421,4 +422,11 @@ a.site-footer__item:hover { color: var(--ux-color-text-inverse); }
   .closing-cta { padding-block: 72px; }
   .closing-cta__title { line-height: 1.05; letter-spacing: -.04em; }
   .page-intro__lead { font-size: 20px; }
+}
+
+/* ===== CAL.COM EMBED ===== */
+.cal-embed {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 }

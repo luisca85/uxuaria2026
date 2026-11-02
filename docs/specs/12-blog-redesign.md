@@ -1,7 +1,7 @@
 # 12 — Rediseño del blog
 
 **id:** `blog-redesign`
-**Estado:** 🚧 En construcción en la rama `astro` · hecho: listado y artículos en desktop, hovers y CTA con Calendly · pendiente: frames mobile y puntos 5 a 11 de A CONFIRMAR · no se publica hasta tener todo eso
+**Estado:** 🚧 En construcción en la rama `astro` · hecho: listado y artículos en desktop, hovers y CTA con Cal.com · pendiente: frames mobile y puntos 5 a 11 de A CONFIRMAR · no se publica hasta tener todo eso
 **Última actualización:** 2026-11-02
 **Relacionada con:** 06-blog, 10-astro, 11-home
 
@@ -66,7 +66,7 @@ Métrica de éxito: **A CONFIRMAR**.
 6. Dado un viewport de 1440 px, cuando se abre `/blog/instinto-herramienta-creativa-decisiones`, entonces coincide con el frame 69:1088, con su portada real.
 7. Dado cualquiera de los 6 artículos, entonces todo su contenido se ve con el estilo nuevo: títulos, listas, citas, links y fuentes. Esto incluye las 4 figuras y el botón de `metodo-harada`, que hoy usan clases de Retro 3.1.
 8. Dada la portada de un artículo, entonces llena su espacio sin deformarse y no corta la parte principal de la imagen.
-9. Dado el bloque final, cuando se hace click en su botón, entonces abre Calendly y se registra el evento `cta_article_call` en GA4 (nombre provisional: **A CONFIRMAR**).
+9. Dado el bloque final, cuando se hace click en su botón, entonces abre Cal.com y se registra el evento `cta_article_call` en GA4 (nombre provisional: **A CONFIRMAR**).
 
 **Interacción**
 10. Dada una card, cuando paso el mouse o tiene foco de teclado, entonces crece levemente y muestra una sombra sutil.
@@ -92,7 +92,7 @@ Métrica de éxito: **A CONFIRMAR**.
 | Alcance | Listado y páginas de artículo |
 | Imágenes | Portadas actuales, no placeholders |
 | Animaciones | Solo hovers |
-| CTA final | Abre Calendly, en lugar del email actual y del que muestra Figma |
+| CTA final | Abre Cal.com, en lugar del email actual y del que muestra Figma |
 | Base técnica | Rama `astro`, sobre el blog ya migrado (spec 10) |
 | Publicación | Progresiva, cuando esté listo (decisions.md, 2026-11-02) |
 
@@ -100,7 +100,7 @@ Métrica de éxito: **A CONFIRMAR**.
 
 - `src/pages/blog.astro`, `src/pages/blog/[slug].astro` y `src/components/BlogCard.astro`.
 - Una hoja de estilos del blog, con la que estas páginas dejan de cargar `styles.css`.
-- Bloque "Sobre el autor" y CTA final con Calendly.
+- Bloque "Sobre el autor" y CTA final con Cal.com.
 - Estilo nuevo para el contenido de los artículos, incluido lo que Figma no muestra.
 - Ajuste de portadas y recortes que hagan falta, sin cambiar las imágenes que no lo necesiten.
 
@@ -116,7 +116,7 @@ Métrica de éxito: **A CONFIRMAR**.
 - **Figma:** frames 64:1030 y 69:1088, y Uxuaria Library.
 - **Contenido:** colección `blog` (`src/content.config.ts`, `src/lib/blog.ts`).
 - **Base visual:** `public/site.css`, `Navbar`, `Footer` y `BaseLayout` con `legacyStyles={false}` (spec 11).
-- **Externos:** Calendly y GA4.
+- **Externos:** Cal.com y GA4.
 - **Imágenes:** `public/images/blog/`.
 
 ## Estados (UI)
@@ -170,4 +170,4 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - **Fuentes:** el estilo más chico se aplica a la última lista de un artículo si la precede un `h3`. Un artículo nuevo que termine con otra lista también lo recibe.
 - **Menos de 1100 px:** layout provisional hasta tener los frames mobile.
 - **Portadas:** "El instinto" conserva márgenes crema a los costados en la portada de 1114 × 500 y se recorta arriba y abajo. "6 preguntas" se ve algo suave por su tamaño.
-- **Link a Calendly:** el botón final dice "Agendá una llamada →", texto provisional. La descripción sigue diciendo 30 minutos, tal como en Figma.
+- **Link a Cal.com:** el botón final dice "Agendá una llamada →", texto provisional. La descripción sigue diciendo 30 minutos, tal como en Figma.

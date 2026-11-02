@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArrowLink from '../components/ArrowLink.astro';
-
-const CALENDLY_URL = 'https://calendly.com/luisca85/charla-introductoria-clone';
+import CalEmbed from '../components/CalEmbed.astro';
+import { BOOKING_URL } from '../lib/booking';
 
 // Copy is literal from Figma until approved: spec 11-home, "Contenido a aprobar"
 const services = [
@@ -134,7 +134,7 @@ const testimonials = [
         <h1 class="home-hero__title" data-reveal>Dirigimos a tu usuario hacia donde crece tu negocio.</h1>
         <p class="home-hero__lead" data-reveal style="--reveal-delay:120ms">Diseño experiencias para startups que escalan, con foco en productos construidos con IA. Si los usuarios entran y se van, si la interfaz se siente genérica, o si algo no cierra y no sabés qué, ese es mi trabajo: encontrarlo y resolverlo.</p>
         <div class="home-hero__actions" data-reveal style="--reveal-delay:240ms">
-          <a href={CALENDLY_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
           {/* No destination yet: spec 11-home, "Destinos" */}
           <span class="home-hero__diagnosis">
             o obten un diagnostico Ux gratis de tu proyecto
@@ -238,11 +238,11 @@ const testimonials = [
           <div>
             <h2 class="home-closing__contact-title">Conversemos y averiguemos que tan lejos podemos llegar</h2>
             {/* Direct link: the alternative if the embed is slow or fails (spec 11-home) */}
-            <p class="home-closing__contact-text"><a class="home-closing__link" href={CALENDLY_URL} target="_blank" rel="noopener" data-track="cta_final_call">Agenda una llamada de 15 minutos, elije una fecha en mi calendario</a></p>
+            <p class="home-closing__contact-text"><a class="home-closing__link" href={BOOKING_URL} target="_blank" rel="noopener" data-track="cta_final_call">Agenda una llamada de 15 minutos, elije una fecha en mi calendario</a></p>
             <p class="home-closing__contact-text">O escribeme a <a class="home-closing__link home-closing__link--email" href="mailto:info@uxuaria.com">info@uxuaria.com</a></p>
           </div>
           <div class="home-closing__calendar">
-            <iframe src={`${CALENDLY_URL}?embed_domain=uxuaria.com&embed_type=Inline`} title="Agenda de Calendly para elegir una fecha" loading="lazy"></iframe>
+            <CalEmbed hideDetails />
           </div>
         </div>
       </div>

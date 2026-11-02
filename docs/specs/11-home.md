@@ -66,7 +66,7 @@ Una línea doble continua (53:13) baja desde el hero y atraviesa las métricas y
 6. Dado JavaScript desactivado, entonces todo el contenido se ve y todos los links funcionan.
 
 **Conversión**
-7. Dado el CTA "Agenda una llamada…" del hero, cuando se hace click, entonces abre Calendly y se registra `cta_hero_call` en GA4.
+7. Dado el CTA "Agenda una llamada…" del hero, cuando se hace click, entonces abre Cal.com y se registra `cta_hero_call` en GA4.
 8. Dado cualquier otro link o botón de la página, cuando se hace click, entonces lleva al destino definido en la tabla "Destinos" (hoy con varios **A CONFIRMAR**).
 
 **Contenido**
@@ -77,8 +77,8 @@ Una línea doble continua (53:13) baja desde el hero y atraviesa las métricas y
 11. Dado un viewport de 375 px, entonces no hay scroll horizontal y la página coincide con el frame mobile de Figma (pendiente de Luis).
 
 **Agenda**
-13. Dado el bloque oscuro, cuando se abre la página con JavaScript, entonces el rectángulo 57:37 muestra el embed de Calendly y permite elegir una fecha.
-14. Dado el embed sin cargar, con error o con JavaScript desactivado, entonces queda visible un link directo a Calendly.
+13. Dado el bloque oscuro, cuando se abre la página con JavaScript, entonces el rectángulo 57:37 muestra el embed de Cal.com y permite elegir una fecha.
+14. Dado el embed sin cargar, con error o con JavaScript desactivado, entonces queda visible un link directo a Cal.com.
 15. Dado que el visitante todavía no llegó al bloque, entonces el embed no frena la carga inicial de la página.
 
 **Animaciones**
@@ -101,7 +101,7 @@ Una línea doble continua (53:13) baja desde el hero y atraviesa las métricas y
 
 | Elemento | Destino |
 |---|---|
-| "Agenda una llamada de 15 minutos" | Calendly. El link actual es `charla-introductoria-clone`; el CTA final de hoy habla de 30 minutos. Duración real: **A CONFIRMAR** |
+| "Agenda una llamada de 15 minutos" | Cal.com (`src/lib/booking.ts`). El evento dura 30 minutos, pero el texto dice 15: **A CONFIRMAR** |
 | "o obten un diagnostico Ux gratis…" | **A CONFIRMAR** (¿`/diagnostico/`?) |
 | AI MVP Rescue (header y footer) | `/ai-mvp-rescue` |
 | Blog | `/blog` |
@@ -144,7 +144,7 @@ El diseño cambia elementos que `CLAUDE.md` protege. Nada de esto se publica sin
 - La home completa en desktop y mobile, con el contenido aprobado.
 - Las variables y los componentes nuevos que la home necesite.
 - Header y footer nuevos en todo el sitio, en los componentes compartidos `Navbar` y `Footer`.
-- Embed de Calendly en el bloque oscuro.
+- Embed de Cal.com en el bloque oscuro.
 
 ## Fuera de alcance / No tocar
 
@@ -159,15 +159,15 @@ El diseño cambia elementos que `CLAUDE.md` protege. Nada de esto se publica sin
 - **Figma:** frame 26:2 y Uxuaria Library.
 - **Fuentes:** Space Grotesk, Inter y Space Mono en Google Fonts.
 - **Assets:** símbolos de marca y logos de clientes exportados de Figma.
-- **Externos existentes:** Calendly (ahora también como embed) y GA4 (`G-6TCJ5969G7`).
+- **Externos existentes:** Cal.com (ahora también como embed) y GA4 (`G-6TCJ5969G7`).
 - **Publicación:** progresiva. Las páginas sin diseño nuevo deben seguir respondiendo en sus URLs (decisions.md, 2026-11-02).
 - **Base técnica:** rama `astro`, con `src/pages/index.astro`, `BaseLayout`, `Navbar` y `Footer` (spec 10).
 
 ## Estados (UI)
 
 - **Vacío:** N/A; el contenido es estático.
-- **Carga:** embed de Calendly: el rectángulo conserva su tamaño para no mover la página, con el link directo visible. Aspecto exacto: **A CONFIRMAR**.
-- **Error:** embed de Calendly: queda el link directo a Calendly. El resto de la página es estático.
+- **Carga:** embed de Cal.com: el rectángulo conserva su tamaño para no mover la página, con el link directo visible. Aspecto exacto: **A CONFIRMAR**.
+- **Error:** embed de Cal.com: queda el link directo a Cal.com. El resto de la página es estático.
 
 ## Definición de hecho
 
@@ -189,7 +189,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 2. **Mobile: resuelto (2026-11-02).** Luis diseña el frame en Figma. Pendiente: el link del frame. Solo bloquea la parte mobile.
 3. **Convivencia visual: resuelto (2026-11-02).** La publicación es progresiva: la home sale cuando esté lista y convive con las páginas que siguen en Retro 3.1 (reemplaza la decisión anterior de publicar todo junto).
 4. **Header y footer: resuelto (2026-11-02).** Cambian en todo el sitio.
-5. **Rectángulo vacío del bloque oscuro (57:37): resuelto (2026-11-02).** Embed de Calendly.
+5. **Rectángulo vacío del bloque oscuro (57:37): resuelto (2026-11-02).** Embed de Cal.com.
 
 **Bloquean la publicación**
 
@@ -216,7 +216,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - **Links a páginas sin migrar:** `/ai-mvp-rescue`, `/contacto/` y `/portafolio/*` dan 404 en la rama `astro` hasta completar la spec 10.
 - **Navegación:** el header nuevo no tiene link a Servicios, así que `/servicios/` queda sin acceso desde el header. `ai-mvp-rescue.html` y `lupaux/` tienen navegación propia y no reciben el header nuevo.
 - **Menos de 1280 px:** layout provisional, sin la línea, hasta tener el frame mobile. Entre 1280 y 1440 px la composición escala con `--home-u`, así que el texto del flujo se achica un poco.
-- **Calendly en el embed:** en una ventana de 450 px de alto, el aviso de cookies de Calendly tapa buena parte del calendario hasta que se responde, y el contenido se recorre con scroll interno. Se ve también la cinta "Powered by Calendly".
+- **Cal.com en el embed:** en 450 px de alto, el calendario queda con scroll interno y sin la columna de horarios hasta elegir un día.
 - **Hover sin destino:** "Empecemos ahora", la card de +15 años y las filas de servicios reaccionan al mouse aunque todavía no llevan a ningún lado.
 - **Línea:** es un SVG en la página, con dos trazos, para poder dibujarla con el scroll, en lugar del asset exportado de Figma.
 - **Diferencia con Figma:** en los testimonios, autor y cargo pasan a dos líneas si no entran; en Figma se pisan o se salen de la card.

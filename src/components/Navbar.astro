@@ -5,16 +5,22 @@ const links = [
   { href: '/blog', label: 'Blog' },
   { href: '/contacto/', label: 'Contacto' },
 ];
+
+const path = Astro.url.pathname.replace(/\/$/, '');
+const currentAttr = (href: string) => {
+  const section = href.replace(/\/$/, '');
+  return path === section || path.startsWith(`${section}/`) ? 'page' : undefined;
+};
 ---
 <header class="site-header" id="navbar">
   <div class="site-header__inner">
     <a href="/" class="site-header__logo" aria-label="Uxuaria, inicio">uxuaria</a>
     <div class="site-header__actions">
       <nav class="site-header__nav" aria-label="Navegación principal">
-        <a href="/ai-mvp-rescue" class="site-header__item">AI MVP Rescue</a>
-        <a href="/portafolio" class="site-header__item site-header__item--padded">Projectos</a>
-        <a href="/blog" class="site-header__item site-header__item--padded">Blog</a>
-        <a href="/contacto/" class="site-header__item">Contacto</a>
+        <a href="/ai-mvp-rescue" aria-current={currentAttr('/ai-mvp-rescue')} class="site-header__item">AI MVP Rescue</a>
+        <a href="/portafolio" aria-current={currentAttr('/portafolio')} class="site-header__item site-header__item--padded">Projectos</a>
+        <a href="/blog" aria-current={currentAttr('/blog')} class="site-header__item site-header__item--padded">Blog</a>
+        <a href="/contacto/" aria-current={currentAttr('/contacto/')} class="site-header__item">Contacto</a>
       </nav>
       {/* No destination yet: spec 11-home, "Destinos" */}
       <span class="pill-button">Empecemos ahora</span>
@@ -27,6 +33,6 @@ const links = [
     </button>
   </div>
   <div class="site-header__menu" id="mobileMenu" aria-hidden="true">
-    {links.map((link) => <a href={link.href} class="site-header__item">{link.label}</a>)}
+    {links.map((link) => <a href={link.href} aria-current={currentAttr(link.href)} class="site-header__item">{link.label}</a>)}
   </div>
 </header>

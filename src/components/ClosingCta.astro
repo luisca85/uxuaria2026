@@ -1,4 +1,6 @@
 ---
+import { BOOKING_URL } from '../lib/booking';
+
 interface Props {
   status: string;
   title: string;
@@ -7,7 +9,6 @@ interface Props {
   track?: string;
 }
 
-const CALENDLY_URL = 'https://calendly.com/luisca85/charla-introductoria-clone';
 const { status, title, text, label = 'Agendá una llamada →', track } = Astro.props;
 ---
 <section class="closing-cta">
@@ -17,5 +18,5 @@ const { status, title, text, label = 'Agendá una llamada →', track } = Astro.
   </p>
   <h2 class="closing-cta__title">{title}</h2>
   <p class="closing-cta__text">{text}</p>
-  <a href={CALENDLY_URL} target="_blank" rel="noopener" class="pill-button pill-button--on-dark" data-track={track}>{label}</a>
+  <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button pill-button--on-dark" data-track={track}>{label}</a>
 </section>

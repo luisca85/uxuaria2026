@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CalEmbed from '../../components/CalEmbed.astro';
+import { BOOKING_URL } from '../../lib/booking';
+
+const projectTypes = [
+  ['startup', 'Startup en etapa temprana'],
+  ['producto-establecido', 'Producto digital establecido'],
+  ['app-ia', 'App construida con IA (Lovable, Bolt, Cursor…)'],
+  ['fintech', 'Fintech / producto financiero'],
+  ['rediseno', 'Rediseño de producto existente'],
+  ['otro', 'Otro'],
+];
+const stages = [
+  ['idea', 'Es una idea, todavía no hay producto'],
+  ['mvp', 'Tenemos un MVP o prototipo'],
+  ['produccion', 'Está en producción, necesito mejorar la experiencia'],
+  ['escalando', 'Estamos escalando y necesito optimizar conversión'],
+];
+const sources = [
+  ['google', 'Google / búsqueda orgánica'],
+  ['linkedin', 'LinkedIn'],
+  ['referido', 'Me recomendó alguien'],
+  ['redes', 'Redes sociales'],
+  ['blog', 'Leí el blog'],
+  ['otro', 'Otro'],
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': 'https://uxuaria.com/contacto/',
+  name: 'Contacto · Uxuaria',
+  url: 'https://uxuaria.com/contacto/',
+  description: 'Formulario de contacto y datos de Luis Carlos Romero León, diseñador UX freelance en Buenos Aires.',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': 'https://uxuaria.com/#luis',
+    name: 'Luis Carlos Romero León',
+    alternateName: 'Uxuaria',
+    jobTitle: 'UX Designer freelance',
+    email: 'info@uxuaria.com',
+    url: 'https://uxuaria.com',
+    sameAs: ['https://www.linkedin.com/company/uxuaria/'],
+  },
+};
+---
+<BaseLayout
+  title="Contacto · Hablemos de tu proyecto UX | Uxuaria · Buenos Aires"
+  description="Contáctame para hablar sobre tu proyecto UX. Diseñador UX freelance con más de 15 años de experiencia en startups y productos digitales en Buenos Aires, Argentina y LATAM."
+  ogTitle="Contacto · Hablemos de tu proyecto UX | Uxuaria"
+  ogDescription="Contáctame para hablar sobre tu proyecto UX. Disponible para nuevos proyectos en Buenos Aires y remoto para LATAM."
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/contact.css?v=20261102" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <noscript><style>.contact-form { display: none; }</style></noscript>
+  </Fragment>
+
+  <div class="page-shell">
+    <section class="contact-intro page-container">
+      <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+        <a href="/" class="page-breadcrumb__item">INICIO</a>
+        <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+        <span class="badge" aria-current="page">Contacto</span>
+      </nav>
+      <h1 class="page-intro__title">Hablemos de<br />tu producto.</h1>
+      <p class="contact-intro__lead">¿Estás por lanzar, querés escalar o hay algo que no termina de funcionar? Contame dónde estás y pensemos juntos el próximo paso.</p>
+    </section>
+
+    <section class="contact-booking page-container" aria-labelledby="booking-title">
+      <h2 class="contact-booking__title" id="booking-title">Elegí un momento para conversar</h2>
+      <div class="booking-module">
+        <div class="booking-module__calendar">
+          <CalEmbed />
+        </div>
+        <p class="booking-module__footer">
+          <span>Vista de reserva · Elegí una fecha y un horario</span>
+          <a href={BOOKING_URL} target="_blank" rel="noopener">Abrir la agenda en Cal.com ↗</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-written" aria-labelledby="written-title">
+      <div class="page-container">
+        <h2 class="contact-written__title" id="written-title">¿Preferís empezar por escrito?</h2>
+        <p class="contact-written__text">Contame sobre tu producto, tu equipo y el desafío que querés resolver.</p>
+
+        {/* Text proposed in spec 14-contacto, A CONFIRMAR #5 */}
+        <div class="contact-success" id="formSuccess" role="status" hidden>
+          <p class="contact-success__title">¡Mensaje recibido!</p>
+          <p>Si querés, también podés agendar una llamada en el calendario de arriba.</p>
+        </div>
+
+        <noscript>
+          <p class="contact-written__notice">Para enviar el formulario necesitás JavaScript. También podés escribirme directamente al email de abajo.</p>
+        </noscript>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="contact-field">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required autocomplete="given-name" />
+          </div>
+          <div class="contact-field">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email" />
+          </div>
+          <div class="contact-field">
+            <label for="tipo-proyecto">¿En qué tipo de proyecto estás trabajando? *</label>
+            <select id="tipo-proyecto" name="tipo-proyecto" required>
+              <option value="" disabled selected>Seleccioná una opción</option>
+              {projectTypes.map(([value, label]) => <option value={value}>{label}</option>)}
+            </select>
+          </div>
+          <div class="contact-field">
+            <label for="etapa">¿En qué etapa está tu producto? *</label>
+            <select id="etapa" name="etapa" required>
+              <option value="" disabled selected>Seleccioná una opción</option>
+              {stages.map(([value, label]) => <option value={value}>{label}</option>)}
+            </select>
+          </div>
+          <div class="contact-field contact-field--wide">
+            <label for="problema">¿Cuál es el problema principal que querés resolver? *</label>
+            <textarea id="problema" name="problema" rows="5" placeholder="Contame brevemente qué está pasando con tu producto, qué querés mejorar o qué estás construyendo. Sin filtros: cualquier detalle ayuda." required></textarea>
+          </div>
+          <div class="contact-field contact-field--wide">
+            <label for="como-llegaste">¿Cómo llegaste a Uxuaria?</label>
+            <select id="como-llegaste" name="como-llegaste">
+              <option value="" disabled selected>Seleccioná una opción</option>
+              {sources.map(([value, label]) => <option value={value}>{label}</option>)}
+            </select>
+          </div>
+          <p class="contact-form__error" id="formError" role="alert" hidden></p>
+          <div class="contact-form__actions">
+            <button type="submit" class="pill-button pill-button--on-dark contact-form__submit">Enviar mensaje →</button>
+          </div>
+        </form>
+
+        <a class="contact-written__email" href="mailto:info@uxuaria.com">Escribime a info@uxuaria.com</a>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline src="/contact.js?v=20261102"></script>
+</BaseLayout>

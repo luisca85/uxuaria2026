@@ -1,7 +1,7 @@
 # 14 — Página de contacto en Astro
 
 **id:** `contacto`
-**Estado:** 📝 Borrador · decisiones de construcción resueltas · no se publica hasta resolver A CONFIRMAR 5 a 7
+**Estado:** 🚧 En construcción en la rama `astro` · hecho: página, agenda, formulario y layout adaptado a mobile · pendiente: A CONFIRMAR 5 a 7 y prueba real de envío en producción
 **Última actualización:** 2026-11-02
 **Relacionada con:** 04-contact-page, 10-astro, 11-home
 
@@ -17,7 +17,7 @@
 
 ## Objetivo
 
-Pasar `/contacto/` al diseño nuevo y a Astro, sin cambiar su URL. Mantener los dos caminos actuales, agenda en Calendly y formulario, y la medición de sus conversiones.
+Pasar `/contacto/` al diseño nuevo y a Astro, sin cambiar su URL. Ofrecer los dos caminos, agenda en Cal.com y formulario, y mantener la medición de sus conversiones.
 
 Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` en los envíos del formulario.
 
@@ -35,7 +35,7 @@ Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` e
 |---|---|---|
 | 1 | Header | El compartido, con "Contacto" marcado como página actual |
 | 2 | Presentación (93:1986) | Ruta "Inicio > Contacto", "Hablemos de tu producto." e introducción |
-| 3 | Agenda (93:1993) | "Elegí un momento para conversar" y módulo con embed de Calendly |
+| 3 | Agenda (93:1993) | "Elegí un momento para conversar" y módulo con embed de Cal.com |
 | 4 | Contacto por escrito (93:2150) | Bloque oscuro "¿Preferís empezar por escrito?", formulario y link a info@uxuaria.com |
 | 5 | Footer | El compartido |
 
@@ -43,8 +43,8 @@ Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` e
 
 | En Figma | En la página |
 |---|---|
-| Módulo de reserva de Cal.com, con disponibilidad de ejemplo | Embed de Calendly, el servicio actual. La interfaz del calendario es la de Calendly |
-| Distintivo "Disponibilidad de ejemplo" y marca Cal.com | No se muestran |
+| Módulo de reserva dibujado, con disponibilidad de ejemplo | Embed real de Cal.com, con sus textos y su disponibilidad |
+| Distintivo "Disponibilidad de ejemplo" | No se muestra |
 | Solo un link de email | Formulario actual con estilo nuevo, más el link de email |
 
 ---
@@ -61,8 +61,8 @@ Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` e
 5. Dado un viewport de 375 px, entonces no hay scroll horizontal y la agenda y el formulario se pueden usar.
 
 **Agenda**
-6. Dado el módulo, cuando se abre la página con JavaScript, entonces el embed de Calendly permite elegir fecha y horario.
-7. Dado que el embed está cargando, falla o JavaScript está desactivado, entonces queda visible un link directo a Calendly y el módulo conserva su tamaño.
+6. Dado el módulo, cuando se abre la página con JavaScript, entonces el embed de Cal.com permite elegir fecha y horario.
+7. Dado que el embed está cargando, falla o JavaScript está desactivado, entonces queda visible un link directo a Cal.com y el módulo conserva su tamaño.
 8. Dado que el visitante todavía no llegó al módulo, entonces el embed no frena la carga inicial.
 
 **Formulario**
@@ -83,7 +83,7 @@ Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` e
 
 | Tema | Decisión |
 |---|---|
-| Agenda | Calendly embebido, con el enlace actual. No se usa Cal.com |
+| Agenda | Embed de Cal.com, `uxuaria-luis-romero/30min`, con los detalles del evento de Cal.com |
 | Formulario | Se conserva, con el envío a Web3Forms y su medición |
 | URL | `/contacto/` no cambia |
 | Mobile | Se adapta al maquetar y se revisa en el navegador |
@@ -109,14 +109,14 @@ Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` e
 
 - **Figma:** frame 93:1984.
 - **Base visual:** `public/base.css`, `public/site.css`, `Navbar`, `Footer` y `BaseLayout` con `legacyStyles={false}`.
-- **Externos:** Calendly, Web3Forms y GA4 (`script.js`, `window.uxuariaTrack`).
+- **Externos:** Cal.com, Web3Forms y GA4 (`script.js`, `window.uxuariaTrack`).
 - **Código actual:** `contacto/index.html`, como fuente de los campos, el envío y el SEO.
 
 ## Estados (UI)
 
 - **Vacío:** formulario sin completar, con los campos requeridos marcados.
 - **Carga:** el botón dice "Enviando…" y queda deshabilitado. El embed reserva su espacio.
-- **Error:** errores por campo; mensaje general si Web3Forms falla; link directo si falla Calendly.
+- **Error:** errores por campo; mensaje general si Web3Forms falla; link directo si falla Cal.com.
 - **Éxito:** mensaje de confirmación en lugar del formulario.
 
 ## Definición de hecho
@@ -135,7 +135,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 **Decisiones de construcción**
 
-1. **Panel izquierdo del módulo: resuelto (2026-11-02).** Se sigue Figma: el panel se conserva y el embed oculta los detalles repetidos.
+1. **Panel izquierdo del módulo: resuelto (2026-11-02).** Lo muestra el propio embed de Cal.com, por lo que se quita el panel replicado. Su contenido se edita en la cuenta de Cal.com.
 
 **Bloquean la publicación**
 
@@ -143,5 +143,21 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 3. **WhatsApp: resuelto (2026-11-02).** No se publica, como en Figma.
 4. **Promesa de respuesta: resuelto (2026-11-02).** "Te respondo en menos de 24 horas" se quita, como en Figma.
 5. **Texto del mensaje de éxito:** como la agenda ahora queda arriba y Figma no define este estado, propongo: "¡Mensaje recibido! Si querés, también podés agendar una llamada en el calendario de arriba."
-6. **Aviso de cookies de Calendly:** tapa parte del calendario hasta que se responde. Hay que revisar cómo se ve en el alto del módulo.
+6. **Título del evento en Cal.com:** dice "Reunión de discovery - 15 min", pero dura 30 minutos. Se corrige desde la cuenta de Cal.com.
 7. **Duración:** contacto dice 30 minutos, como el blog y proyectos; la home dice 15. Sigue pendiente de alinear.
+
+---
+
+## Dónde vive
+
+- Página: `src/pages/contacto/index.astro`. Estilos: `public/contact.css`. Formulario: `public/contact.js`.
+- Embed y enlace de la agenda: `src/components/CalEmbed.astro` y `src/lib/booking.ts`.
+- Página actual en el menú: `src/components/Navbar.astro` y `public/site.css`.
+
+## Conocido
+
+- **Embed de Cal.com:** muestra sus propios textos, disponibilidad y marca. Carga cuando el bloque se acerca a la pantalla.
+- **Altura del embed:** en 570 px, la lista de horarios queda con scroll interno.
+- **Línea inferior del módulo:** incluye el link "Abrir la agenda en Cal.com ↗", la alternativa si el embed falla.
+- **Sin JavaScript:** el formulario se oculta, aparece un aviso y queda visible el email.
+- **Formulario:** se probó con el envío simulado; todavía no con un envío real a Web3Forms.
