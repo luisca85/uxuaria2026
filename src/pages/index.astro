@@ -285,13 +285,14 @@ const testimonials = [
     import gsap from 'gsap';
     import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
     import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
     import { SplitText } from 'gsap/SplitText';
 
     const text = document.querySelector('.home-hero__scramble');
     const lead = document.querySelector('.home-hero__lead');
 
     if (text && lead && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.registerPlugin(MorphSVGPlugin, ScrambleTextPlugin, SplitText);
+      gsap.registerPlugin(MorphSVGPlugin, ScrambleTextPlugin, ScrollTrigger, SplitText);
 
       // Icon row: each slot goes through the other shapes and lands on its own
       const morphRow = (row: Element) => {
@@ -327,6 +328,24 @@ const testimonials = [
           stagger: 0.09,
           // Back to plain text, so it can reflow when the window changes
           onComplete: () => { split.revert(); },
+        });
+      };
+
+      // Section text: words go from pale to solid following the scroll, in both directions.
+      // Clamped so text near the end of the page still finishes
+      const scrubWords = (element: Element) => {
+        const split = SplitText.create(element, { type: 'words' });
+        gsap.set(element, { visibility: 'visible' });
+        gsap.fromTo(split.words, { opacity: 0.15 }, {
+          opacity: 1,
+          ease: 'none',
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: element,
+            start: 'clamp(top 85%)',
+            end: 'clamp(bottom 55%)',
+            scrub: 0.4,
+          },
         });
       };
 
@@ -368,7 +387,7 @@ const testimonials = [
         });
 
         riseLines(lead, 0.25);
-        whenVisible([...document.querySelectorAll('[data-split]')], (element) => riseLines(element));
+        document.querySelectorAll('[data-split]').forEach(scrubWords);
       });
     }
   </script>
