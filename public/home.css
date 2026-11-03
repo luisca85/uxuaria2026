@@ -33,17 +33,17 @@
 .home-flow {
   position: relative;
   max-width: 1440px;
-  height: calc(2308.91 * var(--home-u));
+  height: calc(2787.16 * var(--home-u));
   margin: 0 auto;
 }
 
 .home-flow__line {
   position: absolute;
-  top: calc(-87 * var(--home-u));
-  left: calc(294.99 * var(--home-u));
-  width: calc(1170.09 * var(--home-u));
+  top: calc(-88 * var(--home-u));
+  left: calc(-40 * var(--home-u));
+  width: calc(1430 * var(--home-u));
   max-width: none;
-  height: calc(2254.78 * var(--home-u));
+  height: calc(3170 * var(--home-u));
   pointer-events: none;
 }
 
@@ -51,8 +51,8 @@
 .home-flow::after {
   content: '';
   position: absolute;
-  top: calc(2154.78 * var(--home-u));
-  left: 100%;
+  top: calc(3065.79 * var(--home-u));
+  right: calc(100% + 21.73 * var(--home-u));
   width: 50vw;
   height: calc(13 * var(--home-u));
   border-block: 2px solid var(--ux-color-ink);
@@ -61,13 +61,21 @@
 .home-hero {
   position: relative;
   width: calc(826.93 * var(--home-u));
-  height: calc(830.89 * var(--home-u));
+  height: calc(955.91 * var(--home-u));
   margin-left: calc(164 * var(--home-u));
   padding-top: calc(132.23 * var(--home-u));
 }
 
+.home-hero__shapes {
+  display: block;
+  width: calc(185.636 * var(--home-u));
+  height: calc(41.006 * var(--home-u));
+  margin-bottom: calc(24 * var(--home-u));
+  fill: var(--ux-color-ink);
+}
+
 .home-hero__title {
-  margin-bottom: calc(16 * var(--home-u));
+  margin-bottom: calc(32 * var(--home-u));
   color: var(--ux-color-text);
   font-size: var(--home-size-hero);
   font-weight: 700;
@@ -82,7 +90,7 @@
 }
 
 .home-hero__lead {
-  margin-bottom: calc(16 * var(--home-u));
+  margin-bottom: calc(32 * var(--home-u));
   color: var(--ux-color-ink);
   font-size: var(--home-size-lead);
   line-height: var(--home-line-lead);
@@ -163,7 +171,7 @@
 /* ===== PROCESS ===== */
 .home-process {
   position: relative;
-  height: calc(1275.02 * var(--home-u));
+  height: calc(1628.25 * var(--home-u));
 }
 
 .process-step {
@@ -174,7 +182,7 @@
 }
 
 .process-step--research {
-  top: calc(160.52 * var(--home-u));
+  top: calc(135 * var(--home-u));
   left: calc(191.79 * var(--home-u));
   width: calc(304.88 * var(--home-u));
   align-items: flex-end;
@@ -182,13 +190,13 @@
 }
 
 .process-step--design {
-  top: calc(428.02 * var(--home-u));
-  left: calc(564 * var(--home-u));
+  top: calc(545 * var(--home-u));
+  left: calc(541.67 * var(--home-u));
   width: calc(276 * var(--home-u));
 }
 
 .process-step--build {
-  top: calc(738.02 * var(--home-u));
+  top: calc(932 * var(--home-u));
   left: calc(896.05 * var(--home-u));
   width: calc(300 * var(--home-u));
 }
@@ -213,6 +221,7 @@
 
 /* ===== CLIENTS ===== */
 .home-clients {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 267.25fr) 325fr;
   gap: 20px;
@@ -239,7 +248,7 @@
 .client-card__logo--points-of-you { mix-blend-mode: difference; }
 
 /* ===== SERVICES ===== */
-.home-services { margin-top: 177px; }
+.home-services { margin-top: 239.25px; }
 
 .home-section-title {
   color: var(--ux-color-text);
@@ -270,7 +279,7 @@
 
 /* ===== TESTIMONIALS ===== */
 .home-testimonials {
-  margin-top: 157px;
+  margin-top: 175.5px;
   padding: 40px 16px;
 }
 
@@ -331,7 +340,7 @@
 /* ===== CLOSING BLOCK ===== */
 .home-closing {
   margin-top: 24px;
-  padding: 100px 16px 84.6px;
+  padding: 100px 16px;
   background: var(--ux-color-surface-inverse);
   color: var(--ux-color-text-inverse);
 }
@@ -458,13 +467,14 @@
 /* ===== MOTION (spec 11-home) ===== */
 .home-flow__line { color: var(--ux-color-ink); }
 
-/* Waits for SplitText in home's script; shows anyway if that script fails */
+/* Wait for GSAP in home's script; show anyway if that script fails */
+.home-motion .home-hero__shapes,
 .home-motion .home-hero__lead {
   visibility: hidden;
-  animation: home-lead-fallback 0s linear 3s forwards;
+  animation: home-hero-fallback 0s linear 3s forwards;
 }
 
-@keyframes home-lead-fallback {
+@keyframes home-hero-fallback {
   to { visibility: visible; }
 }
 
@@ -486,7 +496,7 @@
 
 .home-motion .home-flow::after {
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: right;
   transition: transform .6s ease;
 }
 

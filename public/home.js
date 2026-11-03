@@ -80,17 +80,16 @@
   const samples = [];
   let maxY = -Infinity;
   let drawn = 0;
-  // The path runs bottom to top, so sampling goes from its end. maxY keeps the
-  // mapping monotonic across the stretches where the line climbs.
+  // maxY keeps the mapping monotonic across the stretches where the line climbs
   for (let s = 0; s <= total; s += 8) {
-    maxY = Math.max(maxY, path.getPointAtLength(total - s).y);
+    maxY = Math.max(maxY, path.getPointAtLength(s).y);
     samples.push({ s, y: maxY });
   }
 
   function lineTarget() {
     const rect = svg.getBoundingClientRect();
     if (!rect.height) return total;
-    const tipY = (innerHeight * 0.72 - rect.top) / (rect.height / 2254.78);
+    const tipY = (innerHeight * 0.72 - rect.top) / (rect.height / svg.viewBox.baseVal.height);
     if (tipY >= maxY) return total;
     const next = samples.find((sample) => sample.y > tipY);
     return next ? next.s : total;
@@ -110,7 +109,6 @@
       clientsX = clientsGoal;
     }
     strokes.style.strokeDasharray = `${drawn} ${total}`;
-    strokes.style.strokeDashoffset = `${-(total - drawn)}`;
     flow.classList.toggle('home-flow--line-done', drawn >= total - 1);
     clients.style.transform = `translate3d(${clientsX}px, 0, 0)`;
     updateTestimonials();
