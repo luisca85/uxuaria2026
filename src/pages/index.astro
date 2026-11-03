@@ -7,7 +7,7 @@ import { BOOKING_URL } from '../lib/booking';
 
 // Copy is literal from Figma until approved: spec 11-home, "Contenido a aprobar"
 const services = [
-  'Research y diagnostico UX de tu producto',
+  'Research y diagnóstico UX de tu producto',
   'Diseño de interfaz (UI) para atrapar a tus usuarios',
   'Product design para escalar y crecer tu MVP',
   'Rescatamos tu MVP hecho con IA',
@@ -27,12 +27,12 @@ const testimonials = [
     role: 'CEO · Striano',
   },
   {
-    quote: "'Realmente disfrutamos trabajar nuestro diseñador (Luis) y lo recomendaríamos a cualquiera que necesite ayuda con diseño UX/UI.'",
+    quote: '"Realmente disfrutamos trabajar nuestro diseñador (Luis) y lo recomendaríamos a cualquiera que necesite ayuda con diseño UX/UI."',
     author: 'Ireland Bender',
     role: 'Weezie Towels',
   },
   {
-    quote: "'He tenido el placer de trabajar con Luis en varios proyectos y en distintas modalidades. Su habilidad para transformar ideas complejas en interfaces intuitivas y visualmente atractivas fue fundamental en cada proyecto. Su enfoque en el usuario es evidente en cada diseño que crea, siempre buscando soluciones que no solo sean estéticamente agradables, sino también funcionales y fáciles de usar.",
+    quote: '"He tenido el placer de trabajar con Luis en varios proyectos y en distintas modalidades. Su habilidad para transformar ideas complejas en interfaces intuitivas y visualmente atractivas fue fundamental en cada proyecto. Su enfoque en el usuario es evidente en cada diseño que crea, siempre buscando soluciones que no solo sean estéticamente agradables, sino también funcionales y fáciles de usar."',
     author: 'Walter Aguilar',
     role: 'CEO · Deoper',
   },
@@ -145,7 +145,7 @@ const testimonials = [
           <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
           {/* No destination yet: spec 11-home, "Destinos" */}
           <span class="home-hero__diagnosis">
-            o obten un diagnostico Ux gratis
+            o obtén un diagnóstico UX gratis
             <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
           </span>
         </div>
@@ -160,7 +160,7 @@ const testimonials = [
         </article>
         <article class="metric-card" data-reveal>
           <p class="metric-card__value" data-count>+15<span class="metric-card__unit">años</span></p>
-          <p class="metric-card__description">Experiencia en el diseño de experiencias de productis digitales para latinoamerica, USA y Europa</p>
+          <p class="metric-card__description">Experiencia en el diseño de experiencias de productos digitales para Latinoamérica, USA y Europa</p>
           <ArrowLink label="Sobre nosotros" />
         </article>
         <article class="metric-card" data-reveal>
@@ -180,8 +180,8 @@ const testimonials = [
             <p class="process-step__description">Expertos en research que detectan patrones riesgosos en tu producto</p>
           </article>
           <div class="process-context process-context--research">
-            <p class="process-context__text" data-split>Invertiste tiempo en diseño, desarrollo, marketing y ves, y ya tienes tu producto (SaSS, Web-app, Landing page) en el mercado, pero simplementa no sabes por aun no despega como quieres, y lo peor de todo, no estas seguro por que...</p>
-            <span class="process-context__action" data-reveal>Mas de nuestro diagnostico UX</span>
+            <p class="process-context__text" data-split>Invertiste tiempo en diseño, desarrollo, marketing y ves, y ya tienes tu producto (SaaS, web app, landing page) en el mercado, pero simplemente no sabes por qué aún no despega como quieres y, lo peor de todo, no estás seguro de por qué...</p>
+            <span class="process-context__action" data-reveal>Más de nuestro diagnóstico UX</span>
           </div>
         </div>
         <div class="process-block process-block--design">
@@ -189,7 +189,7 @@ const testimonials = [
             <img class="process-step__symbol process-step__symbol--quarter" src="/images/home/symbol-design.svg" width="65" height="66" alt="" />
             <h2 class="process-step__title" data-split>Solucionamos el problema que mueve la aguja</h2>
             <p class="process-step__description">Diseñadores IA-native que entienden el negocio y construyen la experiencia del usuario</p>
-            <ArrowLink label="Click para descubrir" align="start" />
+            <ArrowLink label="Clic para descubrir" align="start" />
           </article>
           <div class="process-context process-context--design">
             <p class="process-context__text" data-split>Una fuga de usuarios puede ser muy chica: una opción que confunde, un paso de más, una función que nadie encuentra. Pero cuando cientos de usuarios se traban en lo mismo, ese detalle de producto termina costando plata de verdad.</p>
@@ -268,10 +268,10 @@ const testimonials = [
         </div>
         <div class="home-closing__contact" data-reveal>
           <div>
-            <h2 class="home-closing__contact-title" data-split>Conversemos y averiguemos que tan lejos podemos llegar</h2>
+            <h2 class="home-closing__contact-title" data-split>Conversemos y averiguemos qué tan lejos podemos llegar</h2>
             {/* Direct link: the alternative if the embed is slow or fails (spec 11-home) */}
-            <p class="home-closing__contact-text"><a class="home-closing__link" href={BOOKING_URL} target="_blank" rel="noopener" data-track="cta_final_call">Agenda una llamada de 15 minutos, elije una fecha en mi calendario</a></p>
-            <p class="home-closing__contact-text">O escribeme a <a class="home-closing__link home-closing__link--email" href="mailto:info@uxuaria.com">info@uxuaria.com</a></p>
+            <p class="home-closing__contact-text"><a class="home-closing__link" href={BOOKING_URL} target="_blank" rel="noopener" data-track="cta_final_call">Agenda una llamada de 15 minutos, elige una fecha en mi calendario</a></p>
+            <p class="home-closing__contact-text">O escríbeme a <a class="home-closing__link home-closing__link--email" href="mailto:info@uxuaria.com">info@uxuaria.com</a></p>
           </div>
           <div class="home-closing__calendar">
             <CalEmbed hideDetails />
