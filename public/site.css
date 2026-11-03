@@ -192,6 +192,7 @@ a.site-header__item:hover { color: var(--ux-color-text); }
   background: var(--ux-color-text);
 }
 
+.site-header__compact { display: none; }
 .site-header__menu { display: none; }
 
 .site-header__menu.open {
@@ -207,9 +208,18 @@ a.site-header__item:hover { color: var(--ux-color-text); }
   :root { --ux-header-height: 68px; }
 
   .site-header__actions { display: none; }
-  .site-header__hamburger { display: flex; }
+  .site-header__compact { display: flex; gap: 16px; align-items: center; }
+  .site-header__hamburger { display: flex; margin-right: -10px; }
   .site-header__logo { font-size: 28px; }
   .site-header__menu .site-header__item { padding: 8px 0; font-size: 16px; }
+}
+
+/* Figma: Home — Mobile 390 (130:3845) */
+@media (max-width: 640px) {
+  :root { --ux-header-height: 71px; }
+
+  .site-header__inner { padding: 0 24px; }
+  .site-header__logo { font-size: 34px; line-height: 38.1px; letter-spacing: -.94px; }
 }
 
 /* ===== FOOTER ===== */
@@ -305,6 +315,12 @@ a.site-footer__item:hover { color: var(--ux-color-text-inverse); }
   .site-footer__inner { flex-direction: column; gap: 48px; padding: 0 16px 48px; }
   .site-footer__brand { flex: none; }
   .site-footer__links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Figma: Home — Mobile 390 (130:4087) */
+@media (max-width: 640px) {
+  .site-footer { padding-top: 48px; }
+  .site-footer__inner { gap: 36px; padding: 0 24px 36px; }
 }
 
 /* ===== PAGE SHELL ===== */

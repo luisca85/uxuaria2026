@@ -67,26 +67,44 @@
   function clientsTarget() {
     const rect = clients.getBoundingClientRect();
     const progress = (rect.top + rect.height / 2) / innerHeight - 0.5;
-    const range = Math.min(160, innerWidth * 0.11);
+    // The mobile frame keeps the strip on the line
+    const range = innerWidth <= 640 ? 0 : Math.min(160, innerWidth * 0.11);
     return Math.max(-1, Math.min(1, progress * 2)) * range;
   }
 
   // --- Line drawn with the scroll, from the top of the page downwards ---
   const flow = document.querySelector('.home-flow');
-  const svg = document.querySelector('.home-flow__line');
-  const strokes = document.querySelector('.home-flow__strokes');
-  const path = document.getElementById('flow-path');
-  const total = path.getTotalLength();
-  const samples = [];
+  const lines = [...document.querySelectorAll('.home-flow__line')];
+  let svg = null;
+  let strokes = null;
+  let total = 0;
+  let samples = [];
   let maxY = -Infinity;
   let drawn = 0;
-  // maxY keeps the mapping monotonic across the stretches where the line climbs
-  for (let s = 0; s <= total; s += 8) {
-    maxY = Math.max(maxY, path.getPointAtLength(s).y);
-    samples.push({ s, y: maxY });
+
+  // Desktop and mobile have their own line; tablet has none
+  function pickLine() {
+    const active = lines.find((line) => getComputedStyle(line).display !== 'none') || null;
+    if (active === svg) return;
+    if (strokes) strokes.style.strokeDasharray = '';
+    svg = active;
+    drawn = 0;
+    samples = [];
+    maxY = -Infinity;
+    total = 0;
+    if (!svg) { strokes = null; return; }
+    strokes = svg.querySelector('.home-flow__strokes');
+    const path = svg.querySelector('path');
+    total = path.getTotalLength();
+    // maxY keeps the mapping monotonic across the stretches where the line climbs
+    for (let s = 0; s <= total; s += 8) {
+      maxY = Math.max(maxY, path.getPointAtLength(s).y);
+      samples.push({ s, y: maxY });
+    }
   }
 
   function lineTarget() {
+    if (!svg) return 0;
     const rect = svg.getBoundingClientRect();
     if (!rect.height) return total;
     const tipY = (innerHeight * 0.72 - rect.top) / (rect.height / svg.viewBox.baseVal.height);
@@ -99,6 +117,7 @@
   let running = false;
 
   function frame() {
+    pickLine();
     const lineGoal = lineTarget();
     const clientsGoal = clientsTarget();
     drawn += (lineGoal - drawn) * 0.12;
@@ -108,8 +127,8 @@
       drawn = lineGoal;
       clientsX = clientsGoal;
     }
-    strokes.style.strokeDasharray = `${drawn} ${total}`;
-    flow.classList.toggle('home-flow--line-done', drawn >= total - 1);
+    if (strokes) strokes.style.strokeDasharray = `${drawn} ${total}`;
+    flow.classList.toggle('home-flow--line-done', Boolean(svg) && drawn >= total - 1);
     clients.style.transform = `translate3d(${clientsX}px, 0, 0)`;
     updateTestimonials();
     running = !settled;
@@ -125,6 +144,7 @@
 
   addEventListener('scroll', wake, { passive: true });
   addEventListener('resize', wake);
+  pickLine();
   clientsX = clientsTarget();
   wake();
 })();

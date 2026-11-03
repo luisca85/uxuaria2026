@@ -27,10 +27,14 @@ const currentAttr = (href: string) => {
       <span class="site-header__item site-header__item--active">ES</span>
       <span class="site-header__item site-header__item--inactive">EN</span>
     </div>
-    <button class="site-header__hamburger" id="hamburger"
-            aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="site-header__compact">
+      <span class="site-header__item site-header__item--active">ES</span>
+      <span class="site-header__item site-header__item--inactive">EN</span>
+      <button class="site-header__hamburger" id="hamburger"
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
   <div class="site-header__menu" id="mobileMenu" aria-hidden="true">
     {links.map((link) => <a href={link.href} aria-current={currentAttr(link.href)} class="site-header__item">{link.label}</a>)}
