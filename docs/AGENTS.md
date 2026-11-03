@@ -59,7 +59,8 @@ Siempre en las páginas que tocó el cambio. Si tocó `styles.css` o `script.js`
 1. **Carga limpia**: sin errores nuevos en la consola, en desktop y en 375 px, sin scroll horizontal.
 2. **Navegación**: la navbar lleva a Servicios, AI MVP Rescue, Blog y Contacto. El menú mobile abre, cierra y se cierra al tocar un link.
 3. **CTAs de conversión**:
-   - Home: los botones de AI MVP Rescue llevan a `ai-mvp-rescue`; los de agenda, a Calendly.
+   - Home en `main`: los botones de AI MVP Rescue llevan a `ai-mvp-rescue`; los de agenda, a Calendly.
+   - Home en `astro` (preview en `http://localhost:4321`, spec 11): los botones de agenda abren Cal.com y el embed permite elegir una fecha; "Leer la historia" lleva al caso; la línea se dibuja con el scroll en desktop y en 375 px; los textos de sección terminan sólidos al llegar al final de la página.
    - AI MVP Rescue: los 3 CTA llevan a `diagnostico/?cta=…`.
 4. **Contacto** (`/contacto/`): si se envía vacío o con un email inválido, muestra los errores y no envía. El envío real se prueba en C.
 5. **Funnel** (`/diagnostico/`): se ve una sola pregunta a la vez, avanza con Enter y con las letras, valida cada paso y llega a la última pregunta. Localmente no hay `/api`, así que el envío real se prueba en C.

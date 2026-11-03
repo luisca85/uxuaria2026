@@ -11,7 +11,7 @@ Reconstruido desde el código el 2026-09-29. Lo que no se pudo verificar en el r
 Migración a Astro en curso (spec 10) y nueva home (spec 11). Lo de abajo describe `main`, que sigue en producción. En esta rama, además:
 
 - `src/`: páginas, layouts, componentes y blog en Markdown. `public/`: lo que se copia tal cual al build. Requiere Node 24 y `npm run build`.
-- Nueva home: `src/pages/index.astro`, `public/home.css`, `public/home.js`, `public/images/home/`.
+- Nueva home: `src/pages/index.astro` (con las animaciones de GSAP), `src/components/ShapeRow.astro`, `public/home.css`, `public/home.js`, `public/images/home/`. Única dependencia de animación: `gsap`.
 - Blog nuevo: `src/pages/blog.astro`, `src/pages/blog/[slug].astro`, `src/components/BlogCard.astro`, `public/blog.css` (spec 12).
 - Proyectos: `src/content/portfolio/`, `src/pages/portafolio/`, `src/components/ProjectCard.astro`, `public/portfolio.css` (spec 13).
 - Contacto nuevo: `src/pages/contacto/index.astro`, `public/contact.css`, `public/contact.js` (spec 14).

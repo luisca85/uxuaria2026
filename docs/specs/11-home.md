@@ -1,7 +1,7 @@
 # 11 — Nueva home de Uxuaria
 
 **id:** `home`
-**Estado:** 🚧 Construida en la rama `explorar/home-animacion-linea-navegacion`, sin pasar a `astro` · hecho: desktop, mobile, header, footer, línea y animaciones · pendiente: aprobar contenido y destinos, y correr `/revisar` · no se publica hasta tener todo eso
+**Estado:** 🚧 Construida en la rama `astro`, sin publicar · hecho: desktop, mobile, header, footer, línea y animaciones · pendiente: aprobar contenido y destinos, y correr `/revisar` · no se publica hasta tener todo eso
 **Última actualización:** 2026-11-03
 **Relacionada con:** 00-overview, 01-design-system, 02-portfolio, 03-content, 05-rescue-service, 07-funnel-diagnostico, 10-astro
 
@@ -182,7 +182,7 @@ El diseño cambia elementos que `CLAUDE.md` protege. Nada de esto se publica sin
 - **Figma:** frames 120:3459 y 130:3843, y Uxuaria Library.
 - **Fuentes:** Space Grotesk, Inter y Space Mono en Google Fonts.
 - **Assets:** símbolos de marca, formas de la fila de iconos y logos de clientes exportados de Figma.
-- **Librerías:** GSAP 3.15 con ScrollTrigger, SplitText, ScrambleTextPlugin y MorphSVGPlugin. Falta registrarla en `decisions.md` y revisar su licencia.
+- **Librerías:** GSAP 3.15 con ScrollTrigger, SplitText, ScrambleTextPlugin y MorphSVGPlugin, con licencia estándar sin costo (decisions.md, 2026-11-03).
 - **Externos existentes:** Cal.com (también como embed) y GA4 (`G-6TCJ5969G7`).
 - **Publicación:** progresiva. Las páginas sin diseño nuevo deben seguir respondiendo en sus URLs (decisions.md, 2026-11-02).
 - **Base técnica:** `src/pages/index.astro`, `BaseLayout`, `Navbar` y `Footer` (spec 10). Requiere Node 24.
@@ -203,8 +203,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - [ ] Ningún link sin destino definido.
 - [ ] Revisadas las demás páginas con el header y el footer ajustados, y el menú mobile.
 - [ ] El test de regresión de `AGENTS.md` se actualizó para la navegación, los CTA nuevos y Cal.com.
-- [ ] `docs/architecture.md` y `CLAUDE.md` actualizados.
-- [ ] Decisiones registradas con `/decidir` (GSAP y su licencia, efectos de texto, voz).
+- [ ] Decisión sobre la voz registrada con `/decidir`.
 
 ---
 

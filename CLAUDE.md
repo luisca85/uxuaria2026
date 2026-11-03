@@ -21,6 +21,8 @@ Propósito: página de captación de clientes para servicios de Experience Desig
 
 No hay build step, no hay node_modules, no hay frameworks de JS. Un push a `main` es un deploy.
 
+**Rama `astro` (sin publicar):** migración a Astro (spec 10) con build y `node_modules`. La home nueva usa GSAP (spec 11). Ver `docs/architecture.md`.
+
 ---
 
 ## Convenciones de código
@@ -63,7 +65,7 @@ Archivo: `styles.css`, líneas 4–27.
 
 ### JavaScript
 
-- Sin librerías externas. Vanilla ES6+.
+- Sin librerías externas. Vanilla ES6+. Excepción: GSAP en la home nueva (`docs/decisions.md`, 2026-11-03).
 - El script se carga al final del `<body>` (no `defer`, no módulos).
 - Progressive enhancement: el sitio debe ser funcional sin JS activado.
 
