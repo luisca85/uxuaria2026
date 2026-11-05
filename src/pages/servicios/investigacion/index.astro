@@ -151,7 +151,7 @@ const jsonLd = [
 >
   <Fragment slot="head">
     <link rel="stylesheet" href="/blog.css?v=20261102" />
-    <link rel="stylesheet" href="/service.css?v=20261105d" />
+    <link rel="stylesheet" href="/service.css?v=20261105e" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
@@ -182,7 +182,7 @@ const jsonLd = [
         <p class="service-head__eyebrow">¿Te suena?</p>
         <h2 class="service-head__title" id="situaciones-title">Lo que nos dicen algunos clientes</h2>
       </div>
-      <ul class="situation-grid">
+      <ul class="situation-grid" data-situations>
         {situations.map((item) => (
           <li class="situation-card">
             <img class="situation-card__icon" src={`/images/diagnostico-ux/symbol-${item.icon}.svg`} width={icons[item.icon].width} height={icons[item.icon].height} alt="" />
@@ -393,6 +393,7 @@ const jsonLd = [
     />
   </div>
 
+  <script is:inline src="/situations.js?v=20261105"></script>
   <script is:inline src="/deliverables.js?v=20261105"></script>
   <script is:inline src="/process.js?v=20261105b"></script>
 </BaseLayout>

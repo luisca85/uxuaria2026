@@ -188,6 +188,13 @@
   line-height: 25.6px;
 }
 
+/* situations.js sets --reveal from 0 to 1 on each card, one after another */
+.situation-grid--animated .situation-card {
+  opacity: var(--reveal, 0);
+  translate: 0 calc((1 - var(--reveal, 0)) * 32px);
+  will-change: opacity, translate;
+}
+
 /* ===== DELIVERABLES ===== */
 .service-section:has(.deliverables) { gap: 64px; }
 
