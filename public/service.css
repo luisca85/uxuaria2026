@@ -215,7 +215,7 @@
 
 .deliverables--animated .deliverables__item .service-item__title,
 .deliverables--animated .deliverables__item .service-item__text {
-  color: var(--ux-color-text-muted);
+  color: var(--ux-color-text-subtle);
   transition: color .3s ease;
 }
 
