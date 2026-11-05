@@ -28,7 +28,7 @@ Contexto del proyecto: [`architecture.md`](architecture.md) (módulos, dónde vi
 1. **No modificar el diseño actual** sin pedido explícito de Luis: nada visual cambia fuera del alcance del feature.
 2. Respetar la lista "Lo que NO se debe tocar sin un spec aprobado" de `CLAUDE.md` (copy del hero, portafolio, testimonios, redes, email, color brand, métricas).
 3. No inventar datos, precios, endpoints, URLs ni métricas.
-4. El copy visible va en español con voseo ("Agendá", "Contame").
+4. El copy visible va en español estándar, sin voseo ("Agenda", "Cuéntame").
 5. **Caché de CSS y JS:** en producción, Cloudflare hace que los navegadores guarden `.css` y `.js` durante 4 horas (`max-age=14400`), mientras que el HTML no se guarda (`max-age=0`). Cuando cambies un CSS o JS que tiene versión en su link (por ejemplo `diagnostico.js?v=AAAAMMDD`), actualizá ese `?v=` en el HTML. Si no, los visitantes pueden seguir usando la versión vieja hasta 4 horas.
 
 ---

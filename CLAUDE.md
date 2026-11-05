@@ -53,7 +53,7 @@ Archivo: `styles.css`, líneas 4–27.
 
 ### Idioma del código
 
-- **Copy / texto visible al usuario** → español con voseo rioplatense ("Agendá", "Contame"). Ver `docs/decisions.md`.
+- **Copy / texto visible al usuario** → español estándar, sin voseo ("Agenda", "Cuéntame"). Ver `docs/decisions.md`.
 - **Código** (clases CSS, IDs, variables JS, comentarios de código) → inglés
 - **Comentarios de sección en CSS/HTML** → inglés o español, consistente dentro del archivo
 

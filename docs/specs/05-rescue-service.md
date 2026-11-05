@@ -101,7 +101,7 @@ Visual columna derecha: "Visual contextual · reservado" — pendiente de defini
 
 | # | Título | Descripción |
 |---|---|---|
-| 1 | Evaluamos (gratis) | Charla de 15 min — contexto, qué está roto, hacia dónde quieren ir |
+| 1 | Evaluamos (gratis) | Charla de 30 min — contexto, qué está roto, hacia dónde quieren ir |
 | 2 | Diagnóstico | Diagnóstico general: negocio, usuarios, bloqueos del stack |
 | 3 | Priorizamos | Identificamos el problema correcto a resolver |
 | 4 | Alcance | Proyecto con presupuesto, alcance y precio cerrados |

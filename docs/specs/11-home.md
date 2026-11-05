@@ -115,7 +115,7 @@ Una línea doble continua baja desde el hero y atraviesa las métricas y el proc
 
 | Elemento | Destino |
 |---|---|
-| "Agenda una llamada de 15 minutos" (hero y bloque oscuro) | Cal.com (`src/lib/booking.ts`). El evento dura 30 minutos, pero el texto dice 15: **A CONFIRMAR** |
+| "Agenda una llamada de 15 minutos" (hero y bloque oscuro) | Cal.com (`src/lib/booking.ts`). La reunión dura 30 minutos (decisions.md, 2026-11-03); falta alinear el texto, que dice 15 |
 | "o obtén un diagnóstico UX gratis" | **A CONFIRMAR** (¿`/diagnostico/`?) |
 | AI MVP Rescue (header y footer) | `/ai-mvp-rescue` |
 | Blog | `/blog` |

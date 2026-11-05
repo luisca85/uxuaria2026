@@ -144,7 +144,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 4. **Promesa de respuesta: resuelto (2026-11-02).** "Te respondo en menos de 24 horas" se quita, como en Figma.
 5. **Texto del mensaje de éxito:** como la agenda ahora queda arriba y Figma no define este estado, propongo: "¡Mensaje recibido! Si querés, también podés agendar una llamada en el calendario de arriba."
 6. **Título del evento en Cal.com:** dice "Reunión de discovery - 15 min", pero dura 30 minutos. Se corrige desde la cuenta de Cal.com.
-7. **Duración:** contacto dice 30 minutos, como el blog y proyectos; la home dice 15. Sigue pendiente de alinear.
+7. **Duración: resuelto (2026-11-03).** La reunión dura 30 minutos en todo el sitio. Falta alinear el texto de la home.
 
 ---
 

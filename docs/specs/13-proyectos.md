@@ -170,7 +170,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 1. **Mobile:** ¿diseñás frames de la lista y del caso, como en la home y el blog?
 2. **Mutis UX y Sakura 64:**
-   - **Nombre:** el frame dice "Mutis UX" con una captura de Lupa UX, y el footer dice "Mults UX". ¿Cuál es el nombre correcto?
+   - **Nombre:** es Mutis UX, el nombre nuevo de Lupa UX (decisions.md, 2026-11-03). La captura del frame dice Lupa UX y el footer dice "Mults UX", y hay que corregirlos.
    - **Contenido:** los dos usan el texto de ejemplo "Una plataforma para la generación de reportes". Falta el texto real y la captura de Sakura 64.
    - **Destino:** ¿tienen caso propio o llevan a `/lupaux/` y `https://sakura64.uxuaria.com/`?
 3. **Orden de los 9 proyectos.** Los cambios en esta lista requieren tu aprobación (`CLAUDE.md`).

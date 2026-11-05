@@ -80,6 +80,7 @@ Todos vienen del **Public Domain Image Archive** de The Public Domain Review ([p
 
 ## Conocido
 
+- **Renombre a Mutis UX** (decisions.md, 2026-11-03): la landing, la app y la marca todavía dicen Lupa UX, y falta aplicarlo. A CONFIRMAR: el logo, el dominio final y la URL. `/lupaux/` se conserva mientras no se decida otra cosa (decisions.md, 2026-11-02).
 - **Vista de la interfaz** (2026-10-24 y 25, pedidos de Luis): después de Funciones en acción va un carrusel de tres capturas reales de la app a lo ancho (Hallazgos, User Journey y Estudios), sin leyenda, con marco, un haz de luz que recorre el borde en ciclo y la base fundida con el papel. Sin JS es un riel con scroll horizontal y snap; con JS suma flechas a cada lado de la captura (en celular, sobre los bordes) y un aviso para lectores de pantalla con la captura visible. En celular cada captura se muestra en un recorte legible (`--pos` en `lupaux.css`). El texto de las capturas está en voseo, como la app.
 - **Capturas anonimizadas:** `interfaz-2.png` e `interfaz-3.png` muestran un estudio de cliente real (nombre, cliente y URL), otro estudio y el email personal de Luis. En la landing van las copias `interfaz-2-anon.png` e `interfaz-3-anon.png`, con "Tienda Brisa", "Marina", "Café Norte" y "Tu nombre". El contenido del journey (pasos, touchpoints y textos) sigue siendo el del estudio real: **Luis tiene que confirmar si se puede mostrar** o reemplazar la captura por una de un estudio de ejemplo.
 
