@@ -212,7 +212,7 @@ const jsonLd = [
     </section>
 
     <section class="service-section service-section--tight page-container" id="como-funciona" aria-labelledby="proceso-title">
-      <div class="process">
+      <div class="process" data-process>
         <div class="service-head service-head--start">
           <p class="service-head__eyebrow">Cómo funciona</p>
           <h2 class="service-head__title service-head__title--process" id="proceso-title">De tu primera consulta a tu reporte, en cinco pasos</h2>
@@ -232,8 +232,10 @@ const jsonLd = [
               ))}
             </ol>
           </div>
-          {/* Illustration pending: one scroll-linked animation (spec 15, A CONFIRMAR 13) */}
-          <div class="process__illustration" aria-hidden="true"></div>
+          {/* Drawn by process.js in five stages tied to the scroll; hidden without JavaScript */}
+          <figure class="process__figure">
+            <svg viewBox="0 0 600 900" role="img" aria-label="Estadio 1 de 5"><g data-process-art></g></svg>
+          </figure>
         </div>
         <a href={DIAGNOSIS_URL} class="pill-button service-cta" data-track="cta_diagnostico_proceso">Solicita tu diagnóstico gratis</a>
       </div>
@@ -393,4 +395,6 @@ const jsonLd = [
       track="cta_diagnostico_cierre"
     />
   </div>
+
+  <script is:inline src="/process.js?v=20261105"></script>
 </BaseLayout>

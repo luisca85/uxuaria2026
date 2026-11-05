@@ -245,12 +245,40 @@
 .process__list { display: flex; flex-direction: column; gap: 32px; }
 .process__step { display: flex; flex-direction: column; gap: 16px; max-width: 344px; }
 
-.process__illustration {
+/* Illustration from process.js: the figure stays while the steps scroll past.
+   Without JavaScript the steps keep their compact layout and no figure. */
+.process__figure { display: none; }
+
+.process--animated .process__body { align-items: flex-start; }
+
+.process--animated .process__figure {
+  position: sticky;
+  top: var(--ux-header-height);
+  display: flex;
   flex: none;
+  align-items: center;
+  justify-content: center;
   width: 447px;
-  height: 732px;
-  background: var(--ux-color-surface-soft);
+  height: calc(100vh - var(--ux-header-height));
 }
+
+.process__figure svg { display: block; width: 100%; height: auto; max-height: 92%; }
+
+.process--animated .process__step {
+  justify-content: center;
+  min-height: calc(100vh - var(--ux-header-height));
+}
+
+.process--animated .process__list { gap: 0; }
+
+.process--animated .process__step .service-item__title,
+.process--animated .process__step .service-item__text {
+  color: var(--ux-color-text-muted);
+  transition: color .2s;
+}
+
+.process--animated .process__step.is-active .service-item__title,
+.process--animated .process__step.is-active .service-item__text { color: var(--ux-color-text); }
 
 /* ===== REPORT ===== */
 .report-parts {
@@ -539,8 +567,8 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 
 @media (max-width: 1100px) {
   .situation-grid { grid-template-columns: repeat(2, minmax(0, 305px)); }
-  .process__illustration { display: none; }
-  .process__steps { width: auto; }
+  .process__steps { flex: 1; width: auto; }
+  .process--animated .process__figure { flex: 0 1 42%; width: auto; }
   .process { align-items: flex-start; }
   .process .service-cta { align-self: center; }
   .report-part { flex-direction: column; align-items: flex-start; gap: 24px; }
@@ -550,6 +578,31 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .case { flex-direction: column; }
   .case__result { width: 100%; max-width: 420px; }
   .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Same as the preview on narrow screens: figure pinned on top, steps below it */
+@media (max-width: 899px) {
+  .process--animated .process__body { flex-direction: column; gap: 0; }
+
+  .process--animated .process__figure {
+    order: -1;
+    z-index: 2;
+    flex: none;
+    width: calc(100% + 16px);
+    height: auto;
+    margin-inline: -8px;
+    padding: 8px;
+    background: var(--ux-color-surface);
+  }
+
+  .process--animated .process__figure svg { width: auto; max-height: 52vh; }
+  .process--animated .process__steps { width: 100%; }
+
+  .process--animated .process__step {
+    justify-content: flex-start;
+    min-height: 85vh;
+    padding-top: 62vh;
+  }
 }
 
 @media (max-width: 768px) {
