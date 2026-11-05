@@ -1,0 +1,396 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import ClosingCta from '../../../components/ClosingCta.astro';
+
+// Exploration: copy from Figma 146:1115 and docs/contenido/diagnostico-ux.md, pending approval (spec 15)
+const DIAGNOSIS_URL = '/diagnostico/';
+
+const situations = [
+  {
+    icon: 'tulip',
+    title: 'Tenemos visitas pero no logramos que los usuarios se queden',
+    text: 'Tu producto atrae gente, pero la mayoría se va sin entender qué ofreces o sin encontrar una razón para quedarse. Cada visita que se pierde es una inversión que no vuelve.',
+  },
+  {
+    icon: 'arches',
+    title: 'Ya hicimos una revisión con Claude, pero no estamos seguros',
+    text: 'La IA te entregó una lista larga y convincente, pero no sabes qué problemas son reales ni cuáles importan para tu negocio. Sin ese criterio, cuesta decidir por dónde empezar.',
+  },
+  {
+    icon: 'petals',
+    title: 'Construimos muchas funciones, difíciles de entender',
+    text: 'El producto creció función por función y ahora cuesta encontrar lo esencial. Los usuarios nuevos se pierden, y los que ya lo usan aprovechan solo una parte.',
+  },
+  {
+    icon: 'petals',
+    title: 'Hicimos la app con IA, pero no nos gusta su diseño',
+    text: 'Funciona, pero se ve igual a muchas otras y no refleja tu marca. Esa falta de identidad y de criterio puede restarle confianza ante quienes la prueban.',
+  },
+  {
+    icon: 'tulip',
+    title: 'Los usuarios se registran, pero nadie usa la app',
+    text: 'El registro funciona, pero la mayoría nunca llega a lo que hace valioso tu producto. Todo queda en una cuenta creada, sin uso y sin motivos para volver.',
+  },
+  {
+    icon: 'arches',
+    title: 'Nunca hemos hablado con nuestros usuarios reales',
+    text: 'Las decisiones se toman con suposiciones o con las opiniones del equipo. Sin saber qué buscan ni qué los frustra, puedes estar invirtiendo en cosas que nadie necesita.',
+  },
+];
+
+const icons: Record<string, { width: number; height: number }> = {
+  tulip: { width: 41, height: 41 },
+  arches: { width: 40, height: 41 },
+  petals: { width: 41, height: 41 },
+};
+
+const deliverables = [
+  { title: 'Prioridades marcadas para tu backlog', text: 'Sabrás qué resolver y qué simplificar primero, según su impacto.' },
+  { title: 'Los puntos donde pierdes usuarios.', text: 'Sabrás en qué momento se van y qué los está alejando.' },
+  { title: 'Decisiones con menos suposiciones.', text: 'Tendrás hallazgos concretos para decidir y sabrás qué conviene preguntarles a tus usuarios.' },
+];
+
+const steps = [
+  { title: 'Cuéntanos de tu producto.', text: 'Responde unas preguntas rápidas para que podamos evaluar tu caso. Si tu proyecto califica, conversamos 30 minutos.' },
+  { title: 'Definimos el foco.', text: 'Con lo que nos cuentas en la llamada, elegimos el flujo, el objetivo y el tipo de usuario.' },
+  { title: 'Recorremos el flujo como un usuario.', text: 'Avanzamos pantalla por pantalla, registramos dónde hay dudas, pasos de más o errores, y marcamos cada problema donde ocurre.' },
+  { title: 'Evaluamos cada problema.', text: 'Definimos su severidad, el criterio que incumple y cómo afecta a tus usuarios y a tu negocio.' },
+  { title: 'Priorizamos y armamos tu reporte.', text: 'Ordenamos los hallazgos para que sepas qué resolver primero y revisamos el reporte contigo.' },
+];
+
+// The journey text is a placeholder in Figma ("Todo el recorrido del usuario en un . user journey.....")
+const reportParts = [
+  { title: 'Tus pantallas, marcadas.', text: 'Cada hallazgo aparece numerado en el lugar exacto del producto.', image: 'report-findings', width: 1521, height: 1134, alt: 'Lista de hallazgos del reporte, agrupados por severidad' },
+  { title: 'Severidad.', text: 'Para distinguir lo urgente de lo que puede esperar.', image: 'report-severity', width: 1524, height: 887, alt: 'Detalle de un hallazgo con su severidad y su recomendación' },
+  { title: 'Un mapa de la experiencia de tu usuario', text: 'Todo el recorrido de tu usuario en un solo mapa.', image: 'report-journey', width: 1524, height: 891, alt: 'Mapa de experiencia con etapas, acciones y emociones del usuario' },
+  { title: 'Una recomendación.', text: 'Qué hacer para resolverlo y cómo medirlo.' },
+];
+
+const proServices = [
+  { icon: 'petals', title: 'Entrevistas', text: 'Conversamos con tus usuarios para entender qué buscan, qué los frustra y por qué toman sus decisiones.' },
+  { icon: 'arches', title: 'Pruebas de usabilidad', text: 'Vemos cómo usan tu producto en tareas reales y dónde se traban.' },
+];
+
+const comparison = [
+  ['Alcance', 'Tu flujo más importante', 'Los flujos o el producto completo, según lo acordado'],
+  ['Método', 'Revisión experta de un diseñador UX senior', 'Evaluación heurística e investigación con usuarios reales: entrevistas y pruebas de usabilidad'],
+  ['Resultado', 'Reporte inicial con prioridades', 'Síntesis de entrevistas, informe de usabilidad, mapa de experiencia, perfiles de usuario, mapa de fricción y backlog priorizado'],
+  ['Después', 'Tú decides cómo seguir', 'Podemos diseñar y construir la solución contigo'],
+  ['Inversión', 'Gratis', 'Propuesta según el alcance'],
+];
+
+const moments = [
+  'En la calculadora de huella, donde los usuarios abandonaban y las unidades confusas generaban datos incorrectos.',
+  'Al llegar al pago externo, porque la pasarela aparecía en inglés, sin aviso, y la confianza se derrumbaba.',
+  'Después de pagar, porque nada invitaba a volver.',
+];
+
+const received = [
+  '3 horizontes de implementación: mejoras rápidas, mediano plazo y hoja de ruta.',
+  '2 proto-personas como base para sus próximas decisiones de producto.',
+  'Cada problema con su impacto en el negocio y una recomendación concreta.',
+];
+
+const faqs = [
+  ['¿Qué es un diagnóstico UX?', 'Es una revisión de tu producto para detectar qué problemas de experiencia frenan a tus usuarios y cuáles conviene resolver primero.'],
+  ['¿Es realmente gratis?', 'Sí. El diagnóstico y el reporte inicial no tienen costo y no te comprometen a contratar nada.'],
+  ['¿Tengo que contratarlos después?', 'No. El diagnóstico no te compromete a nada y el reporte es tuyo.'],
+  ['¿Sirve para mi producto?', 'Sí, si es un producto digital: SaaS, app, sitio web o MVP, hecho con IA o con desarrollo tradicional.'],
+  ['¿Cuál es la diferencia entre el diagnóstico y una auditoría UX completa?', 'El diagnóstico es una primera lectura de lo más importante. El servicio completo cubre más flujos y suma investigación con usuarios reales, mediante entrevistas y pruebas de usabilidad.'],
+  ['¿Reemplaza las pruebas con usuarios?', 'No. El diagnóstico es una revisión experta. Las entrevistas y las pruebas de usabilidad con usuarios reales son parte del servicio completo.'],
+  ['¿Qué necesitan de mí?', 'La dirección de tu producto, una llamada de 30 minutos y un usuario de prueba si requiere inicio de sesión. Si tienes datos de uso, también ayudan.'],
+  ['¿El reporte incluye diseños?', 'No. Incluye hallazgos y prioridades. El diseño de las soluciones se define dentro del servicio completo.'],
+];
+
+// Design Systems has no page yet: spec 15, A CONFIRMAR 5
+const otherServices = [
+  { label: 'Diseño de MVP para startups desde 0', href: '/servicios/mvp/' },
+  { label: 'Sistemas de diseño potenciados con IA' },
+  { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
+];
+
+const relatedSlugs = ['3-cosas-ux', '6-preguntas-ux', 'prompt-ear-no-es-disenar'];
+const related = (await Promise.all(relatedSlugs.map((slug) => getEntry('blog', slug)))).filter((post) => post !== undefined);
+
+const url = 'https://uxuaria.com/servicios/investigacion/';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Diagnóstico UX',
+    serviceType: 'Diagnóstico y auditoría UX',
+    description: 'Revisión de tu producto digital con un reporte inicial de los problemas de experiencia que conviene resolver primero.',
+    url,
+    provider: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+    areaServed: 'Latinoamérica',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Diagnóstico y reporte inicial sin costo, para proyectos que califican' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://uxuaria.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Diagnóstico UX', item: url },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+];
+---
+<BaseLayout
+  title="Diagnóstico UX gratis para tu producto digital | Uxuaria"
+  description="Revisamos tu producto digital y te entregamos un reporte inicial con los problemas de experiencia que conviene resolver primero. Gratis y sin compromiso."
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/blog.css?v=20261102" />
+    <link rel="stylesheet" href="/service.css?v=20261105" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <div class="page-shell service-page">
+    <section class="service-hero">
+      <div class="service-hero__inner page-container">
+        <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="page-breadcrumb__item">INICIO</a>
+          <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+          <span class="badge service-hero__badge" aria-current="page">Diagnóstico UX</span>
+        </nav>
+        <h1 class="service-hero__title">Diagnóstico UX:<br />descubre qué está frenando a tus usuarios</h1>
+        <p class="service-hero__lead">Revisamos tu producto, te entregamos un reporte inicial con lo que encontramos y te mostramos qué conviene resolver primero. Sin costo y sin compromiso de contratar nada.</p>
+        <div class="service-hero__actions">
+          <a href={DIAGNOSIS_URL} class="pill-button service-hero__cta" data-track="cta_diagnostico_hero">Solicita tu diagnóstico gratis</a>
+          <a href="#como-funciona" class="service-hero__link">
+            Descubre cómo funciona
+            <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
+          </a>
+        </div>
+        <p class="service-hero__note">Para SaaS, apps, sitios web y MVP, hechos con IA o con desarrollo tradicional. Revisamos cada solicitud para confirmar que podemos aportarte algo útil.</p>
+      </div>
+      <img class="service-hero__symbols" src="/images/diagnostico-ux/symbol-column.svg" width="186" height="41" alt="" />
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="situaciones-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">¿Te suena?</p>
+        <h2 class="service-head__title" id="situaciones-title">Lo que nos dicen algunos clientes</h2>
+      </div>
+      <ul class="situation-grid">
+        {situations.map((item) => (
+          <li class="situation-card">
+            <img class="situation-card__icon" src={`/images/diagnostico-ux/symbol-${item.icon}.svg`} width={icons[item.icon].width} height={icons[item.icon].height} alt="" />
+            <h3 class="situation-card__title">{item.title}</h3>
+            <p class="situation-card__text">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="service-section service-section--tight page-container" aria-labelledby="recibes-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Qué recibes</p>
+        <h2 class="service-head__title service-head__title--narrow" id="recibes-title">Respuestas claras para saber qué hacer con tu producto</h2>
+      </div>
+      <div class="deliverables">
+        <img class="deliverables__symbol" src="/images/diagnostico-ux/symbol-uxuaria.svg" width="33" height="33" alt="" />
+        <img class="deliverables__line" src="/images/diagnostico-ux/line-deliverables.svg" width="985" height="5" alt="" />
+        <ul class="deliverables__list">
+          {deliverables.map((item) => (
+            <li class="deliverables__item">
+              <h3 class="service-item__title">{item.title}</h3>
+              <p class="service-item__text">{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="service-section service-section--tight page-container" id="como-funciona" aria-labelledby="proceso-title">
+      <div class="process">
+        <div class="service-head service-head--start">
+          <p class="service-head__eyebrow">Cómo funciona</p>
+          <h2 class="service-head__title service-head__title--process" id="proceso-title">De tu primera consulta a tu reporte, en cinco pasos</h2>
+        </div>
+        <div class="process__body">
+          <div class="process__steps">
+            {/* The dotted line is horizontal in Figma: turned here so it stretches with the steps */}
+            <svg class="process__line" viewBox="0 0 5.333 827.333" preserveAspectRatio="none" aria-hidden="true">
+              <image href="/images/diagnostico-ux/line-process.svg" width="827.333" height="5.333" preserveAspectRatio="none" transform="translate(5.333 0) rotate(90)" />
+            </svg>
+            <ol class="process__list">
+              {steps.map((step, i) => (
+                <li class="process__step">
+                  <h3 class="service-item__title">{i + 1}. {step.title}</h3>
+                  <p class="service-item__text">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          {/* Illustration pending: one scroll-linked animation (spec 15, A CONFIRMAR 13) */}
+          <div class="process__illustration" aria-hidden="true"></div>
+        </div>
+        <a href={DIAGNOSIS_URL} class="pill-button service-cta" data-track="cta_diagnostico_proceso">Solicita tu diagnóstico gratis</a>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="reporte-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Así se ve tu reporte</p>
+        <h2 class="service-head__title service-head__title--report" id="reporte-title">Cada problema, sobre la pantalla donde ocurre</h2>
+        <p class="service-head__text service-head__text--report">Tu reporte no es una lista suelta de opiniones. Cada hallazgo señala dónde ocurre, qué tan grave es y qué recomendamos hacer.</p>
+      </div>
+      <div class="report-parts">
+        {reportParts.map((part) => (
+          <div class:list={['report-part', { 'report-part--text': !part.image }]}>
+            <div class="report-part__copy">
+              <h3 class="service-item__title">{part.title}</h3>
+              <p class="service-item__text">{part.text}</p>
+            </div>
+            {part.image && (
+              <img class="report-part__image" src={`/images/diagnostico-ux/${part.image}.png`} width={part.width} height={part.height} alt={part.alt} loading="lazy" />
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="despues-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Después del reporte</p>
+        <h2 class="service-head__title" id="despues-title">Y después del diagnóstico, tú decides</h2>
+        <p class="service-head__text service-head__text--after">El reporte es tuyo: puedes llevarlo a tu equipo y resolverlo por tu cuenta. Si quieres llegar más hondo o que lo resolvamos contigo, el siguiente paso es el servicio completo.</p>
+      </div>
+      <div class="pro-service">
+        <div class="pro-service__intro">
+          <img class="pro-service__icon" src="/images/diagnostico-ux/symbol-tulip-inverse.svg" width="41" height="41" alt="" />
+          <h3 class="pro-service__title">Servicio pro: investigación con usuarios reales</h3>
+          <p class="pro-service__text">El diagnóstico te muestra lo que vemos como expertos. Con el servicio completo también escuchamos y observamos a tus usuarios. Así, cada decisión se apoya en evidencia y no en suposiciones.</p>
+        </div>
+        {proServices.map((item) => (
+          <div class="pro-service__item">
+            <img class="pro-service__icon" src={`/images/diagnostico-ux/symbol-${item.icon}-inverse.svg`} width={icons[item.icon].width} height={icons[item.icon].height} alt="" />
+            <h3 class="pro-service__title">{item.title}</h3>
+            <p class="pro-service__text">{item.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="comparison-wrap">
+        <table class="comparison">
+          <caption class="visually-hidden">Diferencias entre el diagnóstico gratuito y el servicio completo</caption>
+          <thead>
+            <tr>
+              <td></td>
+              <th scope="col" class="comparison__head">Diagnóstico gratuito</th>
+              <th scope="col" class="comparison__head">Servicio completo (pro)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.map(([label, free, pro]) => (
+              <tr class="comparison__row">
+                <th scope="row" class="comparison__label">{label}</th>
+                <td class="comparison__cell" data-label="Diagnóstico gratuito">{free}</td>
+                <td class="comparison__cell" data-label="Servicio completo (pro)">{pro}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="caso-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Caso de éxito</p>
+        <h2 class="service-head__title service-head__title--case" id="caso-title">Greenify: +40 problemas de conversión y retención que el equipo no sabía que tenía</h2>
+      </div>
+      <div class="case">
+        <div class="case__story">
+          <p class="service-item__text">Greenify es una app para medir y compensar la huella de carbono. Tenía una propuesta de valor clara, un modelo de monetización y usuarios activos, pero la conversión no cerraba, la retención era frágil y el equipo no sabía en qué punto se rompía la experiencia.</p>
+          <h3 class="service-item__title">Encontramos los tres momentos en los que la app perdía usuarios</h3>
+          <ol class="case__moments">
+            {moments.map((moment, i) => (
+              <li class="case__moment">
+                <span class="case__pin" aria-hidden="true">{i + 1}</span>
+                <p class="service-item__text">{moment}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="case__result">
+          <article class="metric-card">
+            <p class="metric-card__value">+40</p>
+            <p class="metric-card__description">Problemas de conversión detectados</p>
+            <img class="metric-card__logo" src="/images/home/logo-greenify.png" width="105" height="30" alt="Greenify" />
+            <ArrowLink label="Leer la historia" href="/portafolio/greenify" />
+          </article>
+          <h3 class="service-item__title">Lo que recibió el equipo</h3>
+          <ul class="case__received">
+            {received.map((item) => <li class="service-item__text">{item}</li>)}
+          </ul>
+          <p class="service-item__text case__note">Este caso fue un análisis UX completo, no un diagnóstico gratuito.</p>
+        </div>
+      </div>
+      <div class="case__link">
+        <ArrowLink label="Leer el caso completo" href="/portafolio/greenify" />
+      </div>
+    </section>
+
+    <section class="service-section service-section--faq page-container" aria-labelledby="faq-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Antes de solicitarlo</p>
+        <h2 class="service-head__title" id="faq-title">Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map(([question, answer], i) => (
+          <details class="faq__item" open={i === 0}>
+            <summary class="faq__question">{question}</summary>
+            <p class="faq__answer">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-section service-section--full" aria-labelledby="otros-title">
+      <div class="service-head page-container">
+        <p class="service-head__eyebrow">Otros servicios</p>
+        <h2 class="service-head__title" id="otros-title">Otras formas en las que podemos ayudarte</h2>
+      </div>
+      <ul class="service-links">
+        {otherServices.map((service) => {
+          const Tag = service.href ? 'a' : 'span';
+          return (
+            <li>
+              <Tag href={service.href} class="service-link">
+                <span class="service-link__label">{service.label}</span>
+                <img class="service-link__arrow" src="/images/home/arrow-right.svg" width="48" height="48" alt="" />
+              </Tag>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="articulos-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Artículos relacionados</p>
+        <h2 class="service-head__title" id="articulos-title">Sigue aprendiendo sobre UX</h2>
+      </div>
+      <div class="related-grid">
+        {related.map((post) => <BlogCard post={post} variant="related" />)}
+      </div>
+    </section>
+
+    <ClosingCta
+      title="Descubre qué está frenando a tus usuarios"
+      text="Cuéntanos de tu producto y evaluamos si podemos hacer tu diagnóstico gratuito."
+      label="Solicita tu diagnóstico gratis"
+      href={DIAGNOSIS_URL}
+      track="cta_diagnostico_cierre"
+    />
+  </div>
+</BaseLayout>
