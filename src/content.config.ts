@@ -54,7 +54,13 @@ const portfolio = defineCollection({
     caseStudy: z.boolean().default(true),
     seoTitle: z.string().optional(),
     description: z.string().optional(),
+    // og:title and JSON-LD, when they differ from seoTitle and description
+    ogTitle: z.string().optional(),
     ogDescription: z.string().optional(),
+    schema: z.object({
+      headline: z.string(),
+      description: z.string(),
+    }).optional(),
     pubDate: z.coerce.date().optional(),
     keywords: z.array(z.string()).default([]),
     meta: z.string().optional(),

@@ -5,6 +5,9 @@ order: 1
 seoTitle: "Monge Pay: Diseño UX de plataforma fintech con +150K usuarios | Uxuaria"
 description: "Diseñamos la plataforma de pagos digitales más grande de Costa Rica desde cero: +150K usuarios activos, +300% de crecimiento en 2025 y más de 700 comercios adheridos. Caso de estudio UX fintech."
 ogDescription: "Diseñamos la plataforma de pagos digitales más grande de Costa Rica: +150K usuarios activos y +300% de crecimiento en 2025."
+schema:
+  headline: "Monge Pay: Diseño UX de plataforma fintech con +150K usuarios"
+  description: "Diseñamos la plataforma de pagos digitales más grande de Costa Rica desde cero: +150K usuarios activos, +300% de crecimiento en 2025 y más de 700 comercios adheridos."
 pubDate: 2026-06-30
 keywords: ["UX fintech", "diseño de producto", "pagos digitales", "Costa Rica"]
 meta: "Fintech · Costa Rica · 2022–presente"
@@ -46,7 +49,7 @@ mainImage:
   width: 1440
   height: 936
   alt: "Vista desktop de la plataforma de pagos Monge Pay"
-  label: "PLATAFORMA WEB · VISTA PRINCIPAL"
+  label: "PLATAFORMA · VISTA PRINCIPAL"
 objectives:
   - title: "Unificar canales fragmentados"
     description: "Los clientes pagaban en caja, por transferencia bancaria o en efectivo, sin una app propia que centralizara todo en un solo lugar"
