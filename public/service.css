@@ -210,6 +210,18 @@
 
 .deliverables__item { display: flex; flex-direction: column; gap: 16px; }
 
+/* deliverables.js: the symbol rides the line and lights each item it reaches */
+.deliverables--animated .deliverables__symbol { will-change: translate; }
+
+.deliverables--animated .deliverables__item .service-item__title,
+.deliverables--animated .deliverables__item .service-item__text {
+  color: var(--ux-color-text-muted);
+  transition: color .3s ease;
+}
+
+.deliverables--animated .deliverables__item.is-active .service-item__title,
+.deliverables--animated .deliverables__item.is-active .service-item__text { color: var(--ux-color-text); }
+
 /* ===== PROCESS ===== */
 .process {
   display: flex;
