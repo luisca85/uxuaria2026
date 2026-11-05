@@ -1,0 +1,291 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArrowLink from '../components/ArrowLink.astro';
+import BlogCard from '../components/BlogCard.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+
+// Exploration: content from ai-mvp-rescue.html in the service template of the diagnóstico page,
+// without voseo, pending approval (spec 15). No Figma frame for this page yet.
+// The cta ids are the ones GA4 already tracks (spec 07); rescue.js adds the visit's UTM
+const diagnosisUrl = (cta: string) => `/diagnostico/?cta=${cta}`;
+
+const situations = [
+  { icon: 'tulip', title: 'Lanzamos rápido, pero dejamos de crecer', text: 'Lanzaste tu producto rápido y llegaste a una base de usuarios, pero el crecimiento se detuvo.' },
+  { icon: 'arches', title: 'Cada función nueva rompe otra', text: 'Cada vez que quieres implementar una funcionalidad nueva se vuelve más complicado y genera más inconsistencias con otras.' },
+  { icon: 'petals', title: 'Se registran, pero no lo usan', text: 'Tus usuarios entran y tal vez se registran, pero nunca usan realmente tu producto.' },
+  { icon: 'tulip', title: 'Ya nos hackearon', text: 'Ya te han hackeado y la seguridad de tu proyecto está comprometida.' },
+  { icon: 'arches', title: 'Funciona, pero se ve genérico', text: 'Tu producto parece funcionar bien, pero una interfaz genérica y confusa no permite que lo bueno impacte en el mercado.' },
+];
+
+const icons: Record<string, { width: number; height: number }> = {
+  tulip: { width: 41, height: 41 },
+  arches: { width: 40, height: 41 },
+  petals: { width: 41, height: 41 },
+};
+
+const areas = [
+  {
+    label: 'Código',
+    week: 'Semana 0–1',
+    title: 'Revisión de código',
+    text: 'Revisamos cómo está construido tu producto: código generado con IA, dependencias, deuda técnica y puntos de quiebre.',
+    tasks: ['Auditoría de ciberseguridad', 'Revisión de integraciones', 'Análisis del stack del proyecto', 'Detección de código zombie y deuda técnica'],
+  },
+  {
+    label: 'Negocio',
+    week: 'Semana 1–2',
+    title: 'Diagnóstico de negocio',
+    text: 'Analizamos si el producto refleja la propuesta de valor, si los flujos están alineados con el modelo de monetización y dónde se pierde la retención.',
+    tasks: ['Mapa de flujos críticos frente al modelo de negocio', 'Detección de puntos de fuga de usuarios', 'Revisión de métricas de activación y retención', 'Recomendaciones de prioridad'],
+  },
+  {
+    label: 'Interfaz',
+    week: 'Semana 2–3',
+    title: 'Auditoría de interfaz',
+    text: 'Revisamos cada pantalla clave: jerarquía visual, consistencia, navegación y la fricción que frena al usuario antes de llegar al valor.',
+    tasks: ['Heurísticas de usabilidad (Nielsen)', 'Revisión del onboarding y del flujo de activación', 'Inconsistencias visuales y de componentes', 'Diagnóstico de accesibilidad básica'],
+  },
+  {
+    label: 'Backend',
+    week: 'Semana 3–4',
+    title: 'Revisión de backend',
+    text: 'Evaluamos cómo las decisiones técnicas del backend afectan la experiencia: latencia, estados de error expuestos al usuario y datos sin usar.',
+    tasks: ['Revisión de APIs y contratos de datos', 'Errores expuestos al usuario final', 'Latencia percibida y estados de carga', 'Oportunidades de mejora sin un refactor total'],
+  },
+  {
+    label: 'User QA + Handoff',
+    week: 'Semana 4–5',
+    title: 'User QA + Handoff',
+    text: 'Validamos con usuarios reales, o con el equipo simulando sesiones, y entregamos documentación lista para implementar sin ambigüedades.',
+    tasks: ['Sesiones de QA con usuarios o stakeholders', 'Redlines y especificaciones de diseño', 'Handoff documentado al equipo de desarrollo', 'Lista priorizada de mejoras posteriores al rescate'],
+  },
+];
+
+const steps = [
+  { title: 'Evaluamos, sin costo.', text: 'En una llamada de 30 minutos nos cuentas el contexto, qué está roto y hacia dónde quieres ir. Quizás incluso encontremos otras vías para resolverlo.' },
+  { title: 'Diagnóstico.', text: 'Recibes un diagnóstico general del estado de tu proyecto: negocio, usuarios y posibles bloqueos relacionados con tu stack de desarrollo.' },
+  { title: 'Priorizamos.', text: 'Juntos identificamos el problema correcto a resolver. No perdemos tiempo en detalles que no aportan valor.' },
+  { title: 'Alcance.', text: 'Armamos el proyecto con el presupuesto ideal para resolverlo. Alcance y precio cerrados, sin sorpresas.' },
+  { title: 'Rescate y handoff.', text: 'Revisamos, arreglamos y proponemos. Siempre rescatamos lo que de verdad importa.' },
+];
+
+const faqs = [
+  ['¿Qué es AI MVP Rescue?', 'Es una metodología de trabajo en la que tomamos un prototipo, MVP o producto digital construido, desarrollado y diseñado con IA, y mejoramos toda la experiencia de usuario que se siente cruda, poco flexible, difícil de escalar e insegura para los usuarios finales.'],
+  ['¿Trabajan con proyectos hechos con vibe coding?', 'Sí, podemos tomar tu proyecto hecho íntegramente con Claude, Cursor, ChatGPT, Lovable y otros.'],
+  ['¿Cuántas modificaciones harán al producto?', 'Depende de cada caso. Primero hacemos un diagnóstico general y detectamos dónde está el cuello de botella de tu producto: a veces está en el código, a veces en el diseño y a veces en la propuesta de valor. La idea no es rehacer, sino tomar lo mejor de tu producto y potenciarlo.'],
+  ['¿Pueden trabajar con mi equipo actual de desarrollo y diseño?', 'Sí. Podemos trabajar mano a mano con tu equipo, identificar errores, sugerir mejoras en la metodología de trabajo y aportar una mirada objetiva, poco sesgada y fresca a equipos ya establecidos.'],
+  ['¿Pueden dejar mi producto listo para inversores, nuevos usuarios y la salida al mercado?', 'Sí. Nos alineamos con tu objetivo y trazamos un camino para lograrlo de acuerdo con el tamaño de tu empresa, tu presupuesto y tus tiempos. Ajustamos la experiencia de usuario al tamaño justo, ni más ni menos, que necesitas en este momento para crecer.'],
+  ['¿Cuánto puede demorar este proceso?', 'Lo sabremos con exactitud después del diagnóstico, pero siempre obtendrás resultados progresivos y reales. Puede ser un trabajo de pocas semanas si solo involucra mejoras incrementales, o extenderse si se suman más actores, pruebas de QA, ambientes de producción y nuevas funcionalidades.'],
+  ['¿Qué voy a obtener al final?', 'Un proyecto rescatado y limpio, con una experiencia de usuario probada con usuarios reales, una base sólida para seguir trabajando y haciéndolo crecer con IA, especificaciones ordenadas y listo para hacer pruebas de mercado.'],
+  ['¿Cuánto costará?', 'Después del diagnóstico inicial te diremos qué vías hay para continuar. Tratamos de ser flexibles y siempre proponemos presupuestos incrementales y alcanzables. No trabajamos por hora: te damos un costo fijo y nos comprometemos a entregarte todo, incluso si toma más tiempo del estimado.'],
+];
+
+// Design Systems has no page yet: spec 15, A CONFIRMAR 5
+const otherServices = [
+  { label: 'Diagnóstico UX gratis para tu producto', href: '/servicios/investigacion/' },
+  { label: 'Diseño de MVP para startups desde 0', href: '/servicios/mvp/' },
+  { label: 'Sistemas de diseño potenciados con IA' },
+];
+
+const relatedSlugs = ['prompt-ear-no-es-disenar', 'diferencias-creacion-ia-vs-diseno', 'instinto-herramienta-creativa-decisiones'];
+const related = (await Promise.all(relatedSlugs.map((slug) => getEntry('blog', slug)))).filter((post) => post !== undefined);
+
+const url = 'https://uxuaria.com/ai-mvp-rescue';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'AI MVP Rescue',
+    serviceType: 'Rescate de MVP hecho con IA',
+    description: 'Convertimos prototipos y MVP hechos con IA (Claude Code, Lovable, Cursor, ChatGPT y otros) en productos listos para el mercado, los usuarios y los inversores.',
+    url,
+    provider: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+    areaServed: 'Latinoamérica',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://uxuaria.com/' },
+      { '@type': 'ListItem', position: 2, name: 'AI MVP Rescue', item: url },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+];
+---
+<BaseLayout
+  title="AI MVP Rescue: rescate de MVP hecho con IA | Uxuaria"
+  description="Convertimos tu prototipo hecho con IA (Claude Code, Lovable, Cursor, ChatGPT) en un MVP listo para el mercado, tus usuarios e inversores. Diagnóstico UX inicial sin costo."
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/blog.css?v=20261102" />
+    <link rel="stylesheet" href="/service.css?v=20261105f" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <div class="page-shell service-page">
+    <section class="service-hero">
+      <div class="service-hero__inner page-container">
+        <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="page-breadcrumb__item">INICIO</a>
+          <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+          <span class="badge service-hero__badge" aria-current="page">AI MVP Rescue</span>
+        </nav>
+        <h1 class="service-hero__title">Convierte tu prototipo hecho con IA en un MVP que realmente crezca</h1>
+        <p class="service-hero__lead">Convertimos prototipos hechos con IA (Claude Code, Lovable, ChatGPT y otros) genéricos, crudos y difíciles de entender en MVP listos para el mercado, tus usuarios e inversores.</p>
+        <div class="service-hero__actions">
+          <a href={diagnosisUrl('cta_hero')} class="pill-button service-hero__cta" data-track="cta_hero">Agenda tu diagnóstico UX sin costo</a>
+          <a href="#como-funciona" class="service-hero__link" data-track="cta_como_funciona">
+            ¿Cómo funciona?
+            <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
+          </a>
+        </div>
+        <p class="service-hero__note">Consultoría inicial sin costo. Para productos hechos con Claude, Cursor, ChatGPT, Lovable y otras herramientas de IA.</p>
+      </div>
+      <img class="service-hero__symbols" src="/images/diagnostico-ux/symbol-column.svg" width="186" height="41" alt="" />
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="situaciones-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Esto es para ti si…</p>
+        <h2 class="service-head__title service-head__title--case" id="situaciones-title">Tu producto no falla porque no tenga valor, sino porque los usuarios no pueden llegar a él</h2>
+      </div>
+      <ul class="situation-grid" data-situations>
+        {situations.map((item) => (
+          <li class="situation-card">
+            <img class="situation-card__icon" src={`/images/diagnostico-ux/symbol-${item.icon}.svg`} width={icons[item.icon].width} height={icons[item.icon].height} alt="" />
+            <h3 class="situation-card__title">{item.title}</h3>
+            <p class="situation-card__text">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="service-item__title">Si dos o más te describen, este rescate es para ti.</p>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="areas-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Nuestro enfoque</p>
+        <h2 class="service-head__title service-head__title--narrow" id="areas-title">Cinco áreas que revisamos en cada rescate</h2>
+        <p class="service-head__text service-head__text--after">Cada proyecto tiene sus propias roturas. Estas son las cinco dimensiones que analizamos y el trabajo concreto que hacemos en cada una.</p>
+      </div>
+      <ol class="rescue-areas">
+        {areas.map((area, i) => (
+          <li class="rescue-area">
+            <span class="rescue-area__number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <div class="rescue-area__summary">
+              <span class="badge rescue-area__week">{area.week}</span>
+              <h3 class="service-item__title">{area.title}</h3>
+              <p class="service-item__text">{area.text}</p>
+            </div>
+            <div class="rescue-area__tasks">
+              <p class="rescue-area__subtitle">Qué haremos</p>
+              <ul class="rescue-area__list">
+                {area.tasks.map((task) => <li class="service-item__text rescue-area__task">{task}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="service-section page-container" id="como-funciona" aria-labelledby="proceso-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">El proceso</p>
+        <h2 class="service-head__title" id="proceso-title">Cómo rescatamos tu MVP</h2>
+        <p class="service-head__text service-head__text--after">Sin procesos eternos ni consultoría indefinida. Cinco pasos claros, desde la primera conversación hasta dejar tu producto funcionando.</p>
+      </div>
+      <ol class="rescue-steps">
+        {steps.map((step, i) => (
+          <li class="rescue-step">
+            <span class="rescue-step__number" aria-hidden="true">{i + 1}</span>
+            <h3 class="service-item__title">{step.title}</h3>
+            <p class="service-item__text">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+      <a href={diagnosisUrl('cta_proceso')} class="pill-button service-cta" data-track="cta_proceso">Agenda tu diagnóstico UX sin costo</a>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="casos-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Casos</p>
+        <h2 class="service-head__title" id="casos-title">Productos reales, resultados reales</h2>
+      </div>
+      <div class="rescue-cases">
+        <article class="metric-card">
+          <p class="metric-card__value">+150K</p>
+          <p class="metric-card__description">Usuarios activos. Diseño de la experiencia de la plataforma fintech más grande de Costa Rica, con +300% de crecimiento en 2025.</p>
+          <img class="metric-card__logo metric-card__logo--wide" src="/images/home/logo-monge-pay.png" width="154" height="30" alt="Monge Pay" />
+          <ArrowLink label="Leer la historia" href="/portafolio/monge-pay" />
+        </article>
+        <article class="metric-card">
+          <p class="metric-card__value metric-card__value--word">Rescate UX</p>
+          <p class="metric-card__description">Reestructuración de la experiencia y de los flujos clave de un MVP, priorizando lo que frenaba la activación de usuarios.</p>
+          <img class="metric-card__logo" src="/images/home/logo-greenify.png" width="105" height="30" alt="Greenify" />
+        </article>
+      </div>
+    </section>
+
+    <section class="service-section service-section--faq page-container" aria-labelledby="faq-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Preguntas</p>
+        <h2 class="service-head__title" id="faq-title">Antes de que preguntes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map(([question, answer], i) => (
+          <details class="faq__item" open={i === 0}>
+            <summary class="faq__question">{question}</summary>
+            <p class="faq__answer">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-section service-section--full" aria-labelledby="otros-title">
+      <div class="service-head page-container">
+        <p class="service-head__eyebrow">Otros servicios</p>
+        <h2 class="service-head__title" id="otros-title">Otras formas en las que podemos ayudarte</h2>
+      </div>
+      <ul class="service-links">
+        {otherServices.map((service) => {
+          const Tag = service.href ? 'a' : 'span';
+          return (
+            <li>
+              <Tag href={service.href} class="service-link">
+                <span class="service-link__label">{service.label}</span>
+                <img class="service-link__arrow" src="/images/home/arrow-right.svg" width="48" height="48" alt="" />
+              </Tag>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="articulos-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Artículos relacionados</p>
+        <h2 class="service-head__title" id="articulos-title">Diseñar productos en tiempos de IA</h2>
+      </div>
+      <div class="related-grid">
+        {related.map((post) => <BlogCard post={post} variant="related" />)}
+      </div>
+    </section>
+
+    <ClosingCta
+      title="¿Listo para que tu MVP realmente funcione?"
+      text="Diagnóstico inicial sin costo. Cuéntanos de tu producto y vemos juntos cómo rescatarlo."
+      label="Agenda tu diagnóstico UX sin costo"
+      href={diagnosisUrl('cta_final')}
+      track="cta_final"
+    />
+  </div>
+
+  <script is:inline src="/situations.js?v=20261105"></script>
+  <script is:inline src="/rescue.js?v=20261105"></script>
+</BaseLayout>
