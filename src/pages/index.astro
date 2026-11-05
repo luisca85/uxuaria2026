@@ -5,12 +5,15 @@ import CalEmbed from '../components/CalEmbed.astro';
 import ShapeRow from '../components/ShapeRow.astro';
 import { BOOKING_URL } from '../lib/booking';
 
+// Every mention of the diagnóstico UX leads to its service page (spec 15, "Destinos")
+const DIAGNOSIS_PAGE = '/servicios/investigacion/';
+
 // Copy is literal from Figma until approved: spec 11-home, "Contenido a aprobar"
 const services = [
-  'Research y diagnóstico UX de tu producto',
-  'Diseño de interfaz (UI) para atrapar a tus usuarios',
-  'Product design para escalar y crecer tu MVP',
-  'Rescatamos tu MVP hecho con IA',
+  { label: 'Research y diagnóstico UX de tu producto', href: DIAGNOSIS_PAGE },
+  { label: 'Diseño de interfaz (UI) para atrapar a tus usuarios' },
+  { label: 'Product design para escalar y crecer tu MVP' },
+  { label: 'Rescatamos tu MVP hecho con IA' },
 ];
 
 const clients = [
@@ -49,7 +52,7 @@ const testimonials = [
   ogDescription="Consultoría UX especializada en fintech y productos digitales con IA. Más de 15 años trabajando con startups en Argentina y LATAM."
   legacyStyles={false}
 >
-  <link slot="head" rel="stylesheet" href="/home.css?v=20261103b" />
+  <link slot="head" rel="stylesheet" href="/home.css?v=20261105" />
   <script is:inline slot="head">
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('home-motion');
   </script>
@@ -143,11 +146,10 @@ const testimonials = [
         <p class="home-hero__lead">Consultoría y Agencia UX para startups que escalan, con foco en productos construidos con IA.</p>
         <div class="home-hero__actions" data-reveal style="--reveal-delay:240ms">
           <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button home-hero__call" data-track="cta_hero_call">Agenda una llamada de 15 minutos</a>
-          {/* No destination yet: spec 11-home, "Destinos" */}
-          <span class="home-hero__diagnosis">
+          <a href={DIAGNOSIS_PAGE} class="home-hero__diagnosis" data-track="cta_hero_diagnostico">
             o obtén un diagnóstico UX gratis
             <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
-          </span>
+          </a>
         </div>
       </section>
 
@@ -171,7 +173,7 @@ const testimonials = [
         </article>
       </section>
 
-      {/* Context buttons have no destination yet: spec 11-home, "Destinos" */}
+      {/* Context buttons without a link have no destination yet: spec 11-home, "Destinos" */}
       <section class="home-process" aria-label="Cómo trabajamos">
         <div class="process-block process-block--research">
           <article class="process-step process-step--research" data-reveal>
@@ -181,7 +183,7 @@ const testimonials = [
           </article>
           <div class="process-context process-context--research">
             <p class="process-context__text" data-split>Invertiste tiempo en diseño, desarrollo, marketing y ves, y ya tienes tu producto (SaaS, web app, landing page) en el mercado, pero simplemente no sabes por qué aún no despega como quieres y, lo peor de todo, no estás seguro de por qué...</p>
-            <span class="process-context__action" data-reveal>Más de nuestro diagnóstico UX</span>
+            <a href={DIAGNOSIS_PAGE} class="process-context__action" data-reveal data-track="cta_proceso_diagnostico">Más de nuestro diagnóstico UX</a>
           </div>
         </div>
         <div class="process-block process-block--design">
@@ -223,11 +225,11 @@ const testimonials = [
         <ShapeRow />
         <h2 class="home-section-title" data-split>Servicios de consultoría UX y diseño de producto</h2>
       </div>
-      {/* Rows have no destination yet: spec 11-home, "Destinos" */}
+      {/* Rows without href have no destination yet: spec 11-home, "Destinos" */}
       <ul class="service-rows">
         {services.map((service) => (
           <li class="service-row" data-reveal>
-            {service}
+            {service.href ? <a href={service.href} class="service-row__link">{service.label}</a> : service.label}
             <img class="service-row__arrow" src="/images/home/arrow-right.svg" width="48" height="48" alt="" />
           </li>
         ))}
