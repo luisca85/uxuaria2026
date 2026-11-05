@@ -185,9 +185,8 @@
       add(poly([P(-110, 260, z0), P(110, 260, z0), P(110, 480, z0), P(-110, 480, z0)], true), null, K, 4, st.cube);
     }
 
-    // Front portal and poster frame
+    // Front portal (the preview's poster frame is left out)
     add(poly(profile(0), true), null, K, 5);
-    add(poly([[24, 24], [576, 24], [576, 876], [24, 876]], true), null, K, 3);
     return out;
   }
 

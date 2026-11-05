@@ -234,14 +234,6 @@
   width: 418px;
 }
 
-.process__line {
-  flex: none;
-  align-self: stretch;
-  width: 5.33px;
-  height: auto;
-  margin-left: -2.67px;
-}
-
 .process__list { display: flex; flex-direction: column; gap: 32px; }
 .process__step { display: flex; flex-direction: column; gap: 16px; max-width: 344px; }
 
