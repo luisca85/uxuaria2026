@@ -13,7 +13,6 @@ const diagnosisUrl = (cta: string) => `/diagnostico/?cta=${cta}`;
 const situations = [
   { icon: 'tulip', title: 'Lanzamos rápido, pero dejamos de crecer', text: 'Lanzaste tu producto rápido y llegaste a una base de usuarios, pero el crecimiento se detuvo.' },
   { icon: 'arches', title: 'Cada función nueva rompe otra', text: 'Cada vez que quieres implementar una funcionalidad nueva se vuelve más complicado y genera más inconsistencias con otras.' },
-  { icon: 'petals', title: 'Se registran, pero no lo usan', text: 'Tus usuarios entran y tal vez se registran, pero nunca usan realmente tu producto.' },
   { icon: 'tulip', title: 'Ya nos hackearon', text: 'Ya te han hackeado y la seguridad de tu proyecto está comprometida.' },
   { icon: 'arches', title: 'Funciona, pero se ve genérico', text: 'Tu producto parece funcionar bien, pero una interfaz genérica y confusa no permite que lo bueno impacte en el mercado.' },
 ];
@@ -125,7 +124,7 @@ const jsonLd = [
 >
   <Fragment slot="head">
     <link rel="stylesheet" href="/blog.css?v=20261102" />
-    <link rel="stylesheet" href="/service.css?v=20261105f" />
+    <link rel="stylesheet" href="/service.css?v=20261105g" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
@@ -156,7 +155,7 @@ const jsonLd = [
         <p class="service-head__eyebrow">Esto es para ti si…</p>
         <h2 class="service-head__title service-head__title--case" id="situaciones-title">Tu producto no falla porque no tenga valor, sino porque los usuarios no pueden llegar a él</h2>
       </div>
-      <ul class="situation-grid" data-situations>
+      <ul class="situation-grid situation-grid--pairs" data-situations>
         {situations.map((item) => (
           <li class="situation-card">
             <img class="situation-card__icon" src={`/images/diagnostico-ux/symbol-${item.icon}.svg`} width={icons[item.icon].width} height={icons[item.icon].height} alt="" />

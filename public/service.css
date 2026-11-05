@@ -571,6 +571,9 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 .service-page .closing-cta .pill-button { width: 290px; border-color: var(--ux-color-text-inverse); }
 
 /* ===== AI MVP RESCUE ===== */
+/* Four situations read better as two rows of two */
+.situation-grid--pairs { grid-template-columns: repeat(2, minmax(0, 305px)); }
+
 /* Five areas: one row each, no tabs, so everything reads without JavaScript */
 .rescue-areas { width: 100%; border-top: 1px solid var(--ux-color-ink); }
 
