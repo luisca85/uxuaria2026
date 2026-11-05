@@ -13,7 +13,6 @@ pubDate: 2026-06-30
 keywords: ["marketplace", "UX Design", "arquitectura de información"]
 meta: "Marketplace · Two-sided Platform · Europa · 2023"
 card:
-  badge: "Cliente"
   summary: "Una homepage, dos audiencias opuestas: clientes buscando profesionales y profesionales queriendo crecer. Rediseñamos WeLink para que sirviera a los dos."
   image:
     src: "/images/portfolio/Welink/desktop%20-%20resultado.png"

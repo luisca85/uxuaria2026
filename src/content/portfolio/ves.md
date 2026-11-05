@@ -13,7 +13,6 @@ pubDate: 2026-06-30
 keywords: ["UX enterprise", "plataforma B2B", "industria farmacéutica"]
 meta: "Farma · Eventos virtuales · Enterprise SaaS · B2B · 2022"
 card:
-  badge: "Cliente"
   summary: "+100 eventos hospedados para 4 marcas farmacéuticas y 4 roles de usuario. Diseñamos el sistema completo, del flujo del asistente al panel de administración."
   image:
     src: "/images/portfolio/VES/Events-services.png"

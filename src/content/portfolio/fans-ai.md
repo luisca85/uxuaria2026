@@ -13,7 +13,6 @@ pubDate: 2026-06-30
 keywords: ["MVP", "UX Design", "IA", "producto digital"]
 meta: "Startup · MVP · Red social · IA · Creator economy · 2023"
 card:
-  badge: "Cliente"
   summary: "Un artista emergente en cualquier idioma, un fan en cualquier país, cero intermediarios. Diseñamos el MVP de Fans.ai."
   image:
     src: "/images/portfolio/Fans.ia/fans-ia.png"

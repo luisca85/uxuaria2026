@@ -48,6 +48,7 @@ const factRows = [
   ['Entregables', facts!.deliverables],
   ['Herramientas', facts!.tools],
   ['Año', facts!.year],
+  ...(facts!.partner ? [['En asociación con', facts!.partner]] : []),
 ];
 
 // Section numbers follow the sections each project actually has

@@ -43,7 +43,6 @@ const portfolio = defineCollection({
     client: z.string(),
     order: z.number(),
     card: z.object({
-      badge: z.string(),
       summary: z.string(),
       image,
     }),
@@ -79,6 +78,8 @@ const portfolio = defineCollection({
       deliverables: z.string(),
       tools: z.string(),
       year: z.string(),
+      // Studio or company the project was done with, and credits
+      partner: z.string().optional(),
     }).optional(),
     mainImage: figure.extend({ label: z.string() }).optional(),
     objectives: z.array(z.object({ title: z.string(), description: z.string() })).default([]),

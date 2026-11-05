@@ -39,7 +39,7 @@ Métrica de éxito: publicar un proyecto = crear `src/content/portfolio/<slug>.m
 | 1 | Presentación | Ruta, industria · mercado · período, título | Sí |
 | 2 | Evidencia externa | Medio, titular, cita, fecha y link | No: solo Monge Pay la tiene hoy |
 | 3 | Resultados reales | Cifras con su detalle y notas de alcance | No: `striano` no tiene cifras con la estructura de los demás; revisar al migrar |
-| 4 | Ficha y contexto | Rol, industria, entregables, herramientas, año, y el texto | Sí |
+| 4 | Ficha y contexto | Rol, industria, entregables, herramientas, año, socio (opcional, `facts.partner`) y el texto | Sí |
 | 5 | Visual principal | Nombre del producto, tipo de evidencia y captura | Sí |
 | 6 | Objetivos | Número, título y descripción | Sí |
 | 7 | Proceso de diseño | Capturas con leyenda, de ancho completo o en dos columnas | Sí |
@@ -96,7 +96,7 @@ Una colección `portfolio` en Markdown, con frontmatter validado. El cuerpo del 
 | `client` | Nombre en la ruta y en la card | Sí |
 | `meta` | Industria · mercado · período | Sí |
 | `order` | Orden en la lista | Sí |
-| `card` | Distintivo, resumen e imagen de la card | Sí |
+| `card` | Resumen e imagen de la card | Sí |
 | `externalUrl` | Destino cuando no hay página de caso | No |
 | `facts` | Rol, industria, entregables, herramientas y año | Sí, salvo con `externalUrl` |
 | `mainImage` | Visual principal | Sí, salvo con `externalUrl` |
@@ -180,7 +180,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 **Bloquean la publicación**
 
-5. **Distintivo de las cards:** ¿es "Cliente" en todos los proyectos? El resumen sale del texto actual de cada caso.
+5. **Distintivo de las cards: resuelto (2026-11-05).** Las cards no llevan etiqueta. El resumen sale del texto actual de cada caso.
 6. **Texto del CTA: resuelto en parte (2026-11-02).** Dice 30 minutos, como Figma. Pendiente: el texto del botón, que en Figma dice "Escribime a info@uxuaria.com" y ahora abre Cal.com. La home sigue diciendo 15 minutos.
 7. **Resultados de `striano`:** hay que definir qué se muestra si no tiene cifras comparables.
 8. **Animaciones: resuelto (2026-11-02).** Solo hovers, como en el blog.
@@ -209,6 +209,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - **Visual principal de WeLink:** la captura de página completa (1444 × 4997) se recorta al marco de la plantilla; el proceso la muestra entera.
 - **Capturas chicas:** Striano, VES y Fans.ai tienen su visual principal en unos 540 × 380 px, así que se ven ampliadas a 1114 px, igual que en el sitio actual.
 - **Greenify:** la ruta dice 2025 y la ficha dice 2024, como en el sitio actual.
+- **Monge Pay:** la ficha suma "En asociación con: DEOPER, empresa costarricense de desarrollo de software. Mención especial a Walter Aguilar, Project Manager", pedido por Luis.
 - **CTA:** sin voseo: "¿Tienes un producto…?", "Agenda una llamada de 30 minutos…" y botón "Agenda una llamada →".
 - **Mutis UX y Sakura 64:** son borradores (`draft: true`), con el texto de ejemplo de Figma y sin destino. Se ven en desarrollo y no en producción.
 - **Resumen de Monge Pay en la card:** es un borrador basado en su texto actual, pendiente de aprobación.

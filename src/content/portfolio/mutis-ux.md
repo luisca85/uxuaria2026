@@ -6,7 +6,6 @@ order: 7
 draft: true
 caseStudy: false
 card:
-  badge: "Cliente"
   summary: "Una plataforma para la generación de reportes"
   image:
     src: "/images/portfolio/mutis/mutis-ux.png"

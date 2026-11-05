@@ -16,7 +16,6 @@ const external = !project.data.caseStudy && externalUrl;
 <Tag href={href} class:list={['project-card', { 'project-card--linked': href }]} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
   <div class="project-card__content">
     <div class="project-card__text">
-      <span class="badge">{card.badge}</span>
       <h2 class="project-card__name">{client}</h2>
       <p class="project-card__summary">{card.summary}</p>
     </div>

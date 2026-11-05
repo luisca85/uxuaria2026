@@ -13,7 +13,6 @@ pubDate: 2026-06-30
 keywords: ["diseño web", "UI/UX", "identidad visual", "software factory"]
 meta: "Software Factory · UI/UX · Branding digital · USA · 2022"
 card:
-  badge: "Cliente"
   summary: "Una software factory que construye productos digitales para sus clientes tenía un sitio web que no lo reflejaba. Diseñamos el sitio completo."
   image:
     src: "/images/portfolio/Striano/striano.png"

@@ -12,7 +12,6 @@ pubDate: 2026-06-30
 keywords: ["auditoría UX", "UX audit", "conversión", "retención"]
 meta: "Sustentabilidad · Huella de carbono · UX Audit · 2025"
 card:
-  badge: "Cliente"
   summary: "+40 puntos de fricción en la app de huella de carbono Greenify, con análisis de impacto de negocio y plan de implementación en 3 horizontes."
   image:
     src: "/images/portfolio/greenify/Slide%204_3%20-%207.jpg"

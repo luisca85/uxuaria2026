@@ -12,7 +12,6 @@ pubDate: 2026-06-30
 keywords: ["UX fintech", "diseño de producto", "pagos digitales", "Costa Rica"]
 meta: "Fintech · Costa Rica · 2022–presente"
 card:
-  badge: "Cliente"
   summary: "La plataforma de pagos digitales más grande de Costa Rica, diseñada desde cero."
   image:
     src: "/images/portfolio/mongepay/mongepay-desktop.png"
@@ -44,6 +43,7 @@ facts:
   deliverables: "Research, arquitectura de información, prototipo, sistema de UI"
   tools: "Figma"
   year: "2022"
+  partner: "DEOPER, empresa costarricense de desarrollo de software. Mención especial a Walter Aguilar, Project Manager"
 mainImage:
   src: "/images/portfolio/mongepay/mongepay-desktop.png"
   width: 1440
