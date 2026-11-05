@@ -6,7 +6,8 @@ import BlogCard from '../../../components/BlogCard.astro';
 import ClosingCta from '../../../components/ClosingCta.astro';
 
 // Exploration: copy from Figma 146:1115 and docs/contenido/diagnostico-ux.md, pending approval (spec 15)
-const DIAGNOSIS_URL = '/diagnostico/';
+// The current diagnosis form, kept as is; cta tells GA4 which button started it (spec 07)
+const diagnosisUrl = (cta: string) => `/diagnostico/?cta=${cta}`;
 
 const situations = [
   {
@@ -165,7 +166,7 @@ const jsonLd = [
         <h1 class="service-hero__title">Diagnóstico UX:<br />descubre qué está frenando a tus usuarios</h1>
         <p class="service-hero__lead">Revisamos tu producto, te entregamos un reporte inicial con lo que encontramos y te mostramos qué conviene resolver primero. Sin costo y sin compromiso de contratar nada.</p>
         <div class="service-hero__actions">
-          <a href={DIAGNOSIS_URL} class="pill-button service-hero__cta" data-track="cta_diagnostico_hero">Solicita tu diagnóstico gratis</a>
+          <a href={diagnosisUrl('diagnostico_hero')} class="pill-button service-hero__cta" data-track="cta_diagnostico_hero">Solicita tu diagnóstico gratis</a>
           <a href="#como-funciona" class="service-hero__link">
             Descubre cómo funciona
             <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
@@ -233,7 +234,7 @@ const jsonLd = [
             <svg viewBox="0 0 600 900" role="img" aria-label="Estadio 1 de 5"><g data-process-art></g></svg>
           </figure>
         </div>
-        <a href={DIAGNOSIS_URL} class="pill-button service-cta" data-track="cta_diagnostico_proceso">Solicita tu diagnóstico gratis</a>
+        <a href={diagnosisUrl('diagnostico_proceso')} class="pill-button service-cta" data-track="cta_diagnostico_proceso">Solicita tu diagnóstico gratis</a>
       </div>
     </section>
 
@@ -387,7 +388,7 @@ const jsonLd = [
       title="Descubre qué está frenando a tus usuarios"
       text="Cuéntanos de tu producto y evaluamos si podemos hacer tu diagnóstico gratuito."
       label="Solicita tu diagnóstico gratis"
-      href={DIAGNOSIS_URL}
+      href={diagnosisUrl('diagnostico_cierre')}
       track="cta_diagnostico_cierre"
     />
   </div>
