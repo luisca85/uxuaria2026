@@ -69,6 +69,16 @@
 
 .project-card__summary { margin-top: -8px; font-size: 16px; }
 
+.project-card__partner {
+  color: var(--ux-color-text-muted);
+  font-family: var(--ux-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 17.6px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
 .project-card__image {
   position: relative;
   overflow: hidden;

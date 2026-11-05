@@ -96,7 +96,7 @@ Una colección `portfolio` en Markdown, con frontmatter validado. El cuerpo del 
 | `client` | Nombre en la ruta y en la card | Sí |
 | `meta` | Industria · mercado · período | Sí |
 | `order` | Orden en la lista | Sí |
-| `card` | Resumen e imagen de la card | Sí |
+| `card` | Resumen, socio (opcional, `card.partner`) e imagen de la card | Sí |
 | `externalUrl` | Destino cuando no hay página de caso | No |
 | `facts` | Rol, industria, entregables, herramientas y año | Sí, salvo con `externalUrl` |
 | `mainImage` | Visual principal | Sí, salvo con `externalUrl` |
@@ -209,7 +209,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - **Visual principal de WeLink:** la captura de página completa (1444 × 4997) se recorta al marco de la plantilla; el proceso la muestra entera.
 - **Capturas chicas:** Striano, VES y Fans.ai tienen su visual principal en unos 540 × 380 px, así que se ven ampliadas a 1114 px, igual que en el sitio actual.
 - **Greenify:** la ruta dice 2025 y la ficha dice 2024, como en el sitio actual.
-- **Monge Pay:** la ficha suma "En asociación con: DEOPER, empresa costarricense de desarrollo de software. Mención especial a Walter Aguilar, Project Manager", pedido por Luis.
+- **Monge Pay:** la ficha suma "En asociación con: DEOPER, empresa costarricense de desarrollo de software. Mención especial a Walter Aguilar, Project Manager", pedido por Luis. Su card en `/portafolio` dice "En asociación con DEOPER, empresa costarricense de desarrollo de software", sin la mención a Walter Aguilar, que queda en el caso.
 - **CTA:** sin voseo: "¿Tienes un producto…?", "Agenda una llamada de 30 minutos…" y botón "Agenda una llamada →".
 - **Mutis UX y Sakura 64:** son borradores (`draft: true`), con el texto de ejemplo de Figma y sin destino. Se ven en desarrollo y no en producción.
 - **Resumen de Monge Pay en la card:** es un borrador basado en su texto actual, pendiente de aprobación.

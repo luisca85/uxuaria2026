@@ -13,6 +13,7 @@ keywords: ["UX fintech", "diseño de producto", "pagos digitales", "Costa Rica"]
 meta: "Fintech · Costa Rica · 2022–presente"
 card:
   summary: "La plataforma de pagos digitales más grande de Costa Rica, diseñada desde cero."
+  partner: "En asociación con DEOPER, empresa costarricense de desarrollo de software"
   image:
     src: "/images/portfolio/mongepay/mongepay-desktop.png"
     width: 1440

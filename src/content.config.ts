@@ -44,6 +44,8 @@ const portfolio = defineCollection({
     order: z.number(),
     card: z.object({
       summary: z.string(),
+      // Short partner credit under the summary
+      partner: z.string().optional(),
       image,
     }),
     // Card destination when the project has no case page here
