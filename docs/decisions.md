@@ -52,3 +52,5 @@
 2026-11-03 - Lupa UX se renombra a Mutis UX (specs 09-lupaux, 13-proyectos y 15-paginas-servicio). La landing y la app se actualizan aparte, y la URL `/lupaux/` se conserva mientras no se decida otra cosa, según la regla del 2026-11-02. Motivo: decisión de Luis.
 2026-11-03 - La página de diagnóstico UX no menciona que el reporte se hace con Mutis UX: sus pantallas se usan como ejemplo, sin el nombre ni el logo de la herramienta (spec 15-paginas-servicio). Motivo: decisión de Luis.
 2026-11-05 - El H1 de la página de diagnóstico UX queda "Diagnóstico UX: descubre qué está frenando a tus usuarios", sin "gratis"; la palabra se conserva en el title, la description y el CTA (spec 15-paginas-servicio). Motivo: decisión de Luis.
+2026-11-05 - Las cards de la lista de proyectos no llevan la etiqueta "Cliente" (spec 13-proyectos). Motivo: decisión de Luis.
+2026-11-05 - El caso de Monge Pay menciona que se hizo en asociación con DEOPER, empresa costarricense de desarrollo de software, con mención especial a Walter Aguilar como Project Manager (spec 13-proyectos). Motivo: pedido de Luis.

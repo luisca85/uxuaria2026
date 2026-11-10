@@ -43,8 +43,9 @@ const portfolio = defineCollection({
     client: z.string(),
     order: z.number(),
     card: z.object({
-      badge: z.string(),
       summary: z.string(),
+      // Short partner credit under the summary
+      partner: z.string().optional(),
       image,
     }),
     // Card destination when the project has no case page here
@@ -54,7 +55,13 @@ const portfolio = defineCollection({
     caseStudy: z.boolean().default(true),
     seoTitle: z.string().optional(),
     description: z.string().optional(),
+    // og:title and JSON-LD, when they differ from seoTitle and description
+    ogTitle: z.string().optional(),
     ogDescription: z.string().optional(),
+    schema: z.object({
+      headline: z.string(),
+      description: z.string(),
+    }).optional(),
     pubDate: z.coerce.date().optional(),
     keywords: z.array(z.string()).default([]),
     meta: z.string().optional(),
@@ -73,6 +80,8 @@ const portfolio = defineCollection({
       deliverables: z.string(),
       tools: z.string(),
       year: z.string(),
+      // Studio or company the project was done with, and credits
+      partner: z.string().optional(),
     }).optional(),
     mainImage: figure.extend({ label: z.string() }).optional(),
     objectives: z.array(z.object({ title: z.string(), description: z.string() })).default([]),

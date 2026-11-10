@@ -1,6 +1,7 @@
 /* ===================================================================
    UXUARIA — portfolio.css
-   Figma: uxuaria-Web, list (82:2912) and case template (93:1983).
+   Figma: uxuaria-Web, list (82:2912) and case template (93:1983),
+   with related projects (165:1354).
    Spec: 13-proyectos.
    =================================================================== */
 
@@ -8,6 +9,8 @@
   --case-size-title: clamp(36px, 4.44vw, 64px);
   --case-size-value: clamp(40px, 4.44vw, 64px);
   --case-track-title: -2.6px;
+  /* Template frame of the main visual: 1114 × 596 */
+  --case-visual-ratio: 1114 / 596;
 }
 
 /* ===== LIST ===== */
@@ -66,6 +69,16 @@
 
 .project-card__summary { margin-top: -8px; font-size: 16px; }
 
+.project-card__partner {
+  color: var(--ux-color-text-muted);
+  font-family: var(--ux-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 17.6px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
 .project-card__image {
   position: relative;
   overflow: hidden;
@@ -87,6 +100,9 @@
   gap: 40px;
   padding-block: 56px 80px;
 }
+
+/* Long client names wrap instead of overflowing on mobile */
+.case-intro .page-breadcrumb { flex-wrap: wrap; row-gap: 4px; }
 
 .case-intro__body {
   display: grid;
@@ -329,6 +345,15 @@
   height: auto;
 }
 
+/* Tall full-page captures: top of the page, at the template frame */
+.case-visual__frame--crop { aspect-ratio: var(--case-visual-ratio); }
+
+.case-visual__frame--crop img {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
 /* ===== OBJECTIVES ===== */
 .case-objectives {
   padding-block: 80px;
@@ -398,6 +423,88 @@
   line-height: 25.6px;
 }
 
+/* ===== RELATED ===== */
+.case-related {
+  padding-block: 80px 96px;
+  border-block: 1px solid var(--ux-color-border-soft);
+  background: var(--ux-color-surface-soft);
+}
+
+.case-related__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.related-card {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 24px;
+  border: 1px solid var(--ux-color-border-soft);
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface);
+  color: var(--ux-color-text);
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.related-card:hover,
+.related-card:focus-visible {
+  position: relative;
+  z-index: 2;
+  transform: scale(1.02);
+  box-shadow: var(--ux-shadow-card-hover);
+}
+
+.related-card:hover .arrow-link { text-decoration: underline; }
+
+.related-card__image {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--ux-radius-frame);
+  background: var(--ux-color-surface-soft);
+}
+
+.related-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.related-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.related-card__meta {
+  color: var(--ux-color-text-muted);
+  font-family: var(--ux-font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.6px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
+.related-card__name {
+  font-size: var(--ux-size-heading);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -3.2px;
+}
+
+.related-card__summary {
+  color: var(--ux-color-text-muted);
+  font-size: 16px;
+  line-height: 25.6px;
+}
+
 /* ===== RESPONSIVE =====
    Provisional until the mobile frames exist (spec 13-proyectos) */
 @media (max-width: 1100px) {
@@ -409,6 +516,7 @@
   .case-overview { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .case-objectives__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .case-objective__title { min-height: 0; }
+  .related-card { grid-template-columns: 240px minmax(0, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -418,8 +526,10 @@
   .case-visual__caption { flex-direction: column; gap: 4px; }
   .project-card__image { height: 220px; }
   .case-context { font-size: 18px; }
+  .related-card { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .related-card__name { letter-spacing: -.04em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card--linked:hover, .project-card--linked:focus-visible, .case-evidence:hover, .case-evidence:focus-visible { transform: none; }
+  .project-card--linked:hover, .project-card--linked:focus-visible, .case-evidence:hover, .case-evidence:focus-visible, .related-card:hover, .related-card:focus-visible { transform: none; }
 }

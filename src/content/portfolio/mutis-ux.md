@@ -2,11 +2,10 @@
 # Draft for the design review: name, text and destination pending (spec 13-proyectos, A CONFIRMAR #2)
 title: "Mutis UX"
 client: "Mutis UX"
-order: 2
+order: 7
 draft: true
 caseStudy: false
 card:
-  badge: "Cliente"
   summary: "Una plataforma para la generación de reportes"
   image:
     src: "/images/portfolio/mutis/mutis-ux.png"

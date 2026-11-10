@@ -2,7 +2,7 @@
 
 **id:** `proyectos`
 **Estado:** 🚧 Diseño desktop de la lista y la plantilla visto y aprobado por Luis por ahora (2026-11-02), con Monge Pay · pendiente: contenido, 6 casos por migrar y frames mobile · no se publica hasta resolver A CONFIRMAR
-**Última actualización:** 2026-11-02
+**Última actualización:** 2026-11-05
 **Relacionada con:** 02-portfolio, 10-astro, 11-home, 12-blog-redesign
 
 ---
@@ -28,6 +28,7 @@ Métrica de éxito: publicar un proyecto = crear `src/content/portfolio/<slug>.m
 ## Diseño
 
 - **Lista:** [nodo 82:2912](https://www.figma.com/design/67hslCn1jUCcFDvSCzRpmP/uxuaria-Web?node-id=82-2912), llamado "Home — Desktop 1442" en Figma. Título "Nuestros Proyectos", introducción "En esto andamos" y 4 cards horizontales: texto a la izquierda y captura a la derecha.
+- **Caso con relacionados:** [frame 165:1354](https://www.figma.com/design/67hslCn1jUCcFDvSCzRpmP/uxuaria-Web?node-id=165-1354): la plantilla más la sección "Otros proyectos relacionados".
 - **Caso:** [plantilla 93:1983](https://www.figma.com/design/67hslCn1jUCcFDvSCzRpmP/uxuaria-Web?node-id=93-1983), "Uxuaria / Template / Caso de estudio de proyecto", con Monge Pay de ejemplo.
 - **Mobile:** no hay frames. **A CONFIRMAR.**
 
@@ -38,11 +39,12 @@ Métrica de éxito: publicar un proyecto = crear `src/content/portfolio/<slug>.m
 | 1 | Presentación | Ruta, industria · mercado · período, título | Sí |
 | 2 | Evidencia externa | Medio, titular, cita, fecha y link | No: solo Monge Pay la tiene hoy |
 | 3 | Resultados reales | Cifras con su detalle y notas de alcance | No: `striano` no tiene cifras con la estructura de los demás; revisar al migrar |
-| 4 | Ficha y contexto | Rol, industria, entregables, herramientas, año, y el texto | Sí |
+| 4 | Ficha y contexto | Rol, industria, entregables, herramientas, año, socio (opcional, `facts.partner`) y el texto | Sí |
 | 5 | Visual principal | Nombre del producto, tipo de evidencia y captura | Sí |
 | 6 | Objetivos | Número, título y descripción | Sí |
 | 7 | Proceso de diseño | Capturas con leyenda, de ancho completo o en dos columnas | Sí |
-| 8 | CTA | Bloque oscuro con botón a Cal.com | Sí |
+| 8 | Proyectos relacionados | Los 3 casos siguientes del listado: captura, sector, nombre, resumen y "Ver caso" | Sí, si hay otros casos |
+| 9 | CTA | Bloque oscuro con botón a Cal.com | Sí |
 
 ---
 
@@ -94,7 +96,7 @@ Una colección `portfolio` en Markdown, con frontmatter validado. El cuerpo del 
 | `client` | Nombre en la ruta y en la card | Sí |
 | `meta` | Industria · mercado · período | Sí |
 | `order` | Orden en la lista | Sí |
-| `card` | Distintivo, resumen e imagen de la card | Sí |
+| `card` | Resumen, socio (opcional, `card.partner`) e imagen de la card | Sí |
 | `externalUrl` | Destino cuando no hay página de caso | No |
 | `facts` | Rol, industria, entregables, herramientas y año | Sí, salvo con `externalUrl` |
 | `mainImage` | Visual principal | Sí, salvo con `externalUrl` |
@@ -178,7 +180,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 **Bloquean la publicación**
 
-5. **Distintivo de las cards:** ¿es "Cliente" en todos los proyectos? El resumen sale del texto actual de cada caso.
+5. **Distintivo de las cards: resuelto (2026-11-05).** Las cards no llevan etiqueta. El resumen sale del texto actual de cada caso.
 6. **Texto del CTA: resuelto en parte (2026-11-02).** Dice 30 minutos, como Figma. Pendiente: el texto del botón, que en Figma dice "Escribime a info@uxuaria.com" y ahora abre Cal.com. La home sigue diciendo 15 minutos.
 7. **Resultados de `striano`:** hay que definir qué se muestra si no tiene cifras comparables.
 8. **Animaciones: resuelto (2026-11-02).** Solo hovers, como en el blog.
@@ -198,10 +200,19 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 ## Conocido
 
-- **Estado de la plantilla:** solo Monge Pay está migrado. Los otros 6 casos siguen en `portafolio/*.html` y dan 404 en esta rama hasta migrarlos.
+- **Estado de la plantilla (2026-11-05):** migrados Monge Pay, Greenify, Striano, WeLink, Virtual Event Services (`/portafolio/ves`) y Fans.ai, en ese orden, pedido por Luis. Title, description, canonical, OG y JSON-LD comparados contra uxuaria.com: sin diferencias. `disney-telecom` no está en la lista pedida y sigue dando 404 en esta rama.
+- **Proyectos relacionados:** en Figma la sección quedó debajo del footer; acá va entre el proceso y el CTA, con el número de sección que le toca. Muestra los 3 casos siguientes en el orden de la lista, en ciclo.
+- **Títulos:** todos como oración, como en la plantilla (A CONFIRMAR #4). En Striano se agregaron las tildes que faltaban ("quería", "quiénes") y una coma.
+- **Resúmenes de las cards:** borradores tomados del og:description de cada caso, pendientes de aprobación.
+- **Etiquetas del visual principal:** borradores a partir del alt de cada captura, pendientes de aprobación.
+- **Striano:** sin cifras; la sección de resultados muestra solo sus dos notas (A CONFIRMAR #7).
+- **Visual principal de WeLink:** la captura de página completa (1444 × 4997) se recorta al marco de la plantilla; el proceso la muestra entera.
+- **Capturas chicas:** Striano, VES y Fans.ai tienen su visual principal en unos 540 × 380 px, así que se ven ampliadas a 1114 px, igual que en el sitio actual.
+- **Greenify:** la ruta dice 2025 y la ficha dice 2024, como en el sitio actual.
+- **Monge Pay:** la ficha suma "En asociación con: DEOPER, empresa costarricense de desarrollo de software. Mención especial a Walter Aguilar, Project Manager", pedido por Luis. Su card en `/portafolio` dice "En asociación con DEOPER, empresa costarricense de desarrollo de software", sin la mención a Walter Aguilar, que queda en el caso.
+- **CTA:** sin voseo: "¿Tienes un producto…?", "Agenda una llamada de 30 minutos…" y botón "Agenda una llamada →".
 - **Mutis UX y Sakura 64:** son borradores (`draft: true`), con el texto de ejemplo de Figma y sin destino. Se ven en desarrollo y no en producción.
 - **Resumen de Monge Pay en la card:** es un borrador basado en su texto actual, pendiente de aprobación.
-- **Título de Monge Pay:** va como oración, como en la plantilla; A CONFIRMAR #4 para el resto.
 - **Capturas:** se muestran completas, con su proporción real. Figma recorta algunas en alturas fijas a partir de una imagen compuesta.
 - **Etiqueta del visual principal:** "PLATAFORMA WEB · VISTA PRINCIPAL", leída de una captura de Figma.
 - **Medición:** este CTA no lleva `data-track`, como los casos actuales.

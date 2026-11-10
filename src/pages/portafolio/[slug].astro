@@ -2,30 +2,37 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ClosingCta from '../../components/ClosingCta.astro';
-import { getProjects, type Project } from '../../lib/portfolio';
+import ArrowLink from '../../components/ArrowLink.astro';
+import { getProjects, projectHref, type Project } from '../../lib/portfolio';
 import { isoDate } from '../../lib/blog';
 
 export async function getStaticPaths() {
-  const projects = await getProjects();
-  return projects
-    .filter((project) => project.data.caseStudy)
-    .map((project) => ({ params: { slug: project.id }, props: { project } }));
+  const cases = (await getProjects()).filter((project) => project.data.caseStudy);
+  // Related: the next cases in the list order, wrapping around
+  return cases.map((project, index) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      related: [1, 2, 3].map((step) => cases[(index + step) % cases.length]).filter((other) => other !== project),
+    },
+  }));
 }
 
 interface Props {
   project: Project;
+  related: Project[];
 }
 
-const { project } = Astro.props;
-const { title, client, seoTitle, description, ogDescription, pubDate, keywords, meta, evidence, results, resultNotes, facts, mainImage, objectives, process } = project.data;
+const { project, related } = Astro.props;
+const { title, client, seoTitle, description, ogTitle, ogDescription, schema, pubDate, keywords, meta, evidence, results, resultNotes, facts, mainImage, objectives, process } = project.data;
 const { Content } = await render(project);
 
 const person = { '@type': 'Person', '@id': 'https://uxuaria.com/#luis', name: 'Luis Carlos Romero León' };
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CreativeWork',
-  headline: seoTitle!.replace(' | Uxuaria', ''),
-  description,
+  headline: schema?.headline ?? seoTitle!.replace(' | Uxuaria', ''),
+  description: schema?.description ?? description,
   url: new URL(`/portafolio/${project.id}`, Astro.site).href,
   image: new URL(mainImage!.src, Astro.site).href,
   datePublished: isoDate(pubDate!),
@@ -41,21 +48,25 @@ const factRows = [
   ['Entregables', facts!.deliverables],
   ['Herramientas', facts!.tools],
   ['Año', facts!.year],
+  ...(facts!.partner ? [['En asociación con', facts!.partner]] : []),
 ];
 
 // Section numbers follow the sections each project actually has
 let sectionIndex = 0;
 const sectionLabel = (name: string) => `${String(++sectionIndex).padStart(2, '0')} / ${name}`;
 const srcset = (image: { src: string; src2x?: string }) => image.src2x && `${image.src} 1x, ${image.src2x} 2x`;
+// Full-page captures are cropped to the template frame here; the process shows them whole
+const tallVisual = mainImage!.height > mainImage!.width;
 ---
 <BaseLayout
   title={seoTitle!}
   description={description!}
+  ogTitle={ogTitle}
   ogDescription={ogDescription}
   legacyStyles={false}
 >
   <Fragment slot="head">
-    <link rel="stylesheet" href="/portfolio.css?v=20261102" />
+    <link rel="stylesheet" href="/portfolio.css?v=20261105b" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
@@ -88,21 +99,23 @@ const srcset = (image: { src: string; src2x?: string }) => image.src2x && `${ima
       </div>
     </header>
 
-    {results.length > 0 && (
+    {(results.length > 0 || resultNotes.length > 0) && (
       <section class="case-results">
         <div class="page-container">
           <div class="case-section-heading">
             <p class="case-section-heading__label case-section-heading__label--inverse">{sectionLabel('IMPACTO')}</p>
             <h2 class="case-section-heading__title">Resultados reales</h2>
           </div>
-          <div class="case-results__grid">
-            {results.map((result) => (
-              <div class="case-result">
-                <p class="case-result__value">{result.value}</p>
-                <p class="case-result__detail">{result.detail}</p>
-              </div>
-            ))}
-          </div>
+          {results.length > 0 && (
+            <div class="case-results__grid">
+              {results.map((result) => (
+                <div class="case-result">
+                  <p class="case-result__value">{result.value}</p>
+                  <p class="case-result__detail">{result.detail}</p>
+                </div>
+              ))}
+            </div>
+          )}
           {resultNotes.length > 0 && (
             <ul class="case-results__notes">
               {resultNotes.map((note) => (
@@ -137,7 +150,7 @@ const srcset = (image: { src: string; src2x?: string }) => image.src2x && `${ima
         <p class="case-visual__name">{client}</p>
         <p class="case-visual__label">{mainImage!.label}</p>
       </div>
-      <div class="case-visual__frame">
+      <div class:list={['case-visual__frame', { 'case-visual__frame--crop': tallVisual }]}>
         <img src={mainImage!.src} srcset={srcset(mainImage!)} width={mainImage!.width} height={mainImage!.height} alt={mainImage!.alt} fetchpriority="high" />
       </div>
     </section>
@@ -179,10 +192,39 @@ const srcset = (image: { src: string; src2x?: string }) => image.src2x && `${ima
       </section>
     )}
 
+    {related.length > 0 && (
+      <section class="case-related">
+        <div class="page-container">
+          <div class="case-section-heading">
+            <p class="case-section-heading__label">{sectionLabel('RELACIONADOS')}</p>
+            <h2 class="case-section-heading__title">Otros proyectos relacionados</h2>
+          </div>
+          <ul class="case-related__list">
+            {related.map((other) => (
+              <li>
+                <a href={projectHref(other)} class="related-card">
+                  <div class="related-card__image">
+                    <img src={other.data.card.image.src} width={other.data.card.image.width} height={other.data.card.image.height} alt={other.data.card.image.alt} loading="lazy" />
+                  </div>
+                  <div class="related-card__content">
+                    <p class="related-card__meta">{other.data.meta}</p>
+                    <h3 class="related-card__name">{other.data.client}</h3>
+                    <p class="related-card__summary">{other.data.card.summary}</p>
+                    <ArrowLink label="Ver caso" align="start" />
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
+
     <ClosingCta
       status="Cupos limitados este trimestre"
-      title="¿Tenés un producto que mejorar o una idea que validar?"
-      text="Escribime y coordinamos una llamada de 30 minutos sin costo. Te cuento cómo puedo ayudarte y si tiene sentido trabajar juntos."
+      title="¿Tienes un producto que mejorar o una idea que validar?"
+      text="Agenda una llamada de 30 minutos sin costo. Te cuento cómo puedo ayudarte y si tiene sentido trabajar juntos."
+      label="Agenda una llamada →"
     />
   </div>
 </BaseLayout>
