@@ -221,8 +221,8 @@
   line-height: 25.6px;
 }
 
-/* situations.js sets --reveal from 0 to 1 on each card, one after another */
-.situation-grid--animated .situation-card {
+/* situations.js sets --reveal from 0 to 1 on each child, one after another */
+.situation-grid--animated > * {
   opacity: var(--reveal, 0);
   translate: 0 calc((1 - var(--reveal, 0)) * 32px);
   will-change: opacity, translate;
@@ -688,6 +688,165 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 .metric-card__value--word { font-size: var(--ux-size-section); line-height: 64px; }
 .metric-card__logo--wide { width: 154px; }
 
+/* ===== AI NATIVE AND DESIGN SYSTEM (spec 16) ===== */
+/* Thin rule on top of a block, as the Figma dividers */
+.service-rule {
+  width: 100%;
+  padding-top: 32px;
+  border-top: 1px solid var(--ux-color-border-soft);
+}
+
+.service-head__text--definition {
+  max-width: 830px;
+  font-size: var(--ux-size-body);
+  line-height: 32px;
+}
+
+.service-head__text--wide { max-width: 830px; }
+
+/* Title on the left, content on the right */
+.service-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  width: 100%;
+}
+
+.service-split__body { display: flex; flex-direction: column; gap: 32px; align-items: flex-start; }
+.service-split__group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+
+.service-text-lg {
+  color: var(--ux-color-text);
+  font-size: var(--ux-size-body);
+  line-height: 32px;
+}
+
+.service-note { color: var(--ux-color-text-muted); font-size: var(--ux-size-small); line-height: 25.6px; }
+.service-note a { color: inherit; }
+.service-note a:hover { color: var(--ux-color-text); }
+
+/* Items with an arrow, one per row */
+.check-list { width: 100%; }
+
+.check-list__item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--ux-color-border-soft);
+  color: var(--ux-color-text);
+  font-size: var(--ux-size-small);
+  line-height: 25.6px;
+}
+
+.check-list__item img { flex: none; width: 24px; height: 24px; margin-top: 1px; }
+
+/* Dark band: "¿Tu producto necesita IA?" */
+.service-band { background: var(--ux-color-surface-inverse); }
+
+.service-band__inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  align-items: start;
+  padding-block: 96px;
+}
+
+.service-band .service-head__title { color: var(--ux-color-text-inverse); }
+
+.service-band__body { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+.service-band__text { color: var(--ux-color-inverse-55); font-size: var(--ux-size-body); line-height: 32px; }
+
+/* Four cards, left aligned, with a lighter title */
+.situation-grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.situation-card--start { align-items: flex-start; text-align: left; }
+.situation-card--start .situation-card__icon { margin-bottom: 8px; }
+
+.situation-card--start .situation-card__title {
+  font-size: var(--ux-size-lead);
+  font-weight: 700;
+  line-height: 28.8px;
+  letter-spacing: 0;
+}
+
+/* Process table with a header on the first column too */
+.comparison__head--first { padding-left: 0; }
+.comparison--process .comparison__label { font-weight: 700; }
+
+/* Four deliverables, titles only */
+.deliverables--four { max-width: none; }
+.deliverables--four .deliverables__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* "Qué entregamos": copy on the left, an example on the right */
+.ds-parts { display: flex; flex-direction: column; gap: 64px; width: 100%; }
+
+.ds-part {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.ds-part__copy { display: flex; flex-direction: column; gap: 16px; }
+
+.ds-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface-soft);
+}
+
+.ds-panel--code { background: var(--ux-color-surface-inverse); }
+
+.ds-panel__label {
+  color: var(--ux-color-text-muted);
+  font-family: var(--ux-font-mono);
+  font-size: 11px;
+  line-height: 17.6px;
+  text-transform: uppercase;
+}
+
+.ds-panel--code .ds-panel__label { color: var(--ux-color-inverse-55); text-transform: none; }
+
+.ds-tokens { display: flex; flex-direction: column; gap: 24px; }
+
+.ds-token {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  color: var(--ux-color-text);
+  font-family: var(--ux-font-mono);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.ds-token__swatch {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ux-color-border-soft);
+  border-radius: var(--ux-radius-frame);
+}
+
+.ds-token__swatch--ink { background: var(--ux-color-text); }
+.ds-token__swatch--surface { background: var(--ux-color-surface); }
+.ds-token__swatch--soft { background: var(--ux-color-surface-soft); }
+.ds-token__arrow { color: var(--ux-color-text-muted); }
+
+.ds-component { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; }
+
+.ds-code {
+  margin: 0;
+  color: var(--ux-color-text-inverse);
+  font-family: var(--ux-font-mono);
+  font-size: var(--ux-size-small);
+  line-height: 28px;
+  white-space: pre-wrap;
+}
+
 /* ===== RESPONSIVE =====
    Provisional until the mobile frame exists (spec 15) */
 @media (max-width: 1280px) {
@@ -709,6 +868,13 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .case__result { width: 100%; max-width: 420px; }
   .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rescue-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .situation-grid--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ds-part { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 899px) {
+  .service-split,
+  .service-band__inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
 
 /* Same as the preview on narrow screens: figure pinned on top, steps below it */
@@ -767,4 +933,16 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .rescue-area { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 24px; }
   .rescue-steps,
   .rescue-cases { grid-template-columns: minmax(0, 1fr); }
+  .situation-grid--four,
+  .deliverables--four .deliverables__list { grid-template-columns: minmax(0, 1fr); }
+  .service-band__inner { padding-block: 64px; }
+  .service-text-lg,
+  .service-band__text,
+  .service-head__text--definition { font-size: 18px; line-height: 28px; }
+  .ds-panel { padding: 24px; }
+  .ds-code { font-size: 14px; line-height: 24px; }
+  .comparison__head--first { display: none; }
+  .closing-cta__actions { flex-direction: column; gap: 8px; }
+  .service-hero__link,
+  .closing-cta__link { white-space: nowrap; }
 }

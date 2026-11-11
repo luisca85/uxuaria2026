@@ -106,10 +106,10 @@ const faqs = [
   ['¿El reporte incluye diseños?', 'No. Incluye hallazgos y prioridades. El diseño de las soluciones se define dentro del servicio completo.'],
 ];
 
-// Design Systems has no page yet: spec 15, A CONFIRMAR 5
 const otherServices = [
   { label: 'Diseño de MVP para startups desde 0', href: '/servicios/mvp/' },
-  { label: 'Sistemas de diseño potenciados con IA' },
+  { label: 'Sistemas de diseño potenciados con IA', href: '/servicios/design-systems-ia/' },
+  { label: 'Diseño de experiencia AI Native', href: '/servicios/diseno-ai-native/' },
   { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
 ];
 
@@ -151,7 +151,7 @@ const jsonLd = [
 >
   <Fragment slot="head">
     <link rel="stylesheet" href="/blog.css?v=20261102" />
-    <link rel="stylesheet" href="/service.css?v=20261110" />
+    <link rel="stylesheet" href="/service.css?v=20261111" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('service-motion');
@@ -396,7 +396,7 @@ const jsonLd = [
   </div>
 
   <script is:inline src="/headings.js?v=20261110"></script>
-  <script is:inline src="/situations.js?v=20261105"></script>
-  <script is:inline src="/deliverables.js?v=20261105"></script>
+  <script is:inline src="/situations.js?v=20261111"></script>
+  <script is:inline src="/deliverables.js?v=20261111"></script>
   <script is:inline src="/process.js?v=20261105b"></script>
 </BaseLayout>

@@ -7,13 +7,16 @@ import { BOOKING_URL } from '../lib/booking';
 
 // Every mention of the diagnóstico UX leads to its service page (spec 15, "Destinos")
 const DIAGNOSIS_PAGE = '/servicios/investigacion/';
+// AI Native and Design System pages: spec 16-servicios-ia
+const AI_NATIVE_PAGE = '/servicios/diseno-ai-native/';
+const DESIGN_SYSTEM_PAGE = '/servicios/design-systems-ia/';
 
 // Copy is literal from Figma until approved: spec 11-home, "Contenido a aprobar"
 const services = [
   { label: 'Research y diagnóstico UX de tu producto', href: DIAGNOSIS_PAGE },
   { label: 'Diseño de interfaz (UI) para atrapar a tus usuarios' },
   { label: 'Product design para escalar y crecer tu MVP' },
-  { label: 'Rescatamos tu MVP hecho con IA' },
+  { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
 ];
 
 const clients = [
@@ -191,11 +194,11 @@ const testimonials = [
             <img class="process-step__symbol process-step__symbol--quarter" src="/images/home/symbol-design.svg" width="65" height="66" alt="" />
             <h2 class="process-step__title" data-split>Solucionamos el problema que mueve la aguja</h2>
             <p class="process-step__description">Diseñadores IA-native que entienden el negocio y construyen la experiencia del usuario</p>
-            <ArrowLink label="Clic para descubrir" align="start" />
+            <ArrowLink label="Clic para descubrir" href={AI_NATIVE_PAGE} align="start" track="cta_proceso_ai_native_card" />
           </article>
           <div class="process-context process-context--design">
             <p class="process-context__text" data-split>Una fuga de usuarios puede ser muy chica: una opción que confunde, un paso de más, una función que nadie encuentra. Pero cuando cientos de usuarios se traban en lo mismo, ese detalle de producto termina costando plata de verdad.</p>
-            <span class="process-context__action" data-reveal>AI Native Product Design</span>
+            <a href={AI_NATIVE_PAGE} class="process-context__action" data-reveal data-track="cta_proceso_ai_native">AI Native Product Design</a>
           </div>
         </div>
         <div class="process-block process-block--build">
@@ -206,7 +209,7 @@ const testimonials = [
           </article>
           <div class="process-context process-context--build">
             <p class="process-context__text" data-split>Un Figma lindo no valida nada. Armamos sistemas de diseño IA-ready, prototipos funcionales para probar con usuarios reales y MVPs rápidos para medir el interés del mercado. Y cerramos con un frontend final, listo para que tu desarrollador se dedique a lo que mejor sabe hacer: que funcione.</p>
-            <span class="process-context__action" data-reveal>Design system AI ready</span>
+            <a href={DESIGN_SYSTEM_PAGE} class="process-context__action" data-reveal data-track="cta_proceso_design_system">Design system AI ready</a>
           </div>
         </div>
       </section>

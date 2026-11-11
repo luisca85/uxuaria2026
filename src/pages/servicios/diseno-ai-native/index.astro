@@ -1,0 +1,308 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import ClosingCta from '../../../components/ClosingCta.astro';
+import { BOOKING_URL } from '../../../lib/booking';
+
+// Copy from Figma 199:1346 (desktop) and 202:1546 (mobile), pending approval (spec 16)
+// cta tells GA4 which button started the diagnosis form (spec 07)
+const diagnosisUrl = (cta: string) => `/diagnostico/?cta=${cta}`;
+
+const symptoms = [
+  'Interfaces que se ven bien pero se sienten genéricas.',
+  'Diseño y código que se van separando con cada sprint.',
+  'Un handoff que obliga al equipo de desarrollo a reinterpretar todo.',
+  'Funciones con IA que nadie pidió.',
+];
+
+const approach = [
+  { title: 'Un equipo reducido de diseñadores senior, del diagnóstico al frontend.', text: 'Hablas directamente con quienes diseñan y construyen el prototipo.' },
+  { title: 'Prototipos en código que se pueden probar con usuarios.', text: 'Se acercan más a la realidad que un Figma navegable.' },
+  { title: 'Un design system que integra marca y producción,', text: 'que tu equipo y las herramientas de IA pueden leer y usar.' },
+  { title: 'Más rápido que una metodología de diseño estándar.', text: 'La IA acelera cada etapa y las decisiones de dirección las tomamos nosotros.' },
+];
+
+const stages = [
+  ['Llamada y diagnóstico UX gratuito', 'Ordenar y acelerar el análisis', 'Interpretar lo que encontramos y decidir qué importa'],
+  ['Estimación', 'Nada', 'Definir alcance y propuesta según lo que mostró el diagnóstico'],
+  ['Descubrimiento y síntesis', 'Procesar y agrupar información', 'Definir el problema y si el producto necesita IA'],
+  ['Diseño y prototipo en código', 'Generar y iterar código y variantes', 'Las decisiones de experiencia y la coherencia del conjunto'],
+  ['Design System AI Ready', 'Documentar y mantener tokens y componentes', 'Estructurar el sistema y alinearlo con tu marca'],
+  ['Frontend listo para desarrollo', 'Acelerar la implementación', 'Revisar que el resultado sea fiel al diseño y esté listo para tu equipo'],
+];
+
+const deliverables = [
+  'Informe de diagnóstico UX.',
+  'Prototipo en código, listo para probar con usuarios.',
+  'Design system con documentación legible por equipos y por IA.',
+  'Frontend listo para que un desarrollador lo tome.',
+];
+
+const sectors = ['Fintech', 'Salud', 'Startups en etapa de crecimiento'];
+
+const faqs = [
+  ['¿Qué significa AI Native?', 'Trabajar con IA en todas las etapas del proceso de diseño, con las decisiones a cargo de un equipo de diseñadores senior. Está explicado arriba, en la definición.'],
+  ['¿Mi producto tiene que llevar IA?', 'No necesariamente. Lo definimos juntos según lo que necesite tu negocio.'],
+  ['¿Cuánto cuesta y cuánto tarda?', 'Primero hacemos una llamada, después el diagnóstico gratuito, y con eso estimamos el proceso.'],
+  ['¿El diagnóstico gratuito cambia si me interesa la mirada AI?', 'Es el mismo diagnóstico general. Si quieres verlo desde IA, lo hablamos en la primera llamada.'],
+  ['¿Trabajan con mi equipo de desarrollo?', 'Entregamos frontend listo para que un desarrollador lo tome, para que no tenga que rehacer el diseño.'],
+  ['¿Trabajan con apps hechas con Lovable, Bolt o Cursor?', 'Sí. Para esos casos mira AI MVP Rescue.'],
+];
+
+// Only pages that exist in this branch (spec 16, criterion 8)
+const otherServices = [
+  { label: 'Diagnóstico UX gratis para tu producto', href: '/servicios/investigacion/' },
+  { label: 'Design System AI Ready', href: '/servicios/design-systems-ia/' },
+  { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
+];
+
+const relatedSlugs = ['prompt-ear-no-es-disenar', 'diferencias-creacion-ia-vs-diseno', 'instinto-herramienta-creativa-decisiones'];
+const related = (await Promise.all(relatedSlugs.map((slug) => getEntry('blog', slug)))).filter((post) => post !== undefined);
+
+const url = 'https://uxuaria.com/servicios/diseno-ai-native/';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Diseño de experiencia AI Native',
+    serviceType: 'Diseño de producto con IA',
+    description: 'Diseño de producto con IA en cada etapa del proceso: diagnóstico UX, prototipos en código, design system AI ready y frontend listo para desarrollo, a cargo de un equipo reducido de diseñadores senior.',
+    url,
+    provider: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+    areaServed: 'Latinoamérica',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://uxuaria.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Diseño AI Native', item: url },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+];
+---
+<BaseLayout
+  title="Diseño de experiencia AI Native para productos | Uxuaria"
+  description="Diseño de producto con IA en cada etapa: equipo senior reducido, prototipos en código para probar con usuarios y frontend listo para tu equipo."
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/blog.css?v=20261102" />
+    <link rel="stylesheet" href="/service.css?v=20261111" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('service-motion');
+    </script>
+  </Fragment>
+
+  <div class="page-shell service-page">
+    <section class="service-hero service-hero--wide">
+      <div class="service-hero__inner page-container">
+        <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="page-breadcrumb__item">INICIO</a>
+          <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+          <span class="badge service-hero__badge" aria-current="page">Diseño AI Native</span>
+        </nav>
+        <h1 class="service-hero__title">Diseño de experiencia AI Native</h1>
+        <p class="service-hero__lead">Diseño de producto con IA en cada etapa del proceso, un equipo senior reducido, con prototipos funcionales que se pueden probar con usuarios.</p>
+        <div class="service-hero__actions">
+          <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button service-hero__cta" data-track="cta_ai_native_hero">Agenda una llamada</a>
+          <a href={diagnosisUrl('ai_native_hero')} class="service-hero__link" data-track="cta_ai_native_hero_diagnostico">
+            Pide tu diagnóstico UX gratuito
+            <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="definicion-title">
+      <div class="service-head service-rule">
+        <h2 class="service-head__eyebrow" id="definicion-title">Diseño de experiencia AI Native</h2>
+        <p class="service-head__text service-head__text--definition">AI Native significa que integramos la inteligencia artificial desde la base de nuestro trabajo. La IA es parte de nuestra identidad y funciona como un sistema desde el que construimos las soluciones para tu negocio y tus usuarios. Se encarga de las tareas que se pueden procesar, medir y analizar con patrones, y las ordena para que un equipo humano capacitado tome decisiones mejor informadas.</p>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="problema-title">
+      <div class="service-split">
+        <div class="service-head service-head--start">
+          <h2 class="service-head__title" id="problema-title">El problema</h2>
+          <p class="service-text-lg">Hoy cualquiera genera pantallas con IA en minutos. Lo difícil sigue siendo saber qué construir, para quién y cómo mantenerlo coherente cuando el producto crece.</p>
+        </div>
+        <div class="service-split__body">
+          <div class="service-split__group">
+            <h3 class="service-item__title">Los síntomas que vemos seguido</h3>
+            <ul class="check-list" data-situations>
+              {symptoms.map((item) => (
+                <li class="check-list__item"><img src="/images/home/arrow-right.svg" width="24" height="24" alt="" />{item}</li>
+              ))}
+            </ul>
+          </div>
+          <ArrowLink label="Pide tu diagnóstico UX gratuito" href={diagnosisUrl('ai_native_problema')} align="start" track="cta_ai_native_problema" />
+        </div>
+      </div>
+    </section>
+
+    <section class="service-band" aria-labelledby="necesita-title">
+      <div class="service-band__inner page-container">
+        <div class="service-head service-head--start">
+          <h2 class="service-head__title" id="necesita-title">¿Tu producto necesita IA?</h2>
+        </div>
+        <div class="service-band__body">
+          <p class="service-band__text">La IA está dentro de nuestro proceso de diseño. Que tu producto la lleve o no es una decisión de negocio, y te ayudamos a tomarla. A veces la respuesta es que no la necesita, y está bien.</p>
+          <ArrowLink label="Agenda una llamada para definirlo" href={BOOKING_URL} align="start" track="cta_ai_native_necesita" inverse />
+        </div>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="enfoque-title">
+      <div class="service-head service-head--start">
+        <h2 class="service-head__title" id="enfoque-title">Enfoque</h2>
+      </div>
+      <ul class="situation-grid situation-grid--four" data-situations>
+        {approach.map((item) => (
+          <li class="situation-card situation-card--start">
+            <img class="situation-card__icon" src="/images/diagnostico-ux/symbol-uxuaria.svg" width="41" height="41" alt="" />
+            <h3 class="situation-card__title">{item.title}</h3>
+            <p class="situation-card__text">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="service-section page-container" id="como-trabajamos" aria-labelledby="proceso-title">
+      <div class="service-head service-head--start">
+        <p class="service-head__eyebrow">Cómo trabajamos</p>
+        <h2 class="service-head__title" id="proceso-title">Qué hace la IA y qué hacemos nosotros</h2>
+        <p class="service-head__text service-head__text--wide service-text-lg">Trabajar con IA hace que el proceso sea más rápido que con una metodología de diseño estándar. Nuestro trabajo es que cada etapa sea consciente: las decisiones de dirección las tomamos nosotros, con criterio humano y de negocio.</p>
+      </div>
+      <div class="comparison-wrap">
+        <table class="comparison comparison--process">
+          <caption class="visually-hidden">Qué hace la IA y de qué se encarga el equipo en cada etapa</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="comparison__head comparison__head--first">Etapa</th>
+              <th scope="col" class="comparison__head">La IA ayuda a</th>
+              <th scope="col" class="comparison__head">Nos encargamos de</th>
+            </tr>
+          </thead>
+          <tbody data-situations>
+            {stages.map(([stage, ai, team]) => (
+              <tr class="comparison__row">
+                <th scope="row" class="comparison__label">{stage}</th>
+                <td class="comparison__cell" data-label="La IA ayuda a">{ai}</td>
+                <td class="comparison__cell" data-label="Nos encargamos de">{team}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <ArrowLink label="Agenda la primera llamada" href={BOOKING_URL} align="start" track="cta_ai_native_proceso" />
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="recibes-title">
+      <div class="service-head">
+        <h2 class="service-head__title" id="recibes-title">Qué recibes</h2>
+      </div>
+      <div class="deliverables deliverables--four" data-deliverables>
+        <img class="deliverables__symbol" src="/images/diagnostico-ux/symbol-uxuaria.svg" width="33" height="33" alt="" />
+        <img class="deliverables__line" src="/images/diagnostico-ux/line-deliverables.svg" width="985" height="5" alt="" />
+        <ul class="deliverables__list">
+          {deliverables.map((item) => (
+            <li class="deliverables__item"><h3 class="service-item__title">{item}</h3></li>
+          ))}
+        </ul>
+      </div>
+      <ArrowLink label="Pide tu diagnóstico UX gratuito" href={diagnosisUrl('ai_native_entregables')} align="start" track="cta_ai_native_entregables" />
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="para-quien-title">
+      <div class="service-split service-rule">
+        <div class="service-head service-head--start">
+          <h2 class="service-head__title" id="para-quien-title">Para quién</h2>
+        </div>
+        <div class="service-split__body">
+          <p class="service-text-lg">Trabajamos con compañías pequeñas, medianas y grandes que quieren integrar IA en sus procesos de diseño. Buscan un socio estratégico sencillo de contratar y fácil de integrar a su equipo.</p>
+          <div class="service-split__group">
+            <h3 class="service-item__title">Sectores donde tenemos más experiencia</h3>
+            <ul class="check-list" data-situations>
+              {sectors.map((item) => (
+                <li class="check-list__item"><img src="/images/home/arrow-right.svg" width="24" height="24" alt="" />{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="service-split__group">
+            <h3 class="service-item__title">Software factories</h3>
+            <p class="service-item__text">También trabajamos como proveedores B2B de software factories: nos integramos a sus equipos de desarrollo y diseñamos junto a ellos.</p>
+          </div>
+          <ArrowLink label="Agenda una llamada" href={BOOKING_URL} align="start" track="cta_ai_native_para_quien" />
+          <p class="service-note">Si tu producto lo construiste con IA y se estancó, mira <a href="/ai-mvp-rescue">AI MVP Rescue</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-section service-section--faq page-container" aria-labelledby="faq-title">
+      <div class="service-head">
+        <h2 class="service-head__title" id="faq-title">Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map(([question, answer], i) => (
+          <details class="faq__item" open={i === 0}>
+            <summary class="faq__question">{question}</summary>
+            {answer.endsWith('mira AI MVP Rescue.')
+              ? <p class="faq__answer">{answer.replace('AI MVP Rescue.', '')}<a href="/ai-mvp-rescue">AI MVP Rescue</a>.</p>
+              : <p class="faq__answer">{answer}</p>}
+          </details>
+        ))}
+      </div>
+      <ArrowLink label="¿Tienes otra pregunta? Agenda una llamada" href={BOOKING_URL} align="start" track="cta_ai_native_faq" />
+    </section>
+
+    <section class="service-section service-section--full" aria-labelledby="otros-title">
+      <div class="service-head page-container">
+        <p class="service-head__eyebrow">Otros servicios</p>
+        <h2 class="service-head__title" id="otros-title">Otras formas en las que podemos ayudarte</h2>
+      </div>
+      <ul class="service-links">
+        {otherServices.map((service) => (
+          <li>
+            <a href={service.href} class="service-link">
+              <span class="service-link__label">{service.label}</span>
+              <img class="service-link__arrow" src="/images/home/arrow-right.svg" width="48" height="48" alt="" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="articulos-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Artículos relacionados</p>
+        <h2 class="service-head__title" id="articulos-title">Sigue aprendiendo sobre diseño con IA</h2>
+      </div>
+      <div class="related-grid">
+        {related.map((post) => <BlogCard post={post} variant="related" />)}
+      </div>
+    </section>
+
+    <ClosingCta
+      title="Hablemos de tu producto."
+      text="Agenda una llamada o pide el diagnóstico UX gratuito, sin compromiso."
+      label="Agenda una llamada"
+      track="cta_ai_native_cierre"
+      secondaryLabel="Pide tu diagnóstico UX gratuito"
+      secondaryHref={diagnosisUrl('ai_native_cierre')}
+      secondaryTrack="cta_ai_native_cierre_diagnostico"
+    />
+  </div>
+
+  <script is:inline src="/headings.js?v=20261110"></script>
+  <script is:inline src="/situations.js?v=20261111"></script>
+  <script is:inline src="/deliverables.js?v=20261111"></script>
+</BaseLayout>

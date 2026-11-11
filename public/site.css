@@ -97,6 +97,10 @@
 .arrow-link--start { justify-content: flex-start; }
 a.arrow-link:hover { text-decoration: underline; }
 
+/* On dark surfaces */
+.arrow-link--inverse { color: var(--ux-color-text-inverse); }
+.arrow-link--inverse img { filter: invert(1); }
+
 /* ===== BADGE ===== */
 .badge {
   display: inline-flex;
@@ -432,6 +436,28 @@ a.site-footer__item:hover { color: var(--ux-color-text-inverse); }
   font-size: var(--ux-size-body);
   line-height: 28.8px;
 }
+
+.closing-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.closing-cta__link {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  color: var(--ux-color-text-inverse);
+  font-size: 16px;
+  line-height: 28.8px;
+  text-decoration: none;
+}
+
+.closing-cta__link img { filter: invert(1); }
+.closing-cta__link:hover { text-decoration: underline; }
 
 /* Provisional until the mobile frames exist */
 @media (max-width: 768px) {

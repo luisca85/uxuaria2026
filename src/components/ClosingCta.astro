@@ -8,11 +8,15 @@ interface Props {
   label?: string;
   href?: string;
   track?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  secondaryTrack?: string;
 }
 
-const { status, title, text, label = 'Agendá una llamada →', href = BOOKING_URL, track } = Astro.props;
+const { status, title, text, label = 'Agendá una llamada →', href = BOOKING_URL, track, secondaryLabel, secondaryHref, secondaryTrack } = Astro.props;
 // Only the booking page opens in a new tab
-const external = href.startsWith('http');
+const isExternal = (url: string) => url.startsWith('http');
+const external = isExternal(href);
 ---
 <section class="closing-cta">
   {status && (
@@ -23,5 +27,19 @@ const external = href.startsWith('http');
   )}
   <h2 class="closing-cta__title">{title}</h2>
   <p class="closing-cta__text">{text}</p>
-  <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} class="pill-button pill-button--on-dark" data-track={track}>{label}</a>
+  <div class="closing-cta__actions">
+    <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} class="pill-button pill-button--on-dark" data-track={track}>{label}</a>
+    {secondaryLabel && secondaryHref && (
+      <a
+        href={secondaryHref}
+        target={isExternal(secondaryHref) ? '_blank' : undefined}
+        rel={isExternal(secondaryHref) ? 'noopener' : undefined}
+        class="closing-cta__link"
+        data-track={secondaryTrack}
+      >
+        {secondaryLabel}
+        <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
+      </a>
+    )}
+  </div>
 </section>

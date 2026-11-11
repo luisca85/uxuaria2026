@@ -80,11 +80,11 @@ const faqs = [
   ['¿Cuánto costará?', 'Después del diagnóstico inicial te diremos qué vías hay para continuar. Tratamos de ser flexibles y siempre proponemos presupuestos incrementales y alcanzables. No trabajamos por hora: te damos un costo fijo y nos comprometemos a entregarte todo, incluso si toma más tiempo del estimado.'],
 ];
 
-// Design Systems has no page yet: spec 15, A CONFIRMAR 5
 const otherServices = [
   { label: 'Diagnóstico UX gratis para tu producto', href: '/servicios/investigacion/' },
   { label: 'Diseño de MVP para startups desde 0', href: '/servicios/mvp/' },
-  { label: 'Sistemas de diseño potenciados con IA' },
+  { label: 'Sistemas de diseño potenciados con IA', href: '/servicios/design-systems-ia/' },
+  { label: 'Diseño de experiencia AI Native', href: '/servicios/diseno-ai-native/' },
 ];
 
 const relatedSlugs = ['prompt-ear-no-es-disenar', 'diferencias-creacion-ia-vs-diseno', 'instinto-herramienta-creativa-decisiones'];
@@ -124,7 +124,7 @@ const jsonLd = [
 >
   <Fragment slot="head">
     <link rel="stylesheet" href="/blog.css?v=20261102" />
-    <link rel="stylesheet" href="/service.css?v=20261105g" />
+    <link rel="stylesheet" href="/service.css?v=20261111" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
@@ -285,6 +285,6 @@ const jsonLd = [
     />
   </div>
 
-  <script is:inline src="/situations.js?v=20261105"></script>
+  <script is:inline src="/situations.js?v=20261111"></script>
   <script is:inline src="/rescue.js?v=20261105"></script>
 </BaseLayout>

@@ -3,13 +3,23 @@ interface Props {
   label: string;
   href?: string;
   align?: 'start' | 'end';
+  track?: string;
+  inverse?: boolean;
 }
 
-const { label, href, align = 'end' } = Astro.props;
+const { label, href, align = 'end', track, inverse = false } = Astro.props;
 // No href renders a label: pending destination (spec 11-home) or inside a linked card
 const Tag = href ? 'a' : 'span';
+// Only the booking page opens in a new tab
+const external = href?.startsWith('http');
 ---
-<Tag href={href} class:list={['arrow-link', `arrow-link--${align}`]}>
+<Tag
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}
+  data-track={track}
+  class:list={['arrow-link', `arrow-link--${align}`, { 'arrow-link--inverse': inverse }]}
+>
   {label}
   <img src="/images/home/arrow-up-right.svg" width="24" height="24" alt="" />
 </Tag>

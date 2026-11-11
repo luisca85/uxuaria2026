@@ -1,0 +1,358 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import ClosingCta from '../../../components/ClosingCta.astro';
+
+// Copy from Figma 187:1640 (desktop only), pending approval (spec 16)
+// The general diagnosis form; cta tells GA4 which button started it (spec 07, spec 16 A CONFIRMAR 2)
+const diagnosisUrl = (cta: string) => `/diagnostico/?cta=${cta}`;
+
+const situations = [
+  { icon: 'tulip', title: 'Cada landing o campaña sale un poco distinta', text: 'Los colores, las tipografías y los espaciados cambian según quién lo haga, y tu marca pierde consistencia con cada pieza nueva.' },
+  { icon: 'arches', title: 'La IA genera rápido, pero no suena a tu marca', text: 'Las herramientas de IA entregan pantallas correctas y genéricas. Sin reglas claras, cada resultado necesita retoques manuales.' },
+  { icon: 'petals', title: 'Lo diseñado no es lo que llega a producción', text: 'Diseño y desarrollo se van separando con el tiempo. Cada ajuste cuesta más y nadie sabe cuál es la versión correcta.' },
+  { icon: 'petals', title: 'Tenemos un Figma, pero nadie lo usa completo', text: 'El archivo existe y cada persona termina creando su propia versión de botones, formularios y estilos.' },
+  { icon: 'tulip', title: 'Cada proyecto nuevo empieza de cero', text: 'Una landing, una campaña o una app nueva piden rehacer lo mismo. Las horas se van en repetir decisiones que ya estaban tomadas.' },
+  { icon: 'arches', title: 'No sabemos si nuestro sistema sirve para la IA', text: 'Hay reglas que viven solo en la cabeza del equipo. Si no están escritas, ninguna herramienta puede seguirlas.' },
+];
+
+const icons: Record<string, { width: number; height: number }> = {
+  tulip: { width: 41, height: 41 },
+  arches: { width: 40, height: 41 },
+  petals: { width: 41, height: 41 },
+};
+
+const deliverables = [
+  { title: 'Evaluación inicial de tu sistema.', text: 'Revisamos tus estilos, componentes y documentación y vemos qué tan conectados están.' },
+  { title: 'Dónde se rompe la conexión.', text: 'Señalamos dónde la marca, el diseño y la producción se separan y qué se repite sin control.' },
+  { title: 'Prioridades y una estimación.', text: 'Sabrás qué construir primero y, con el diagnóstico en mano, estimamos alcance y duración.' },
+];
+
+const steps = [
+  { title: 'Cuéntanos de tu empresa.', text: 'Responde unas preguntas rápidas para evaluar tu caso. Si hay encaje, conversamos 30 minutos.' },
+  { title: 'Hacemos tu diagnóstico.', text: 'Con lo que nos cuentas, revisamos cómo diseñan y producen hoy y evaluamos qué tan integrado está tu sistema.' },
+  { title: 'Te entregamos el diagnóstico y una estimación.', text: 'Ordenamos los hallazgos y te decimos qué conviene construir primero. Con eso estimamos alcance, duración e inversión.' },
+  { title: 'Construimos el sistema contigo.', text: 'Si decides avanzar, armamos tokens, componentes, documentación y reglas para que la IA use tu marca.' },
+  { title: 'Lo llevamos a código y lo probamos.', text: 'Entregamos frontend listo para tu equipo y prototipos funcionales para validar con usuarios.' },
+];
+
+const tokens = [
+  { swatch: 'ink', chain: ['gray.900', 'color.text.primary', 'heading.color'] },
+  { swatch: 'surface', chain: ['white', 'color.surface.default', 'card.background'] },
+  { swatch: 'soft', chain: ['gray.50', 'color.surface.muted', 'section.background.alt'] },
+];
+
+const agentsExample = `# Reglas del sistema
+
+- Usa solo componentes del sistema.
+- Colores y espaciados: solo tokens.
+- Nunca inventes props.
+- Antes de crear una pantalla,
+  consulta la ficha del componente.`;
+
+const proServices = [
+  { icon: 'petals', title: 'Desarrollo del Frontend', text: 'Pasamos el sistema a código con React, listo para que tu equipo lo integre.' },
+  { icon: 'arches', title: 'Prototipos testeables', text: 'Prototipos con código real para probar con usuarios.' },
+];
+
+const comparison = [
+  ['Alcance', 'Una primera lectura de tu sistema', 'El sistema y las piezas que acordemos'],
+  ['Método', 'Llamada de 30 minutos y revisión de un diseñador UX senior', 'Diseño del sistema, código en React y pruebas con prototipos funcionales'],
+  ['Resultado', 'Informe con la evaluación inicial y prioridades', 'Tokens, componentes, documentación, reglas para IA, frontend y prototipos'],
+  ['Después', 'Tú decides cómo seguir', 'Tu equipo y la IA producen con el sistema'],
+  ['Inversión', 'Gratis', 'Estimación a medida, después del diagnóstico'],
+];
+
+// Only the first answer comes from Figma; the rest are a proposal (spec 16, A CONFIRMAR 3)
+const faqs = [
+  ['¿Qué es un design system AI ready?', 'Es un sistema de diseño cuyas decisiones (colores, tipografía, componentes y reglas de uso) están escritas de forma explícita, para que personas y herramientas de IA las apliquen sin adivinar.'],
+  ['¿Necesito tener ya un design system?', 'No. Si ya tienes uno, partimos de lo que existe. Si no, lo construimos a partir de tu marca y de las piezas que ya usa tu equipo.'],
+  ['¿Qué incluye la evaluación inicial del sistema?', 'Revisamos tus estilos, componentes y documentación, señalamos dónde se separan la marca, el diseño y la producción, y te entregamos prioridades con una estimación.'],
+  ['¿Entregan solo el Figma?', 'El Figma es una parte. Entregamos el sistema conectado: tokens, componentes, documentación, reglas para IA y frontend en código.'],
+  ['¿Con qué herramientas trabajan?', 'Diseñamos en Figma y pasamos el sistema a código con React. Las reglas para IA se escriben en archivos como AGENTS.md, que las herramientas de IA leen antes de generar.'],
+];
+
+// Only pages that exist in this branch (spec 16, criterion 8)
+const otherServices = [
+  { label: 'Diseño de experiencia AI Native', href: '/servicios/diseno-ai-native/' },
+  { label: 'Diagnóstico UX para tu producto', href: '/servicios/investigacion/' },
+  { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
+];
+
+// Figma lists two articles that are not published yet (spec 16, A CONFIRMAR 4)
+const relatedSlugs = ['prompt-ear-no-es-disenar', 'diferencias-creacion-ia-vs-diseno'];
+const related = (await Promise.all(relatedSlugs.map((slug) => getEntry('blog', slug)))).filter((post) => post !== undefined);
+
+const url = 'https://uxuaria.com/servicios/design-systems-ia/';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Design System AI Ready',
+    serviceType: 'Sistemas de diseño con IA',
+    description: 'Diagnóstico y construcción de un design system que conecta marca, Figma y código, con tokens, componentes, documentación y reglas para que la IA use tu marca.',
+    url,
+    provider: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+    areaServed: 'Latinoamérica',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Diagnóstico inicial del sistema sin costo, para proyectos que califican' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://uxuaria.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Design System AI Ready', item: url },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+];
+---
+<BaseLayout
+  title="Design system con IA: marca, Figma y código | Uxuaria"
+  description="Design systems AI ready: tokens, componentes, documentación y reglas para que tu equipo y la IA creen piezas coherentes con tu marca. Diagnóstico gratis."
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/blog.css?v=20261102" />
+    <link rel="stylesheet" href="/service.css?v=20261111" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('service-motion');
+    </script>
+  </Fragment>
+
+  <div class="page-shell service-page">
+    <section class="service-hero service-hero--wide">
+      <div class="service-hero__inner page-container">
+        <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="page-breadcrumb__item">INICIO</a>
+          <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+          <span class="badge service-hero__badge" aria-current="page">Sistemas de diseño con IA</span>
+        </nav>
+        <h1 class="service-hero__title">Design system AI ready: marca, diseño y código en un solo sistema</h1>
+        <p class="service-hero__lead">Revisamos cómo se diseña y se produce hoy en tu empresa y evaluamos qué tan integrados están tu marca, tu Figma y tu código, para que tu equipo y la IA creen piezas coherentes con tu identidad. Sin costo y sin compromiso de contratar nada.</p>
+        <div class="service-hero__actions">
+          <a href={diagnosisUrl('design_system_hero')} class="pill-button service-hero__cta" data-track="cta_design_system_hero">Solicita tu diagnóstico gratis</a>
+          <a href="#como-funciona" class="service-hero__link">
+            Descubre cómo funciona
+            <img src="/images/home/chevron-forward.svg" width="24" height="24" alt="" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="situaciones-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">¿Te suena?</p>
+        <h2 class="service-head__title" id="situaciones-title">Señales de que tu diseño no está conectado</h2>
+      </div>
+      <ul class="situation-grid" data-situations>
+        {situations.map((item) => (
+          <li class="situation-card">
+            <img class="situation-card__icon" src={`/images/diagnostico-ux/symbol-${item.icon}.svg`} width={icons[item.icon].width} height={icons[item.icon].height} alt="" />
+            <h3 class="situation-card__title">{item.title}</h3>
+            <p class="situation-card__text">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="service-section service-section--tight page-container" aria-labelledby="recibes-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Qué recibes</p>
+        <h2 class="service-head__title service-head__title--narrow" id="recibes-title">Una primera lectura de qué tan conectado está tu sistema</h2>
+      </div>
+      <div class="deliverables" data-deliverables>
+        <img class="deliverables__symbol" src="/images/diagnostico-ux/symbol-uxuaria.svg" width="33" height="33" alt="" />
+        <img class="deliverables__line" src="/images/diagnostico-ux/line-deliverables.svg" width="985" height="5" alt="" />
+        <ul class="deliverables__list">
+          {deliverables.map((item) => (
+            <li class="deliverables__item">
+              <h3 class="service-item__title">{item.title}</h3>
+              <p class="service-item__text">{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="service-section page-container" id="como-funciona" aria-labelledby="proceso-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Cómo funciona</p>
+        <h2 class="service-head__title service-head__title--narrow" id="proceso-title">De tu primera llamada a tu sistema, en cinco pasos</h2>
+      </div>
+      <ol class="rescue-steps" data-situations>
+        {steps.map((step, i) => (
+          <li class="rescue-step">
+            <span class="rescue-step__number" aria-hidden="true">{i + 1}</span>
+            <h3 class="service-item__title">{step.title}</h3>
+            <p class="service-item__text">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+      <a href={diagnosisUrl('design_system_proceso')} class="pill-button service-cta" data-track="cta_design_system_proceso">Solicita tu diagnóstico gratis</a>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="entregamos-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Qué entregamos</p>
+        <h2 class="service-head__title service-head__title--report" id="entregamos-title">Un sistema completo, conectado de punta a punta</h2>
+        <p class="service-head__text service-head__text--report">El Figma es una parte. Entregamos todo conectado: tokens, componentes, reglas para IA y código.</p>
+      </div>
+      <div class="ds-parts" data-situations>
+        <div class="ds-part">
+          <div class="ds-part__copy">
+            <h3 class="service-item__title">Tokens con intención.</h3>
+            <p class="service-item__text">Colores, tipografía y espaciados con nombre según su uso.</p>
+          </div>
+          <figure class="ds-panel">
+            <figcaption class="ds-panel__label">Ejemplo de tokens</figcaption>
+            <ul class="ds-tokens">
+              {tokens.map((token) => (
+                <li class="ds-token">
+                  <span class:list={['ds-token__swatch', `ds-token__swatch--${token.swatch}`]} aria-hidden="true"></span>
+                  {token.chain.map((name, i) => (
+                    <>
+                      {i > 0 && <span class="ds-token__arrow" aria-hidden="true">→</span>}
+                      <code>{name}</code>
+                    </>
+                  ))}
+                </li>
+              ))}
+            </ul>
+            <p class="service-text-lg">Primitivo → semántico → componente. Cada token lleva escrito para qué se usa.</p>
+          </figure>
+        </div>
+        <div class="ds-part">
+          <div class="ds-part__copy">
+            <h3 class="service-item__title">Componentes con reglas.</h3>
+            <p class="service-item__text">Cada uno con sus estados y cuándo usarlo.</p>
+          </div>
+          <figure class="ds-panel">
+            <figcaption class="ds-panel__label">Ejemplo de ficha de componente</figcaption>
+            <div class="ds-component" aria-hidden="true">
+              <span class="pill-button">Botón</span>
+              <span class="badge">Estado</span>
+              <ArrowLink label="Enlace" align="start" />
+            </div>
+            <p class="service-text-lg">Cuándo usarlo: para la acción principal de una vista.</p>
+            <p class="service-text-lg">Cuándo evitarlo: más de una vez en la misma pantalla.</p>
+          </figure>
+        </div>
+        <div class="ds-part">
+          <div class="ds-part__copy">
+            <h3 class="service-item__title">Contexto para que la IA use tu marca</h3>
+            <p class="service-item__text">Reglas y documentación que la IA lee antes de generar.</p>
+          </div>
+          <figure class="ds-panel ds-panel--code">
+            <figcaption class="ds-panel__label">AGENTS.md (ejemplo)</figcaption>
+            <pre class="ds-code">{agentsExample}</pre>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="despues-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Después del diagnóstico</p>
+        <h2 class="service-head__title" id="despues-title">Y después del diagnóstico, tú decides</h2>
+        <p class="service-head__text service-head__text--after">El diagnóstico es tuyo: puedes llevarlo a tu equipo y resolverlo por tu cuenta. Si quieres que construyamos el sistema contigo, estimamos el proceso a partir de lo que encontramos.</p>
+      </div>
+      <div class="pro-service">
+        <div class="pro-service__intro">
+          <img class="pro-service__icon" src="/images/diagnostico-ux/symbol-tulip-inverse.svg" width="41" height="41" alt="" />
+          <h3 class="pro-service__title">Design System AI Ready: el sistema completo</h3>
+          <p class="pro-service__text">Construimos tokens, componentes, documentación y reglas para IA conectados con tu marca y con el código. Lo estimamos contigo después del diagnóstico.</p>
+        </div>
+        {proServices.map((item) => (
+          <div class="pro-service__item">
+            <img class="pro-service__icon" src={`/images/diagnostico-ux/symbol-${item.icon}-inverse.svg`} width={icons[item.icon].width} height={icons[item.icon].height} alt="" />
+            <h3 class="pro-service__title">{item.title}</h3>
+            <p class="pro-service__text">{item.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="comparison-wrap">
+        <table class="comparison">
+          <caption class="visually-hidden">Diferencias entre el diagnóstico gratuito y el servicio completo</caption>
+          <thead>
+            <tr>
+              <td></td>
+              <th scope="col" class="comparison__head">Diagnóstico gratuito</th>
+              <th scope="col" class="comparison__head">Servicio completo</th>
+            </tr>
+          </thead>
+          <tbody data-situations>
+            {comparison.map(([label, free, pro]) => (
+              <tr class="comparison__row">
+                <th scope="row" class="comparison__label">{label}</th>
+                <td class="comparison__cell" data-label="Diagnóstico gratuito">{free}</td>
+                <td class="comparison__cell" data-label="Servicio completo">{pro}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="service-section service-section--faq page-container" aria-labelledby="faq-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Antes de solicitarlo</p>
+        <h2 class="service-head__title" id="faq-title">Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map(([question, answer], i) => (
+          <details class="faq__item" open={i === 0}>
+            <summary class="faq__question">{question}</summary>
+            <p class="faq__answer">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-section service-section--full" aria-labelledby="otros-title">
+      <div class="service-head page-container">
+        <p class="service-head__eyebrow">Otros servicios</p>
+        <h2 class="service-head__title" id="otros-title">Otras formas en las que podemos ayudarte</h2>
+      </div>
+      <ul class="service-links">
+        {otherServices.map((service) => (
+          <li>
+            <a href={service.href} class="service-link">
+              <span class="service-link__label">{service.label}</span>
+              <img class="service-link__arrow" src="/images/home/arrow-right.svg" width="48" height="48" alt="" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="articulos-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">Artículos relacionados</p>
+        <h2 class="service-head__title" id="articulos-title">Sigue aprendiendo sobre sistemas de diseño</h2>
+      </div>
+      <div class="related-grid">
+        {related.map((post) => <BlogCard post={post} variant="related" />)}
+      </div>
+    </section>
+
+    <ClosingCta
+      title="Descubre qué tan conectado está tu sistema de diseño"
+      text="Cuéntanos de tu empresa y evaluamos si podemos hacer tu diagnóstico gratuito."
+      label="Solicita tu diagnóstico gratis"
+      href={diagnosisUrl('design_system_cierre')}
+      track="cta_design_system_cierre"
+    />
+  </div>
+
+  <script is:inline src="/headings.js?v=20261110"></script>
+  <script is:inline src="/situations.js?v=20261111"></script>
+  <script is:inline src="/deliverables.js?v=20261111"></script>
+</BaseLayout>
