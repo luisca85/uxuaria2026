@@ -1,0 +1,25 @@
+---
+import CalEmbed from './CalEmbed.astro';
+import { BOOKING_URL } from '../lib/booking';
+
+// Booking block for inner pages, same look as the home contact block (spec 11-home)
+interface Props {
+  title: string;
+  track: string;
+}
+
+const { title, track } = Astro.props;
+---
+<section class="booking-block" aria-labelledby="booking-title">
+  <div class="booking-block__inner">
+    <div class="booking-block__copy">
+      <h2 class="booking-block__title" id="booking-title">{title}</h2>
+      {/* Direct link: the alternative if the embed is slow or fails */}
+      <p class="booking-block__text"><a class="booking-block__link" href={BOOKING_URL} target="_blank" rel="noopener" data-track={track}>Agenda una llamada de 30 minutos, elige una fecha en el calendario</a></p>
+      <p class="booking-block__text">O escríbenos a <a class="booking-block__link booking-block__link--email" href="mailto:info@uxuaria.com">info@uxuaria.com</a></p>
+    </div>
+    <div class="booking-block__calendar">
+      <CalEmbed hideDetails />
+    </div>
+  </div>
+</section>

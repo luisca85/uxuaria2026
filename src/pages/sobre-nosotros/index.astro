@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArrowLink from '../../components/ArrowLink.astro';
+import BookingBlock from '../../components/BookingBlock.astro';
+
+// Short page by Luis's request (2026-11-11). The profile comes from the "Sobre mí"
+// of the current production home, without voseo
+const LINKEDIN = 'https://www.linkedin.com/in/luiscaromero/';
+
+const url = 'https://uxuaria.com/sobre-nosotros/';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'Sobre nosotros',
+    url,
+    about: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com', areaServed: 'Latinoamérica' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Luis Carlos Romero León',
+    jobTitle: 'Gerente y fundador',
+    image: 'https://uxuaria.com/images/sobre-nosotros/luis-carlos-romero.jpg',
+    worksFor: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+    sameAs: [LINKEDIN],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://uxuaria.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Sobre nosotros', item: url },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Sobre nosotros: equipo de diseño UX en Latinoamérica | Uxuaria"
+  description="Somos un grupo de profesionales que trabaja en proyectos de Latinoamérica con alianzas estratégicas en Costa Rica, Colombia y Estados Unidos."
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/service.css?v=20261111f" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('service-motion');
+    </script>
+  </Fragment>
+
+  <div class="page-shell service-page">
+    <section class="service-hero service-hero--wide service-hero--compact">
+      <div class="service-hero__inner page-container">
+        <nav class="page-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/" class="page-breadcrumb__item">INICIO</a>
+          <span class="page-breadcrumb__separator" aria-hidden="true">›</span>
+          <span class="badge service-hero__badge" aria-current="page">Sobre nosotros</span>
+        </nav>
+        <h1 class="service-hero__title">Sobre nosotros</h1>
+        <p class="service-hero__lead">Somos un grupo de profesionales que trabaja en proyectos de toda Latinoamérica, a través de alianzas estratégicas con nuestros clientes y entre nosotros. Contamos con alianzas en Costa Rica, Colombia y Estados Unidos.</p>
+      </div>
+    </section>
+
+    <section class="service-section page-container" aria-labelledby="fundador-title">
+      <div class="founder">
+        <img class="founder__photo" src="/images/sobre-nosotros/luis-carlos-romero.jpg?v=2" width="480" height="480" alt="Luis Carlos Romero León, gerente y fundador de Uxuaria" />
+        <div class="founder__body">
+          <div class="service-head service-head--start">
+            <p class="service-head__eyebrow">Gerente y fundador</p>
+            <h2 class="service-head__title" id="fundador-title">Luis Carlos Romero León</h2>
+          </div>
+          <p class="service-text-lg">Soy diseñador UX con base en Buenos Aires, Argentina, y más de 15 años de experiencia con startups y empresas en crecimiento de Latinoamérica. Me especializo en productos financieros digitales y en experiencias construidas con IA. Mi enfoque es práctico: identificar problemas reales, validar soluciones y trabajar con tu equipo para implementarlas.</p>
+          <ArrowLink label="Ver mi perfil en LinkedIn" href={LINKEDIN} align="start" track="cta_sobre_nosotros_linkedin" />
+        </div>
+      </div>
+    </section>
+
+    <BookingBlock title="Conversemos 30 minutos y veamos qué tan lejos podemos llegar" track="cta_sobre_nosotros_agenda" />
+  </div>
+
+  <script is:inline src="/headings.js?v=20261110"></script>
+</BaseLayout>

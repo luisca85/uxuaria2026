@@ -132,6 +132,9 @@
 
 .service-hero__cta { width: 290px; }
 
+/* Short pages (Sobre nosotros): no minimum height */
+.service-hero--compact .service-hero__inner { min-height: 0; padding-block: 96px 80px; }
+
 .service-hero__link {
   display: inline-flex;
   gap: 10px;
@@ -921,6 +924,62 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .audience__aside { position: sticky; top: calc(var(--ux-header-height) + 48px); }
 }
 
+/* ===== BOOKING BLOCK (BookingBlock.astro) =====
+   Same look as the home contact block: copy on the left, Cal.com on the right */
+.booking-block {
+  padding: 96px var(--ux-gutter);
+  background: var(--ux-color-surface-inverse);
+  color: var(--ux-color-text-inverse);
+}
+
+.booking-block__inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  max-width: 1119px;
+  margin: 0 auto;
+}
+
+.booking-block__title {
+  margin-bottom: 16px;
+  font-family: var(--ux-font-ui);
+  font-size: var(--ux-size-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+}
+
+.booking-block__text { margin-bottom: 16px; font-size: var(--ux-size-small); line-height: 28.8px; }
+.booking-block__link { color: inherit; text-decoration: none; }
+.booking-block__link:hover,
+.booking-block__link--email { text-decoration: underline; }
+
+.booking-block__calendar {
+  height: 450px;
+  overflow: hidden;
+  border: 1px solid var(--ux-color-text-inverse);
+  border-radius: var(--ux-radius-frame);
+  background: var(--ux-color-surface);
+}
+
+/* ===== ABOUT: founder with photo ===== */
+.founder {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+}
+
+.founder__photo {
+  width: 240px;
+  height: 240px;
+  border-radius: var(--ux-radius-card);
+  object-fit: cover;
+}
+
+.founder__body { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+
 /* ===== RESPONSIVE =====
    Provisional until the mobile frame exists (spec 15) */
 @media (max-width: 1280px) {
@@ -950,6 +1009,11 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .service-split,
   .service-band__inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .audience { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .booking-block { padding-block: 56px; }
+  .booking-block__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .booking-block__calendar { height: 520px; }
+  .founder { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .founder__photo { width: 160px; height: 160px; }
   .audience-item { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; padding-block: 24px; }
   .audience-item__title { font-size: 20px; line-height: 26px; }
 }
