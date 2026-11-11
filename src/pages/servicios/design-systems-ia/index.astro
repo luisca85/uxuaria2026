@@ -1,4 +1,5 @@
 ---
+import { otherServices as getOtherServices } from '../../../lib/services';
 import { getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ArrowLink from '../../../components/ArrowLink.astro';
@@ -74,12 +75,8 @@ const faqs = [
   ['¿Con qué herramientas trabajan?', 'Diseñamos en Figma y pasamos el sistema a código con React. Las reglas para IA se escriben en archivos como AGENTS.md, que las herramientas de IA leen antes de generar.'],
 ];
 
-// Only pages that exist in this branch (spec 16, criterion 8)
-const otherServices = [
-  { label: 'Diseño de experiencia AI Native', href: '/servicios/diseno-ai-native/' },
-  { label: 'Diagnóstico UX para tu producto', href: '/servicios/investigacion/' },
-  { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
-];
+// Every other service page, from the shared list (spec 16)
+const otherServices = getOtherServices('design-system');
 
 // Figma lists two articles that are not published yet (spec 16, A CONFIRMAR 4)
 const relatedSlugs = ['prompt-ear-no-es-disenar', 'diferencias-creacion-ia-vs-diseno'];

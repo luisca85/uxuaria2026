@@ -1,4 +1,5 @@
 ---
+import { otherServices as getOtherServices } from '../../../lib/services';
 import { getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ArrowLink from '../../../components/ArrowLink.astro';
@@ -106,12 +107,8 @@ const faqs = [
   ['¿El reporte incluye diseños?', 'No. Incluye hallazgos y prioridades. El diseño de las soluciones se define dentro del servicio completo.'],
 ];
 
-const otherServices = [
-  { label: 'Diseño de MVP para startups desde 0', href: '/servicios/mvp/' },
-  { label: 'Sistemas de diseño potenciados con IA', href: '/servicios/design-systems-ia/' },
-  { label: 'Diseño de experiencia AI Native', href: '/servicios/diseno-ai-native/' },
-  { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
-];
+// Every other service page, from the shared list (spec 16)
+const otherServices = getOtherServices('diagnostico');
 
 const relatedSlugs = ['3-cosas-ux', '6-preguntas-ux', 'prompt-ear-no-es-disenar'];
 const related = (await Promise.all(relatedSlugs.map((slug) => getEntry('blog', slug)))).filter((post) => post !== undefined);

@@ -4,19 +4,19 @@ import ArrowLink from '../components/ArrowLink.astro';
 import CalEmbed from '../components/CalEmbed.astro';
 import ShapeRow from '../components/ShapeRow.astro';
 import { BOOKING_URL } from '../lib/booking';
+import { serviceHref } from '../lib/services';
 
-// Every mention of the diagnóstico UX leads to its service page (spec 15, "Destinos")
-const DIAGNOSIS_PAGE = '/servicios/investigacion/';
-// AI Native and Design System pages: spec 16-servicios-ia
-const AI_NATIVE_PAGE = '/servicios/diseno-ai-native/';
-const DESIGN_SYSTEM_PAGE = '/servicios/design-systems-ia/';
+// Every mention of a service leads to its page (spec 15 "Destinos", spec 16)
+const DIAGNOSIS_PAGE = serviceHref('diagnostico');
+const AI_NATIVE_PAGE = serviceHref('ai-native');
+const DESIGN_SYSTEM_PAGE = serviceHref('design-system');
 
 // Copy is literal from Figma until approved: spec 11-home, "Contenido a aprobar"
 const services = [
   { label: 'Research y diagnóstico UX de tu producto', href: DIAGNOSIS_PAGE },
-  { label: 'Diseño de interfaz (UI) para atrapar a tus usuarios' },
-  { label: 'Product design para escalar y crecer tu MVP' },
-  { label: 'Rescatamos tu MVP hecho con IA', href: '/ai-mvp-rescue' },
+  { label: 'Diseño de interfaz (UI) para atrapar a tus usuarios', href: DESIGN_SYSTEM_PAGE },
+  { label: 'Product design para escalar y crecer tu MVP', href: AI_NATIVE_PAGE },
+  { label: 'Rescatamos tu MVP hecho con IA', href: serviceHref('rescue') },
 ];
 
 const clients = [
@@ -223,7 +223,7 @@ const testimonials = [
       ))}
     </section>
 
-    <section class="home-services">
+    <section class="home-services" id="servicios">
       <div class="home-section-head home-section-head--services">
         <ShapeRow />
         <h2 class="home-section-title" data-split>Servicios de consultoría UX y diseño de producto</h2>

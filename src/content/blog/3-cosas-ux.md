@@ -72,4 +72,4 @@ El UX no es un adorno ni un gasto extra. Es la diferencia entre lanzar un produc
 
 > Observar, simplificar y empatizar. Así de simple y así de jodido para muchos negocios.
 
-Si querés aplicar estas ideas en tu producto, te cuento cómo trabajo en mi [servicio de User Research y descubrimiento](/servicios/), o empezamos con un [AI MVP Rescue gratuito](/ai-mvp-rescue) para ver dónde está el problema real.
+Si querés aplicar estas ideas en tu producto, te cuento cómo trabajo en mi [servicio de User Research y descubrimiento](/servicios/investigacion/), o empezamos con un [AI MVP Rescue gratuito](/ai-mvp-rescue) para ver dónde está el problema real.

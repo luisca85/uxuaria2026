@@ -1,6 +1,7 @@
 ---
+import { SERVICES } from '../lib/services';
+
 const links = [
-  { href: '/ai-mvp-rescue', label: 'AI MVP Rescue' },
   { href: '/portafolio', label: 'Proyectos' },
   { href: '/blog', label: 'Blog' },
   { href: '/contacto/', label: 'Contacto' },
@@ -11,13 +12,38 @@ const currentAttr = (href: string) => {
   const section = href.replace(/\/$/, '');
   return path === section || path.startsWith(`${section}/`) ? 'page' : undefined;
 };
+// The Servicios toggle reads as current on any service page
+const inServices = SERVICES.some((service) => currentAttr(service.href));
 ---
 <header class="site-header" id="navbar">
   <div class="site-header__inner">
     <a href="/" class="site-header__logo" aria-label="Uxuaria, inicio">uxuaria</a>
     <div class="site-header__actions">
       <nav class="site-header__nav" aria-label="Navegación principal">
-        <a href="/ai-mvp-rescue" aria-current={currentAttr('/ai-mvp-rescue')} class="site-header__item">AI MVP Rescue</a>
+        {/* Without JavaScript the menu opens on hover and on keyboard focus */}
+        <div class="site-header__services" data-services>
+          <button type="button" class:list={['site-header__item', 'site-header__services-toggle', { 'is-current': inServices }]}
+                  aria-expanded="false" aria-controls="servicesMenu">
+            Servicios
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+          </button>
+          <div class="site-mega" id="servicesMenu">
+            <div class="site-mega__inner">
+              <p class="site-mega__eyebrow">Servicios</p>
+              <ul class="site-mega__list">
+                {SERVICES.map((service) => (
+                  <li>
+                    <a href={service.href} class="site-mega__link" aria-current={currentAttr(service.href)} data-track={`nav_servicios_${service.id}`}>
+                      <span class="site-mega__name">{service.name}</span>
+                      <span class="site-mega__summary">{service.summary}</span>
+                      <img class="site-mega__arrow" src="/images/home/arrow-up-right.svg" width="24" height="24" alt="" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
         <a href="/portafolio" aria-current={currentAttr('/portafolio')} class="site-header__item site-header__item--padded">Proyectos</a>
         <a href="/blog" aria-current={currentAttr('/blog')} class="site-header__item site-header__item--padded">Blog</a>
         <a href="/contacto/" aria-current={currentAttr('/contacto/')} class="site-header__item">Contacto</a>
@@ -37,6 +63,43 @@ const currentAttr = (href: string) => {
     </div>
   </div>
   <div class="site-header__menu" id="mobileMenu" aria-hidden="true">
+    <p class="site-header__menu-label">Servicios</p>
+    {SERVICES.map((service) => (
+      <a href={service.href} aria-current={currentAttr(service.href)} class="site-header__item site-header__item--sub">{service.name}</a>
+    ))}
     {links.map((link) => <a href={link.href} aria-current={currentAttr(link.href)} class="site-header__item">{link.label}</a>)}
   </div>
 </header>
+
+<script is:inline>
+  // Servicios menu: opens on click, on hover and with the keyboard; Escape or leaving closes it
+  (function () {
+    const wrap = document.querySelector('[data-services]');
+    if (!wrap) return;
+    const toggle = wrap.querySelector('.site-header__services-toggle');
+    const hover = matchMedia('(hover: hover)');
+    let timer, pinned = false;
+    wrap.classList.add('is-enhanced');
+
+    function set(open) {
+      clearTimeout(timer);
+      if (!open) pinned = false;
+      wrap.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    // A click pins the menu open, even if hovering already opened it; a second click closes it
+    toggle.addEventListener('click', () => {
+      if (pinned) { set(false); return; }
+      set(true);
+      pinned = true;
+    });
+    wrap.addEventListener('mouseenter', () => { if (hover.matches) set(true); });
+    wrap.addEventListener('mouseleave', () => { if (hover.matches && !pinned) timer = setTimeout(() => set(false), 150); });
+    wrap.addEventListener('focusout', (e) => { if (!wrap.contains(e.relatedTarget)) set(false); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrap.classList.contains('is-open')) { set(false); toggle.focus(); }
+    });
+    document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) set(false); });
+  })();
+</script>

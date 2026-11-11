@@ -50,7 +50,8 @@ Son hipótesis sin datos de volumen (spec 15, punto 9).
 2. Dada cada página, entonces tiene un único `<h1>`, `title` y description propios, canonical, OG e `index, follow`.
 3. Dada cada página, entonces tiene JSON-LD de `Service`, `BreadcrumbList` y `FAQPage`, con las mismas preguntas que se ven en pantalla.
 4. Dada cada página, entonces aparece en el sitemap.
-5. Dada la home, entonces "AI Native Product Design" y "Clic para descubrir" llevan a Diseño AI Native, y "Design system AI ready" lleva a Design System AI Ready.
+5. Dada la home, entonces "AI Native Product Design", "Clic para descubrir" y la fila "Product design para escalar y crecer tu MVP" llevan a Diseño AI Native. "Design system AI ready" y la fila "Diseño de interfaz (UI) para atrapar a tus usuarios" llevan a Design System AI Ready. "Research y diagnóstico UX" lleva al diagnóstico y "Rescatamos tu MVP hecho con IA" lleva a AI MVP Rescue.
+5b. Dada la navegación principal, entonces "Servicios" reemplaza a "AI MVP Rescue" y abre un menú con los cuatro servicios: con clic, con hover o con el teclado, y sin JavaScript con hover y foco. Se cierra con Escape o con un clic afuera, y marca el servicio actual. En mobile, los servicios aparecen como un grupo del menú.
 6. Dado el footer, entonces enlaza las dos páginas.
 7. Dada cada página de servicio (diagnóstico, AI MVP Rescue, AI Native y Design System), entonces "Otros servicios" enlaza a las demás que existen.
 8. Dado el build, entonces ningún link agregado por esta spec da 404.
@@ -73,4 +74,6 @@ Son hipótesis sin datos de volumen (spec 15, punto 9).
 - `src/pages/servicios/design-systems-ia/index.astro`
 - `public/service.css` (secciones nuevas), `public/situations.js` y `public/deliverables.js` (generalizados)
 - `src/components/ArrowLink.astro` y `src/components/ClosingCta.astro` (props nuevas)
+- `src/lib/services.ts`: listado único de servicios que usan `Navbar`, `Footer`, la home y "Otros servicios"
+- `src/components/Navbar.astro` y `public/site.css`: menú de Servicios
 - Links: `src/pages/index.astro`, `src/components/Footer.astro`, `src/pages/servicios/investigacion/index.astro`, `src/pages/ai-mvp-rescue.astro`

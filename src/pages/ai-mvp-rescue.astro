@@ -1,4 +1,5 @@
 ---
+import { otherServices as getOtherServices } from '../lib/services';
 import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArrowLink from '../components/ArrowLink.astro';
@@ -80,12 +81,8 @@ const faqs = [
   ['¿Cuánto costará?', 'Después del diagnóstico inicial te diremos qué vías hay para continuar. Tratamos de ser flexibles y siempre proponemos presupuestos incrementales y alcanzables. No trabajamos por hora: te damos un costo fijo y nos comprometemos a entregarte todo, incluso si toma más tiempo del estimado.'],
 ];
 
-const otherServices = [
-  { label: 'Diagnóstico UX gratis para tu producto', href: '/servicios/investigacion/' },
-  { label: 'Diseño de MVP para startups desde 0', href: '/servicios/mvp/' },
-  { label: 'Sistemas de diseño potenciados con IA', href: '/servicios/design-systems-ia/' },
-  { label: 'Diseño de experiencia AI Native', href: '/servicios/diseno-ai-native/' },
-];
+// Every other service page, from the shared list (spec 16)
+const otherServices = getOtherServices('rescue');
 
 const relatedSlugs = ['prompt-ear-no-es-disenar', 'diferencias-creacion-ia-vs-diseno', 'instinto-herramienta-creativa-decisiones'];
 const related = (await Promise.all(relatedSlugs.map((slug) => getEntry('blog', slug)))).filter((post) => post !== undefined);

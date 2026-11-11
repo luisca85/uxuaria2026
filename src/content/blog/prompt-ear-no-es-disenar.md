@@ -50,4 +50,4 @@ Si se invierte ese orden, si se le pide a la IA que indique qué necesita el mer
 
 Usar bien la IA para construir producto no es escribir prompts rápido dejándose llevar por el ánimo del momento. Es traer estrategia, estructura e investigación real antes de sentarse a construir. La IA acelera lo que ya se decidió. No decide en lugar de nadie. Y en el momento en que se le permite hacerlo, el resultado se nota: en el panel número mil que se parece a todos los anteriores.
 
-Si tu producto se está pareciendo a todos los demás, el problema no es el modelo que estás usando. Te cuento cómo trabajo la parte de estrategia e investigación antes de construir en mi [servicio de User Research y descubrimiento](/servicios/), o empezamos con un [AI MVP Rescue gratuito](/ai-mvp-rescue) para ver dónde está el problema real.
+Si tu producto se está pareciendo a todos los demás, el problema no es el modelo que estás usando. Te cuento cómo trabajo la parte de estrategia e investigación antes de construir en mi [servicio de User Research y descubrimiento](/servicios/investigacion/), o empezamos con un [AI MVP Rescue gratuito](/ai-mvp-rescue) para ver dónde está el problema real.
