@@ -1,5 +1,6 @@
 ---
 import { SERVICES } from '../lib/services';
+import { BOOKING_URL } from '../lib/booking';
 
 const links = [
   { href: '/portafolio', label: 'Proyectos' },
@@ -48,8 +49,8 @@ const inServices = SERVICES.some((service) => currentAttr(service.href));
         <a href="/blog" aria-current={currentAttr('/blog')} class="site-header__item site-header__item--padded">Blog</a>
         <a href="/contacto/" aria-current={currentAttr('/contacto/')} class="site-header__item">Contacto</a>
       </nav>
-      {/* No destination yet: spec 11-home, "Destinos" */}
-      <span class="pill-button">Empecemos ahora</span>
+      {/* Booking page, approved by Luis (2026-11-11) */}
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button" data-track="cta_nav_empecemos">Empecemos ahora</a>
       <span class="site-header__item site-header__item--active">ES</span>
       {/* English pending (spec 11-home): <span class="site-header__item site-header__item--inactive">EN</span> */}
     </div>

@@ -10,6 +10,8 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   noindex?: boolean;
+  // Cloudflare Web Analytics, on every page except 404 (as in production)
+  webAnalytics?: boolean;
   legacyStyles?: boolean;
 }
 
@@ -21,6 +23,7 @@ const {
   ogImage = '/images/og-uxuaria.jpg',
   ogType = 'website',
   noindex = false,
+  webAnalytics = true,
   // Pages not yet moved to the new design keep Retro 3.1 (spec 11-home)
   legacyStyles = true,
 } = Astro.props;
@@ -35,14 +38,8 @@ const ogImageUrl = new URL(ogImage, Astro.site);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Analytics (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCJ5969G7" is:inline></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-6TCJ5969G7');
-  </script>
+  <!-- Cookie notice: the only place that loads GA4 and Hotjar, after "Aceptar" (spec 10-cookies-privacidad, from production) -->
+  <script src="/cookies.js?v=20261102a" is:inline></script>
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -78,5 +75,11 @@ const ogImageUrl = new URL(ogImage, Astro.site);
   </main>
   <Footer />
   <script src="/script.js" is:inline></script>
+  {webAnalytics && (
+    <>
+      {/* Cloudflare Web Analytics: anonymous visits, no cookies. The token is public. */}
+      <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "62129c69792d41ef95ef5714de3aa163"}'></script>
+    </>
+  )}
 </body>
 </html>

@@ -13,7 +13,7 @@ interface Props {
   secondaryTrack?: string;
 }
 
-const { status, title, text, label = 'Agendá una llamada →', href = BOOKING_URL, track, secondaryLabel, secondaryHref, secondaryTrack } = Astro.props;
+const { status, title, text, label = 'Agenda una llamada →', href = BOOKING_URL, track, secondaryLabel, secondaryHref, secondaryTrack } = Astro.props;
 // Only the booking page opens in a new tab
 const isExternal = (url: string) => url.startsWith('http');
 const external = isExternal(href);

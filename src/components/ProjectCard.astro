@@ -11,7 +11,7 @@ const { client, card, externalUrl } = project.data;
 const href = projectHref(project);
 // No destination yet: spec 13-proyectos, A CONFIRMAR #2
 const Tag = href ? 'a' : 'article';
-const external = !project.data.caseStudy && externalUrl;
+const external = !project.data.caseStudy && externalUrl?.startsWith('http');
 ---
 <Tag href={href} class:list={['project-card', { 'project-card--linked': href }]} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
   <div class="project-card__content">
@@ -20,7 +20,8 @@ const external = !project.data.caseStudy && externalUrl;
       <p class="project-card__summary">{card.summary}</p>
       {card.partner && <p class="project-card__partner">{card.partner}</p>}
     </div>
-    <ArrowLink label="Leer la historia" align="start" />
+    {/* Products without a case lead to their own site */}
+    <ArrowLink label={project.data.caseStudy ? 'Leer la historia' : 'Ver el proyecto'} align="start" />
   </div>
   <div class="project-card__image">
     <img src={card.image.src} width={card.image.width} height={card.image.height} alt={card.image.alt} loading="lazy" />

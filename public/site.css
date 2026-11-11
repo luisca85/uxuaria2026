@@ -439,6 +439,20 @@ a.site-footer__item:hover { color: var(--ux-color-text-inverse); }
   text-align: center;
 }
 
+/* Privacy link and cookie preferences (cookies.js) */
+.site-footer__legal {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.site-footer__legal:hover { color: var(--ux-color-text-inverse); }
+
 /* Provisional until the mobile frame exists (spec 11-home) */
 @media (max-width: 900px) {
   .site-footer__inner { flex-direction: column; gap: 48px; padding: 0 16px 48px; }

@@ -41,7 +41,27 @@ const deliverables = [
   'Frontend listo para que un desarrollador lo tome.',
 ];
 
-const sectors = ['Fintech', 'Salud', 'Startups en etapa de crecimiento'];
+// Moments a visitor can recognize; the sectors come after, as experience and not as a filter
+const audience = [
+  {
+    title: 'Ya implementaste IA y quieres mejorar lo que tienes.',
+    text: 'Tu producto ya usa IA y la experiencia no está a la altura. La ordenamos para que sea más clara, más coherente y más fácil de mantener.',
+  },
+  {
+    title: 'Quieres probar una idea sin esperar un desarrollo tradicional.',
+    text: 'Llegamos rápido a un prototipo en código que puedes probar con usuarios reales antes de invertir en el desarrollo completo.',
+  },
+  {
+    title: 'Tu equipo quiere diseñar y producir con IA.',
+    text: 'Integramos la IA en tu proceso de diseño con un design system que tu equipo y las herramientas de IA pueden leer y usar.',
+  },
+  {
+    title: 'Tu producto creció y el diseño ya no lo acompaña.',
+    text: 'Conectamos diseño y código otra vez, para que cada función nueva sume y deje de complicar la experiencia.',
+  },
+];
+
+const sectors = ['Fintech', 'SaaS', 'Salud', 'Startups en etapa de crecimiento', 'Software factories, como proveedores B2B integrados a sus equipos de desarrollo'];
 
 const faqs = [
   ['¿Qué significa AI Native?', 'Trabajar con IA en todas las etapas del proceso de diseño, con las decisiones a cargo de un equipo de diseñadores senior. Está explicado arriba, en la definición.'],
@@ -92,7 +112,7 @@ const jsonLd = [
 >
   <Fragment slot="head">
     <link rel="stylesheet" href="/blog.css?v=20261102" />
-    <link rel="stylesheet" href="/service.css?v=20261111" />
+    <link rel="stylesheet" href="/service.css?v=20261111d" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('service-motion');
@@ -219,26 +239,35 @@ const jsonLd = [
       <ArrowLink label="Pide tu diagnóstico UX gratuito" href={diagnosisUrl('ai_native_entregables')} align="start" track="cta_ai_native_entregables" />
     </section>
 
+    {/* audience.js: the left column stays while the moments on the right open with the scroll */}
     <section class="service-section page-container" aria-labelledby="para-quien-title">
-      <div class="service-split service-rule">
-        <div class="service-head service-head--start">
-          <h2 class="service-head__title" id="para-quien-title">Para quién</h2>
+      <div class="audience service-rule" data-audience>
+        <div class="audience__aside">
+          <div class="service-head service-head--start">
+            <h2 class="service-head__title" id="para-quien-title">Para quién</h2>
+            <p class="service-text-lg">Para compañías pequeñas, medianas y grandes que quieren integrar IA en su proceso de diseño, con un socio estratégico sencillo de contratar y fácil de integrar a su equipo.</p>
+          </div>
+          <ArrowLink label="Agenda una llamada" href={BOOKING_URL} align="start" track="cta_ai_native_para_quien" />
         </div>
-        <div class="service-split__body">
-          <p class="service-text-lg">Trabajamos con compañías pequeñas, medianas y grandes que quieren integrar IA en sus procesos de diseño. Buscan un socio estratégico sencillo de contratar y fácil de integrar a su equipo.</p>
+        <div class="audience__body">
+          <ol class="audience__list">
+            {audience.map((item, i) => (
+              <li class="audience-item">
+                <span class="audience-item__number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <h3 class="audience-item__title">{item.title}</h3>
+                <div class="audience-item__detail"><p class="service-item__text">{item.text}</p></div>
+              </li>
+            ))}
+          </ol>
           <div class="service-split__group">
             <h3 class="service-item__title">Sectores donde tenemos más experiencia</h3>
+            <p class="service-note">Es donde más hemos trabajado. Trabajamos con productos digitales de cualquier sector.</p>
             <ul class="check-list" data-situations>
               {sectors.map((item) => (
                 <li class="check-list__item"><img src="/images/home/arrow-right.svg" width="24" height="24" alt="" />{item}</li>
               ))}
             </ul>
           </div>
-          <div class="service-split__group">
-            <h3 class="service-item__title">Software factories</h3>
-            <p class="service-item__text">También trabajamos como proveedores B2B de software factories: nos integramos a sus equipos de desarrollo y diseñamos junto a ellos.</p>
-          </div>
-          <ArrowLink label="Agenda una llamada" href={BOOKING_URL} align="start" track="cta_ai_native_para_quien" />
           <p class="service-note">Si tu producto lo construiste con IA y se estancó, mira <a href="/ai-mvp-rescue">AI MVP Rescue</a>.</p>
         </div>
       </div>
@@ -302,4 +331,5 @@ const jsonLd = [
   <script is:inline src="/headings.js?v=20261110"></script>
   <script is:inline src="/situations.js?v=20261111"></script>
   <script is:inline src="/deliverables.js?v=20261111"></script>
+  <script is:inline src="/audience.js?v=20261111"></script>
 </BaseLayout>

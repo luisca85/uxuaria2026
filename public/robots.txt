@@ -7,4 +7,4 @@ Disallow: /node_modules/
 Disallow: /src/
 Disallow: /docs/
 
-Sitemap: https://uxuaria.com/sitemap.xml
+Sitemap: https://uxuaria.com/sitemap-index.xml

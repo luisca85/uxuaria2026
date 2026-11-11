@@ -847,6 +847,80 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   white-space: pre-wrap;
 }
 
+/* ===== AUDIENCE: "Para quién" on AI Native =====
+   The left column stays while the moments on the right open with the scroll
+   (audience.js). Without JavaScript every moment stays open. */
+.audience {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+  width: 100%;
+}
+
+.audience__aside { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+.audience__body { display: flex; flex-direction: column; gap: 48px; align-items: flex-start; }
+.audience__list { width: 100%; }
+
+.audience-item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  column-gap: 16px;
+  padding-block: 32px;
+  border-bottom: 1px solid var(--ux-color-border-soft);
+}
+
+.audience-item:first-child { padding-top: 0; }
+
+.audience-item__number {
+  grid-row: span 2;
+  color: var(--ux-color-text-muted);
+  font-family: var(--ux-font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 28.8px;
+}
+
+.audience-item__title {
+  color: var(--ux-color-text);
+  font-size: var(--ux-size-lead);
+  font-weight: 700;
+  line-height: 28.8px;
+}
+
+.audience-item__detail { display: grid; grid-template-rows: 1fr; margin-top: 12px; }
+.audience-item__detail > * { overflow: hidden; }
+
+.audience--animated .audience-item__number,
+.audience--animated .audience-item__title {
+  color: var(--ux-color-text-subtle);
+  transition: color .3s ease;
+}
+
+.audience--animated .audience-item__detail {
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+  transition: grid-template-rows .5s cubic-bezier(.2, .8, .2, 1), margin-top .5s cubic-bezier(.2, .8, .2, 1), opacity .4s ease;
+}
+
+/* Each moment takes its own stretch of scroll, so they open one at a time */
+.audience--animated .audience-item { min-height: 36vh; align-content: start; }
+.audience--animated .audience-item:last-child { min-height: 0; }
+
+.audience--animated .audience-item.is-open .audience-item__number { color: var(--ux-color-ink); }
+.audience--animated .audience-item.is-open .audience-item__title { color: var(--ux-color-text); }
+
+.audience--animated .audience-item.is-open .audience-item__detail {
+  grid-template-rows: 1fr;
+  margin-top: 12px;
+  opacity: 1;
+}
+
+@media (min-width: 900px) {
+  .audience__aside { position: sticky; top: calc(var(--ux-header-height) + 48px); }
+}
+
 /* ===== RESPONSIVE =====
    Provisional until the mobile frame exists (spec 15) */
 @media (max-width: 1280px) {
@@ -875,6 +949,9 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 @media (max-width: 899px) {
   .service-split,
   .service-band__inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .audience { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .audience-item { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; padding-block: 24px; }
+  .audience-item__title { font-size: 20px; line-height: 26px; }
 }
 
 /* Same as the preview on narrow screens: figure pinned on top, steps below it */

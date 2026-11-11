@@ -40,6 +40,7 @@ Son hipótesis sin datos de volumen (spec 15, punto 9).
   - `headings.js`: el título, el lead y los encabezados de cada sección suben al entrar en pantalla.
   - `situations.js`: las tarjetas, listas y filas de tabla aparecen una a una con el scroll.
   - `deliverables.js`: el símbolo recorre la línea de "Qué recibes" y enciende cada entregable.
+  - `audience.js`: en "Para quién" de AI Native, la columna izquierda queda fija y las situaciones de la derecha se abren una a una con el scroll. En mobile o sin JavaScript se ven todas abiertas.
   - Hovers de links y tarjetas.
   - Con `prefers-reduced-motion`, todo queda fijo, y sin JavaScript todo se ve.
 - **Mobile:** AI Native sigue el frame `202:1546`. Design System AI Ready no tiene frame mobile y usa los mismos patrones responsive.
@@ -60,13 +61,20 @@ Son hipótesis sin datos de volumen (spec 15, punto 9).
 11. Dados un viewport de 1440 px y uno de 375 px, entonces no hay scroll horizontal.
 12. Dado JavaScript desactivado, entonces el contenido, las preguntas y los links se pueden usar.
 
-## A CONFIRMAR
+## Decisiones de contenido (aprobadas por Luis, 2026-11-11)
 
-1. **URLs.** `/servicios/diseno-ai-native/` y `/servicios/design-systems-ia/`.
-2. **CTA de Design System.** "Solicita tu diagnóstico gratis" lleva al funnel general de `/diagnostico/`, que hoy está pensado para productos y no para sistemas de diseño.
-3. **FAQ de Design System.** Figma solo trae la respuesta de la primera pregunta. Las otras cuatro son una propuesta armada con el contenido de la propia página.
-4. **Artículos relacionados de Design System.** Dos de los tres de Figma ("¿Qué es un design system AI ready?" y "Design tokens: guía para equipos de producto") no existen. Se muestran solo artículos publicados.
-5. **Links de agenda y diagnóstico en AI Native.** "Agenda" va a Cal.com y "Pide tu diagnóstico" va a `/diagnostico/`.
+- URLs: `/servicios/diseno-ai-native/` y `/servicios/design-systems-ia/`.
+- El CTA de Design System lleva al formulario general de `/diagnostico/`, con `cta=design_system_*`.
+- Se aprueban las respuestas del FAQ de Design System y el copy de "Para quién" de AI Native.
+- Se aprueban las tarjetas de Mutis UX (lleva a la landing `/mutisux/`, no al login) y SAKURA 64 (lleva a `sakura64.uxuaria.com`).
+- La cifra +150K de Monge Pay se describe como "Usuarios activos" en todo el sitio, igual que la nota de prensa.
+- "Empecemos ahora" lleva a Cal.com.
+- Disney Telecom queda fuera del portafolio y su URL redirige a `/portafolio/`.
+- Redirects 301 de las páginas viejas: `/servicios/` → `/#servicios`, `/servicios/mvp/` → AI Native, `/servicios/experiencia/` → Design System, `/servicios/crecimiento/` → diagnóstico UX.
+
+## Pendiente
+
+- Los artículos de Design System que muestra Figma y todavía no existen ("¿Qué es un design system AI ready?" y "Design tokens: guía para equipos de producto"). Por ahora solo se muestran artículos publicados.
 
 ## Dónde vive
 

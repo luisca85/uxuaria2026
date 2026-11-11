@@ -18,7 +18,14 @@ interface Props {
 const { post, posts } = Astro.props;
 const { title, seoTitle, description, category, pubDate, updatedDate, readingTime, cover, ogImage } = post.data;
 const { Content } = await render(post);
-const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
+// Same category first, then the posts that follow this one, wrapping around,
+// so every article gets links from other articles (spec 16, revisión final)
+const index = posts.findIndex((p) => p.id === post.id);
+const rotated = [...posts.slice(index + 1), ...posts.slice(0, index)];
+const related = [
+  ...rotated.filter((p) => p.data.category === category),
+  ...rotated.filter((p) => p.data.category !== category),
+].slice(0, 2);
 const url = new URL(`/blog/${post.id}`, Astro.site).href;
 const image = new URL(ogImage ?? cover.src, Astro.site).href;
 
@@ -96,7 +103,7 @@ const jsonLd = {
     <ClosingCta
       status="Asesorías disponibles"
       title="¿Querés aplicar todo esto en tu proyecto?"
-      text="Agendá una charla honesta de 30 minutos sin costo. Sin fórmulas mágicas: encontramos juntos dónde está la oportunidad real."
+      text="Agenda una charla honesta de 30 minutos sin costo. Sin fórmulas mágicas: encontramos juntos dónde está la oportunidad real."
       track="cta_article_call"
     />
   </div>

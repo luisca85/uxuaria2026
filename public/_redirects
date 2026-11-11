@@ -15,3 +15,20 @@
 # El artículo del 2026-10-26 cambió de título y de URL; la vieja la enlazan posts de LinkedIn
 /blog/ilusion-de-productividad-ia /blog/instinto-herramienta-creativa-decisiones 301
 /blog/ilusion-de-productividad-ia.html /blog/instinto-herramienta-creativa-decisiones 301
+
+# Astro genera sitemap-index.xml; Search Console tiene registrado /sitemap.xml (spec 16, revisión final)
+/sitemap.xml /sitemap-index.xml 301
+
+# Páginas del sitio anterior que no pasan al diseño nuevo (spec 16, aprobado por Luis el 2026-11-11)
+/servicios /#servicios 301
+/servicios/ /#servicios 301
+/servicios/index.html /#servicios 301
+/servicios/mvp /servicios/diseno-ai-native/ 301
+/servicios/mvp/* /servicios/diseno-ai-native/ 301
+/servicios/experiencia /servicios/design-systems-ia/ 301
+/servicios/experiencia/* /servicios/design-systems-ia/ 301
+/servicios/crecimiento /servicios/investigacion/ 301
+/servicios/crecimiento/* /servicios/investigacion/ 301
+# Disney Telecom queda fuera del portafolio por ahora
+/portafolio/disney-telecom /portafolio/ 301
+/portafolio/disney-telecom.html /portafolio/ 301
