@@ -2,7 +2,7 @@
 
 **id:** `contacto`
 **Estado:** 🚧 En construcción en la rama `astro` · hecho: página, agenda, formulario y layout adaptado a mobile · pendiente: A CONFIRMAR 5 a 7 y prueba real de envío en producción
-**Última actualización:** 2026-11-02
+**Última actualización:** 2026-11-12
 **Relacionada con:** 04-contact-page, 10-astro, 11-home
 
 ---
@@ -68,7 +68,9 @@ Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` e
 **Formulario**
 9. Dado el formulario, entonces conserva sus campos: nombre, email, tipo de proyecto, etapa, problema y cómo llegó.
 10. Dado un envío vacío o con email inválido, entonces muestra los errores junto a cada campo y no envía.
-11. Dado un envío válido, cuando Web3Forms responde bien, entonces muestra el mensaje de éxito y registra `form_submit` y `generate_lead`, con los mismos parámetros que hoy.
+11. Dado un envío válido, cuando Web3Forms responde bien, entonces muestra el mensaje de éxito y registra `form_submit` y `generate_lead`. `generate_lead` lleva `lead_source: contacto`, `tipo_proyecto` y `etapa` (agregado 2026-11-12).
+11b. Dado el embed de Cal.com (aquí, en la home y en `BookingBlock`), cuando alguien confirma una reserva, entonces se registra una sola vez `generate_lead` con `lead_source: agenda`, `form_id: cal_embed` y `page` (evento `bookingSuccessfulV2` del embed; agregado 2026-11-12). La carga de Cal.com y la medición viven en `public/booking.js`.
+11c. Dado un link a `cal.com` en cualquier página con `BaseLayout` (menú, home, servicios, `BookingBlock`), cuando hago clic, entonces la agenda se abre como ventana emergente dentro del sitio, y al reservar se registra `generate_lead` con `lead_source: agenda`, `form_id: cal_popup`, `page` y el `cta_id` del link (agregado 2026-11-12). Excepciones: Cmd/Ctrl+clic, clic del medio y el link "Abrir la agenda en Cal.com ↗" (`data-booking-external`) siguen abriendo cal.com en otra pestaña. Sin JavaScript, todos los links abren cal.com.
 12. Dado que Web3Forms falla, entonces conserva lo escrito, muestra un mensaje de error y deja reintentar.
 13. Dado JavaScript desactivado, entonces el formulario avisa con claridad que se puede escribir a info@uxuaria.com.
 14. Dado un campo o botón, entonces tiene `label` visible cuando corresponde, foco de teclado visible y tamaño táctil suficiente.
@@ -87,7 +89,7 @@ Métrica de éxito: la medición queda como hoy, con el evento `generate_lead` e
 | Formulario | Se conserva, con el envío a Web3Forms y su medición |
 | URL | `/contacto/` no cambia |
 | Mobile | Se adapta al maquetar y se revisa en el navegador |
-| Medición | Como hoy; no se agregan eventos ni herramientas |
+| Medición | `generate_lead` en el formulario (`lead_source: contacto`) y en las reservas del embed de Cal.com (`lead_source: agenda`). Pedido de Luis en el chat, 2026-11-12 |
 | Animaciones | Solo hovers, como el blog y proyectos |
 | Header | Se usa el compartido, con AI MVP Rescue, aunque este frame no lo muestra |
 
