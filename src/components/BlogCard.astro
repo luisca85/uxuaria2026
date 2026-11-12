@@ -15,7 +15,8 @@ const Heading = variant === 'related' ? 'h3' : 'h2';
 ---
 <a href={`/blog/${post.id}`} class:list={['post-card', `post-card--${variant}`]}>
   <div class="post-card__image">
-    <img src={img.src} width={img.width} height={img.height} alt={img.alt} loading="lazy" />
+    {/* The card's heading already names the link; an alt with the same title is read twice */}
+    <img src={img.src} width={img.width} height={img.height} alt="" loading="lazy" />
   </div>
   <div class="post-card__content">
     {variant === 'featured' && (
