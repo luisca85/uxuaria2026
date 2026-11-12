@@ -1,14 +1,29 @@
-/* Política de privacidad y cookies (spec 10-cookies-privacidad). Usa los tokens de styles.css. */
+/* Política de privacidad y cookies (spec 10-cookies-privacidad). Uses the tokens in site.css. */
 .privacy {
-  max-width: 720px;
-  padding-top: 140px;
+  padding-top: 56px;
   padding-bottom: 96px;
-  color: var(--color-text);
+  color: var(--ux-color-text);
+  font-family: var(--ux-font-ui);
+  font-size: var(--ux-size-small);
   line-height: 1.65;
 }
-.privacy__title { margin: 0 0 8px; font-size: clamp(28px, 5vw, 40px); line-height: 1.15; }
-.privacy__date { margin: 0 0 32px; color: var(--color-text-muted); font-size: var(--font-size-sm); }
-.privacy h2 { margin: 40px 0 12px; font-size: 20px; line-height: 1.3; scroll-margin-top: 96px; }
+/* Reading column; .page-container (site.css, loaded later) sets the outer width */
+.privacy > * { max-width: 720px; }
+.privacy__title {
+  margin: 0 0 8px;
+  font-family: var(--ux-font-display);
+  font-size: var(--ux-size-section);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+.privacy__date { margin: 0 0 32px; color: var(--ux-color-text-muted); font-size: 14px; }
+.privacy h2 {
+  margin: 40px 0 12px;
+  font-family: var(--ux-font-display);
+  font-size: 22px;
+  line-height: 1.3;
+  scroll-margin-top: calc(var(--ux-header-height) + 16px);
+}
 .privacy p { margin: 0 0 14px; }
 .privacy ul { margin: 0 0 14px; padding-left: 20px; list-style: disc; }
 .privacy li { margin-bottom: 8px; }
@@ -16,12 +31,13 @@
 .privacy__settings {
   min-height: 44px;
   padding: 8px 16px;
+  border: 1px solid var(--ux-color-ink);
+  border-radius: var(--ux-radius-pill);
   background: transparent;
-  color: var(--color-text);
-  border: 1px solid var(--color-text);
+  color: var(--ux-color-ink);
   font: inherit;
   font-weight: 600;
   cursor: pointer;
 }
 .privacy__settings[hidden] { display: none; }
-.privacy__settings:hover { background: var(--color-text); color: var(--color-text-inverse); }
+.privacy__settings:hover { background: var(--ux-color-ink); color: var(--ux-color-text-inverse); }

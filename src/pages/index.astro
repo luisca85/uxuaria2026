@@ -339,7 +339,21 @@ const testimonials = [
       // Section text: words go from pale to solid following the scroll, in both directions.
       // Clamped so text near the end of the page still finishes
       const scrubWords = (element: Element) => {
-        const split = SplitText.create(element, { type: 'words' });
+        // SplitText names the element with aria-label and hides each word. A heading can take
+        // aria-label, a <p> cannot: screen readers would skip the text. For those, keep a hidden
+        // copy for screen readers and split only the visible copy.
+        let target = element;
+        if (!/^H[1-6]$/.test(element.tagName)) {
+          const copy = document.createElement('span');
+          copy.className = 'visually-hidden';
+          copy.textContent = element.textContent ?? '';
+          const visual = document.createElement('span');
+          visual.setAttribute('aria-hidden', 'true');
+          visual.append(...element.childNodes);
+          element.replaceChildren(copy, visual);
+          target = visual;
+        }
+        const split = SplitText.create(target, { type: 'words', aria: target === element ? 'auto' : 'none' });
         gsap.set(element, { visibility: 'visible' });
         gsap.fromTo(split.words, { opacity: 0.15 }, {
           opacity: 1,

@@ -1,0 +1,292 @@
+<title>Accesibilidad uxuaria.com</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, findings as ruled rows grouped by severity; summary strip up top. */
+:root {
+  --bg: #ffffff;
+  --surface: #f4f4f2;
+  --ink: #111111;
+  --muted: #5c5c5c;
+  --rule: #e2e2de;
+  --crit: #b3261e;
+  --crit-bg: #fbeceb;
+  --serious: #9a5b00;
+  --serious-bg: #fdf3e2;
+  --mod: #3a5a8c;
+  --mod-bg: #eaf0f8;
+  --ok: #2e6b3a;
+  --ok-bg: #e9f4ec;
+  --code-bg: #f0f0ec;
+  --font-text: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121212; --surface: #1c1c1b; --ink: #f1f1ee; --muted: #a6a6a1; --rule: #2e2e2c;
+    --crit: #f2a59f; --crit-bg: #3a1d1b; --serious: #f0c27a; --serious-bg: #352812;
+    --mod: #a9c1e8; --mod-bg: #1c2636; --ok: #9fd3aa; --ok-bg: #18291c; --code-bg: #232322;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121212; --surface: #1c1c1b; --ink: #f1f1ee; --muted: #a6a6a1; --rule: #2e2e2c;
+  --crit: #f2a59f; --crit-bg: #3a1d1b; --serious: #f0c27a; --serious-bg: #352812;
+  --mod: #a9c1e8; --mod-bg: #1c2636; --ok: #9fd3aa; --ok-bg: #18291c; --code-bg: #232322;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-text);
+  font-size: 16px; line-height: 1.6;
+}
+.wrap {
+  max-width: 860px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 48px 80px;
+  display: grid; gap: 48px;
+}
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+code { font-family: var(--font-mono); font-size: 0.86em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); max-width: 62ch; }
+header { display: grid; gap: 14px; }
+
+.summary { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+.summary > div { padding: 16px 18px; display: grid; gap: 2px; border-right: 1px solid var(--rule); min-width: 0; }
+.summary > div:last-child { border-right: 0; }
+.summary b { font-size: 28px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.summary span { font-size: 13px; color: var(--muted); }
+.summary .c b { color: var(--crit); } .summary .s b { color: var(--serious); } .summary .m b { color: var(--mod); } .summary .o b { color: var(--ok); }
+@media (max-width: 600px) {
+  .summary { grid-template-columns: repeat(2, 1fr); }
+  .summary > div:nth-child(2) { border-right: 0; }
+  .summary > div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
+section { display: grid; gap: 4px; }
+section > h2 { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pill { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+.pill.c { color: var(--crit); background: var(--crit-bg); }
+.pill.s { color: var(--serious); background: var(--serious-bg); }
+.pill.m { color: var(--mod); background: var(--mod-bg); }
+.pill.o { color: var(--ok); background: var(--ok-bg); }
+
+.finding { border-top: 1px solid var(--rule); padding-block: 22px; display: grid; gap: 10px; }
+.finding__head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.finding__wcag { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.finding dl { display: grid; grid-template-columns: 120px 1fr; gap: 6px 16px; margin: 0; font-size: 15px; }
+.finding dt { color: var(--muted); font-size: 13px; padding-top: 2px; }
+.finding dd { margin: 0; min-width: 0; }
+@media (max-width: 600px) { .finding dl { grid-template-columns: 1fr; gap: 2px; } .finding dd { margin-bottom: 8px; } }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 560px; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; font-size: 12px; color: var(--muted); background: var(--surface); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bad { color: var(--crit); } .good { color: var(--ok); }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; border: 1px solid var(--rule); }
+
+ul.plain { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.oklist { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px; margin: 0; padding: 0; list-style: none; font-size: 15px; }
+.oklist li { padding-left: 22px; position: relative; }
+.oklist li::before { content: "✓"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
+@media (max-width: 600px) { .oklist { grid-template-columns: 1fr; } }
+
+.plan { counter-reset: step; display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.plan li { counter-increment: step; display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; padding-block: 12px; border-top: 1px solid var(--rule); align-items: baseline; }
+.plan li::before { content: counter(step); font-family: var(--font-mono); color: var(--muted); }
+.plan .effort { font-family: var(--font-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.note { background: var(--surface); border-radius: 10px; padding: 18px 20px; display: grid; gap: 8px; font-size: 15px; }
+.note h3 { font-size: 15px; }
+</style>
+
+<main class="wrap">
+  <header>
+    <p class="eyebrow">Auditoría WCAG 2.2 AA · 12 nov 2026 · producción</p>
+    <h1>Accesibilidad de uxuaria.com</h1>
+    <p class="lede">Revisamos las 24 páginas del sitemap en escritorio (1440 px) y móvil (390 y 320 px) con axe-core 4.10, recorridos de teclado automatizados, prueba con <code>prefers-reduced-motion</code>, prueba sin JavaScript y revisión del árbol de accesibilidad de Chrome. La base es sólida: ninguna página bloquea a quien navega con teclado. Los problemas se concentran en el texto animado de la home, el contraste de grises y el pie de página.</p>
+  </header>
+
+  <div class="summary" role="list" aria-label="Resumen de hallazgos">
+    <div class="c" role="listitem"><b>1</b><span>crítico</span></div>
+    <div class="s" role="listitem"><b>4</b><span>serios</span></div>
+    <div class="m" role="listitem"><b>7</b><span>moderados</span></div>
+    <div class="o" role="listitem"><b>12</b><span>controles que pasan</span></div>
+  </div>
+
+  <section aria-labelledby="crit">
+    <h2 id="crit"><span class="pill c">Crítico</span> Arreglar ya</h2>
+
+    <article class="finding">
+      <div class="finding__head"><h3>Cuatro párrafos de la home no existen para un lector de pantalla</h3><span class="finding__wcag">1.3.1 · 4.1.2 · Nivel A</span></div>
+      <dl>
+        <dt>Qué pasa</dt>
+        <dd>El efecto de palabras con GSAP <code>SplitText</code> envuelve cada palabra en un <code>div aria-hidden="true"</code> y pone el texto completo en <code>aria-label</code> del <code>&lt;p&gt;</code>. Un <code>&lt;p&gt;</code> no admite <code>aria-label</code>, así que los lectores lo ignoran y el texto real queda oculto. En el árbol de accesibilidad de Chrome esos párrafos no aparecen.</dd>
+        <dt>Dónde</dt>
+        <dd>Home: los tres <code>.process-context__text</code> (“Invertiste tiempo…”, “Una fuga de usuarios…”, “Un Figma lindo…”) y <code>.home-closing__text</code> (“En Uxuaria concebimos…”). Los <code>h2</code> con el mismo efecto sí se leen bien, porque los encabezados admiten <code>aria-label</code>.</dd>
+        <dt>Arreglo</dt>
+        <dd>En <code>src/pages/index.astro</code> (función <code>scrubWords</code>, línea ~342), para los <code>&lt;p&gt;</code>: crear el split con <code>aria: 'hidden'</code> y agregar al lado una copia del texto con clase <code>.visually-hidden</code>. Otra opción es <code>aria: 'none'</code>, que deja las palabras legibles, aunque VoiceOver puede leerlas a saltos.</dd>
+      </dl>
+    </article>
+  </section>
+
+  <section aria-labelledby="serious">
+    <h2 id="serious"><span class="pill s">Serio</span> Arreglar antes del próximo release</h2>
+
+    <article class="finding">
+      <div class="finding__head"><h3>Grises con contraste insuficiente</h3><span class="finding__wcag">1.4.3 · AA · 45 de 48 vistas</span></div>
+      <dl>
+        <dt>Qué pasa</dt>
+        <dd>Cinco tokens de gris no llegan a 4.5:1. Casi todo el problema sale de dos variables de <code>public/site.css</code>, así que con pocos cambios se resuelve en todo el sitio.</dd>
+      </dl>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Token / uso</th><th>Color resultante</th><th>Ratio</th><th>Propuesta</th></tr></thead>
+          <tbody>
+            <tr><td><code>--ux-color-text-subtle</code> rgba(0,0,0,.45): badges, categorías del blog, <code>.service-item__text</code>, <code>.audience-item__number</code></td><td class="num"><span class="sw" style="background:#8c8c8c"></span>#8c8c8c / blanco</td><td class="num bad">3.36</td><td class="num good">.58 → 4.9:1</td></tr>
+            <tr><td>Pie: <code>.site-footer__bottom</code>, <code>__legal</code>, links de cookies (<code>--ux-color-inverse-30</code>)</td><td class="num"><span class="sw" style="background:#545454"></span>#545454 / #0a0a0a</td><td class="num bad">2.61</td><td class="num good">.55 → 5.8:1</td></tr>
+            <tr><td>Pie: <code>.site-footer__col-title</code> (<code>--ux-color-inverse-40</code>)</td><td class="num"><span class="sw" style="background:#6c6c6c"></span>#6c6c6c / #0a0a0a</td><td class="num bad">3.77</td><td class="num good">.55 → 5.8:1</td></tr>
+            <tr><td>Pie: <code>.site-footer__tagline</code> (<code>--ux-color-inverse-45</code>)</td><td class="num"><span class="sw" style="background:#787878"></span>#787878 / #0a0a0a</td><td class="num bad">4.48</td><td class="num good">.55 → 5.8:1</td></tr>
+            <tr><td>Badges sobre fondo crema en artículos del blog</td><td class="num"><span class="sw" style="background:#878785"></span>#878785 / #f5f5f2</td><td class="num bad">3.29</td><td class="num good">#666664 → 5.3:1</td></tr>
+            <tr><td>Mutis UX: <code>--app-muted</code> en la demo del reporte</td><td class="num"><span class="sw" style="background:#737373"></span>#737373 / #f5f5f5</td><td class="num bad">4.34</td><td class="num good">#666666 → 5.2:1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>La agenda de Cal.com embebida no se puede recorrer bien con teclado</h3><span class="finding__wcag">2.1.1 · 2.4.3 · Nivel A</span></div>
+      <dl>
+        <dt>Qué pasa</dt>
+        <dd>El contenedor <code>#my-cal-inline-30min</code> hace scroll pero no recibe foco, así que con teclado no se puede desplazar. En la home y en Sobre nosotros, además, el iframe se queda con unas 14 paradas de tabulación seguidas antes de devolver el foco a la página. El iframe se llama “Book a call”, en inglés.</dd>
+        <dt>Dónde</dt>
+        <dd>Home, <code>/sobre-nosotros/</code> (escritorio) y <code>/contacto/</code> (móvil).</dd>
+        <dt>Arreglo</dt>
+        <dd>Dar al contenedor <code>tabindex="0"</code>, <code>role="region"</code> y <code>aria-label="Agenda de llamadas"</code>. Poner justo antes un enlace “Saltar la agenda” y, al lado, el enlace directo a cal.com, que ya existe en Contacto. Cambiar el <code>title</code> del iframe a “Agenda una llamada con Uxuaria”.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>No hay enlace para saltar al contenido</h3><span class="finding__wcag">2.4.1 · Nivel A</span></div>
+      <dl>
+        <dt>Qué pasa</dt>
+        <dd>23 de 24 páginas no tienen enlace para saltar al contenido. Solo lo tiene <code>/mutisux/</code>. Hoy el criterio se cumple de forma mínima gracias a los landmarks (<code>header</code>, <code>nav</code>, <code>main</code>), pero quien navega con teclado tiene que pasar por 5–6 enlaces del menú en cada página.</dd>
+        <dt>Arreglo</dt>
+        <dd>Agregar el patrón de Mutis UX al layout compartido (<code>src/layouts</code>): <code>&lt;a class="skip-link" href="#main"&gt;Saltar al contenido&lt;/a&gt;</code> como primer hijo del <code>body</code> y <code>id="main"</code> en el <code>&lt;main&gt;</code>.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3><code>/privacidad/</code> sigue con la plantilla vieja</h3><span class="finding__wcag">3.2.3 · 1.3.1 · 1.4.3</span></div>
+      <dl>
+        <dt>Qué pasa</dt>
+        <dd>Es la única página con otro menú y otro pie, lo que rompe la navegación consistente. Salta de <code>h2</code> a <code>h4</code> en el pie. Siete bloques quedan invisibles sin JavaScript (clases de animación viejas). El copy está en primera persona (“guardo”, “uso”). Tiene además un enlace de WhatsApp a un número de relleno, <code>wa.me/5491100000000</code>: no es un tema de accesibilidad, pero es un enlace roto en producción.</dd>
+        <dt>Arreglo</dt>
+        <dd>Migrarla al layout de Astro como las demás. <code>/mutisux/privacidad</code> ya está bien y puede servir de modelo.</dd>
+      </dl>
+    </article>
+  </section>
+
+  <section aria-labelledby="mod">
+    <h2 id="mod"><span class="pill m">Moderado</span> Mejoras recomendadas</h2>
+
+    <article class="finding">
+      <div class="finding__head"><h3>El foco depende del anillo por defecto del navegador</h3><span class="finding__wcag">2.4.7 (pasa) · 2.4.13 AAA</span></div>
+      <dl>
+        <dd style="grid-column:1/-1">Fuera del mega menú, las cards de servicios y el banner de cookies, no hay estilo propio de <code>:focus-visible</code>. Se ve el anillo azul de 1 px de Chrome, que en Safari y Firefox cambia y sobre el pie negro se pierde. Conviene una regla global en <code>site.css</code>: <code>:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }</code>, con una variante clara para fondos oscuros.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>Títulos con efecto de scroll quedan casi invisibles si el scroll se detiene</h3><span class="finding__wcag">1.4.3</span></div>
+      <dl>
+        <dd style="grid-column:1/-1">En la home, las palabras de “Servicios de consultoría UX…” y “Founders que han apostado…” empiezan con opacidad 0.15 (1.38:1) y se completan a medida que se avanza. Si alguien deja de hacer scroll a mitad de sección, el título queda ilegible. Con <code>prefers-reduced-motion</code> se ve bien. Sugerencia: empezar en 0.35 o más y terminar la animación antes de que el título pase la mitad de la pantalla.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>Migas de pan con dos nombres para el mismo destino</h3><span class="finding__wcag">3.2.4 · AA</span></div>
+      <dl>
+        <dd style="grid-column:1/-1">El blog y <code>/portafolio/</code> dicen “HOME”. Los casos y los servicios dicen “INICIO”. Hay que unificar en “Inicio”. Las migas, además, miden 22 px de alto: pasan 2.5.8 por la excepción de espaciado, pero conviene llevarlas a 24 px o más.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>Enlaces que abren otra pestaña sin avisarlo</h3><span class="finding__wcag">3.2.5 AAA · técnica G201</span></div>
+      <dl>
+        <dd style="grid-column:1/-1">Cada página tiene entre 3 y 9 enlaces con <code>target="_blank"</code> (cal.com, LinkedIn, Sakura 64, fuentes de los artículos) sin indicarlo. Basta con un ícono ↗ con <code>&lt;span class="visually-hidden"&gt;(se abre en otra pestaña)&lt;/span&gt;</code>. La página de Contacto ya usa “↗” en un caso.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>Mutis UX: <code>aside</code> dentro de otro landmark</h3><span class="finding__wcag">buena práctica</span></div>
+      <dl>
+        <dd style="grid-column:1/-1"><code>.finding-card</code> y <code>.findings-panel</code> son <code>&lt;aside&gt;</code> dentro de <code>main</code>. Como son parte de la demo, conviene cambiarlos a <code>&lt;div&gt;</code> o <code>&lt;figure&gt;</code>. Hay además 4 bloques que no se ven sin JavaScript.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>H1 y H2 idénticos en Diseño AI Native</h3><span class="finding__wcag">2.4.6</span></div>
+      <dl>
+        <dd style="grid-column:1/-1">El <code>h1</code> y el primer <code>h2</code> (<code>#definicion-title</code>) dicen los dos “Diseño de experiencia AI Native”. En la lista de encabezados del lector suena duplicado. El <code>h2</code> podría ser “Qué es” o pasar a ser un eyebrow sin rol de encabezado.</dd>
+      </dl>
+    </article>
+
+    <article class="finding">
+      <div class="finding__head"><h3>El menú móvil no se cierra con Escape</h3><span class="finding__wcag">buena práctica</span></div>
+      <dl>
+        <dd style="grid-column:1/-1">El botón de hamburguesa está bien resuelto (<code>aria-expanded</code>, <code>aria-controls</code>, etiqueta que cambia a “Cerrar menú”) y el foco sigue un orden lógico. Escape cierra el submenú de Servicios en escritorio pero no el menú móvil. Conviene que lo cierre y devuelva el foco al botón.</dd>
+      </dl>
+    </article>
+  </section>
+
+  <section aria-labelledby="ok">
+    <h2 id="ok"><span class="pill o">Pasa</span> Lo que ya está bien</h2>
+    <ul class="oklist">
+      <li><code>lang="es"</code> en todas las páginas</li>
+      <li>Un solo <code>h1</code> por página y jerarquía coherente (salvo <code>/privacidad/</code>)</li>
+      <li>Landmarks <code>header</code>, <code>nav</code>, <code>main</code> y <code>footer</code> en todo el sitio</li>
+      <li>Ninguna imagen sin <code>alt</code>, y las decorativas usan <code>alt=""</code></li>
+      <li>Reflow a 320 px sin scroll horizontal</li>
+      <li><code>prefers-reduced-motion</code> respetado, sin animaciones y sin contenido oculto</li>
+      <li>Contenido visible sin JavaScript (salvo los casos citados)</li>
+      <li>Sin <code>tabindex</code> positivo y sin trampas de teclado</li>
+      <li>Submenú de Servicios con <code>aria-expanded</code>; Escape lo cierra y devuelve el foco</li>
+      <li>Formulario de contacto ejemplar: <code>label</code>, <code>aria-invalid</code>, error por campo, foco al primer error, <code>role="alert"</code> y <code>role="status"</code></li>
+      <li>FAQs con <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> nativos</li>
+      <li>Sin video ni carrusel que avance solo; el banner de cookies tiene nombre accesible</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="plan">
+    <h2 id="plan">Orden sugerido</h2>
+    <ol class="plan">
+      <li><span>Párrafos de la home ocultos para lectores de pantalla</span><span class="effort">~30 min</span></li>
+      <li><span>Subir los tokens <code>--ux-color-text-subtle</code> e <code>--ux-color-inverse-*</code> y los dos grises sueltos</span><span class="effort">~30 min</span></li>
+      <li><span>Skip link y <code>:focus-visible</code> global en el layout</span><span class="effort">~30 min</span></li>
+      <li><span>Contenedor de Cal.com: foco, etiqueta y enlace para saltarlo</span><span class="effort">~45 min</span></li>
+      <li><span>Migrar <code>/privacidad/</code> al layout nuevo y quitar el WhatsApp de relleno</span><span class="effort">~1 h</span></li>
+      <li><span>Moderados: migas, aviso de pestaña nueva, Escape, encabezados</span><span class="effort">~1–2 h</span></li>
+    </ol>
+  </section>
+
+  <div class="note">
+    <h3>Alcance y límites</h3>
+    <ul class="plain">
+      <li>Las herramientas automáticas detectan alrededor del 40% de los problemas WCAG. Este informe suma recorridos de teclado y revisión del árbol de accesibilidad, pero no reemplaza una prueba con VoiceOver y NVDA hecha por una persona.</li>
+      <li>No se auditó el contenido interno del iframe de Cal.com (tercero) ni páginas fuera del sitemap como <code>/diagnostico/</code> o <code>/lupaux/</code>.</li>
+      <li>No se probó zoom de texto al 200% en escritorio ni espaciado de texto (1.4.12).</li>
+    </ul>
+  </div>
+</main>

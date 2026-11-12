@@ -118,6 +118,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         top: target.offsetTop - navbarHeight,
         behavior: 'smooth'
       });
+      // Move keyboard focus too, so skip links and in-page links work with the keyboard (WCAG 2.4.1)
+      if (!target.matches('a[href], button, input, select, textarea, [tabindex]')) {
+        target.setAttribute('tabindex', '-1');
+      }
+      target.focus({ preventScroll: true });
     }
   });
 });

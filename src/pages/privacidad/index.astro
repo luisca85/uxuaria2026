@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Spec 10-cookies-privacidad. Every statement has to match what the site does.
+// Moved from public/privacidad/index.html to the shared layout (same header,
+// footer and contrast as the rest of the site). The copy is unchanged.
+---
+<BaseLayout
+  title="Política de privacidad y cookies | Uxuaria"
+  description="Qué datos guarda uxuaria.com, para qué los uso, qué cookies activa el aviso y cómo pedir que los borre."
+  legacyStyles={false}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/privacidad/privacidad.css?v=20261112" />
+  </Fragment>
+
+  <div class="page-shell">
+    <article class="privacy page-container">
+      <h1 class="privacy__title">Política de privacidad y cookies</h1>
+      <p class="privacy__date">Actualizada el 2 de noviembre de 2026.</p>
+
+      <p>Esta política explica qué datos guardo cuando visitás uxuaria.com o me escribís por este sitio, para qué los uso y cómo pedirme que los borre. El responsable de los datos soy yo, Luis Carlos Romero León, que trabajo con la marca Uxuaria. Los datos se tratan según la Ley 25.326 de Protección de Datos Personales de la República Argentina. Por cualquier consulta, escribime a <a href="mailto:info@uxuaria.com">info@uxuaria.com</a>.</p>
+      <p>Mutis UX tiene <a href="/mutisux/privacidad">su propia política</a> para las solicitudes de acceso a la beta.</p>
+
+      <h2>Qué datos guardo</h2>
+      <ul>
+      <li><strong>Formulario de contacto:</strong> tu nombre, tu email, cómo llegaste, el tipo de proyecto, la etapa en la que está y lo que me contás.</li>
+      <li><strong>Formulario de diagnóstico:</strong> tu nombre, tu email, los datos de tu producto (nombre, URL, etapa y usuarios) y tus respuestas sobre tu rol, presupuesto, urgencia y problema.</li>
+      <li><strong>Medición:</strong> los datos que se describen en la sección de cookies.</li>
+      </ul>
+
+      <h2>Para qué los uso</h2>
+      <p>Uso lo que escribís en los formularios para responderte y evaluar cómo puedo ayudarte. Uso la medición para entender cómo se usa el sitio y mejorarlo. No vendo tus datos.</p>
+
+      <h2 id="cookies">Cookies y medición</h2>
+      <p>Para contar visitas uso Cloudflare Web Analytics, que no guarda cookies ni identifica a las personas. Está siempre activo.</p>
+      <p>Si aceptás en el aviso de cookies, también uso dos servicios:</p>
+      <ul>
+      <li><strong>Google Analytics:</strong> guarda cookies y registra las páginas que ves, los botones que tocás, tu ubicación aproximada y tu tipo de dispositivo.</li>
+      <li><strong>Hotjar:</strong> guarda cookies y registra grabaciones de tu sesión y mapas de calor: movimientos del cursor, clics y desplazamiento. Lo que escribís en los formularios queda fuera de las grabaciones.</li>
+      </ul>
+      <p>Si rechazás, ninguno de los dos se activa y el sitio funciona igual. Tu decisión se guarda en este navegador y podés cambiarla cuando quieras:</p>
+      <p><button class="privacy__settings" type="button" data-cookie-settings hidden>Preferencias de cookies</button></p>
+
+      <h2>Quién más los procesa</h2>
+      <ul>
+      <li><strong>Cloudflare:</strong> aloja el sitio y sus funciones.</li>
+      <li><strong>Web3Forms:</strong> me hace llegar por email lo que enviás en los formularios.</li>
+      <li><strong>Notion:</strong> guardo ahí las solicitudes de diagnóstico.</li>
+      <li><strong>Calendly:</strong> gestiona la reunión, si agendás una desde el sitio.</li>
+      <li><strong>Google Fonts:</strong> sirve las tipografías y recibe tu dirección IP al cargarlas.</li>
+      <li><strong>Google y Hotjar:</strong> reciben los datos de medición, solo si aceptás.</li>
+      </ul>
+      <p>Estos servicios pueden procesar los datos en servidores fuera de la Argentina.</p>
+
+      <h2>Cuánto tiempo los guardo</h2>
+      <p>Guardo lo que me enviás mientras haga falta para responderte y trabajar con vos, o hasta que me pidas que lo borre.</p>
+
+      <h2>Tus derechos</h2>
+      <p>Podés pedirme acceso, corrección o eliminación de tus datos escribiendo a <a href="mailto:info@uxuaria.com">info@uxuaria.com</a>. El acceso a tus datos es gratuito y podés pedirlo cada seis meses, salvo que tengas un interés legítimo para hacerlo antes.</p>
+      <p>La Agencia de Acceso a la Información Pública, como órgano de control de la Ley 25.326, atiende las denuncias y los reclamos de quienes consideren afectados sus derechos sobre sus datos personales.</p>
+
+    </article>
+  </div>
+</BaseLayout>

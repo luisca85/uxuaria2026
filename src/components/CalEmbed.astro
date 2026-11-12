@@ -7,7 +7,18 @@ interface Props {
 
 const { hideDetails = false } = Astro.props;
 ---
-<div class="cal-embed" id="my-cal-inline-30min" data-cal-link={CAL_LINK} data-hide-details={String(hideDetails)}></div>
+<!-- Keyboard users can jump over the calendar, and scroll it once focused (WCAG 2.1.1) -->
+<a class="cal-embed__skip skip-link" href="#cal-embed-end">Saltar la agenda</a>
+<div
+  class="cal-embed"
+  id="my-cal-inline-30min"
+  role="region"
+  aria-label="Agenda de llamadas con Uxuaria"
+  tabindex="0"
+  data-cal-link={CAL_LINK}
+  data-hide-details={String(hideDetails)}
+></div>
+<span id="cal-embed-end" tabindex="-1"></span>
 <script is:inline>
   (function () {
     const el = document.getElementById('my-cal-inline-30min');
@@ -25,6 +36,15 @@ const { hideDetails = false } = Astro.props;
         calLink: el.dataset.calLink,
       });
       Cal.ns["30min"]("ui", { hideEventTypeDetails: el.dataset.hideDetails === "true", layout: "month_view" });
+
+      // Cal.com titles its iframe "Book a call"; give it a Spanish name (WCAG 4.1.2, 3.1.2)
+      const nameFrame = new MutationObserver(() => {
+        const frame = el.querySelector('iframe');
+        if (!frame) return;
+        frame.title = 'Agenda una llamada con Uxuaria';
+        nameFrame.disconnect();
+      });
+      nameFrame.observe(el, { childList: true, subtree: true });
     }
 
     // Loads when the block gets close, so it does not slow down the first paint

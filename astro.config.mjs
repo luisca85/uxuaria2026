@@ -26,7 +26,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Static pages copied from production into public/ (Mutis UX landing and privacy)
-      customPages: ['https://uxuaria.com/mutisux/', 'https://uxuaria.com/mutisux/privacidad', 'https://uxuaria.com/privacidad/'],
+      customPages: ['https://uxuaria.com/mutisux/', 'https://uxuaria.com/mutisux/privacidad'],
       // Folder pages (contacto/, servicios/…/) keep their trailing slash, as their canonical and today's sitemap
       serialize(item) {
         const path = new URL(item.url).pathname;

@@ -64,7 +64,7 @@
          cambia su tarjeta (src/styles/base.css), cambiar también acá. --- */
   --app-card:        #FFFFFF;
   --app-ink:         #0A0A0A;  /* oklch(0.145 0 0) */
-  --app-muted:       #737373;  /* oklch(0.556 0 0) */
+  --app-muted:       #666666;  /* 5.2:1 on #f5f5f5 (WCAG 1.4.3); was #737373 */
   --app-line:        #E5E5E5;  /* oklch(0.922 0 0) */
   --app-line-input:  #D4D4D4;
   --app-ring:        #A1A1A1;  /* oklch(0.708 0 0) */
