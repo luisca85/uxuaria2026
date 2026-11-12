@@ -415,6 +415,7 @@ a.site-header__item:hover { color: var(--ux-color-text); }
 .site-footer__brand { flex: 0 1 442.3px; }
 
 .site-footer__wordmark {
+  display: block;
   color: var(--ux-color-text-inverse);
   font-size: 28px;
   font-weight: 700;

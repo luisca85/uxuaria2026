@@ -147,7 +147,15 @@ a.home-hero__diagnosis:hover { text-decoration: underline; }
   background: var(--ux-color-surface);
 }
 
+.metric-card__stat {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: inherit;
+  margin: 0;
+}
+
 .metric-card__value {
+  margin: 0;
   color: var(--ux-color-text);
   font-size: var(--home-size-metric);
   font-weight: 700;

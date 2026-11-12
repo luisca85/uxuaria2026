@@ -55,7 +55,7 @@ const testimonials = [
   ogDescription="Consultoría UX especializada en fintech y productos digitales con IA. Más de 15 años trabajando con startups en Argentina y LATAM."
   legacyStyles={false}
 >
-  <link slot="head" rel="stylesheet" href="/home.css?v=20261105" />
+  <link slot="head" rel="stylesheet" href="/home.css?v=20261112" />
   <script is:inline slot="head">
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('home-motion');
   </script>
@@ -156,21 +156,28 @@ const testimonials = [
         </div>
       </section>
 
+      {/* Each metric is a label/value pair: a <dl>, label first in the DOM, value shown first (column-reverse) */}
       <section class="home-metrics" aria-label="Resultados">
         <article class="metric-card" data-reveal>
-          <p class="metric-card__value" data-count>+150K</p>
-          <p class="metric-card__description">Usuarios activos</p>
+          <dl class="metric-card__stat">
+            <dt class="metric-card__description">Usuarios activos</dt>
+            <dd class="metric-card__value" data-count>+150K</dd>
+          </dl>
           <img class="metric-card__logo metric-card__logo--monge-pay" src="/images/home/logo-monge-pay.png" width="154" height="30" alt="Monge Pay" />
           <ArrowLink label="Leer la historia" href="/portafolio/monge-pay" />
         </article>
         <article class="metric-card" data-reveal>
-          <p class="metric-card__value" data-count>+15<span class="metric-card__unit">años</span></p>
-          <p class="metric-card__description">Experiencia en el diseño de experiencias de productos digitales para Latinoamérica, USA y Europa</p>
+          <dl class="metric-card__stat">
+            <dt class="metric-card__description">Experiencia en el diseño de experiencias de productos digitales para Latinoamérica, USA y Europa</dt>
+            <dd class="metric-card__value" data-count>+15<span class="metric-card__unit">años</span></dd>
+          </dl>
           <ArrowLink label="Sobre nosotros" href="/sobre-nosotros/" />
         </article>
         <article class="metric-card" data-reveal>
-          <p class="metric-card__value" data-count>+40</p>
-          <p class="metric-card__description">Problemas de conversión detectados</p>
+          <dl class="metric-card__stat">
+            <dt class="metric-card__description">Problemas de conversión detectados</dt>
+            <dd class="metric-card__value" data-count>+40</dd>
+          </dl>
           <img class="metric-card__logo metric-card__logo--greenify" src="/images/home/logo-greenify.png" width="105" height="30" alt="Greenify" />
           <ArrowLink label="Leer la historia" href="/portafolio/greenify" />
         </article>
