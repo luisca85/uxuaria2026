@@ -25,6 +25,9 @@ Eso le pasa a mucha gente creativa. Una meta grande sin desglosar se siente como
 
 En esta guía vas a ver qué es, de dónde viene, cómo armar tu tablero paso a paso y cómo hacerlo en línea con [SAKURA 64](https://sakura64.uxuaria.com/), una microapp gratuita que diseñé para esto. Y al final, una vuelta de tuerca: qué pasa cuando la meta del centro no es un libro, sino **un producto digital que no despega**.
 
+
+<aside class="article-callout" aria-label="Para equipos de producto"><span class="badge">Para equipos de producto</span><p class="article-callout__title">¿Tu meta es un producto digital?</p><p class="article-callout__text">El mismo tablero sirve para ordenar un producto que no despega. Más abajo hay un ejemplo con sus ocho pilares.</p><a class="article-callout__link" href="#y-si-tu-meta-es-un-producto-digital" data-track="blog_harada_callout_producto">Ver el tablero para productos <img src="/images/home/arrow-up-right.svg" width="20" height="20" alt=""></a></aside>
+
 ## Qué es el método Harada
 
 > El método Harada es un sistema japonés de fijación de metas creado por el docente Takashi Harada. Su herramienta más conocida es un tablero de 9 x 9 casillas. En el centro va una meta principal. Alrededor se ubican ocho pilares que deben cumplirse para alcanzarla, y cada pilar se divide a su vez en ocho acciones concretas. El resultado son 64 acciones que convierten un objetivo abstracto en un plan diario.
@@ -46,6 +49,9 @@ Lo interesante para alguien creativo está en sus pilares. Junto a la técnica (
 Llevado a tu trabajo, la idea es simple. Tu meta depende del oficio y también de tus hábitos, tu energía y la gente que te rodea. Un buen tablero incluye todo eso.
 
 Con los productos digitales pasa lo mismo: casi nunca fallan por un solo motivo técnico. Fallan por los pilares que nadie anotó. Vamos a volver a esto más abajo.
+
+
+<aside class="article-callout" aria-label="Diagnóstico UX"><span class="badge">Diagnóstico UX</span><p class="article-callout__title">¿Qué pilar le falta a tu producto?</p><p class="article-callout__text">Un diagnóstico UX te muestra qué está frenando a tus usuarios. Es gratis y sin compromiso.</p><a class="article-callout__link" href="/diagnostico/?cta=blog_harada_callout" data-track="blog_harada_callout_diagnostico">Pide tu diagnóstico UX gratis <img src="/images/home/arrow-up-right.svg" width="20" height="20" alt=""></a></aside>
 
 ## Cómo funciona el método Harada, paso a paso
 
@@ -75,6 +81,9 @@ Al terminar tienes un panel con 64 acciones desglosadas y accionables. Algunas s
 
 A partir de ahí, elige pocas acciones por semana y empieza. El tablero te dice qué hacer el lunes a la mañana.
 
+
+<aside class="article-callout" aria-label="Diseño AI Native"><span class="badge">Diseño AI Native</span><p class="article-callout__title">Del tablero al prototipo</p><p class="article-callout__text">Una acción bien escrita se puede probar. En producto, eso es un prototipo funcional que pruebas con usuarios antes de programarlo, con IA donde realmente aporta y criterio humano donde hay que decidir.</p><a class="article-callout__link" href="/servicios/diseno-ai-native/" data-track="blog_harada_callout_ai_native">Conoce el diseño de experiencia AI Native <img src="/images/home/arrow-up-right.svg" width="20" height="20" alt=""></a></aside>
+
 ## Ejemplo: una meta creativa con sus ocho pilares
 
 Supongamos que eres ilustradora o ilustrador en Latinoamérica. **Meta central:** publicar mi primer libro ilustrado antes de diciembre de 2027.
@@ -99,6 +108,9 @@ Con estos ocho pilares ya tienes el esqueleto. El siguiente paso es completar oc
 -   **Ignorar los hábitos.** La constancia pesa tanto como el talento en un proyecto largo.
 -   **Armarlo y olvidarlo.** Revísalo una vez por mes. Marca lo hecho y reemplaza lo que ya no sirve.
 
+
+<aside class="article-callout" aria-label="Design System AI Ready"><span class="badge">Design System AI Ready</span><p class="article-callout__title">Pilares repetidos, pantallas que no encajan</p><p class="article-callout__text">Lo que le pasa a un tablero desordenado le pasa también a una interfaz sin sistema. Un design system conecta marca, diseño y código.</p><a class="article-callout__link" href="/servicios/design-systems-ia/" data-track="blog_harada_callout_design_system">Conoce el Design System AI Ready <img src="/images/home/arrow-up-right.svg" width="20" height="20" alt=""></a></aside>
+
 ## SAKURA 64: tu tablero Harada en línea
 
 Armar el tablero en papel funciona, pero cuesta sostenerlo. Por eso diseñé **SAKURA 64**, mi primera microapp. Es un tablero Harada en el navegador, gratuito y sin fines comerciales. Puedes verla junto a otros trabajos de Uxuaria en la [página de proyectos](/portafolio/).
@@ -116,6 +128,9 @@ El mapa muestra las 81 casillas con un color por pilar. Escribes en cualquier ca
 A cada acción le puedes poner una prioridad (alta, media o baja) y un estado. Si el tablero completo te abruma, puedes verlo de a un pilar a la vez.
 
 <figure class="article-figure"><img class="article-figure__img" src="/images/blog/metodo-harada/sakura64-mapa-completo.jpg" width="1600" height="2135" alt="Mapa completo de SAKURA 64 con un ejemplo de 64 acciones organizadas en ocho pilares de colores" loading="lazy"></figure>
+
+
+<aside class="article-callout" aria-label="AI MVP Rescue"><span class="badge">AI MVP Rescue</span><p class="article-callout__title">¿Tu app la construiste con IA y ahora no escala?</p><p class="article-callout__text">Convertimos prototipos hechos con Claude Code, Lovable, Cursor o ChatGPT en un MVP listo para usuarios e inversores.</p><a class="article-callout__link" href="/ai-mvp-rescue" data-track="blog_harada_callout_rescue">Conoce AI MVP Rescue <img src="/images/home/arrow-up-right.svg" width="20" height="20" alt=""></a></aside>
 
 ### Las acciones se vuelven tareas
 

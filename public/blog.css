@@ -267,6 +267,38 @@
   color: var(--ux-color-text-inverse);
 }
 
+/* Callout cards between paragraphs: lead to a service page (spec 17) */
+.article-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 8px 0;
+  padding: 24px;
+  border: 1px solid var(--ux-color-ink);
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface-soft);
+}
+
+.article-callout__title {
+  margin-top: 4px;
+  font-size: var(--ux-size-lead);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.04em;
+}
+
+.article-callout__text { font-size: var(--ux-size-small); line-height: 25.6px; }
+
+.post-body .article-callout__link {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+  font-size: var(--ux-size-small);
+  font-weight: 500;
+}
+
 /* ===== AUTHOR ===== */
 .post-author {
   display: flex;
