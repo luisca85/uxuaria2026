@@ -1,11 +1,11 @@
 ---
 title: "Método Harada: cómo dividir una meta creativa en 64 acciones"
 seoTitle: "Método Harada: cómo dividir una meta creativa en 64 acciones | Uxuaria Blog"
-description: "Aprendé qué es el método Harada y cómo dividir un proyecto creativo en 64 acciones. Con un ejemplo y SAKURA 64, una app gratis para armar tu tablero."
-excerpt: "Qué es el método Harada, qué aprendió Shohei Ohtani con él y cómo armar tu tablero de 64 acciones paso a paso, con un ejemplo creativo y SAKURA 64, una app gratis."
+description: "Aprende qué es el método Harada y cómo dividir un proyecto creativo en 64 acciones. Con un ejemplo y SAKURA 64, una app gratis para armar tu tablero."
+excerpt: "Qué es el método Harada, qué aprendió Shohei Ohtani con él y cómo armar tu tablero de 64 acciones paso a paso, con un ejemplo creativo, otro de producto digital y SAKURA 64, una app gratis."
 category: "MÉTODOS · CREATIVIDAD"
 pubDate: 2026-10-09
-readingTime: 8
+readingTime: 10
 cover:
   src: "/images/blog/metodo-harada/sakura64-intro-tablero.jpg"
   width: 1600
@@ -19,11 +19,11 @@ cardImage:
 ogImage: "/images/blog/metodo-harada/sakura64-intro-tablero.jpg"
 ---
 
-Tenés un proyecto creativo grande en la cabeza. Puede ser tu primer libro ilustrado, un estudio propio o una serie de cortos. Lo escribís y te bloqueás, porque no sabés por dónde empezar.
+Tienes un proyecto creativo grande en la cabeza. Puede ser tu primer libro ilustrado, un estudio propio o una serie de cortos. Lo escribes y te bloqueas, porque no sabes por dónde empezar.
 
-Eso le pasa a mucha gente creativa. Una meta grande sin desglosar se siente como una montaña. El **método Harada** sirve para resolver ese problema: convierte un objetivo ambicioso en 64 acciones concretas que podés empezar esta semana.
+Eso le pasa a mucha gente creativa. Una meta grande sin desglosar se siente como una montaña. El **método Harada** sirve para resolver ese problema: convierte un objetivo ambicioso en 64 acciones concretas que puedes empezar esta semana.
 
-En esta guía vas a ver qué es, de dónde viene, cómo armar tu tablero paso a paso y cómo hacerlo en línea con [SAKURA 64](https://sakura64.uxuaria.com/), una microapp gratuita que diseñé para esto.
+En esta guía vas a ver qué es, de dónde viene, cómo armar tu tablero paso a paso y cómo hacerlo en línea con [SAKURA 64](https://sakura64.uxuaria.com/), una microapp gratuita que diseñé para esto. Y al final, una vuelta de tuerca: qué pasa cuando la meta del centro no es un libro, sino **un producto digital que no despega**.
 
 ## Qué es el método Harada
 
@@ -45,37 +45,39 @@ Lo interesante para alguien creativo está en sus pilares. Junto a la técnica (
 
 Llevado a tu trabajo, la idea es simple. Tu meta depende del oficio y también de tus hábitos, tu energía y la gente que te rodea. Un buen tablero incluye todo eso.
 
+Con los productos digitales pasa lo mismo: casi nunca fallan por un solo motivo técnico. Fallan por los pilares que nadie anotó. Vamos a volver a esto más abajo.
+
 ## Cómo funciona el método Harada, paso a paso
 
-El tablero tiene 81 casillas: 1 meta, 8 pilares y 64 acciones. Lo podés armar en papel, en una planilla o directamente en [SAKURA 64](https://sakura64.uxuaria.com/).
+El tablero tiene 81 casillas: 1 meta, 8 pilares y 64 acciones. Lo puedes armar en papel, en una planilla o directamente en [SAKURA 64](https://sakura64.uxuaria.com/).
 
-### Paso 1: definí una meta grande y ambiciosa
+### Paso 1: define una meta grande y ambiciosa
 
-Escribí la meta en la casilla central. Tiene que ser importante para vos y darte un poco de vértigo.
+Escribe la meta en la casilla central. Tiene que ser importante para ti y darte un poco de vértigo.
 
-Sumale un plazo y una forma de medirla. "Dibujar más" es difícil de trabajar. "Publicar mi primer libro ilustrado antes de diciembre de 2027" te da algo concreto.
+Súmale un plazo y una forma de medirla. "Dibujar más" es difícil de trabajar. "Publicar mi primer libro ilustrado antes de diciembre de 2027" te da algo concreto.
 
-### Paso 2: escribí ocho pilares
+### Paso 2: escribe ocho pilares
 
-Preguntate qué tiene que ser verdad para que esa meta se cumpla. Cada respuesta es un pilar. Anotalos en las ocho casillas que rodean el centro.
+Pregúntate qué tiene que ser verdad para que esa meta se cumpla. Cada respuesta es un pilar. Anótalos en las ocho casillas que rodean el centro.
 
-Pensá en distintas áreas: oficio, hábitos, comunidad, dinero, salud. Si todos tus pilares son técnicos, probablemente te falte algo.
+Piensa en distintas áreas: oficio, hábitos, comunidad, dinero, salud. Si todos tus pilares son técnicos, probablemente te falte algo.
 
-### Paso 3: desglosá cada pilar en ocho acciones
+### Paso 3: desglosa cada pilar en ocho acciones
 
-Cada pilar pasa al centro de un bloque nuevo de 3 x 3. A su alrededor escribí ocho acciones que lo hagan realidad.
+Cada pilar pasa al centro de un bloque nuevo de 3 x 3. A su alrededor escribe ocho acciones que lo hagan realidad.
 
 Una buena acción empieza con un verbo y se puede hacer o repetir. "Mejorar el color" queda corto. "Hacer un estudio de paleta por semana" ya es una acción.
 
 ### Resultado: 64 acciones listas
 
-Al terminar tenés un panel con 64 acciones desglosadas y accionables. Algunas son tareas de una sola vez. Otras son rutinas. Las dos sirven.
+Al terminar tienes un panel con 64 acciones desglosadas y accionables. Algunas son tareas de una sola vez. Otras son rutinas. Las dos sirven.
 
-A partir de ahí, elegí pocas acciones por semana y empezá. El tablero te dice qué hacer el lunes a la mañana.
+A partir de ahí, elige pocas acciones por semana y empieza. El tablero te dice qué hacer el lunes a la mañana.
 
 ## Ejemplo: una meta creativa con sus ocho pilares
 
-Supongamos que sos ilustradora o ilustrador en Latinoamérica. **Meta central:** publicar mi primer libro ilustrado antes de diciembre de 2027.
+Supongamos que eres ilustradora o ilustrador en Latinoamérica. **Meta central:** publicar mi primer libro ilustrado antes de diciembre de 2027.
 
 1.  **Historia sólida.** Un guion que funcione antes de dibujar. Acción: escribir la sinopsis en una página.
 2.  **Estilo propio.** Una línea visual reconocible. Acción: hacer un estudio de personaje por semana.
@@ -83,35 +85,35 @@ Supongamos que sos ilustradora o ilustrador en Latinoamérica. **Meta central:**
 4.  **Referencias e inspiración.** Alimentar la mirada. Acción: visitar una muestra o librería por mes.
 5.  **Comunidad.** Gente que lea, critique y difunda. Acción: mostrar avances en un grupo de ilustración cada quince días.
 6.  **Camino de publicación.** Saber cómo llega el libro a las manos. Acción: armar una lista de 10 editoriales independientes.
-7.  **Finanzas.** Sostener el proyecto mientras lo hacés. Acción: calcular cuántos encargos por mes necesitás.
+7.  **Finanzas.** Sostener el proyecto mientras lo haces. Acción: calcular cuántos encargos por mes necesitas.
 8.  **Energía y salud.** Llegar entero al final. Acción: bloquear un día libre por semana.
 
-Con estos ocho pilares ya tenés el esqueleto. El siguiente paso es completar ocho acciones por pilar.
+Con estos ocho pilares ya tienes el esqueleto. El siguiente paso es completar ocho acciones por pilar.
 
 ## Errores comunes al armar un tablero Harada
 
--   **Meta demasiado vaga.** Sin plazo ni forma de medirla, después no sabés si avanzaste.
--   **Pilares repetidos.** Si dos pilares dicen casi lo mismo, juntalos y buscá un área que falte.
+-   **Meta demasiado vaga.** Sin plazo ni forma de medirla, después no sabes si avanzaste.
+-   **Pilares repetidos.** Si dos pilares dicen casi lo mismo, júntalos y busca un área que falte.
 -   **Acciones sin verbo.** "Redes sociales" es un tema. "Publicar un proceso de dibujo por semana" es una acción.
--   **Querer hacer las 64 a la vez.** El tablero es un mapa. Elegí pocas acciones por semana.
+-   **Querer hacer las 64 a la vez.** El tablero es un mapa. Elige pocas acciones por semana.
 -   **Ignorar los hábitos.** La constancia pesa tanto como el talento en un proyecto largo.
--   **Armarlo y olvidarlo.** Revisalo una vez por mes. Marcá lo hecho y reemplazá lo que ya no sirve.
+-   **Armarlo y olvidarlo.** Revísalo una vez por mes. Marca lo hecho y reemplaza lo que ya no sirve.
 
 ## SAKURA 64: tu tablero Harada en línea
 
-Armar el tablero en papel funciona, pero cuesta sostenerlo. Por eso diseñé **SAKURA 64**, mi primera microapp. Es un tablero Harada en el navegador, gratuito y sin fines comerciales.
+Armar el tablero en papel funciona, pero cuesta sostenerlo. Por eso diseñé **SAKURA 64**, mi primera microapp. Es un tablero Harada en el navegador, gratuito y sin fines comerciales. Puedes verla junto a otros trabajos de Uxuaria en la [página de proyectos](/portafolio/).
 
 ### Empieza con una guía corta
 
-Al entrar, una introducción de cuatro pasos te muestra el método: objetivo, pilares, acciones y tareas. Si ya lo conocés, podés saltearla.
+Al entrar, una introducción de cuatro pasos te muestra el método: objetivo, pilares, acciones y tareas. Si ya lo conoces, puedes saltarla.
 
 <figure class="article-figure"><img class="article-figure__img" src="/images/blog/metodo-harada/sakura64-intro-objetivo.jpg" width="1600" height="1000" alt="Introducción de SAKURA 64 con el paso Objetivo y una meta de ejemplo en el centro del tablero" loading="lazy"></figure>
 
-### Escribís directo en el tablero
+### Escribes directo en el tablero
 
-El mapa muestra las 81 casillas con un color por pilar. Escribís en cualquier casilla y con Enter pasás a la siguiente. Cada pilar aparece dos veces, alrededor del objetivo y en su bloque, y se actualiza en los dos lugares.
+El mapa muestra las 81 casillas con un color por pilar. Escribes en cualquier casilla y con Enter pasas a la siguiente. Cada pilar aparece dos veces, alrededor del objetivo y en su bloque, y se actualiza en los dos lugares.
 
-A cada acción le podés poner una prioridad (alta, media o baja) y un estado. Si el tablero completo te abruma, podés verlo de a un pilar a la vez.
+A cada acción le puedes poner una prioridad (alta, media o baja) y un estado. Si el tablero completo te abruma, puedes verlo de a un pilar a la vez.
 
 <figure class="article-figure"><img class="article-figure__img" src="/images/blog/metodo-harada/sakura64-mapa-completo.jpg" width="1600" height="2135" alt="Mapa completo de SAKURA 64 con un ejemplo de 64 acciones organizadas en ocho pilares de colores" loading="lazy"></figure>
 
@@ -123,25 +125,44 @@ En la pestaña "Tus tareas para hoy" ves solo lo que te toca hoy, agrupado por p
 
 <figure class="article-figure"><img class="article-figure__img" src="/images/blog/metodo-harada/sakura64-tareas.jpg" width="1600" height="1000" alt="Vista Tus tareas para hoy de SAKURA 64 con tareas agrupadas por pilar y rachas de días" loading="lazy"></figure>
 
-### Ves tu avance y lo exportás
+### Ves tu avance y lo exportas
 
-La pestaña "Mi avance" muestra cuánto avanzaste en cada pilar y cómo te fue en la semana. Desde ahí descargás un PDF con el mapa de 9 x 9, el avance por pilar y el detalle de cada acción.
+La pestaña "Mi avance" muestra cuánto avanzaste en cada pilar y cómo te fue en la semana. Desde ahí descargas un PDF con el mapa de 9 x 9, el avance por pilar y el detalle de cada acción.
 
 <figure class="article-figure"><img class="article-figure__img" src="/images/blog/metodo-harada/sakura64-avance.jpg" width="1600" height="1000" alt="Vista Mi avance de SAKURA 64 con barras de progreso por pilar, cumplimiento semanal y exportación a PDF" loading="lazy"></figure>
 
-### Tus datos se quedan con vos
+### Tus datos se quedan contigo
 
-SAKURA 64 no guarda tu tablero en ningún servidor. Vive en la sesión de tu navegador y se borra al cerrar la pestaña. Lo que quieras conservar, lo exportás a PDF.
+SAKURA 64 no guarda tu tablero en ningún servidor. Vive en la sesión de tu navegador y se borra al cerrar la pestaña. Lo que quieras conservar, lo exportas a PDF.
 
-Si querés ver cómo queda un tablero terminado, abrí el ejemplo de la panadería de masa madre y tocá "Duplicar como mío" para usarlo de base.
+Si quieres ver cómo queda un tablero terminado, abre el ejemplo de la panadería de masa madre y toca "Duplicar como mío" para usarlo de base.
 
-## Probá SAKURA 64
+## ¿Y si tu meta es un producto digital?
 
-Si tenés una meta creativa que te viene dando vueltas, este es un buen momento para bajarla a tierra. Abrí SAKURA 64, escribí tu meta en el centro y completá tus ocho pilares.
+Ahora la vuelta de tuerca. Cambia el libro ilustrado por una app, un SaaS o una plataforma que ya lanzaste. Pon en el centro una meta como **"Llegar a 1.000 usuarios activos en los próximos 12 meses"** y pregúntate lo mismo: qué tiene que ser verdad para que eso pase.
 
-Es mi primera microapp y la quiero mejorar con lo que me cuentes. Probala y escribime a [info@uxuaria.com](mailto:info@uxuaria.com?subject=Feedback%20SAKURA%2064) qué te sirvió, qué te trabó y qué le agregarías.
+Es tentador llenar los pilares de funciones nuevas. Pero, igual que en el tablero de Ohtani, lo que decide el resultado suele estar en los pilares menos obvios:
 
-<a href="https://sakura64.uxuaria.com/" class="btn btn--primary" target="_blank" rel="noopener">Armar mi tablero en SAKURA 64</a>
+1.  **Un problema real validado.** Saber por qué la gente entra y por qué se va. Acción: hablar con cinco usuarios por mes. Si no sabes por dónde empezar, un [diagnóstico UX](/servicios/investigacion/) te muestra qué está frenando a tus usuarios.
+2.  **Un onboarding que se entiende.** Que el primer uso no sea el último. Acción: medir en qué paso abandonan los usuarios nuevos.
+3.  **Una interfaz coherente.** Que cada pantalla nueva no rompa la anterior. Acción: documentar componentes y reglas en un [design system AI ready](/servicios/design-systems-ia/).
+4.  **Prototipos que se prueban antes de desarrollarse.** Acción: probar cada función nueva con usuarios reales antes de programarla. Es la base del [diseño de experiencia AI Native](/servicios/diseno-ai-native/).
+5.  **Una base técnica que aguanta el crecimiento.** Sobre todo si el MVP lo hiciste con IA. Acción: revisar el código generado antes de sumar funciones. Para eso existe [AI MVP Rescue](/ai-mvp-rescue).
+6.  **Métricas que importan.** Acción: definir qué cuenta como "usuario activo" antes de mirar cualquier gráfico.
+7.  **Un canal de adquisición.** Acción: probar un canal por mes y medir cuánto cuesta cada usuario.
+8.  **Feedback continuo.** Acción: leer cada semana lo que llega a soporte y anotar lo que se repite.
+
+Si al completar este tablero descubres que los pilares 1 a 5 están vacíos, ahí empieza el trabajo que hacemos en [Uxuaria](/servicios/): encontrar qué frena a tus usuarios y diseñar lo que hace falta para que el producto crezca.
+
+<a href="/diagnostico/?cta=blog_harada" class="btn btn--primary" data-track="cta_blog_harada_diagnostico">Pide un diagnóstico UX gratis de tu producto</a>
+
+## Prueba SAKURA 64
+
+Si tienes una meta creativa que te viene dando vueltas, este es un buen momento para bajarla a tierra. Abre SAKURA 64, escribe tu meta en el centro y completa tus ocho pilares.
+
+Es mi primera microapp y la quiero mejorar con lo que me cuentes. Pruébala y escríbeme a [info@uxuaria.com](mailto:info@uxuaria.com?subject=Feedback%20SAKURA%2064) qué te sirvió, qué te trabó y qué le agregarías.
+
+<a href="https://sakura64.uxuaria.com/" class="btn btn--primary" target="_blank" rel="noopener" data-track="cta_blog_harada_sakura">Armar mi tablero en SAKURA 64</a>
 
 ### Fuentes
 
