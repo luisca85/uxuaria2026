@@ -142,8 +142,8 @@ El diseño cambia elementos que `CLAUDE.md` protege. Nada de esto se publica sin
 
 | Tema | Hoy en el sitio | En la home nueva | A definir |
 |---|---|---|---|
-| H1 | "UX para productos digitales · Buenos Aires · LATAM" | "Agencia UX que dirige a tu usuario hacia donde crece tu negocio" | Texto final. Afecta SEO |
-| Lead | Texto actual del hero | "Consultoría y Agencia UX para startups que escalan, con foco en productos construidos con IA." | Texto final |
+| H1 | "UX para productos digitales · Buenos Aires · LATAM" | "Agencia de diseño UX/UI AI-native para startups" | Aprobado por Luis (2026-11-13), orientado a SEO. Antes: "Agencia UX que dirige a tu usuario hacia donde crece tu negocio" |
+| Lead | Texto actual del hero | "Dirigimos a tu usuario hacia donde crece tu negocio. Trabajamos con startups de fintech y SaaS para detectar qué frena su producto y rediseñarlo para escalar." | Aprobado por Luis (2026-11-13). Antes: "Consultoría y Agencia UX para startups que escalan, con foco en productos construidos con IA." |
 | Título de servicios | Servicios actuales | "Servicios de consultoría UX y diseño de producto" | Texto final |
 | CTA del hero | "▶ Agendá…", "¿Tu app la construiste con IA? →" | "Agenda…", "o obtén un diagnóstico UX gratis" | Texto final; desaparece el CTA de AI MVP Rescue del hero |
 | Voseo | Voseo | Tuteo con ortografía corregida: "Agenda", "elige", "escríbeme", "obtén", "tienes", "sabes", "quieres", "estás" | ¿Se pasa a voseo (regla de `CLAUDE.md`)? |
