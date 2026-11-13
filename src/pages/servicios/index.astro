@@ -7,6 +7,14 @@ import { BOOKING_URL } from '../../lib/booking';
 
 // Services hub (spec 17-servicios-hub): /servicios/ had Search Console impressions and redirected to /#servicios
 const url = 'https://uxuaria.com/servicios/';
+
+// Home symbols, one per service (spec 17)
+const SYMBOLS = {
+  diagnostico: { src: '/images/home/symbol-research.svg', modifier: '' },
+  'design-system': { src: '/images/home/symbol-build.svg', modifier: 'route-card__symbol--half' },
+  'ai-native': { src: '/images/home/symbol-design.svg', modifier: 'route-card__symbol--quarter' },
+  rescue: { src: '/images/home/symbol-research.svg', modifier: 'route-card__symbol--half' },
+} as const;
 const diagnosisUrl = (cta: string) => `/diagnostico/?cta=${cta}`;
 
 const jsonLd = [
@@ -43,6 +51,7 @@ const jsonLd = [
 >
   <Fragment slot="head">
     <link rel="stylesheet" href="/service.css?v=20261111f" />
+    <link rel="stylesheet" href="/services-hub.css?v=20261113" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
@@ -66,15 +75,33 @@ const jsonLd = [
       </div>
     </section>
 
-    {SERVICES.map((service) => (
-      <section class="service-section page-container" aria-labelledby={`servicio-${service.id}`}>
-        <div class="service-head">
-          <h2 class="service-head__title" id={`servicio-${service.id}`}>{service.name}</h2>
-          <p class="service-head__text">{service.summary}</p>
-        </div>
-        <ArrowLink label={service.link} href={service.href} track={`servicios_${service.id}`} />
-      </section>
-    ))}
+    <section class="service-section page-container" aria-labelledby="recorrido-title">
+      <div class="service-head">
+        <p class="service-head__eyebrow">El recorrido</p>
+        <h2 class="service-head__title" id="recorrido-title">¿Por dónde empieza tu producto?</h2>
+      </div>
+      <ol class="route">
+        {SERVICES.map((service, index) => (
+          <li class="route__step">
+            <article class="route-card">
+              <div class="route-card__top">
+                <img class={`route-card__symbol ${SYMBOLS[service.id].modifier}`} src={SYMBOLS[service.id].src} width="65" height="66" alt="" />
+                <span class="route-card__index">{String(index + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 class="route-card__title">{service.name}</h3>
+              <p class="route-card__text">{service.summary}</p>
+              <ArrowLink label={service.link} href={service.href} align="start" track={`servicios_${service.id}`} />
+            </article>
+            {index < SERVICES.length - 1 && (
+              <div class="route__link" aria-hidden="true">
+                <span class="route__rail"></span>
+                <span class="route__rail"></span>
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
 
     <ClosingCta
       title="Hablemos de tu producto."

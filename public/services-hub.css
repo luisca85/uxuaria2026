@@ -1,0 +1,169 @@
+/* ===================================================================
+   UXUARIA — services-hub.css
+   /servicios/: service cards joined by a double rounded line, like the
+   flow line on the home. Spec: 17-servicios-hub.
+   =================================================================== */
+
+:root {
+  --route-stroke: 2px;
+  --route-rail-gap: 11px;
+  --route-radius: 20px;
+  --route-step-gap: 120px;
+  --route-card-width: 46%;
+  /* Same as --route-card-width, as a number: the line spans center to center */
+  --route-card-ratio: .46;
+}
+
+.route {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--route-step-gap);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.route__step {
+  position: relative;
+  width: var(--route-card-width);
+}
+
+.route__step:nth-child(even) { align-self: flex-end; }
+
+/* ----- Card ----- */
+.route-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+  border: 1px solid var(--ux-color-ink);
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.route-card:hover,
+.route-card:focus-within { transform: translateY(-4px); box-shadow: var(--ux-shadow-card-hover); }
+
+.route-card__top { display: flex; align-items: center; justify-content: space-between; }
+.route-card__symbol { width: 65px; height: 66px; }
+.route-card__symbol--quarter { transform: rotate(90deg); }
+.route-card__symbol--half { transform: rotate(180deg); }
+
+.route-card__index {
+  color: var(--ux-color-text-subtle);
+  font-family: var(--ux-font-mono);
+  font-size: var(--ux-size-small);
+}
+
+.route-card__title {
+  color: var(--ux-color-text);
+  font-size: var(--ux-size-heading);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: var(--ux-track-heading);
+}
+
+.route-card__text {
+  color: var(--ux-color-ink);
+  font-size: var(--ux-size-body);
+  line-height: 1.4;
+}
+
+/* The whole card is clickable through its link */
+.route-card .arrow-link::after { content: ''; position: absolute; inset: 0; border-radius: var(--ux-radius-card); }
+
+/* ----- Line to the next card -----
+   Two rails, the second offset by --route-rail-gap. Each rail is an S:
+   ::before goes down and turns across, ::after turns down into the next card. */
+.route__link {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: calc(100% / var(--route-card-ratio) - 100%);
+  height: var(--route-step-gap);
+  pointer-events: none;
+}
+
+.route__rail { position: absolute; inset: 0; }
+.route__rail + .route__rail { translate: var(--route-rail-gap) var(--route-rail-gap); }
+
+.route__rail::before,
+.route__rail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border: 0 solid var(--ux-color-ink);
+}
+
+.route__rail::before {
+  top: 0;
+  right: var(--route-radius);
+  border-left-width: var(--route-stroke);
+  border-bottom-width: var(--route-stroke);
+  border-bottom-left-radius: var(--route-radius);
+}
+
+.route__rail::after {
+  bottom: 0;
+  left: var(--route-radius);
+  border-top-width: var(--route-stroke);
+  border-right-width: var(--route-stroke);
+  border-top-right-radius: var(--route-radius);
+  translate: 0 calc(var(--route-stroke) * -1);
+}
+
+/* Even cards sit on the right: the line runs back to the left */
+.route__step:nth-child(even) .route__link { left: auto; right: 50%; }
+.route__step:nth-child(even) .route__rail::before {
+  left: var(--route-radius);
+  right: 0;
+  border-left-width: 0;
+  border-right-width: var(--route-stroke);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: var(--route-radius);
+}
+.route__step:nth-child(even) .route__rail::after {
+  left: 0;
+  right: var(--route-radius);
+  border-right-width: 0;
+  border-left-width: var(--route-stroke);
+  border-top-right-radius: 0;
+  border-top-left-radius: var(--route-radius);
+}
+.route__step:nth-child(even) .route__rail + .route__rail { translate: calc(var(--route-rail-gap) * -1) var(--route-rail-gap); }
+
+/* ----- Tablet and mobile: one column, the line runs straight down ----- */
+@media (max-width: 900px) {
+  :root { --route-step-gap: 64px; --route-card-width: 100%; }
+
+  .route__step:nth-child(even) { align-self: stretch; }
+  .route-card { padding: 24px; }
+
+  .route__link,
+  .route__step:nth-child(even) .route__link { left: 32px; right: auto; width: var(--route-rail-gap); }
+  .route__rail::after,
+  .route__step:nth-child(even) .route__rail::after { display: none; }
+  .route__rail::before,
+  .route__step:nth-child(even) .route__rail::before {
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-width: 0;
+    border-left-width: var(--route-stroke);
+    border-radius: 0;
+  }
+  .route__rail + .route__rail,
+  .route__step:nth-child(even) .route__rail + .route__rail { translate: var(--route-rail-gap) 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-card { transition: none; }
+  .route-card:hover, .route-card:focus-within { transform: none; }
+}
