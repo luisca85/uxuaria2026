@@ -36,4 +36,4 @@ A partir del mismo diagnóstico:
 - **Reservas de Cal.com**: el embed envía `generate_lead` con `form_id: cal_booking` al confirmar una reserva (eventos `bookingSuccessfulV2` y `bookingSuccessful`, se envía una sola vez). A CONFIRMAR con una reserva de prueba. Los botones que abren la agenda en otra pestaña no se miden.
 - **Datos estructurados de la home**: nodo `Organization` "Uxuaria" (`#organization`) con fundador `#luis`; la persona suma `worksFor`.
 
-Pendiente de decisión: el `FAQPage` de la home describe preguntas que no se ven en la página, algo que las pautas de Google sobre datos estructurados piden evitar.
+- **FAQ oculto de la home**: se quitó el `FAQPage` de los datos estructurados (decisión de Luis, 2026-11-13). Sus cuatro preguntas no se veían en la página y repetían "diseñador UX freelance" y una afirmación de exclusividad.
