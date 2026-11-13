@@ -74,6 +74,12 @@
   line-height: 1.4;
 }
 
+.route-card__detail {
+  color: var(--ux-color-text-muted);
+  font-size: var(--ux-size-small);
+  line-height: 1.6;
+}
+
 /* The whole card is clickable through its link */
 .route-card .arrow-link::after { content: ''; position: absolute; inset: 0; border-radius: var(--ux-radius-card); }
 

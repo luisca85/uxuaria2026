@@ -90,6 +90,7 @@ const jsonLd = [
               </div>
               <h3 class="route-card__title">{service.name}</h3>
               <p class="route-card__text">{service.summary}</p>
+              {service.description && <p class="route-card__detail">{service.description}</p>}
               <ArrowLink label={service.link} href={service.href} align="start" track={`servicios_${service.id}`} />
             </article>
             {index < SERVICES.length - 1 && (

@@ -3,6 +3,8 @@ export interface Service {
   id: 'diagnostico' | 'design-system' | 'ai-native' | 'rescue';
   name: string;
   summary: string;
+  // Extra line for the card on /servicios/ only (spec 17)
+  description?: string;
   // Label for the "Otros servicios" rows on the service pages
   link: string;
   href: string;
@@ -27,6 +29,7 @@ export const SERVICES: Service[] = [
     id: 'ai-native',
     name: 'Diseño de experiencia AI Native',
     summary: 'Diseño de producto con IA en cada etapa del proceso.',
+    description: 'Amplifica el alcance y acelera el desarrollo de tu producto con un sistema que usa IA donde realmente aporta y criterio humano donde hay que decidir.',
     link: 'Diseño de experiencia AI Native',
     href: '/servicios/diseno-ai-native/',
   },
