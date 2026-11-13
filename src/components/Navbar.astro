@@ -30,7 +30,7 @@ const inServices = SERVICES.some((service) => currentAttr(service.href));
           </button>
           <div class="site-mega" id="servicesMenu">
             <div class="site-mega__inner">
-              <p class="site-mega__eyebrow">Servicios</p>
+              <a href="/servicios/" class="site-mega__eyebrow" data-track="nav_servicios_todos">Ver todos los servicios</a>
               <ul class="site-mega__list">
                 {SERVICES.map((service) => (
                   <li>
@@ -64,7 +64,7 @@ const inServices = SERVICES.some((service) => currentAttr(service.href));
     </div>
   </div>
   <div class="site-header__menu" id="mobileMenu" aria-hidden="true">
-    <p class="site-header__menu-label">Servicios</p>
+    <a href="/servicios/" class="site-header__menu-label">Servicios</a>
     {SERVICES.map((service) => (
       <a href={service.href} aria-current={currentAttr(service.href)} class="site-header__item site-header__item--sub">{service.name}</a>
     ))}

@@ -82,6 +82,28 @@ const testimonials = [
       "Auditoría UX", "Design Systems", "IA productos digitales",
       "Prototipado", "Wireframing", "Diseño de onboarding"
     ],
+    "worksFor": { "@id": "https://uxuaria.com/#organization" },
+    "sameAs": [
+      "https://www.linkedin.com/company/uxuaria/"
+    ]
+  }
+  </script>
+  <script is:inline slot="head" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://uxuaria.com/#organization",
+    "name": "Uxuaria",
+    "url": "https://uxuaria.com",
+    "logo": "https://uxuaria.com/apple-touch-icon.png",
+    "description": "Agencia de diseño UX/UI AI-native para startups de fintech y SaaS en LATAM.",
+    "email": "info@uxuaria.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "founder": { "@id": "https://uxuaria.com/#luis" },
     "sameAs": [
       "https://www.linkedin.com/company/uxuaria/"
     ]
@@ -102,7 +124,7 @@ const testimonials = [
       },
       {
         "@type": "Question",
-        "name": "¿Trabajás con apps construidas con IA (Lovable, Bolt, Cursor)?",
+        "name": "¿Trabajas con apps construidas con IA (Lovable, Bolt, Cursor)?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Sí. Me especializo en mejorar productos creados con herramientas de vibe coding como Lovable, Bolt, v0 y Cursor. Identifico qué problemas son de UX y cuáles son de implementación, y diseño la solución correcta para cada caso."

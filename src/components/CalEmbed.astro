@@ -37,6 +37,17 @@ const { hideDetails = false } = Astro.props;
       });
       Cal.ns["30min"]("ui", { hideEventTypeDetails: el.dataset.hideDetails === "true", layout: "month_view" });
 
+      // A booking made in the embed counts as a lead in GA4, like the forms (spec 17).
+      // Cal.com has fired both names across versions; the flag sends it once.
+      let booked = false;
+      const onBooked = () => {
+        if (booked) return;
+        booked = true;
+        if (window.uxuariaTrack) window.uxuariaTrack('generate_lead', { form_id: 'cal_booking', page_path: location.pathname });
+      };
+      Cal.ns["30min"]("on", { action: "bookingSuccessfulV2", callback: onBooked });
+      Cal.ns["30min"]("on", { action: "bookingSuccessful", callback: onBooked });
+
       // Cal.com titles its iframe "Book a call"; give it a Spanish name (WCAG 4.1.2, 3.1.2)
       const nameFrame = new MutationObserver(() => {
         const frame = el.querySelector('iframe');

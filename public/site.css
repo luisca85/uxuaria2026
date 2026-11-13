@@ -277,7 +277,9 @@ a.site-header__item:hover { color: var(--ux-color-text); }
 }
 
 .site-mega__eyebrow {
+  display: inline-block;
   margin-bottom: 16px;
+  text-decoration: none;
   color: var(--ux-color-text-muted);
   font-family: var(--ux-font-mono);
   font-size: 11px;
@@ -336,6 +338,7 @@ a.site-header__item:hover { color: var(--ux-color-text); }
 
 /* Mobile menu: services as their own group */
 .site-header__menu-label {
+  text-decoration: none;
   color: var(--ux-color-text-muted);
   font-family: var(--ux-font-mono);
   font-size: 11px;
@@ -457,8 +460,14 @@ a.site-header__item:hover { color: var(--ux-color-text); }
   gap: 12px;
 }
 
+a.site-mega__eyebrow:hover,
+a.site-header__menu-label:hover,
+a.site-footer__col-title:hover { text-decoration: underline; }
+
 .site-footer__col-title {
+  display: block;
   margin-bottom: 4px;
+  text-decoration: none;
   color: var(--ux-color-inverse-55);
   font-size: 12px;
   font-weight: 600;

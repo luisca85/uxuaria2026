@@ -7,9 +7,9 @@
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const messages = {
-    empty: 'Completá este campo.',
-    select: 'Seleccioná una opción.',
-    email: 'Escribí un email válido.',
+    empty: 'Completa este campo.',
+    select: 'Selecciona una opción.',
+    email: 'Escribe un email válido.',
   };
 
   function fieldProblem(field) {
@@ -100,7 +100,7 @@
       .catch(() => {
         button.textContent = buttonText;
         button.disabled = false;
-        formError.textContent = 'No se pudo enviar el mensaje. Probá de nuevo o escribime a info@uxuaria.com.';
+        formError.textContent = 'No se pudo enviar el mensaje. Prueba de nuevo o escríbeme a info@uxuaria.com.';
         formError.hidden = false;
       });
   });

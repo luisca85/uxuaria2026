@@ -46,7 +46,7 @@ const jsonLd = {
 ---
 <BaseLayout
   title="Contacto · Hablemos de tu proyecto UX | Uxuaria · Buenos Aires"
-  description="Contáctame para hablar sobre tu proyecto UX. Diseñador UX freelance con más de 15 años de experiencia en startups y productos digitales en Buenos Aires, Argentina y LATAM."
+  description="Agenda una llamada o escríbeme para hablar de tu producto digital. Diseño UX/UI para startups de fintech y SaaS, con más de 15 años de experiencia en Buenos Aires y LATAM."
   ogTitle="Contacto · Hablemos de tu proyecto UX | Uxuaria"
   ogDescription="Contáctame para hablar sobre tu proyecto UX. Disponible para nuevos proyectos en Buenos Aires y remoto para LATAM."
   legacyStyles={false}
@@ -65,7 +65,7 @@ const jsonLd = {
         <span class="badge" aria-current="page">Contacto</span>
       </nav>
       <h1 class="page-intro__title">Hablemos de<br />tu producto.</h1>
-      <p class="contact-intro__lead">¿Estás por lanzar, querés escalar o hay algo que no termina de funcionar? Contame dónde estás y pensemos juntos el próximo paso.</p>
+      <p class="contact-intro__lead">¿Estás por lanzar, quieres escalar o hay algo que no termina de funcionar? Cuéntame dónde estás y pensemos juntos el próximo paso.</p>
     </section>
 
     <section class="contact-booking page-container" aria-labelledby="booking-title">
@@ -83,17 +83,17 @@ const jsonLd = {
 
     <section class="contact-written" aria-labelledby="written-title">
       <div class="page-container">
-        <h2 class="contact-written__title" id="written-title">¿Preferís empezar por escrito?</h2>
-        <p class="contact-written__text">Contame sobre tu producto, tu equipo y el desafío que querés resolver.</p>
+        <h2 class="contact-written__title" id="written-title">¿Prefieres empezar por escrito?</h2>
+        <p class="contact-written__text">Cuéntame sobre tu producto, tu equipo y el desafío que quieres resolver.</p>
 
         {/* Text proposed in spec 14-contacto, A CONFIRMAR #5 */}
         <div class="contact-success" id="formSuccess" role="status" hidden>
           <p class="contact-success__title">¡Mensaje recibido!</p>
-          <p>Si querés, también podés agendar una llamada en el calendario de arriba.</p>
+          <p>Si quieres, también puedes agendar una llamada en el calendario de arriba.</p>
         </div>
 
         <noscript>
-          <p class="contact-written__notice">Para enviar el formulario necesitás JavaScript. También podés escribirme directamente al email de abajo.</p>
+          <p class="contact-written__notice">Para enviar el formulario necesitas JavaScript. También puedes escribirme directamente al email de abajo.</p>
         </noscript>
 
         <form class="contact-form" id="contactForm" novalidate>
@@ -108,25 +108,25 @@ const jsonLd = {
           <div class="contact-field">
             <label for="tipo-proyecto">¿En qué tipo de proyecto estás trabajando? *</label>
             <select id="tipo-proyecto" name="tipo-proyecto" required>
-              <option value="" disabled selected>Seleccioná una opción</option>
+              <option value="" disabled selected>Selecciona una opción</option>
               {projectTypes.map(([value, label]) => <option value={value}>{label}</option>)}
             </select>
           </div>
           <div class="contact-field">
             <label for="etapa">¿En qué etapa está tu producto? *</label>
             <select id="etapa" name="etapa" required>
-              <option value="" disabled selected>Seleccioná una opción</option>
+              <option value="" disabled selected>Selecciona una opción</option>
               {stages.map(([value, label]) => <option value={value}>{label}</option>)}
             </select>
           </div>
           <div class="contact-field contact-field--wide">
-            <label for="problema">¿Cuál es el problema principal que querés resolver? *</label>
-            <textarea id="problema" name="problema" rows="5" placeholder="Contame brevemente qué está pasando con tu producto, qué querés mejorar o qué estás construyendo. Sin filtros: cualquier detalle ayuda." required></textarea>
+            <label for="problema">¿Cuál es el problema principal que quieres resolver? *</label>
+            <textarea id="problema" name="problema" rows="5" placeholder="Cuéntame brevemente qué está pasando con tu producto, qué quieres mejorar o qué estás construyendo. Sin filtros: cualquier detalle ayuda." required></textarea>
           </div>
           <div class="contact-field contact-field--wide">
             <label for="como-llegaste">¿Cómo llegaste a Uxuaria?</label>
             <select id="como-llegaste" name="como-llegaste">
-              <option value="" disabled selected>Seleccioná una opción</option>
+              <option value="" disabled selected>Selecciona una opción</option>
               {sources.map(([value, label]) => <option value={value}>{label}</option>)}
             </select>
           </div>
@@ -136,10 +136,10 @@ const jsonLd = {
           </div>
         </form>
 
-        <a class="contact-written__email" href="mailto:info@uxuaria.com">Escribime a info@uxuaria.com</a>
+        <a class="contact-written__email" href="mailto:info@uxuaria.com">Escríbeme a info@uxuaria.com</a>
       </div>
     </section>
   </div>
 
-  <script is:inline src="/contact.js?v=20261102"></script>
+  <script is:inline src="/contact.js?v=20261113"></script>
 </BaseLayout>

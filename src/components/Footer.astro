@@ -5,7 +5,7 @@ import { SERVICES } from '../lib/services';
   <div class="site-footer__inner">
     <div class="site-footer__brand">
       <span class="site-footer__wordmark">uxuaria</span>
-      <p class="site-footer__tagline">Consultoría UX para productos que crecen en LATAM.</p>
+      <p class="site-footer__tagline">Agencia de diseño UX/UI para startups que crecen en LATAM.</p>
       <a href="https://www.linkedin.com/company/uxuaria/" target="_blank" rel="noopener"
          class="site-footer__social" aria-label="LinkedIn de Uxuaria">
         <img src="/images/home/icon-social.svg" width="20" height="20" alt="" />
@@ -14,7 +14,7 @@ import { SERVICES } from '../lib/services';
     <div class="site-footer__links">
       {/* Items without a link have no destination yet: spec 11-home, "Destinos" */}
       <div class="site-footer__col">
-        <p class="site-footer__col-title">Servicios</p>
+        <a href="/servicios/" class="site-footer__col-title">Servicios</a>
         {SERVICES.map((service) => <a href={service.href} class="site-footer__item">{service.name}</a>)}
       </div>
       <div class="site-footer__col">

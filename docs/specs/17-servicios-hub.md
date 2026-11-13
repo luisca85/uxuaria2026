@@ -24,3 +24,16 @@ Pedido por Luis el 2026-11-13, a partir del diagnóstico de Google Analytics y S
 ## A medir
 
 Comparar en Search Console 28 días antes y después de publicar: posición de `/servicios/` y de la home, CTR de `/ai-mvp-rescue`.
+
+## Segunda tanda (2026-11-13)
+
+A partir del mismo diagnóstico:
+
+- **Enlaces internos a `/servicios/`**: "Ver todos los servicios" en el menú desplegable (`data-track="nav_servicios_todos"`), "Servicios" en el menú móvil y en el pie, y un nivel "Servicios" en la ruta de navegación (y en el `BreadcrumbList`) de las cuatro páginas de servicio.
+- **Pie**: "Consultoría UX para productos que crecen en LATAM" pasa a "Agencia de diseño UX/UI para startups que crecen en LATAM".
+- **Tuteo** (decisions.md 2026-11-03) en la página de contacto, los mensajes de error del formulario (`contact.js`), el cierre de los artículos ("¿Quieres aplicar…?") y una pregunta del FAQ de la home. Quedan con voseo: `/privacidad/` y los artículos `3-cosas-ux`, `6-preguntas-ux` y `diferencias-creacion-ia-vs-diseno`.
+- **Contacto**: description nueva orientada a diseño UX/UI para startups.
+- **Reservas de Cal.com**: el embed envía `generate_lead` con `form_id: cal_booking` al confirmar una reserva (eventos `bookingSuccessfulV2` y `bookingSuccessful`, se envía una sola vez). A CONFIRMAR con una reserva de prueba. Los botones que abren la agenda en otra pestaña no se miden.
+- **Datos estructurados de la home**: nodo `Organization` "Uxuaria" (`#organization`) con fundador `#luis`; la persona suma `worksFor`.
+
+Pendiente de decisión: el `FAQPage` de la home describe preguntas que no se ven en la página, algo que las pautas de Google sobre datos estructurados piden evitar.
