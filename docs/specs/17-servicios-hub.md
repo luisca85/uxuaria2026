@@ -16,10 +16,10 @@ Pedido por Luis el 2026-11-13, a partir del diagnóstico de Google Analytics y S
    - H1: "Servicios de diseño UX/UI para startups".
    - Sección "El recorrido": una tarjeta por servicio (símbolo de la home, número, nombre, resumen y enlace, tomados de `src/lib/services.ts`, copy ya aprobado en spec 16), en zigzag y unidas por una línea doble con esquinas redondeadas, como la línea de la home. En tablet y móvil (≤ 900 px) las tarjetas van en una columna y la línea baja recta.
    - La línea es CSS (`public/services-hub.css`), no un trazado de Figma: se adapta al alto de cada tarjeta. Pedido por Luis el 2026-11-13.
-   - Copy nuevo a confirmar: subtítulo del hero, "El recorrido" y "¿Por dónde empieza tu producto?". La tarjeta de Diseño de experiencia AI Native suma, debajo del resumen, "Amplifica el alcance y acelera el desarrollo de tu producto con un sistema que usa IA donde realmente aporta y criterio humano donde hay que decidir." (aprobado por Luis el 2026-11-13; campo `description` en `services.ts`, solo se muestra en /servicios/). AI MVP Rescue repite el símbolo de diagnóstico rotado: falta un símbolo propio.
+   - Copy nuevo aprobado por Luis el 2026-11-13: subtítulo del hero, "El recorrido" y "¿Por dónde empieza tu producto?". La tarjeta de Diseño de experiencia AI Native suma, debajo del resumen, "Amplifica el alcance y acelera el desarrollo de tu producto con un sistema que usa IA donde realmente aporta y criterio humano donde hay que decidir." (aprobado por Luis el 2026-11-13; campo `description` en `services.ts`, se muestra en su tarjeta de /servicios/ y como segundo párrafo del hero de /servicios/diseno-ai-native/). AI MVP Rescue repite el símbolo de diagnóstico rotado: falta un símbolo propio.
    - JSON-LD `ItemList` de `Service` + `BreadcrumbList`. Eventos GA4: `cta_servicios_*`, `servicios_<id>`.
 2. **Home**: title "Agencia de diseño UX/UI para startups (IA, Fintech, SaaS) | Uxuaria", description y og:description alineadas con el H1.
-3. **AI MVP Rescue**: title "Rescate de MVP hecho con IA (Claude, Lovable, Cursor) | Uxuaria" y description que empieza con "¿Armaste tu MVP con IA?".
+3. **AI MVP Rescue**: title "Rescate de MVP hecho con IA (Claude, Lovable, Cursor) | Uxuaria" y description que empieza con "¿Creas tu MVP con IA?".
 
 ## A medir
 

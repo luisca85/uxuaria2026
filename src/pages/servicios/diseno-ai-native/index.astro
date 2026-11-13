@@ -1,5 +1,5 @@
 ---
-import { otherServices as getOtherServices } from '../../../lib/services';
+import { otherServices as getOtherServices, SERVICES } from '../../../lib/services';
 import { getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ArrowLink from '../../../components/ArrowLink.astro';
@@ -10,6 +10,8 @@ import { BOOKING_URL } from '../../../lib/booking';
 // Copy from Figma 199:1346 (desktop) and 202:1546 (mobile), pending approval (spec 16)
 // cta tells GA4 which button started the diagnosis form (spec 07)
 const diagnosisUrl = (cta: string) => `/diagnostico/?cta=${cta}`;
+// Same line as its card on /servicios/ (spec 17)
+const aiNative = SERVICES.find((s) => s.id === 'ai-native')!;
 
 const symptoms = [
   'Interfaces que se ven bien pero se sienten genéricas.',
@@ -129,6 +131,7 @@ const jsonLd = [
         </nav>
         <h1 class="service-hero__title">Diseño de experiencia AI Native</h1>
         <p class="service-hero__lead">Diseño de producto con IA en cada etapa del proceso, un equipo senior reducido, con prototipos funcionales que se pueden probar con usuarios.</p>
+        {aiNative.description && <p class="service-hero__lead">{aiNative.description}</p>}
         <div class="service-hero__actions">
           <a href={BOOKING_URL} target="_blank" rel="noopener" class="pill-button service-hero__cta" data-track="cta_ai_native_hero">Agenda una llamada</a>
           <a href={diagnosisUrl('ai_native_hero')} class="service-hero__link" data-track="cta_ai_native_hero_diagnostico">
