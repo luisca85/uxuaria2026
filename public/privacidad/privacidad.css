@@ -12,7 +12,7 @@
 .privacy__title {
   margin: 0 0 8px;
   font-family: var(--ux-font-display);
-  font-size: var(--ux-size-section);
+  font-size: clamp(16px, 1.67vw, 24px);
   line-height: 1.1;
   letter-spacing: -.02em;
 }

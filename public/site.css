@@ -41,7 +41,7 @@
   --ux-header-height: 87px;
 
   /* --- Page type scale --- */
-  --ux-size-display: clamp(44px, 6.67vw, 96px);
+  --ux-size-display: clamp(22px, 3.33vw, 48px);
   --ux-size-heading: clamp(28px, 2.78vw, 40px);
   --ux-size-section: clamp(32px, 3.33vw, 48px);
   --ux-size-lead: 24px;
