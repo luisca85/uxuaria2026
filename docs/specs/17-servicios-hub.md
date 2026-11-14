@@ -33,7 +33,7 @@ A partir del mismo diagnóstico:
 - **Pie**: "Consultoría UX para productos que crecen en LATAM" pasa a "Agencia de diseño UX/UI para startups que crecen en LATAM".
 - **Tuteo** (decisions.md 2026-11-03) en la página de contacto, los mensajes de error del formulario (`contact.js`), el cierre de los artículos ("¿Quieres aplicar…?") y una pregunta del FAQ de la home. Quedan con voseo: `/privacidad/` y los artículos `3-cosas-ux`, `6-preguntas-ux` y `diferencias-creacion-ia-vs-diseno`.
 - **Contacto**: description nueva orientada a diseño UX/UI para startups.
-- **Reservas de Cal.com**: el embed envía `generate_lead` con `form_id: cal_booking` al confirmar una reserva (eventos `bookingSuccessfulV2` y `bookingSuccessful`, se envía una sola vez). A CONFIRMAR con una reserva de prueba. Los botones que abren la agenda en otra pestaña no se miden.
+- **Reservas de Cal.com**: `public/booking.js` envía `generate_lead` con `lead_source: agenda` al confirmar una reserva, una sola vez por reserva: `form_id: cal_embed` en el calendario embebido y `cal_popup` en la ventana emergente (spec 14-contacto, criterios 11b y 11c; reemplazó al `cal_booking` de `CalEmbed` el 2026-11-14). A CONFIRMAR con una reserva de prueba. Solo el link "Abrir la agenda en Cal.com ↗" (`data-booking-external`) sigue abriendo otra pestaña y no se mide.
 - **Datos estructurados de la home**: nodo `Organization` "Uxuaria" (`#organization`) con fundador `#luis`; la persona suma `worksFor`.
 
 - **FAQ oculto de la home**: se quitó el `FAQPage` de los datos estructurados (decisión de Luis, 2026-11-13). Sus cuatro preguntas no se veían en la página y repetían "diseñador UX freelance" y una afirmación de exclusividad.

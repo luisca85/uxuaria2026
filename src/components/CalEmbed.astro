@@ -25,44 +25,35 @@ const { hideDetails = false } = Astro.props;
     if (!el) return;
 
     function start() {
-      // Cal.com inline embed loader
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", "30min", { origin: "https://app.cal.com" });
-      Cal.config = Cal.config || {};
-      Cal.config.forwardQueryParams = true;
-      Cal.ns["30min"]("inline", {
+      // /booking.js loads Cal.com once and tracks the booking (generate_lead)
+      const cal = window.uxuariaBooking.calNamespace("30min", "cal_embed");
+      cal("inline", {
         elementOrSelector: "#my-cal-inline-30min",
         config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
         calLink: el.dataset.calLink,
       });
-      Cal.ns["30min"]("ui", { hideEventTypeDetails: el.dataset.hideDetails === "true", layout: "month_view" });
+      cal("ui", { hideEventTypeDetails: el.dataset.hideDetails === "true", layout: "month_view" });
 
-      // A booking made in the embed counts as a lead in GA4, like the forms (spec 17).
-      // Cal.com has fired both names across versions; the flag sends it once.
-      let booked = false;
-      const onBooked = () => {
-        if (booked) return;
-        booked = true;
-        if (window.uxuariaTrack) window.uxuariaTrack('generate_lead', { form_id: 'cal_booking', page_path: location.pathname });
-      };
-      Cal.ns["30min"]("on", { action: "bookingSuccessfulV2", callback: onBooked });
-      Cal.ns["30min"]("on", { action: "bookingSuccessful", callback: onBooked });
-
-      // Cal.com titles its iframe "Book a call"; give it a Spanish name (WCAG 4.1.2, 3.1.2)
-      const nameFrame = new MutationObserver(() => {
+      // Cal.com titles its iframe "Book a call"; give it a Spanish name (WCAG 4.1.2, 3.1.2).
+      // Cal.com may already be loaded (popup), so the iframe can exist right after "inline".
+      const nameFrame = () => {
         const frame = el.querySelector('iframe');
-        if (!frame) return;
+        if (!frame) return false;
         frame.title = 'Agenda una llamada con Uxuaria';
-        nameFrame.disconnect();
-      });
-      nameFrame.observe(el, { childList: true, subtree: true });
+        return true;
+      };
+      if (!nameFrame()) {
+        const watcher = new MutationObserver(() => { if (nameFrame()) watcher.disconnect(); });
+        watcher.observe(el, { childList: true, subtree: true });
+      }
     }
 
     // Loads when the block gets close, so it does not slow down the first paint
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) return;
       observer.disconnect();
-      start();
+      // window.uxuariaBooking comes from /booking.js, loaded in <head> (BaseLayout)
+      if (window.uxuariaBooking) start();
     }, { rootMargin: '400px 0px' });
     observer.observe(el);
   })();

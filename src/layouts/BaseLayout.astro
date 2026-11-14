@@ -40,6 +40,8 @@ const ogImageUrl = new URL(ogImage, Astro.site);
 
   <!-- Cookie notice: the only place that loads GA4 and Hotjar, after "Aceptar" (spec 10-cookies-privacidad, from production) -->
   <script src="/cookies.js?v=20261102a" is:inline></script>
+  <!-- Cal.com loader and booking conversion; in <head> so CalEmbed can use it at any scroll position -->
+  <script src="/booking.js?v=20261112" is:inline></script>
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

@@ -94,7 +94,7 @@
         if (typeof window.uxuariaTrack === 'function') {
           window.uxuariaTrack('form_submit', { form_id: 'contacto_principal', tipo_proyecto: data.tipoProyecto });
           // Conversion: the contact form was sent
-          window.uxuariaTrack('generate_lead', { form_id: 'contacto_principal', tipo_proyecto: data.tipoProyecto });
+          window.uxuariaTrack('generate_lead', { form_id: 'contacto_principal', lead_source: 'contacto', tipo_proyecto: data.tipoProyecto, etapa: data.etapa });
         }
       })
       .catch(() => {
