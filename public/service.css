@@ -107,7 +107,7 @@
 .service-hero__title {
   max-width: 1050px;
   color: var(--ux-color-text);
-  font-size: clamp(40px, 4.44vw, 64px);
+  font-size: clamp(20px, 2.22vw, 32px);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -.04em;
