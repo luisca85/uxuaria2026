@@ -12,7 +12,7 @@ Migración a Astro en curso (spec 10) y nueva home (spec 11). Lo de abajo descri
 
 - `src/`: páginas, layouts, componentes y blog en Markdown. `public/`: lo que se copia tal cual al build. Requiere Node 24 y `npm run build`.
 - Nueva home: `src/pages/index.astro` (con las animaciones de GSAP), `src/components/ShapeRow.astro`, `public/home.css`, `public/home.js`, `public/images/home/`. Única dependencia de animación: `gsap`.
-- Blog nuevo: `src/pages/blog.astro`, `src/pages/blog/[slug].astro`, `src/components/BlogCard.astro`, `public/blog.css` (spec 12).
+- Blog nuevo: `src/pages/blog.astro`, `src/pages/blog/[slug].astro`, `src/components/BlogCard.astro`, `public/blog.css` (spec 12). Plantilla de guía (`type: guide`): `src/components/GuideToc.astro` y `public/guide.js` (spec 18).
 - Proyectos: `src/content/portfolio/`, `src/pages/portafolio/`, `src/components/ProjectCard.astro`, `public/portfolio.css` (spec 13).
 - Contacto nuevo: `src/pages/contacto/index.astro`, `public/contact.css`, `public/contact.js` (spec 14).
 - Agenda: Cal.com, en `src/lib/booking.ts` y `src/components/CalEmbed.astro`. Las páginas sin diseño nuevo y `/api/diagnostico` siguen con Calendly.
