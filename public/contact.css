@@ -5,7 +5,6 @@
 
 :root {
   --contact-color-error: #FF9C8F;
-  --contact-size-title: clamp(32px, 2.78vw, 40px);
 }
 
 /* ===== INTRO ===== */
@@ -65,17 +64,17 @@
 }
 
 .contact-written__title {
-  font-family: var(--ux-font-ui);
-  font-size: var(--contact-size-title);
+  font-family: var(--ux-font-display);
+  font-size: var(--ux-size-title);
   font-weight: 700;
-  line-height: 1.36;
+  line-height: var(--ux-leading-title);
   letter-spacing: -1.7px;
 }
 
 .contact-written__text,
 .contact-written__notice {
   margin-top: 16px;
-  font-size: 16px;
+  font-size: var(--ux-size-small);
   line-height: 28.8px;
 }
 
@@ -83,7 +82,7 @@
   display: inline-block;
   margin-top: 24px;
   color: var(--ux-color-text-inverse);
-  font-size: 16px;
+  font-size: var(--ux-size-small);
   line-height: 28.8px;
 }
 
@@ -110,7 +109,7 @@
 
 .contact-field label {
   color: var(--ux-color-inverse-55);
-  font-size: 14px;
+  font-size: var(--ux-size-meta);
   line-height: 22.4px;
 }
 
@@ -125,11 +124,11 @@
   background: var(--ux-color-inverse-overlay);
   color: var(--ux-color-text-inverse);
   font: inherit;
-  font-size: 16px;
+  font-size: var(--ux-size-small);
   line-height: 24px;
 }
 
-.contact-field textarea { resize: vertical; }
+.contact-field textarea { resize: vertical; font-size: var(--ux-size-small); }
 .contact-field select option { background: var(--ux-color-footer); color: var(--ux-color-text-inverse); }
 .contact-field ::placeholder { color: var(--ux-color-inverse-45); opacity: 1; }
 
@@ -146,7 +145,7 @@
 .contact-field__error,
 .contact-form__error {
   color: var(--contact-color-error);
-  font-size: 14px;
+  font-size: var(--ux-size-meta);
   line-height: 22.4px;
 }
 
@@ -164,7 +163,7 @@
   border: 1px solid var(--ux-color-inverse-border);
   border-radius: var(--ux-radius-card);
   color: var(--ux-color-inverse-55);
-  font-size: 16px;
+  font-size: var(--ux-size-small);
   line-height: 25.6px;
 }
 
@@ -173,8 +172,9 @@
 .contact-success__title {
   margin-bottom: 8px;
   color: var(--ux-color-text-inverse);
-  font-size: var(--ux-size-lead);
-  line-height: 28.8px;
+  font-size: var(--ux-size-heading);
+  line-height: var(--ux-leading-heading);
+  font-weight: 700;
 }
 
 /* ===== RESPONSIVE: adapted during the build (spec 14-contacto) ===== */
@@ -184,7 +184,6 @@
 
 @media (max-width: 768px) {
   .contact-intro { padding-block: 40px; }
-  .contact-intro__lead { font-size: 20px; }
   .contact-booking { padding-bottom: 56px; }
   .booking-module__footer { padding: 16px 24px; }
   .contact-form { grid-template-columns: minmax(0, 1fr); }

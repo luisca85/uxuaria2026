@@ -46,9 +46,9 @@
 
 .service-head__title {
   color: var(--ux-color-text);
-  font-size: var(--ux-size-heading);
+  font-size: var(--ux-size-title);
   font-weight: 700;
-  line-height: 1.12;
+  line-height: var(--ux-leading-title);
   letter-spacing: -1.1px;
 }
 
@@ -68,9 +68,9 @@
 
 .service-item__title {
   color: var(--ux-color-text);
-  font-size: var(--ux-size-lead);
+  font-size: var(--ux-size-heading);
   font-weight: 700;
-  line-height: 28.8px;
+  line-height: var(--ux-leading-heading);
 }
 
 .service-item__text {
@@ -107,9 +107,9 @@
 .service-hero__title {
   max-width: 1050px;
   color: var(--ux-color-text);
-  font-size: clamp(20px, 2.22vw, 32px);
+  font-size: var(--ux-size-display);
   font-weight: 700;
-  line-height: 1;
+  line-height: var(--ux-leading-display);
   letter-spacing: -.04em;
 }
 
@@ -141,7 +141,7 @@
   align-items: center;
   padding: 10px;
   color: var(--ux-color-ink);
-  font-size: 16px;
+  font-size: var(--ux-size-small);
   line-height: 28.8px;
   text-decoration: none;
 }
@@ -151,8 +151,8 @@
 .service-hero__note {
   max-width: 1050px;
   color: var(--ux-color-text);
-  font-family: var(--ux-font-ui);
-  font-size: 14px;
+  font-family: var(--ux-font-display);
+  font-size: var(--ux-size-meta);
   line-height: 22.4px;
 }
 
@@ -212,9 +212,9 @@
 
 .situation-card__title {
   color: var(--ux-color-text);
-  font-size: 32px;
+  font-size: var(--ux-size-subtitle);
   font-weight: 500;
-  line-height: 40px;
+  line-height: var(--ux-leading-subtitle);
   letter-spacing: -.1em;
 }
 
@@ -365,9 +365,9 @@
 
 .pro-service__title {
   color: var(--ux-color-text-inverse);
-  font-size: var(--ux-size-lead);
+  font-size: var(--ux-size-heading);
   font-weight: 700;
-  line-height: 28.8px;
+  line-height: var(--ux-leading-heading);
 }
 
 .pro-service__text {
@@ -391,9 +391,9 @@
 
 .comparison__head {
   padding: 0 0 16px 32px;
-  font-size: var(--ux-size-lead);
+  font-size: var(--ux-size-heading);
   font-weight: 700;
-  line-height: 28.8px;
+  line-height: var(--ux-leading-heading);
 }
 
 .comparison__row { border-bottom: 1px solid var(--ux-color-border-soft); }
@@ -437,7 +437,7 @@
   background: var(--ux-color-ink);
   color: var(--ux-color-text-inverse);
   font-family: var(--ux-font-mono);
-  font-size: 12px;
+  font-size: var(--ux-size-label);
   font-weight: 700;
 }
 
@@ -459,13 +459,13 @@
 
 .metric-card__value {
   color: var(--ux-color-text);
-  font-size: 64px;
+  font-size: var(--ux-size-display);
   font-weight: 700;
-  line-height: 64px;
+  line-height: var(--ux-leading-display);
   letter-spacing: -2.6px;
 }
 
-.metric-card__description { color: var(--ux-color-text); font-size: 16px; }
+.metric-card__description { color: var(--ux-color-text); font-size: var(--ux-size-small); }
 
 .metric-card__logo {
   width: 104.8px;
@@ -497,9 +497,9 @@
   align-items: center;
   justify-content: space-between;
   color: var(--ux-color-text);
-  font-size: var(--ux-size-lead);
+  font-size: var(--ux-size-heading);
   font-weight: 700;
-  line-height: 28.8px;
+  line-height: var(--ux-leading-heading);
   list-style: none;
   cursor: pointer;
 }
@@ -545,9 +545,9 @@
   padding: 24px clamp(16px, 11.25vw, 162px) 23px;
   border-top: 1px solid var(--ux-color-ink);
   color: var(--ux-color-text);
-  font-size: var(--ux-size-heading);
+  font-size: var(--ux-size-subtitle);
   font-weight: 500;
-  line-height: 51px;
+  line-height: var(--ux-leading-subtitle);
   letter-spacing: -.08em;
   text-decoration: none;
 }
@@ -594,9 +594,10 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 
 .service-page .closing-cta__title {
   max-width: none;
-  font-size: var(--ux-size-heading);
-  line-height: 1.12;
+  font-size: var(--ux-size-title);
+  line-height: var(--ux-leading-title);
   letter-spacing: -1.1px;
+  font-weight: 700;
 }
 
 .service-page .closing-cta__text {
@@ -688,7 +689,7 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   width: 100%;
 }
 
-.metric-card__value--word { font-size: var(--ux-size-section); line-height: 64px; }
+.metric-card__value--word { font-size: var(--ux-size-title); line-height: var(--ux-leading-title); font-weight: 700; }
 .metric-card__logo--wide { width: 154px; }
 
 /* ===== AI NATIVE AND DESIGN SYSTEM (spec 16) ===== */
@@ -766,9 +767,9 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 .situation-card--start .situation-card__icon { margin-bottom: 8px; }
 
 .situation-card--start .situation-card__title {
-  font-size: var(--ux-size-lead);
+  font-size: var(--ux-size-heading);
   font-weight: 700;
-  line-height: 28.8px;
+  line-height: var(--ux-leading-heading);
   letter-spacing: 0;
 }
 
@@ -806,7 +807,7 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 .ds-panel__label {
   color: var(--ux-color-text-muted);
   font-family: var(--ux-font-mono);
-  font-size: 11px;
+  font-size: var(--ux-size-label);
   line-height: 17.6px;
   text-transform: uppercase;
 }
@@ -822,7 +823,7 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   align-items: center;
   color: var(--ux-color-text);
   font-family: var(--ux-font-mono);
-  font-size: 14px;
+  font-size: var(--ux-size-meta);
   line-height: 22px;
 }
 
@@ -879,16 +880,16 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   grid-row: span 2;
   color: var(--ux-color-text-muted);
   font-family: var(--ux-font-mono);
-  font-size: 14px;
+  font-size: var(--ux-size-meta);
   font-weight: 700;
   line-height: 28.8px;
 }
 
 .audience-item__title {
   color: var(--ux-color-text);
-  font-size: var(--ux-size-lead);
+  font-size: var(--ux-size-heading);
   font-weight: 700;
-  line-height: 28.8px;
+  line-height: var(--ux-leading-heading);
 }
 
 .audience-item__detail { display: grid; grid-template-rows: 1fr; margin-top: 12px; }
@@ -942,10 +943,10 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
 
 .booking-block__title {
   margin-bottom: 16px;
-  font-family: var(--ux-font-ui);
-  font-size: var(--ux-size-heading);
+  font-family: var(--ux-font-display);
+  font-size: var(--ux-size-title);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: var(--ux-leading-title);
   letter-spacing: -1.2px;
 }
 
@@ -1015,7 +1016,6 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .founder { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .founder__photo { width: 160px; height: 160px; }
   .audience-item { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; padding-block: 24px; }
-  .audience-item__title { font-size: 20px; line-height: 26px; }
 }
 
 /* Same as the preview on narrow screens: figure pinned on top, steps below it */
@@ -1048,10 +1048,9 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .service-section:has(.situation-grid),
   .service-section:has(.deliverables) { gap: 40px; }
   .service-hero__inner { min-height: 0; padding-block: 40px 48px; }
-  .service-hero__lead { font-size: 18px; line-height: 27px; }
+  .service-hero__lead { line-height: 27px; }
   .service-hero__actions { flex-direction: column; align-items: center; gap: 8px; }
   .situation-grid { grid-template-columns: minmax(0, 1fr); }
-  .situation-card__title { font-size: 28px; line-height: 34px; }
   .deliverables__list { grid-template-columns: minmax(0, 1fr); }
   .pro-service { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 24px; }
 
@@ -1066,9 +1065,7 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
     color: var(--ux-color-text-muted);
     font-weight: 700;
   }
-
-  .faq__question { font-size: 20px; line-height: 26px; }
-  .service-link { font-size: 24px; line-height: 32px; letter-spacing: -.04em; }
+  .service-link { letter-spacing: -.04em; }
   .service-link__arrow { width: 28px; height: 28px; margin-top: 2px; }
   .related-grid { grid-template-columns: minmax(0, 1fr); }
   .rescue-area { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 24px; }
@@ -1079,7 +1076,7 @@ a.service-link:focus-visible { outline: 2px solid var(--ux-color-ink); outline-o
   .service-band__inner { padding-block: 64px; }
   .service-text-lg,
   .service-band__text,
-  .service-head__text--definition { font-size: 18px; line-height: 28px; }
+  .service-head__text--definition { line-height: 28px; }
   .ds-panel { padding: 24px; }
   .ds-code { font-size: 14px; line-height: 24px; }
   .comparison__head--first { display: none; }

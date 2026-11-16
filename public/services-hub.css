@@ -62,9 +62,9 @@
 
 .route-card__title {
   color: var(--ux-color-text);
-  font-size: var(--ux-size-heading);
+  font-size: var(--ux-size-subtitle);
   font-weight: 500;
-  line-height: 1.05;
+  line-height: var(--ux-leading-subtitle);
   letter-spacing: var(--ux-track-heading);
 }
 

@@ -98,6 +98,8 @@
 
 ## 3. Tipografía — escala de tamaños
 
+> **2026-11-16:** esta escala es la del diseño viejo (`styles.css`). Las páginas del diseño nuevo usan la escala de 9 roles de [19-tipografia](19-tipografia.md).
+
 ```css
 --font-size-xs:   12px;   /* eyebrows, labels uppercase, Silkscreen */
 --font-size-sm:   13px;   /* badges, metadata, author role */
