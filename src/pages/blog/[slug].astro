@@ -56,7 +56,7 @@ const jsonLd = {
   legacyStyles={false}
 >
   <Fragment slot="head">
-    <link rel="stylesheet" href="/blog.css?v=20261116b" />
+    <link rel="stylesheet" href="/blog.css?v=20261116c" />
     <meta property="article:published_time" content={isoDate(pubDate)} />
     <meta property="article:author" content="https://uxuaria.com/#luis" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -82,7 +82,7 @@ const jsonLd = {
     </header>
 
     {isGuide ? (
-      <div class="post-guide page-container">
+      <div class:list={['post-guide page-container', { 'post-guide--no-toc': sections.length === 0 }]}>
         {sections.length > 0 && <GuideToc headings={sections} variant="aside" />}
         <div class="post-guide__main">
           {sections.length > 0 && <GuideToc headings={sections} variant="details" />}

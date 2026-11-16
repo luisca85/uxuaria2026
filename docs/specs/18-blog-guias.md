@@ -148,7 +148,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 - Schema: `type` (`article` | `guide`, por defecto `article`) y `summary` (3 a 5 textos) en `src/content.config.ts`.
 - Plantilla: `src/pages/blog/[slug].astro` elige con `type`; el índice está en `src/components/GuideToc.astro`, en dos versiones: columna fija (desktop) y `<details>` cerrado (menos de 1100 px).
-- Estilos: sección GUIDE de `public/blog.css` (`?v=20261116b` en todas las páginas que lo cargan).
+- Estilos: sección GUIDE de `public/blog.css` (`?v=20261116c` en todas las páginas que lo cargan).
 - JS: `public/guide.js`, solo en las guías. Resalta la sección actual con `aria-current`, cierra el índice mobile al tocar un ítem y envía `blog_guide_toc` con `section` vía `window.uxuariaTrack` (de `script.js`).
 - Contenido: `type: guide` y `summary` en `metodo-harada.md` y `como-elegir-consultora-diseno-ux-confiable.md`.
 
@@ -159,6 +159,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - **Ids con tilde:** el `hash` de los links llega codificado (`reuni%C3%B3n`). `guide.js` lo decodifica antes de buscar la sección y de enviarla a GA4.
 - **`prefers-reduced-motion`:** `blog.css` desactiva el scroll suave de `base.css`. Como también lo cargan las páginas de servicio y AI MVP Rescue, el cambio las alcanza, solo para quien pidió menos movimiento.
 - **Índice lateral compacto (2026-11-16):** a pedido de Luis, para que no tenga scroll propio: columna de 264 px, texto de 14 px, sin espacio entre ítems. El de la consultora (11 secciones) mide 449 px y entra entero en pantallas desde 584 px de alto; por debajo, el `overflow-y` queda como respaldo.
+- **Guía sin `h2`:** no muestra índice y lleva `post-guide--no-toc`, que deja el texto en una sola columna de 792 px (corregido en `/revisar`).
 - **Ancho en mobile:** `site.css` se carga después de `blog.css`, por eso el padding de la guía usa `.post-guide.page-container` para mantener la columna de 343 px a 375 px.
 
 - Las dos guías ya usan callouts (`article-callout`) y botones (`btn btn--primary`) en HTML dentro del Markdown, con estilo de `blog.css` (spec 12).
