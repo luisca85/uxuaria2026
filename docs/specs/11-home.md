@@ -142,9 +142,9 @@ El diseño cambia elementos que `CLAUDE.md` protege. Nada de esto se publica sin
 
 | Tema | Hoy en el sitio | En la home nueva | A definir |
 |---|---|---|---|
-| H1 | "UX para productos digitales · Buenos Aires · LATAM" | "Consultora de diseño UX/UI AI-native para startups" | Aprobado por Luis (2026-11-13), orientado a SEO; "Agencia" pasó a "Consultora" el 2026-11-14; la description, la OG y el JSON-LD dicen "Consultora y agencia de diseño UX/UI AI-native…". Antes: "Agencia UX que dirige a tu usuario hacia donde crece tu negocio" |
+| H1 | "UX para productos digitales · Buenos Aires · LATAM" | "Consultora de diseño de experiencia de usuario AI-native para startups" | Aprobado por Luis (2026-11-13), orientado a SEO; "Agencia" pasó a "Consultora" el 2026-11-14; "UX/UI" pasó a "experiencia de usuario" el 2026-11-16, alineado con el title. La description arranca con "Agencia de diseño de experiencia de usuario…" y la OG y el JSON-LD dicen "Consultora y agencia de diseño de experiencia de usuario…". Antes: "Agencia UX que dirige a tu usuario hacia donde crece tu negocio" |
 | Lead | Texto actual del hero | "Dirigimos a tu usuario hacia donde crece tu negocio. Trabajamos con startups de fintech y SaaS para detectar qué frena su producto y rediseñarlo para escalar." | Aprobado por Luis (2026-11-13). Antes: "Consultoría y Agencia UX para startups que escalan, con foco en productos construidos con IA." |
-| Título de servicios | Servicios actuales | "Servicios de consultoría UX y diseño de producto" | Texto final |
+| Título de servicios | Servicios actuales | "Servicios de consultoría en experiencia de usuario y diseño de producto" | Aprobado por Luis (2026-11-16). Antes: "Servicios de consultoría UX y diseño de producto" |
 | CTA del hero | "▶ Agendá…", "¿Tu app la construiste con IA? →" | "Agenda…", "o obtén un diagnóstico UX gratis" | Texto final; desaparece el CTA de AI MVP Rescue del hero |
 | Voseo | Voseo | Tuteo con ortografía corregida: "Agenda", "elige", "escríbeme", "obtén", "tienes", "sabes", "quieres", "estás" | ¿Se pasa a voseo (regla de `CLAUDE.md`)? |
 | Ortografía | — | Corregida en la página (2026-11-03). Figma conserva las erratas | Corregir también en Figma. "marketing y ves" en el primer paso no se entiende: confirmar qué debe decir |

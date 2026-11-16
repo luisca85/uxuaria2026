@@ -18,7 +18,7 @@ Pedido por Luis el 2026-11-13, a partir del diagnóstico de Google Analytics y S
    - La línea es CSS (`public/services-hub.css`), no un trazado de Figma: se adapta al alto de cada tarjeta. Pedido por Luis el 2026-11-13.
    - Copy nuevo aprobado por Luis el 2026-11-13: subtítulo del hero, "El recorrido" y "¿Por dónde empieza tu producto?". La tarjeta de Diseño de experiencia AI Native suma, debajo del resumen, "Amplifica el alcance y acelera el desarrollo de tu producto con un sistema que usa IA donde realmente aporta y criterio humano donde hay que decidir." (aprobado por Luis el 2026-11-13; campo `description` en `services.ts`, se muestra en su tarjeta de /servicios/ y como segundo párrafo del hero de /servicios/diseno-ai-native/). AI MVP Rescue repite el símbolo de diagnóstico rotado: falta un símbolo propio.
    - JSON-LD `ItemList` de `Service` + `BreadcrumbList`. Eventos GA4: `cta_servicios_*`, `servicios_<id>`.
-2. **Home**: title "Consultora y agencia de diseño UX/UI para startups (IA, Fintech, SaaS) | Uxuaria" (consultora agregada a pedido de Luis, 2026-11-16), description y og:description alineadas con el H1.
+2. **Home**: title "Consultora de diseño de experiencia de usuario AI-native para startups | Uxuaria" (cambiado a pedido de Luis, 2026-11-16), description ("Agencia de diseño de experiencia de usuario AI-native…") y og:description ("Consultora y agencia de diseño de experiencia de usuario AI-native…") alineadas con el H1 (2026-11-16).
 3. **AI MVP Rescue**: title "Rescate de MVP hecho con IA (Claude, Lovable, Cursor) | Uxuaria" y description que empieza con "¿Creas tu MVP con IA?".
 
 ## A medir
