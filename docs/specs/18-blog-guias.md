@@ -1,7 +1,7 @@
 # 18 — Plantilla de guías del blog
 
 **id:** `blog-guias`
-**Estado:** 🚧 Construida en la rama `construir/blog-guias`, sin publicar · falta que Luis apruebe en el navegador el diseño y los puntos del resumen de las dos guías
+**Estado:** ✅ Hecha en la rama `construir/blog-guias`, lista para mergear a `main` (el merge es el deploy)
 **Última actualización:** 2026-11-16
 **Relacionada con:** 06-blog, 10-astro, 12-blog-redesign
 
@@ -129,11 +129,11 @@ Métrica de éxito: uso del índice (`blog_guide_toc`) y tasa de clics en callou
 La general de [`AGENTS.md`](../AGENTS.md), más:
 
 - [ ] Las dos guías revisadas por Luis en el navegador, en 1440 px y 375 px.
-- [ ] Los 5 artículos que no son guía, comparados antes y después: sin cambios visibles.
-- [ ] Probados los links del índice, los callouts y los `data-track` de las dos guías, incluido `blog_guide_toc`.
-- [ ] Luis aprobó los puntos del resumen de las dos guías.
-- [ ] `docs/specs/06-blog.md` (cómo publicar una guía) y `docs/architecture.md` actualizados.
-- [ ] Decisiones registradas con `/decidir`.
+- [x] Los 5 artículos que no son guía, comparados antes y después: sin cambios visibles.
+- [x] Probados los links del índice, los callouts y los `data-track` de las dos guías, incluido `blog_guide_toc`.
+- [x] Luis aprobó los puntos del resumen de las dos guías.
+- [x] `docs/specs/06-blog.md` (cómo publicar una guía) y `docs/architecture.md` actualizados.
+- [x] Decisiones registradas con `/decidir`.
 
 ---
 
@@ -154,7 +154,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 
 ## Conocido
 
-- **Resumen de las dos guías:** los puntos los propuso Claude a partir de los `h2`, y llevan un comentario en el frontmatter hasta que Luis los apruebe. No se publica sin esa aprobación.
+- **Resumen de las dos guías:** los puntos los propuso Claude a partir de los `h2` y Luis los aprobó el 2026-11-16.
 - **Números de sección:** salen de un contador CSS sobre los `h2` de `.post-body--guide`, no del Markdown. Un `h2` nuevo se numera solo.
 - **Ids con tilde:** el `hash` de los links llega codificado (`reuni%C3%B3n`). `guide.js` lo decodifica antes de buscar la sección y de enviarla a GA4.
 - **`prefers-reduced-motion`:** `blog.css` desactiva el scroll suave de `base.css`. Como también lo cargan las páginas de servicio y AI MVP Rescue, el cambio las alcanza, solo para quien pidió menos movimiento.

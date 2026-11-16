@@ -18,7 +18,6 @@ cardImage:
   alt: "Tablero del método Harada de 9 x 9 casillas en SAKURA 64"
 ogImage: "/images/blog/metodo-harada/sakura64-intro-tablero.jpg"
 type: guide
-# Opening summary: proposed by Claude, pending Luis's approval (spec 18-blog-guias)
 summary:
   - "Qué es el método Harada y de dónde viene."
   - "Qué aprendió Shohei Ohtani con su tablero de 64 acciones."

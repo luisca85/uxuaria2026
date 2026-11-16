@@ -14,7 +14,6 @@ cover:
 ogImage: "/images/og-uxuaria.jpg"
 draft: false
 type: guide
-# Opening summary: proposed by Claude, pending Luis's approval (spec 18-blog-guias)
 summary:
   - "Qué revisar de tu propio problema antes de buscar una consultora."
   - "Cómo evaluar su servicio, su criterio de negocio y el equipo con el que vas a trabajar."
