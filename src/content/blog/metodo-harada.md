@@ -17,6 +17,14 @@ cardImage:
   height: 1000
   alt: "Tablero del método Harada de 9 x 9 casillas en SAKURA 64"
 ogImage: "/images/blog/metodo-harada/sakura64-intro-tablero.jpg"
+type: guide
+# Opening summary: proposed by Claude, pending Luis's approval (spec 18-blog-guias)
+summary:
+  - "Qué es el método Harada y de dónde viene."
+  - "Qué aprendió Shohei Ohtani con su tablero de 64 acciones."
+  - "Cómo armar tu tablero paso a paso, con un ejemplo creativo y otro de producto digital."
+  - "Los errores más comunes al armar un tablero."
+  - "Cómo usar SAKURA 64, una app gratis para armar el tuyo."
 ---
 
 Tienes un proyecto creativo grande en la cabeza. Puede ser tu primer libro ilustrado, un estudio propio o una serie de cortos. Lo escribes y te bloqueas, porque no sabes por dónde empezar.

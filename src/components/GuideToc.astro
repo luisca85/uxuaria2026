@@ -1,0 +1,35 @@
+---
+// Table of contents of a guide: the article's h2, numbered like the sections (spec 18-blog-guias)
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  // "aside": fixed column on desktop; "details": collapsed block on mobile
+  variant: 'aside' | 'details';
+}
+
+const { headings, variant } = Astro.props;
+const title = 'En este artículo';
+const number = (i: number) => String(i + 1).padStart(2, '0');
+---
+{variant === 'aside' ? (
+  <nav class="guide-toc guide-toc--aside" aria-label={title}>
+    <p class="guide-toc__title">{title}</p>
+    <ol class="guide-toc__list">
+      {headings.map((h, i) => (
+        <li><a class="guide-toc__link" href={`#${h.slug}`} data-toc-link><span class="guide-toc__number">{number(i)}</span>{h.text}</a></li>
+      ))}
+    </ol>
+  </nav>
+) : (
+  <details class="guide-toc guide-toc--details">
+    <summary class="guide-toc__title">{title}</summary>
+    <nav aria-label={title}>
+      <ol class="guide-toc__list">
+        {headings.map((h, i) => (
+          <li><a class="guide-toc__link" href={`#${h.slug}`} data-toc-link><span class="guide-toc__number">{number(i)}</span>{h.text}</a></li>
+        ))}
+      </ol>
+    </nav>
+  </details>
+)}

@@ -299,6 +299,171 @@
   font-weight: 500;
 }
 
+/* ===== GUIDE =====
+   Long how-to articles: index, summary and numbered sections (spec 18-blog-guias) */
+.post-guide {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 792px);
+  gap: 48px;
+  justify-content: center;
+  align-items: start;
+}
+
+.post-guide__main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.post-guide .post-body {
+  max-width: none;
+  margin: 0;
+  padding-inline: 0;
+}
+
+/* Section numbers, matching the index */
+.post-body--guide { counter-reset: guide-section; }
+
+.post-body--guide h2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 40px;
+  scroll-margin-top: calc(var(--ux-header-height) + 24px);
+  counter-increment: guide-section;
+}
+
+.post-body--guide h2::before {
+  content: counter(guide-section, decimal-leading-zero);
+  color: var(--ux-color-text-muted);
+  font-family: var(--ux-font-mono);
+  font-size: var(--ux-size-small);
+  letter-spacing: .3px;
+}
+
+/* Index */
+.guide-toc__title {
+  color: var(--ux-color-text-muted);
+  font-family: var(--ux-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 17.6px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
+.guide-toc__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.guide-toc__link {
+  display: flex;
+  gap: 12px;
+  padding: 8px 12px;
+  border-left: 2px solid transparent;
+  border-radius: 0 var(--ux-radius-frame) var(--ux-radius-frame) 0;
+  color: var(--ux-color-text-muted);
+  font-size: var(--ux-size-small);
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.guide-toc__number {
+  flex: none;
+  font-family: var(--ux-font-mono);
+  font-size: 13px;
+  line-height: 21.6px;
+}
+
+.guide-toc__link:hover,
+.guide-toc__link:focus-visible {
+  color: var(--ux-color-text);
+  background: var(--ux-color-surface-soft);
+}
+
+.guide-toc__link[aria-current] {
+  border-left-color: var(--ux-color-ink);
+  color: var(--ux-color-text);
+  font-weight: 500;
+}
+
+.guide-toc--aside {
+  position: sticky;
+  top: calc(var(--ux-header-height) + 24px);
+  max-height: calc(100vh - var(--ux-header-height) - 48px);
+  overflow-y: auto;
+}
+
+.guide-toc--details {
+  display: none;
+  padding: 16px 20px;
+  border: 1px solid var(--ux-color-border-soft);
+  border-radius: var(--ux-radius-card);
+}
+
+.guide-toc--details summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+.guide-toc--details summary::-webkit-details-marker { display: none; }
+
+.guide-toc--details summary::after {
+  content: '+';
+  color: var(--ux-color-text);
+  font-family: var(--ux-font-mono);
+  font-size: var(--ux-size-lead);
+  line-height: 1;
+}
+
+.guide-toc--details[open] summary::after { content: '–'; }
+
+/* Opening summary */
+.guide-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 32px;
+  border-radius: var(--ux-radius-card);
+  background: var(--ux-color-surface-soft);
+}
+
+.guide-summary__title {
+  color: var(--ux-color-text);
+  font-size: var(--ux-size-lead);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.04em;
+}
+
+.guide-summary__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--ux-color-text);
+  font-size: var(--ux-size-small);
+  line-height: 25.6px;
+}
+
+.guide-summary__list li {
+  position: relative;
+  padding-left: 24px;
+}
+
+.guide-summary__list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+}
+
 /* ===== AUTHOR ===== */
 .post-author {
   display: flex;
@@ -347,6 +512,9 @@
   .post-card--featured { grid-template-columns: minmax(0, 1fr); }
   .post-card--featured .post-card__image { height: 300px; }
   .post-header__cover { height: clamp(220px, 40vw, 500px); }
+  .post-guide { grid-template-columns: minmax(0, 792px); }
+  .guide-toc--aside { display: none; }
+  .guide-toc--details { display: block; }
 }
 
 @media (max-width: 768px) {
@@ -357,8 +525,13 @@
   .post-author { margin-inline: 16px; padding: 24px; }
   .post-related { padding-block: 56px; }
   .post-body { font-size: 18px; }
+  /* Same reading width as a regular article; site.css loads after this file */
+  .post-guide.page-container { padding-inline: 16px; }
+  .post-guide__main { gap: 32px; }
+  .guide-summary { padding: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .post-card:hover, .post-card:focus-visible { transform: none; }
 }

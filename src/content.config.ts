@@ -28,6 +28,10 @@ const blog = defineCollection({
     ogImage: z.string().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+    // Template: "guide" adds the summary, table of contents and numbered sections (spec 18-blog-guias)
+    type: z.enum(['article', 'guide']).default('article'),
+    // Points of the opening summary; guides only
+    summary: z.array(z.string()).min(3).max(5).optional(),
   }),
 });
 
