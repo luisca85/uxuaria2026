@@ -2,7 +2,7 @@
 
 **id:** `proyectos`
 **Estado:** 🚧 Diseño desktop de la lista y la plantilla visto y aprobado por Luis por ahora (2026-11-02), con Monge Pay · pendiente: contenido, 6 casos por migrar y frames mobile · no se publica hasta resolver A CONFIRMAR
-**Última actualización:** 2026-11-05
+**Última actualización:** 2026-11-16
 **Relacionada con:** 02-portfolio, 10-astro, 11-home, 12-blog-redesign
 
 ---
@@ -212,6 +212,7 @@ La general de [`AGENTS.md`](../AGENTS.md), más:
 - **Monge Pay:** la ficha suma "En asociación con: DEOPER, empresa costarricense de desarrollo de software. Mención especial a Walter Aguilar, Project Manager", pedido por Luis. Su card en `/portafolio` dice "En asociación con DEOPER, empresa costarricense de desarrollo de software", sin la mención a Walter Aguilar, que queda en el caso.
 - **CTA:** sin voseo: "¿Tienes un producto…?", "Agenda una llamada de 30 minutos…" y botón "Agenda una llamada →".
 - **Mutis UX y Sakura 64:** son borradores (`draft: true`), con el texto de ejemplo de Figma y sin destino. Se ven en desarrollo y no en producción.
+- **Kamino (2026-11-16):** caso nuevo, publicado el 2026-11-16 con aprobación de Luis, hecho a partir de la evaluación heurística de Kamino en Figma. Kamino es un desarrollo de Striano para un tercero (aclarado por Luis el 2026-11-16); el caso no nombra a ese cliente final (`fZnF8PdS3iR55X1ea3U0fa`). `order: 3.5`, para que quede después de Striano sin cambiar el orden de los demás. Las cifras (37 hallazgos, 4 de severidad 4, 13 de severidad 3, 6 áreas) se contaron en las fichas de Figma. Año confirmado: 2022. El mercado no se muestra porque es un desarrollo para un tercero.
 - **Resumen de Monge Pay en la card:** es un borrador basado en su texto actual, pendiente de aprobación.
 - **Capturas:** se muestran completas, con su proporción real. Figma recorta algunas en alturas fijas a partir de una imagen compuesta.
 - **Etiqueta del visual principal:** "PLATAFORMA WEB · VISTA PRINCIPAL", leída de una captura de Figma.
