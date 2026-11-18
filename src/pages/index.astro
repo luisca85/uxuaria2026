@@ -64,12 +64,12 @@ const testimonials = [
   <script is:inline slot="head" type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["Person", "ProfessionalService"],
-    "@id": "https://uxuaria.com/#luis",
-    "name": "Luis Carlos Romero León",
-    "alternateName": "Uxuaria",
-    "jobTitle": "UX Designer freelance",
+    "@type": ["Organization", "ProfessionalService"],
+    "@id": "https://uxuaria.com/#organization",
+    "name": "Uxuaria",
     "url": "https://uxuaria.com",
+    "logo": "https://uxuaria.com/apple-touch-icon.png",
+    "description": "Consultora y agencia de diseño de experiencia de usuario (UX/UI) AI-native para startups de fintech y SaaS en LATAM.",
     "email": "info@uxuaria.com",
     "address": {
       "@type": "PostalAddress",
@@ -82,7 +82,8 @@ const testimonials = [
       "Auditoría UX", "Design Systems", "IA productos digitales",
       "Prototipado", "Wireframing", "Diseño de onboarding"
     ],
-    "worksFor": { "@id": "https://uxuaria.com/#organization" },
+    "knowsLanguage": "es",
+    "founder": { "@id": "https://uxuaria.com/#luis" },
     "sameAs": [
       "https://www.linkedin.com/company/uxuaria/"
     ]
@@ -91,22 +92,26 @@ const testimonials = [
   <script is:inline slot="head" type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://uxuaria.com/#organization",
-    "name": "Uxuaria",
-    "url": "https://uxuaria.com",
-    "logo": "https://uxuaria.com/apple-touch-icon.png",
-    "description": "Consultora y agencia de diseño de experiencia de usuario (UX/UI) AI-native para startups de fintech y SaaS en LATAM.",
-    "email": "info@uxuaria.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Buenos Aires",
-      "addressCountry": "AR"
-    },
-    "founder": { "@id": "https://uxuaria.com/#luis" },
+    "@type": "Person",
+    "@id": "https://uxuaria.com/#luis",
+    "name": "Luis Carlos Romero León",
+    "jobTitle": "Gerente y fundador",
+    "url": "https://uxuaria.com/sobre-nosotros/",
+    "worksFor": { "@id": "https://uxuaria.com/#organization" },
     "sameAs": [
-      "https://www.linkedin.com/company/uxuaria/"
+      "https://www.linkedin.com/in/luiscaromero/"
     ]
+  }
+  </script>
+  <script is:inline slot="head" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://uxuaria.com/#website",
+    "url": "https://uxuaria.com/",
+    "name": "Uxuaria",
+    "inLanguage": "es",
+    "publisher": { "@id": "https://uxuaria.com/#organization" }
   }
   </script>
 
@@ -265,7 +270,7 @@ const testimonials = [
             <h2 class="home-closing__contact-title" data-split>Conversemos y averiguemos qué tan lejos podemos llegar</h2>
             {/* Direct link: the alternative if the embed is slow or fails (spec 11-home) */}
             <p class="home-closing__contact-text"><a class="home-closing__link" href={BOOKING_URL} target="_blank" rel="noopener" data-track="cta_final_call">Agenda una llamada de 15 minutos, elige una fecha en mi calendario</a></p>
-            <p class="home-closing__contact-text">O escríbeme a <a class="home-closing__link home-closing__link--email" href="mailto:info@uxuaria.com">info@uxuaria.com</a></p>
+            <p class="home-closing__contact-text">O escríbenos a <a class="home-closing__link home-closing__link--email" href="mailto:info@uxuaria.com">info@uxuaria.com</a></p>
           </div>
           <div class="home-closing__calendar">
             <CalEmbed hideDetails />

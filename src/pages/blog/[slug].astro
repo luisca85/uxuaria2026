@@ -42,9 +42,9 @@ const jsonLd = {
   dateModified: isoDate(updatedDate ?? pubDate),
   image,
   author: { '@type': 'Person', '@id': 'https://uxuaria.com/#luis', name: 'Luis Carlos Romero León' },
-  publisher: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+  publisher: { '@type': 'Organization', '@id': 'https://uxuaria.com/#organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
   url,
-  inLanguage: 'es-AR',
+  inLanguage: 'es',
 };
 ---
 <BaseLayout

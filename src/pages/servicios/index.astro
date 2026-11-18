@@ -30,7 +30,7 @@ const jsonLd = [
         name: service.name,
         description: service.summary,
         url: new URL(service.href, 'https://uxuaria.com').href,
-        provider: { '@type': 'Organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
+        provider: { '@type': 'Organization', '@id': 'https://uxuaria.com/#organization', name: 'Uxuaria', url: 'https://uxuaria.com' },
       },
     })),
   },

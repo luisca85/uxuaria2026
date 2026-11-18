@@ -63,7 +63,7 @@ Métrica de éxito: evento **`generate_lead`** en GA4 con `form_id: 'recursos'`.
 **Navegación**
 17. Dado cualquier página con navbar, entonces aparece el link **"Recursos"** en el menú de escritorio y en el menú mobile, apuntando a `/recursos/`. Posición: **A CONFIRMAR** (propuesta: después de Blog).
 18. Son 21 archivos con la navbar copiada, incluida `ai-mvp-rescue.html` (tiene su propia copia, ver decisions.md 2026-09-29). Todos se actualizan en el mismo cambio.
-19. Dado un viewport de escritorio con el ancho mínimo en que se muestra la navbar completa, entonces los cinco links y el botón "Contáctame" entran sin cortarse ni superponerse.
+19. Dado un viewport de escritorio con el ancho mínimo en que se muestra la navbar completa, entonces los cinco links y el botón "Contáctanos" entran sin cortarse ni superponerse.
 
 **Post del blog**
 20. El cierre del post "Cuando el vibe coding empieza a pesar" reemplaza "mandame un MD" por un link a `/recursos/`. Hoy ese post existe como borrador fuera del sitio. **A CONFIRMAR**: si el post se publica en `blog/` (entonces aplica la spec 06) o en otro lado.

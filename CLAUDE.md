@@ -2,7 +2,7 @@
 
 ## Descripción del proyecto
 
-Sitio web principal de **Uxuaria**, el estudio/práctica freelance de **Luis Carlos Romero León**, UX Designer con base en Argentina.  
+Sitio web principal de **Uxuaria**, estudio de diseño UX liderado por **Luis Carlos Romero León** (gerente y fundador), con base en Buenos Aires, Argentina. Uxuaria se presenta como un equipo reducido de diseñadores senior y el copy va en primera persona plural (`docs/decisions.md`, 2026-11-11).  
 URL de producción: **uxuaria.com**  
 Propósito: página de captación de clientes para servicios de Experience Design dirigidos a empresas en crecimiento de Latinoamérica.
 
