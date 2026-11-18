@@ -100,7 +100,7 @@
       .catch(() => {
         button.textContent = buttonText;
         button.disabled = false;
-        formError.textContent = 'No se pudo enviar el mensaje. Prueba de nuevo o escríbeme a info@uxuaria.com.';
+        formError.textContent = 'No se pudo enviar el mensaje. Prueba de nuevo o escríbenos a info@uxuaria.com.';
         formError.hidden = false;
       });
   });

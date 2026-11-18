@@ -374,7 +374,7 @@ AI MVP Rescue      → #ux-checkup
 Sobre mí
 Proyectos
 Blog
-Contáctame
+Contáctanos
 ```
 
 ### Columna Contacto
