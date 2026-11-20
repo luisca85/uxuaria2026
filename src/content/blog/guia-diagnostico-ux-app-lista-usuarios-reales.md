@@ -6,13 +6,12 @@ description: "Guía para revisar tu app o web antes de lanzarla si no eres dise�
 category: "UX · DIAGNÓSTICO"
 pubDate: 2026-11-20
 readingTime: 17
-# Generic cover until the final one (1600 x 900, OG 1200 x 630); hidden in the header
 cover:
-  src: "/images/og-uxuaria.jpg"
-  width: 1200
-  height: 630
-  alt: "Guía completa para diagnosticar la experiencia de tus usuarios en tu app o web"
-ogImage: "/images/og-uxuaria.jpg"
+  src: "/images/blog/guia-diagnostico-ux/portada.jpg"
+  width: 1170
+  height: 780
+  alt: "Una mano sostiene una nota adhesiva rosa que dice Run a usability test frente a otras notas con métodos de investigación UX: card sorting, entrevistas, encuesta a usuarios y visitas de campo"
+ogImage: "/images/blog/guia-diagnostico-ux/og.jpg"
 showCover: false
 draft: false
 type: guide
