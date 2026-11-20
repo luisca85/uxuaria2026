@@ -18,6 +18,18 @@ const externalLinks = {
   },
 };
 
+// Markdown tables only have a header row: its cells label their columns
+const tableHeaders = {
+  name: 'table-headers',
+  element: {
+    filter: ['th'],
+    /** @param {any} node @param {any} ctx */
+    visit(node, ctx) {
+      if (node.properties?.scope == null) ctx.setProperty(node, 'scope', 'col');
+    },
+  },
+};
+
 export default defineConfig({
   site: 'https://uxuaria.com',
   // Keeps today's URLs: blog/slug.astro → /blog/slug, servicios/index.astro → /servicios/
@@ -39,6 +51,6 @@ export default defineConfig({
   ],
   markdown: {
     // Straight quotes, as the hand-written articles had them
-    processor: satteri({ hastPlugins: [externalLinks], features: { smartPunctuation: false } }),
+    processor: satteri({ hastPlugins: [externalLinks, tableHeaders], features: { smartPunctuation: false } }),
   },
 });

@@ -13,6 +13,8 @@ const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
+    // Line under the h1 in the article header
+    subtitle: z.string().optional(),
     // <title> tag; defaults to "title | Uxuaria Blog"
     seoTitle: z.string().optional(),
     description: z.string(),
@@ -23,6 +25,8 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     readingTime: z.number(),
     cover: image,
+    // false hides the cover in the article header; cards and OG still use it
+    showCover: z.boolean().default(true),
     // Card crop when it differs from the cover
     cardImage: image.optional(),
     ogImage: z.string().optional(),
