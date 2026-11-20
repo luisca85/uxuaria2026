@@ -13,6 +13,7 @@ cover:
   alt: "Una mano sostiene una nota adhesiva rosa que dice Run a usability test frente a otras notas con métodos de investigación UX: card sorting, entrevistas, encuesta a usuarios y visitas de campo"
 ogImage: "/images/blog/guia-diagnostico-ux/og.jpg"
 showCover: false
+featured: true
 draft: false
 type: guide
 summary:

@@ -17,7 +17,6 @@ cardImage:
   height: 720
   alt: "Detalle de un grabado antiguo: un hombre de perfil con círculos y diagramas que salen de su cabeza y conectan los sentidos con la mente"
 ogImage: "/images/blog/ilusion-de-productividad-ia/og.jpg"
-featured: true
 ---
 
 Hoy me levanté con el aviso de que Claude estaba llegando al límite semanal y, de repente, sentí que iba a estar absolutamente limitado en las cosas que hacía hoy.
